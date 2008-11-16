@@ -19,6 +19,10 @@
 
   <name>OPS4J Pax Exam - Samples</name>
 
+  <properties>
+    <bundle.namespace>org.ops4j.pax.exam.sample</bundle.namespace>
+  </properties>
+  
   <dependencies>
     <dependency>
       <groupId>org.osgi</groupId>
@@ -51,7 +55,4 @@
     </dependency>
   </dependencies>
 
-  <properties>
-    <bundle.namespace>org.ops4j.pax.drone.sample</bundle.namespace>
-  </properties>
 </project>
