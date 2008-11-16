@@ -16,7 +16,7 @@
   <name>OPS4J Pax Exam - Connector Echo</name>
 
   <properties>
-    <bundle.namespace>org.ops4j.pax.drone.connector.echo</bundle.namespace>
+    <bundle.namespace>org.ops4j.pax.exam.connector.echo</bundle.namespace>
   </properties>
 
   <dependencies>
