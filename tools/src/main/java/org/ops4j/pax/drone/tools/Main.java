@@ -24,10 +24,10 @@ import org.ops4j.pax.exam.api.RunnerContext;
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.connector.paxrunner.internal.PaxRunnerConnectorImpl;
-import org.ops4j.pax.drone.spi.PrebuildDroneProvider;
-import org.ops4j.pax.drone.spi.TextSummary;
-import org.ops4j.pax.drone.spi.intern.BundleProvisionImpl;
-import org.ops4j.pax.drone.spi.intern.RunnerContextImpl;
+import org.ops4j.pax.exam.spi.PrebuildDroneProvider;
+import org.ops4j.pax.exam.spi.TextSummary;
+import org.ops4j.pax.exam.spi.internal.BundleProvisionImpl;
+import org.ops4j.pax.exam.spi.internal.RunnerContextImpl;
 import org.ops4j.pax.exam.api.BundleProvision;
 import org.ops4j.pax.exam.api.DroneProvider;
 

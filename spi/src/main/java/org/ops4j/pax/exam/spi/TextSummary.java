@@ -1,4 +1,4 @@
-package org.ops4j.pax.drone.spi;
+package org.ops4j.pax.exam.spi;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

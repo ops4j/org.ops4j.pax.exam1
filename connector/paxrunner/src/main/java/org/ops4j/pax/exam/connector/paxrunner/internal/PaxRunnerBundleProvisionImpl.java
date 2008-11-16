@@ -18,7 +18,7 @@
 package org.ops4j.pax.exam.connector.paxrunner.internal;
 
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerBundleProvision;
-import org.ops4j.pax.drone.spi.intern.BundleProvisionImpl;
+import org.ops4j.pax.exam.spi.internal.BundleProvisionImpl;
 
 /**
  * @author Toni Menzel (tonit)

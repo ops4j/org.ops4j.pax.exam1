@@ -3,7 +3,7 @@ package org.ops4j.pax.drone.spi.junit;
 import junit.framework.AssertionFailedError;
 import org.ops4j.pax.exam.api.DroneSummary;
 import org.ops4j.pax.exam.api.RecipeException;
-import org.ops4j.pax.drone.spi.TextSummary;
+import org.ops4j.pax.exam.spi.TextSummary;
 
 /**
  * This handles droneSummaries in a junit runner usecase.

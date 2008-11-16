@@ -1,8 +1,9 @@
-package org.ops4j.pax.drone.spi.intern;
+package org.ops4j.pax.exam.spi.internal;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.ops4j.pax.exam.api.BundleProvision;
+import org.ops4j.pax.exam.spi.internal.BundleProvisionImpl;
 
 /**
  * @author Toni Menzel (tonit)

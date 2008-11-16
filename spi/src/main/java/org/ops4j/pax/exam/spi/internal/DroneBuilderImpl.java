@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.drone.spi.intern;
+package org.ops4j.pax.exam.spi.internal;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,8 +29,8 @@ import java.util.jar.JarOutputStream;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.DroneProvider;
 import org.ops4j.pax.exam.api.DroneService;
-import org.ops4j.pax.drone.spi.ResourceLocator;
-import org.ops4j.pax.drone.spi.util.DroneUtils;
+import org.ops4j.pax.exam.spi.ResourceLocator;
+import org.ops4j.pax.exam.spi.util.DroneUtils;
 
 /**
  * @author Toni Menzel (tonit)

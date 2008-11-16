@@ -1,9 +1,10 @@
-package org.ops4j.pax.drone.spi.intern;
+package org.ops4j.pax.exam.spi.internal;
 
 import java.io.File;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.ops4j.pax.exam.api.RunnerContext;
+import org.ops4j.pax.exam.spi.internal.RunnerContextImpl;
 
 /**
  * @author Toni Menzel (tonit)

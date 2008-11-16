@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.drone.spi;
+package org.ops4j.pax.exam.spi;
 
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.DroneSummary;

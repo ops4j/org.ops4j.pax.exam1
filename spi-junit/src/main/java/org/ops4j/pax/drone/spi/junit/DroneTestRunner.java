@@ -26,7 +26,7 @@ import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
 import org.ops4j.pax.exam.api.DroneConnector;
 import org.ops4j.pax.exam.api.DroneProvider;
-import org.ops4j.pax.drone.spi.OnDemandDroneProvider;
+import org.ops4j.pax.exam.spi.OnDemandDroneProvider;
 
 /**
  * JUnit4 Runner to be used with the {@link org.junit.runner.RunWith} annotation

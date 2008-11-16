@@ -24,9 +24,9 @@ import org.ops4j.pax.exam.api.RunnerContext;
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.connector.paxrunner.internal.PaxRunnerConnectorImpl;
-import org.ops4j.pax.drone.spi.OnDemandDroneProvider;
-import org.ops4j.pax.drone.spi.intern.BundleProvisionImpl;
-import org.ops4j.pax.drone.spi.intern.RunnerContextImpl;
+import org.ops4j.pax.exam.spi.OnDemandDroneProvider;
+import org.ops4j.pax.exam.spi.internal.BundleProvisionImpl;
+import org.ops4j.pax.exam.spi.internal.RunnerContextImpl;
 
 /**
  * @author Toni Menzel (tonit)

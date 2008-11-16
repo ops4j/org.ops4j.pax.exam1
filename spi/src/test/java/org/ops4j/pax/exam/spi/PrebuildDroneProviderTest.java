@@ -1,6 +1,7 @@
-package org.ops4j.pax.drone.spi;
+package org.ops4j.pax.exam.spi;
 
 import org.junit.Test;
+import org.ops4j.pax.exam.spi.PrebuildDroneProvider;
 
 /**
  * @author Toni Menzel (tonit)

@@ -1,4 +1,4 @@
-package org.ops4j.pax.drone.spi.intern;
+package org.ops4j.pax.exam.spi.internal;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.jar.JarOutputStream;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import org.junit.Test;
-import org.ops4j.pax.drone.spi.intern.IntelliResourceFinder;
+import org.ops4j.pax.exam.spi.internal.IntelliResourceFinder;
 
 /**
  * User: Toni Menzel (tonit)

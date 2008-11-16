@@ -1,4 +1,4 @@
-package org.ops4j.pax.drone.spi.intern;
+package org.ops4j.pax.exam.spi.internal;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -6,7 +6,7 @@ import java.util.zip.ZipEntry;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import org.junit.Test;
-import org.ops4j.pax.drone.spi.intern.DuplicateAwareJarOutputStream;
+import org.ops4j.pax.exam.spi.internal.DuplicateAwareJarOutputStream;
 
 /**
  * User: Toni Menzel (tonit)

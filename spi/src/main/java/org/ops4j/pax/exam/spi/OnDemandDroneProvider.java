@@ -1,10 +1,10 @@
-package org.ops4j.pax.drone.spi;
+package org.ops4j.pax.exam.spi;
 
 import java.io.InputStream;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.DroneProvider;
-import org.ops4j.pax.drone.spi.intern.DroneBuilderImpl;
-import org.ops4j.pax.drone.spi.intern.IntelliResourceFinder;
+import org.ops4j.pax.exam.spi.internal.DroneBuilderImpl;
+import org.ops4j.pax.exam.spi.internal.IntelliResourceFinder;
 
 /**
  * @author Toni Menzel (tonit)

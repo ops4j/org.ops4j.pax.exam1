@@ -1,4 +1,4 @@
-package org.ops4j.pax.drone.spi.intern;
+package org.ops4j.pax.exam.spi.internal;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,7 +6,9 @@ import java.util.jar.JarOutputStream;
 import static org.easymock.EasyMock.*;
 import org.junit.Test;
 import org.ops4j.pax.exam.api.DroneProvider;
-import org.ops4j.pax.drone.spi.ResourceLocator;
+import org.ops4j.pax.exam.spi.ResourceLocator;
+import org.ops4j.pax.exam.spi.internal.DroneBuilderImpl;
+import org.ops4j.pax.exam.spi.internal.IntelliResourceFinder;
 
 /**
  * User: Toni Menzel (tonit)

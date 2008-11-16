@@ -1,4 +1,4 @@
-package org.ops4j.pax.drone.spi.intern;
+package org.ops4j.pax.exam.spi.internal;
 
 import java.io.File;
 import java.rmi.registry.Registry;

@@ -21,7 +21,7 @@ import org.ops4j.pax.exam.api.BundleProvision;
 import org.ops4j.pax.exam.api.RunnerContext;
 import org.ops4j.pax.exam.connector.paxrunner.internal.PaxRunnerBundleProvisionImpl;
 import org.ops4j.pax.exam.connector.paxrunner.internal.PaxRunnerConnectorImpl;
-import org.ops4j.pax.drone.spi.intern.RunnerContextImpl;
+import org.ops4j.pax.exam.spi.internal.RunnerContextImpl;
 
 /**
  * The utility to create and configure connectors based on paxrunner connector.
