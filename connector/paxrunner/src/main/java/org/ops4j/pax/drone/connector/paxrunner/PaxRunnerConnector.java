@@ -18,7 +18,7 @@
  */
 package org.ops4j.pax.drone.connector.paxrunner;
 
-import org.ops4j.pax.drone.api.DroneConnector;
+import org.ops4j.pax.exam.api.DroneConnector;
 
 /**
  * This covers the connector that will execute a pax runner process.

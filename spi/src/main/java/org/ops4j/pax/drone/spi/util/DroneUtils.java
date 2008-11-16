@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 import aQute.lib.osgi.Analyzer;
 import aQute.lib.osgi.Jar;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.drone.api.DroneException;
+import org.ops4j.pax.exam.api.DroneException;
 
 /**
  * @author Toni Menzel (tonit)

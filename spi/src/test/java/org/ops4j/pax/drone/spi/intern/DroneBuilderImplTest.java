@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.jar.JarOutputStream;
 import static org.easymock.EasyMock.*;
 import org.junit.Test;
-import org.ops4j.pax.drone.api.DroneProvider;
+import org.ops4j.pax.exam.api.DroneProvider;
 import org.ops4j.pax.drone.spi.ResourceLocator;
 
 /**

@@ -27,7 +27,7 @@ import org.apache.commons.logging.LogFactory;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.drone.spi.ResourceLocator;
 import org.ops4j.pax.drone.spi.util.DroneUtils;
-import org.ops4j.pax.drone.api.DroneException;
+import org.ops4j.pax.exam.api.DroneException;
 
 /**
  * Finds resources of the current module under test just by given top-level parent (whatever that is)

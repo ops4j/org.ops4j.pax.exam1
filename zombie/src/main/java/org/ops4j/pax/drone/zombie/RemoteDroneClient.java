@@ -26,8 +26,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import org.ops4j.pax.drone.api.DroneException;
-import org.ops4j.pax.drone.api.DroneService;
+import org.ops4j.pax.exam.api.DroneException;
+import org.ops4j.pax.exam.api.DroneService;
 import org.ops4j.pax.drone.zombie.intern.RemoteDroneService;
 
 /**

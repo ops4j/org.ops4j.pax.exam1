@@ -18,9 +18,10 @@
 package org.ops4j.pax.drone.connector.echo;
 
 import java.io.InputStream;
-import org.ops4j.pax.drone.api.DroneConnector;
-import org.ops4j.pax.drone.api.DroneProvider;
-import org.ops4j.pax.drone.api.DroneSummary;
+
+import org.ops4j.pax.exam.api.DroneSummary;
+import org.ops4j.pax.exam.api.DroneConnector;
+import org.ops4j.pax.exam.api.DroneProvider;
 
 /**
  * User: Toni Menzel (tonit)

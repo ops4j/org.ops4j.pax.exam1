@@ -3,7 +3,7 @@ package org.ops4j.pax.drone.spi.intern;
 import java.io.File;
 import java.rmi.registry.Registry;
 import org.ops4j.net.FreePort;
-import org.ops4j.pax.drone.api.RunnerContext;
+import org.ops4j.pax.exam.api.RunnerContext;
 
 /**
  * A context is a shared resource.

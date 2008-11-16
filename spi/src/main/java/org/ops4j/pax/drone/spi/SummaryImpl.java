@@ -18,8 +18,8 @@
 package org.ops4j.pax.drone.spi;
 
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.drone.api.DroneSummary;
-import org.ops4j.pax.drone.api.RecipeException;
+import org.ops4j.pax.exam.api.DroneSummary;
+import org.ops4j.pax.exam.api.RecipeException;
 
 /**
  * @author Toni Menzel (tonit)

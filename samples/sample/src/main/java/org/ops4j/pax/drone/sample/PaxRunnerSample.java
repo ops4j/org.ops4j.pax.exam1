@@ -19,8 +19,8 @@ package org.ops4j.pax.drone.sample;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
-import org.ops4j.pax.drone.api.BundleProvision;
-import org.ops4j.pax.drone.api.RunnerContext;
+import org.ops4j.pax.exam.api.BundleProvision;
+import org.ops4j.pax.exam.api.RunnerContext;
 import org.ops4j.pax.drone.connector.paxrunner.PaxRunnerConnector;
 import org.ops4j.pax.drone.connector.paxrunner.Platforms;
 import org.ops4j.pax.drone.connector.paxrunner.intern.PaxRunnerConnectorImpl;

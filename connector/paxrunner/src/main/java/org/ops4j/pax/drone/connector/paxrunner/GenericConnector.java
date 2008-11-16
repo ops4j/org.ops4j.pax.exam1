@@ -17,11 +17,10 @@
  */
 package org.ops4j.pax.drone.connector.paxrunner;
 
-import org.ops4j.pax.drone.api.BundleProvision;
-import org.ops4j.pax.drone.api.RunnerContext;
+import org.ops4j.pax.exam.api.BundleProvision;
+import org.ops4j.pax.exam.api.RunnerContext;
 import org.ops4j.pax.drone.connector.paxrunner.intern.PaxRunnerConnectorImpl;
 import org.ops4j.pax.drone.connector.paxrunner.intern.PaxRunnerBundleProvisionImpl;
-import org.ops4j.pax.drone.spi.intern.BundleProvisionImpl;
 import org.ops4j.pax.drone.spi.intern.RunnerContextImpl;
 
 /**

@@ -19,7 +19,7 @@ package org.ops4j.pax.drone.spi.junit;
 
 import junit.framework.TestCase;
 import org.osgi.framework.BundleContext;
-import org.ops4j.pax.drone.api.DroneConnector;
+import org.ops4j.pax.exam.api.DroneConnector;
 import org.ops4j.pax.drone.spi.OnDemandDroneProvider;
 
 /**

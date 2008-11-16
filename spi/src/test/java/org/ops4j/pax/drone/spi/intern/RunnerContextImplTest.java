@@ -3,7 +3,7 @@ package org.ops4j.pax.drone.spi.intern;
 import java.io.File;
 import static org.junit.Assert.*;
 import org.junit.Test;
-import org.ops4j.pax.drone.api.RunnerContext;
+import org.ops4j.pax.exam.api.RunnerContext;
 
 /**
  * @author Toni Menzel (tonit)

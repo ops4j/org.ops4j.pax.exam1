@@ -2,7 +2,7 @@ package org.ops4j.pax.drone.spi;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import org.ops4j.pax.drone.api.RecipeException;
+import org.ops4j.pax.exam.api.RecipeException;
 
 /**
  * @author Toni Menzel (tonit)

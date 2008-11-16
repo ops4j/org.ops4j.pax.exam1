@@ -5,8 +5,8 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.drone.api.DroneException;
-import org.ops4j.pax.drone.api.DroneProvider;
+import org.ops4j.pax.exam.api.DroneException;
+import org.ops4j.pax.exam.api.DroneProvider;
 
 /**
  * @author Toni Menzel (tonit)

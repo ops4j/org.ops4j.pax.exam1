@@ -2,7 +2,7 @@ package org.ops4j.pax.drone.samples.simple;
 
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.log.LogService;
-import org.ops4j.pax.drone.api.DroneConnector;
+import org.ops4j.pax.exam.api.DroneConnector;
 import static org.ops4j.pax.drone.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.drone.connector.paxrunner.Platforms;
 import org.ops4j.pax.drone.spi.junit.TestFirstTestCase;

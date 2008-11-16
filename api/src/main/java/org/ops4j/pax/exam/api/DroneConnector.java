@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.drone.api;
+package org.ops4j.pax.exam.api;
 
 /**
  * DroneConnectors are a simple astraction for launching a specific recipe (which is just an identifier).

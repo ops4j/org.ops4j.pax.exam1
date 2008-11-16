@@ -27,8 +27,8 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
-import org.ops4j.pax.drone.api.DroneException;
-import org.ops4j.pax.drone.api.DroneService;
+import org.ops4j.pax.exam.api.DroneException;
+import org.ops4j.pax.exam.api.DroneService;
 import org.ops4j.pax.drone.zombie.intern.RemoteDroneService;
 
 /**

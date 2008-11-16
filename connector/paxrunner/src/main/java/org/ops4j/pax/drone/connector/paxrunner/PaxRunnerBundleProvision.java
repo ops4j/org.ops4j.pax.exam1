@@ -17,7 +17,7 @@
  */
 package org.ops4j.pax.drone.connector.paxrunner;
 
-import org.ops4j.pax.drone.api.BundleProvision;
+import org.ops4j.pax.exam.api.BundleProvision;
 
 /**
  * This adds some special marker methods to BundleProvision that are specific to paxrunner.

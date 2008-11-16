@@ -22,9 +22,9 @@ import java.lang.reflect.Method;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.drone.api.DroneException;
-import org.ops4j.pax.drone.api.DroneService;
-import org.ops4j.pax.drone.api.RecipeException;
+import org.ops4j.pax.exam.api.RecipeException;
+import org.ops4j.pax.exam.api.DroneException;
+import org.ops4j.pax.exam.api.DroneService;
 
 /**
  * @author Toni Menzel (tonit)

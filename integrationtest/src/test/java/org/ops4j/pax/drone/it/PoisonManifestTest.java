@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.jar.JarOutputStream;
 import org.junit.Test;
-import org.ops4j.pax.drone.api.DroneException;
+import org.ops4j.pax.exam.api.DroneException;
 import org.ops4j.pax.drone.spi.intern.IntelliResourceFinder;
 
 /**

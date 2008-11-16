@@ -22,7 +22,7 @@ import java.rmi.server.UnicastRemoteObject;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
-import org.ops4j.pax.drone.api.DroneService;
+import org.ops4j.pax.exam.api.DroneService;
 import org.ops4j.pax.drone.zombie.RemoteDroneDelegate;
 
 /**

@@ -20,7 +20,7 @@ package org.ops4j.pax.drone.spi.intern;
 import java.util.HashSet;
 import java.util.Set;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.drone.api.BundleProvision;
+import org.ops4j.pax.exam.api.BundleProvision;
 
 /**
  * @author Toni Menzel (tonit)

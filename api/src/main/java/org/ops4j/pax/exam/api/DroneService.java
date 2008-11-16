@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.ops4j.pax.drone.api;
+package org.ops4j.pax.exam.api;
 
 /**
  * This is the service that will be installed by drone-service in your target environment.

@@ -15,25 +15,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.drone.api;
+package org.ops4j.pax.exam.api;
 
 /**
- * Interface to final information about a single DroneConnecor.execute(..) run.
- * In essense, this should deal also with nested "original" exceptions.
+ * Exception mother of all Drone based exceptions as well as catched and validated original exceptions.
  *
  * @author Toni Menzel (tonit)
- * @since Oct 3, 2008
+ * @since Oct 2, 2008
  */
-public interface DroneSummary
+public class DroneException extends RuntimeException
 {
 
-    boolean hasFailed();
+    public DroneException( Exception e )
+    {
+        super( e );
+    }
 
-    boolean isRecipeException();
+    public DroneException( String e )
+    {
+        super( e );
+    }
 
-    void setException( Exception e );
-
-    Throwable getCause();
-
-    Exception getException();
+    public DroneException( String s, Exception e )
+    {
+        super( s, e );
+    }
 }

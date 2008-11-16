@@ -2,7 +2,7 @@ package org.ops4j.pax.drone.spi;
 
 import java.io.InputStream;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.drone.api.DroneProvider;
+import org.ops4j.pax.exam.api.DroneProvider;
 import org.ops4j.pax.drone.spi.intern.DroneBuilderImpl;
 import org.ops4j.pax.drone.spi.intern.IntelliResourceFinder;
 

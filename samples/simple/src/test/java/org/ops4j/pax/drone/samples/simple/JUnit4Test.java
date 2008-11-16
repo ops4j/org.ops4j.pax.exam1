@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.osgi.framework.BundleContext;
-import org.ops4j.pax.drone.api.DroneConnector;
+import org.ops4j.pax.exam.api.DroneConnector;
 import static org.ops4j.pax.drone.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.drone.connector.paxrunner.Platforms;
 import org.ops4j.pax.drone.spi.junit.DroneConfiguration;

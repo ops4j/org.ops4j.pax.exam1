@@ -19,8 +19,8 @@ package org.ops4j.pax.drone.connector.paxrunner.intern;
 
 import static org.easymock.EasyMock.*;
 import org.junit.Test;
-import org.ops4j.pax.drone.api.BundleProvision;
-import org.ops4j.pax.drone.api.RunnerContext;
+import org.ops4j.pax.exam.api.BundleProvision;
+import org.ops4j.pax.exam.api.RunnerContext;
 
 /**
  * @author Toni Menzel (tonit)

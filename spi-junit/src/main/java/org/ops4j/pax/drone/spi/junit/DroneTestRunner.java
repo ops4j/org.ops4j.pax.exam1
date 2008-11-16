@@ -24,8 +24,8 @@ import org.junit.runner.Description;
 import org.junit.runner.Runner;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
-import org.ops4j.pax.drone.api.DroneConnector;
-import org.ops4j.pax.drone.api.DroneProvider;
+import org.ops4j.pax.exam.api.DroneConnector;
+import org.ops4j.pax.exam.api.DroneProvider;
 import org.ops4j.pax.drone.spi.OnDemandDroneProvider;
 
 /**

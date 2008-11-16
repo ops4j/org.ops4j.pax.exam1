@@ -1,8 +1,8 @@
 package org.ops4j.pax.drone.spi.junit;
 
 import junit.framework.AssertionFailedError;
-import org.ops4j.pax.drone.api.DroneSummary;
-import org.ops4j.pax.drone.api.RecipeException;
+import org.ops4j.pax.exam.api.DroneSummary;
+import org.ops4j.pax.exam.api.RecipeException;
 import org.ops4j.pax.drone.spi.TextSummary;
 
 /**
@@ -44,7 +44,7 @@ public class JUnitSummaryHandling
         {
             if( firstError.isRecipeException() )
             {
-                RecipeException rec = (RecipeException) firstError.getCause();
+                RecipeException rec = ( RecipeException ) firstError.getCause();
                 if( rec.isAssertionError() )
                 {
                     // recover junit error so that junit fails and does not tell an error.

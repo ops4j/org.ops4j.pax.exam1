@@ -2,7 +2,7 @@ package org.ops4j.pax.drone.spi.intern;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import org.ops4j.pax.drone.api.BundleProvision;
+import org.ops4j.pax.exam.api.BundleProvision;
 
 /**
  * @author Toni Menzel (tonit)

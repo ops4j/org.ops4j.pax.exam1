@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
-import org.ops4j.pax.drone.api.DroneSummary;
+import org.ops4j.pax.exam.api.DroneSummary;
 
 /**
  * This is a text output utility for DroneSummaries.

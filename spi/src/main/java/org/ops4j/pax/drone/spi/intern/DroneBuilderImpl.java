@@ -27,8 +27,8 @@ import java.io.PipedOutputStream;
 import java.util.Properties;
 import java.util.jar.JarOutputStream;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.drone.api.DroneProvider;
-import org.ops4j.pax.drone.api.DroneService;
+import org.ops4j.pax.exam.api.DroneProvider;
+import org.ops4j.pax.exam.api.DroneService;
 import org.ops4j.pax.drone.spi.ResourceLocator;
 import org.ops4j.pax.drone.spi.util.DroneUtils;
 

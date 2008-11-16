@@ -21,7 +21,7 @@ import java.util.Hashtable;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
-import org.ops4j.pax.drone.api.DroneService;
+import org.ops4j.pax.exam.api.DroneService;
 
 /**
  * This activator publishes a DroneService implementation.
