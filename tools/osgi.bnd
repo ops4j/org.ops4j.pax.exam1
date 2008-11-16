@@ -1,5 +1,5 @@
 Main-Class:\
-  org.ops4j.pax.drone.tools.Main
+  org.ops4j.pax.exam.tools.Main
 
 Bundle-SymbolicName:\
   ${bundle.symbolicName}

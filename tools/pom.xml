@@ -16,7 +16,7 @@
   <name>OPS4J Pax Exam - Tools</name>
 
   <properties>
-    <bundle.namespace>org.ops4j.pax.drone.tools</bundle.namespace>
+    <bundle.namespace>org.ops4j.pax.exam.tools</bundle.namespace>
     <bundle.symbolicName>pax-exam-tools</bundle.symbolicName>
   </properties>
 
