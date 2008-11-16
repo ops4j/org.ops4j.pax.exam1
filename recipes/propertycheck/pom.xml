@@ -4,20 +4,20 @@
 
   <parent>
     <groupId>org.ops4j.pax</groupId>
-    <artifactId>drone</artifactId>
+    <artifactId>exam</artifactId>
     <version>0.2.2-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.ops4j.pax.drone</groupId>
-  <artifactId>pax-drone-recipe-propertycheck</artifactId>
+  <groupId>org.ops4j.pax.exam</groupId>
+  <artifactId>pax-exam-recipe-propertycheck</artifactId>
   <version>0.2.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <name>OPS4J Pax Drone - Recipe - PropertyCheck</name>
+  <name>OPS4J Pax Exam - Recipe - PropertyCheck</name>
 
   <properties>
     <bundle.namespace>org.ops4j.pax.drone.recipe.propertycheck</bundle.namespace>
-    <bundle.symbolicName>pax-drone-recipe-propertycheck</bundle.symbolicName>
+    <bundle.symbolicName>pax-exam-recipe-propertycheck</bundle.symbolicName>
   </properties>
 
   <dependencies>

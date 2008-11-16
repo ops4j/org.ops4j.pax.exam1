@@ -202,8 +202,8 @@ public class PaxRunnerConnectorImpl
         if (version != null && version.endsWith( "SNAPSHOT" )) {
             version += "@update";
         }
-        full.add( "scan-bundle:mvn:org.ops4j.pax.drone/pax-drone-zombie/" + version );
-        full.add( "scan-bundle:mvn:org.ops4j.pax.drone/pax-drone-runtime/" + version );
+        full.add( "scan-bundle:mvn:org.ops4j.pax.exam/pax-exam-zombie/" + version );
+        full.add( "scan-bundle:mvn:org.ops4j.pax.exam/pax-exam-runtime/" + version );
 
         // Add custom dependency bundles:
         String[] bundles = m_provision.getBundles();

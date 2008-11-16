@@ -85,7 +85,7 @@ public class Main
 
                 // TODO replace param with real recipe from recipes sub project.
 
-                DroneProvider provider = new PrebuildDroneProvider( "mvn:org.ops4j.pax.drone/pax-drone-recipe-propertycheck@update" );
+                DroneProvider provider = new PrebuildDroneProvider( "mvn:org.ops4j.pax.exam/pax-exam-recipe-propertycheck@update" );
 
                 // Now you can execute your connector using the provider just constructed.
                 DroneSummary s = connector.execute( provider );

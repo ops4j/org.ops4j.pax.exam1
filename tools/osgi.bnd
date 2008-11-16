@@ -19,13 +19,13 @@ Include-Resource:\
   @target/dependency/commons-logging.jar!/org/*,\
   @target/dependency/bndlib.jar!/org/*,\
   @target/dependency/ops4j-base-monitors.jar!/org/*,\
-  @target/dependency/pax-drone-spi.jar!/org/*,\
+  @target/dependency/pax-exam-spi.jar!/org/*,\
   @target/dependency/ops4j-base-io.jar!/org/*,\
   @target/dependency/ops4j-base-net.jar!/org/*,\
-  @target/dependency/pax-drone-api.jar!/org/*,\
-  @target/dependency/pax-drone-zombie.jar!/org/*,\
+  @target/dependency/pax-exam-api.jar!/org/*,\
+  @target/dependency/pax-exam-zombie.jar!/org/*,\
   @target/dependency/ops4j-base-lang.jar!/org/*,\
-  @target/dependency/pax-drone-connector-paxrunner.jar!/org/ops4j/*,\
+  @target/dependency/pax-exam-connector-paxrunner.jar!/org/ops4j/*,\
   @target/dependency/pax-runner-no-jcl.jar!/org/ops4j/*
 
 -removeheaders:\

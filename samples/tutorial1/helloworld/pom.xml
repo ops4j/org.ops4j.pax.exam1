@@ -4,16 +4,16 @@
 
   <parent>
     <groupId>org.ops4j.pax</groupId>
-    <artifactId>drone</artifactId>
-    <version>0.2.1-SNAPSHOT</version>
+    <artifactId>exam</artifactId>
+    <version>0.2.2-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.ops4j.pax.drone</groupId>
+  <groupId>org.ops4j.pax.exam</groupId>
   <artifactId>tutorial-helloworld</artifactId>
-  <version>0.2.1-SNAPSHOT</version>
+  <version>0.2.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <name>OPS4J Pax Drone - Tutorial Hello World</name>
+  <name>OPS4J Pax Exam - Tutorial Hello World</name>
 
   <properties>
     <bundle.symbolicName>tutorial.hellowworld</bundle.symbolicName>

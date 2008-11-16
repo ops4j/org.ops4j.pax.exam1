@@ -4,16 +4,16 @@
 
   <parent>
     <groupId>org.ops4j.pax</groupId>
-    <artifactId>drone</artifactId>
-    <version>0.2.1-SNAPSHOT</version>
+    <artifactId>exam</artifactId>
+    <version>0.2.2-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.ops4j.pax.drone</groupId>
-  <artifactId>pax-drone-samples-tutorial1</artifactId>
-  <version>0.2.1-SNAPSHOT</version>
+  <groupId>org.ops4j.pax.exam</groupId>
+  <artifactId>pax-exam-samples-tutorial1</artifactId>
+  <version>0.2.2-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>OPS4J Pax Drone - Samples - Tutorial1 (Build POM)</name>
+  <name>OPS4J Pax Exam - Samples - Tutorial1 (Build POM)</name>
 
   <modules>
     <module>helloworld</module>

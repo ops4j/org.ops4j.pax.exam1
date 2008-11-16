@@ -4,16 +4,16 @@
 
   <parent>
     <groupId>org.ops4j.pax</groupId>
-    <artifactId>drone</artifactId>
+    <artifactId>exam</artifactId>
     <version>0.2.2-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.ops4j.pax.drone</groupId>
-  <artifactId>pax-drone-connector</artifactId>
+  <groupId>org.ops4j.pax.exam</groupId>
+  <artifactId>pax-exam-connector</artifactId>
   <version>0.2.2-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>OPS4J Pax Drone - Connector (Build POM)</name>
+  <name>OPS4J Pax Exam - Connector (Build POM)</name>
 
   <modules>
     <!--

@@ -19,7 +19,7 @@ public class HelloWorldTest extends DroneTestCase {
                 .setPlatform(Platforms.FELIX)
                 .addBundle("mvn:org.ops4j.pax.logging/pax-logging-api")
                 // here we use the normal mvn handler
-                .addBundle("mvn:org.ops4j.pax.drone/tutorial-helloworld");
+                .addBundle("mvn:org.ops4j.pax.exam/tutorial-helloworld");
     }
 
     public void testCheckFramework() {

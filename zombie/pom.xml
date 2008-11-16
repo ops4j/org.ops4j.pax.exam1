@@ -4,16 +4,16 @@
 
   <parent>
     <groupId>org.ops4j.pax</groupId>
-    <artifactId>drone</artifactId>
+    <artifactId>exam</artifactId>
     <version>0.2.2-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.ops4j.pax.drone</groupId>
-  <artifactId>pax-drone-zombie</artifactId>
+  <groupId>org.ops4j.pax.exam</groupId>
+  <artifactId>pax-exam-zombie</artifactId>
   <version>0.2.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <name>OPS4J Pax Drone - Zombie Service</name>
+  <name>OPS4J Pax Exam - Zombie Service</name>
 
   <properties>
     <bundle.symbolicName>org.ops4j.pax.drone.zombie</bundle.symbolicName>
@@ -40,8 +40,8 @@
       <artifactId>org.osgi.core</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.ops4j.pax.drone</groupId>
-      <artifactId>pax-drone-api</artifactId>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-api</artifactId>
       <version>${pom.version}</version>
     </dependency>
   </dependencies>

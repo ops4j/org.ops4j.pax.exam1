@@ -33,7 +33,7 @@ public interface DroneService
     final String PROPERTY_COMMUNICATION_PORT = "drone.communication.port";
     final String DRONE_RECIPE_HOST_HEADER = "Drone-RecipeHost";
     final String DRONE_RECIPE_CODE_HEADER = "Drone-RecipeCode";
-    final String DRONE_SYMBOLICNAME = "pax-drone-probe";
+    final String DRONE_SYMBOLICNAME = "pax-exam-probe";
 
     /**
      * Triggers whatever the drone implementation is about.

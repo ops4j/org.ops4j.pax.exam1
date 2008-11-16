@@ -4,18 +4,18 @@
 
   <parent>
     <groupId>org.ops4j.pax</groupId>
-    <artifactId>drone</artifactId>
+    <artifactId>exam</artifactId>
     <version>0.2.2-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.ops4j.pax.drone</groupId>
-  <artifactId>pax-drone-runtime</artifactId>
+  <groupId>org.ops4j.pax.exam</groupId>
+  <artifactId>pax-exam-runtime</artifactId>
   <version>0.2.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <name>OPS4J Pax Drone - Runtime</name>
+  <name>OPS4J Pax Exam - Runtime</name>
   <description>This artifact is an assembly that acumulates all stuff needed at runtime. Its bundle manifest will
-    reference the Activator in pax-drone-service as activator.
+    reference the Activator in pax-exam-service as activator.
   </description>
 
   <build>
@@ -43,32 +43,32 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>org.ops4j.pax.drone</groupId>
-      <artifactId>pax-drone-api</artifactId>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-api</artifactId>
       <version>${pom.version}</version>
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>org.ops4j.pax.drone</groupId>
-      <artifactId>pax-drone-spi</artifactId>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-spi</artifactId>
       <version>${pom.version}</version>
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>org.ops4j.pax.drone</groupId>
-      <artifactId>pax-drone-spi-junit</artifactId>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-spi-junit</artifactId>
       <version>${pom.version}</version>
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>org.ops4j.pax.drone</groupId>
-      <artifactId>pax-drone-service</artifactId>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-service</artifactId>
       <version>${pom.version}</version>
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>org.ops4j.pax.drone</groupId>
-      <artifactId>pax-drone-connector-paxrunner</artifactId>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-connector-paxrunner</artifactId>
       <version>${pom.version}</version>
       <scope>runtime</scope>
     </dependency>
