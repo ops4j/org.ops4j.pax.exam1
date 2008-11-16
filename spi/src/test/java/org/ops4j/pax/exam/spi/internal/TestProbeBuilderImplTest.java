@@ -40,7 +40,7 @@ public class TestProbeBuilderImplTest
     public void buildingWithWrongResource()
         throws IOException
     {
-        ResourceLocator locator = new IntelliResourceFinder( new File( "." ), "foo" );
+        ResourceLocator locator = new IntelliResourceLocator( new File( "." ), "foo" );
 
         locator.write( ( JarOutputStream ) notNull() );
         TestProbeBuilder builder = new BndTestProbeBuilder( this.getClass().getName(), null, locator );

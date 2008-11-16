@@ -37,15 +37,15 @@ import java.util.jar.JarOutputStream;
  * @author Toni Menzel (tonit)
  * @since May 30, 2008
  */
-public class IntelliResourceFinder implements ResourceLocator
+public class IntelliResourceLocator implements ResourceLocator
 {
 
-    public static final Log logger = LogFactory.getLog( IntelliResourceFinder.class );
+    public static final Log logger = LogFactory.getLog( IntelliResourceLocator.class );
 
     private File m_topLevelDir;
     private String m_targetClassName;
 
-    public IntelliResourceFinder( File topLevelDir, String targetClassName )
+    public IntelliResourceLocator( File topLevelDir, String targetClassName )
     {
         NullArgumentException.validateNotNull( topLevelDir, "topLevelDir" );
         NullArgumentException.validateNotEmpty( targetClassName, "targetClassName" );
@@ -59,7 +59,7 @@ public class IntelliResourceFinder implements ResourceLocator
         m_targetClassName = targetClassName;
     }
 
-    public IntelliResourceFinder( String targetClassName )
+    public IntelliResourceLocator( String targetClassName )
     {
         this( new File( "." ), targetClassName );
     }

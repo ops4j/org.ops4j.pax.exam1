@@ -3,7 +3,7 @@ package org.ops4j.pax.exam.spi;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.spi.internal.BndTestProbeBuilder;
-import org.ops4j.pax.exam.spi.internal.IntelliResourceFinder;
+import org.ops4j.pax.exam.spi.internal.IntelliResourceLocator;
 
 import java.io.InputStream;
 
@@ -28,6 +28,6 @@ public class OnDemandTestProbeBuilder implements TestProbeBuilder
 
     public InputStream build()
     {
-        return new BndTestProbeBuilder( m_host, m_recipe, new IntelliResourceFinder( m_host ) ).build();
+        return new BndTestProbeBuilder( m_host, m_recipe, new IntelliResourceLocator( m_host ) ).build();
     }
 }

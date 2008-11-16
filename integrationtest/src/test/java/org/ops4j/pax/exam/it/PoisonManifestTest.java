@@ -2,7 +2,7 @@ package org.ops4j.pax.exam.it;
 
 import org.junit.Test;
 import org.ops4j.pax.exam.api.TestExecutionException;
-import org.ops4j.pax.exam.spi.internal.IntelliResourceFinder;
+import org.ops4j.pax.exam.spi.internal.IntelliResourceLocator;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,8 +20,8 @@ public class PoisonManifestTest
     public void testForSelfishManifest()
         throws IOException
     {
-        IntelliResourceFinder finder = new IntelliResourceFinder( new File( "." ), this.getClass().getName() );
-        finder.write( new JarOutputStream( new OutputStream()
+        IntelliResourceLocator locator = new IntelliResourceLocator( new File( "." ), this.getClass().getName() );
+        locator.write( new JarOutputStream( new OutputStream()
         {
 
             public void write( int i )

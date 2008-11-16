@@ -19,31 +19,31 @@ public class IntelliResourceFinderTest
     @Test( expected = IllegalArgumentException.class )
     public void createWithAllNull()
     {
-        new IntelliResourceFinder( null, null );
+        new IntelliResourceLocator( null, null );
     }
 
     @Test( expected = IllegalArgumentException.class )
     public void createWithFirstNull()
     {
-        new IntelliResourceFinder( null, "foo" );
+        new IntelliResourceLocator( null, "foo" );
     }
 
     @Test( expected = IllegalArgumentException.class )
     public void createWithSecNull()
     {
-        new IntelliResourceFinder( new File( "foo" ), null );
+        new IntelliResourceLocator( new File( "foo" ), null );
     }
 
     @Test( expected = IllegalArgumentException.class )
     public void createWithEmptyClassName()
     {
-        new IntelliResourceFinder( new File( "foo" ), "" );
+        new IntelliResourceLocator( new File( "foo" ), "" );
     }
 
     @Test
     public void create()
     {
-        new IntelliResourceFinder( getTestFolder(), "recipe" );
+        new IntelliResourceLocator( getTestFolder(), "recipe" );
     }
 
     @Test( expected = IllegalArgumentException.class )
@@ -53,7 +53,7 @@ public class IntelliResourceFinderTest
         // be sure its a file and it exists.. (provoke error on foldercheck)
         if( f.exists() && f.isFile() )
         {
-            new IntelliResourceFinder( new File( "pom.xml" ), "foo" );
+            new IntelliResourceLocator( new File( "pom.xml" ), "foo" );
         }
         else
         {
@@ -64,14 +64,14 @@ public class IntelliResourceFinderTest
     @Test( expected = IllegalArgumentException.class )
     public void createWithNonExistingFolder()
     {
-        new IntelliResourceFinder( new File( "doesnotexist" ), "foo" );
+        new IntelliResourceLocator( new File( "doesnotexist" ), "foo" );
     }
 
     @Test( expected = IllegalArgumentException.class )
     public void findNonExistingClass()
         throws IOException
     {
-        IntelliResourceFinder finder = new IntelliResourceFinder( new File( "." ), "nonexistingclass" );
+        IntelliResourceLocator locator = new IntelliResourceLocator( new File( "." ), "nonexistingclass" );
         JarOutputStream target = new JarOutputStream( new OutputStream()
         {
 
@@ -83,14 +83,14 @@ public class IntelliResourceFinderTest
         }
         );
 
-        finder.write( target );
+        locator.write( target );
     }
 
     @Test
     public void findExistingClass()
         throws IOException
     {
-        IntelliResourceFinder finder = new IntelliResourceFinder( new File( "." ), this.getClass().getName() );
+        IntelliResourceLocator locator = new IntelliResourceLocator( new File( "." ), this.getClass().getName() );
         final boolean[] blnFlag = new boolean[]{ false };
         JarOutputStream target = new JarOutputStream( new OutputStream()
         {
@@ -103,7 +103,7 @@ public class IntelliResourceFinderTest
         }
         );
 
-        finder.write( target );
+        locator.write( target );
         assertTrue( blnFlag[ 0 ] );
     }
 
