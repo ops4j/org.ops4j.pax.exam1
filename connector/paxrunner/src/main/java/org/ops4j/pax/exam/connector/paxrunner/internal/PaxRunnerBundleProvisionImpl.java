@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.drone.connector.paxrunner.intern;
+package org.ops4j.pax.exam.connector.paxrunner.internal;
 
-import org.ops4j.pax.drone.connector.paxrunner.PaxRunnerBundleProvision;
+import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerBundleProvision;
 import org.ops4j.pax.drone.spi.intern.BundleProvisionImpl;
 
 /**

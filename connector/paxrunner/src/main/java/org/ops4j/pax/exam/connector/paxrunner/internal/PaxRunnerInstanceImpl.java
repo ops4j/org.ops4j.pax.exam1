@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.drone.connector.paxrunner.intern;
+package org.ops4j.pax.exam.connector.paxrunner.internal;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +27,7 @@ import org.ops4j.io.Pipe;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.DroneException;
 import org.ops4j.pax.exam.api.DroneService;
-import org.ops4j.pax.drone.connector.paxrunner.SubProcess;
+import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
 import org.ops4j.pax.drone.zombie.intern.RemoteDroneService;
 import org.ops4j.pax.runner.CommandLine;
 import org.ops4j.pax.runner.CommandLineImpl;

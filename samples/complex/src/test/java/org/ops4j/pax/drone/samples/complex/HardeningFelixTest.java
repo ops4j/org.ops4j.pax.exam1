@@ -1,8 +1,8 @@
 package org.ops4j.pax.drone.samples.complex;
 
 import org.ops4j.pax.exam.api.DroneConnector;
-import static org.ops4j.pax.drone.connector.paxrunner.GenericConnector.*;
-import org.ops4j.pax.drone.connector.paxrunner.Platforms;
+import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
+import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 
 /**
  * @author Toni Menzel (tonit)

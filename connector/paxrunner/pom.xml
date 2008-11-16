@@ -16,7 +16,7 @@
   <name>OPS4J Pax Exam - Connector PaxRunner</name>
 
   <properties>
-    <bundle.namespace>org.ops4j.pax.drone.connector.paxrunner</bundle.namespace>
+    <bundle.namespace>org.ops4j.pax.exam.connector.paxrunner</bundle.namespace>
   </properties>
 
   <dependencies>
