@@ -4,7 +4,7 @@ import org.osgi.framework.Constants;
 import org.ops4j.pax.exam.api.DroneConnector;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
-import org.ops4j.pax.drone.spi.junit.DroneTestCase;
+import org.ops4j.pax.exam.spi.junit.DroneTestCase;
 
 /**
  * @author Toni Menzel (tonit)

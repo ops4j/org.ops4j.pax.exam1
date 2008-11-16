@@ -16,8 +16,8 @@
   <name>OPS4J Pax Exam - SPI for JUnit</name>
 
   <properties>
-    <bundle.namespace>org.ops4j.pax.drone.spi.junit</bundle.namespace>
-    <bundle.symbolicName>org.ops4j.pax.drone.spi-junit</bundle.symbolicName>
+    <bundle.namespace>org.ops4j.pax.exam.spi.junit</bundle.namespace>
+    <bundle.symbolicName>org.ops4j.pax.exam.spi-junit</bundle.symbolicName>
   </properties>
 
   <build>

@@ -1,7 +1,7 @@
 package org.ops4j.pax.drone.samples.complex;
 
 import org.osgi.framework.Constants;
-import org.ops4j.pax.drone.spi.junit.DroneTestCase;
+import org.ops4j.pax.exam.spi.junit.DroneTestCase;
 
 /**
  * @author Toni Menzel (tonit)

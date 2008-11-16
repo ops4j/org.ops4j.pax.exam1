@@ -7,8 +7,8 @@ import org.osgi.framework.BundleContext;
 import org.ops4j.pax.exam.api.DroneConnector;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
-import org.ops4j.pax.drone.spi.junit.DroneConfiguration;
-import org.ops4j.pax.drone.spi.junit.DroneTestRunner;
+import org.ops4j.pax.exam.spi.junit.DroneConfiguration;
+import org.ops4j.pax.exam.spi.junit.DroneTestRunner;
 
 /**
  * TODO fill test results with proper timesheet.

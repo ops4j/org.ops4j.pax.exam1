@@ -1,4 +1,4 @@
-package org.ops4j.pax.drone.spi.junit;
+package org.ops4j.pax.exam.spi.junit;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
