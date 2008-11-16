@@ -1,4 +1,4 @@
-package org.ops4j.pax.drone.samples.complex;
+package org.ops4j.pax.exam.samples.complex;
 
 import org.osgi.framework.Constants;
 import org.ops4j.pax.exam.spi.junit.DroneTestCase;
