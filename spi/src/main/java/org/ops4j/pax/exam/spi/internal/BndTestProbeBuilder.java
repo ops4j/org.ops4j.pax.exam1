@@ -1,5 +1,6 @@
 /*
  * Copyright 2008 Toni Menzel
+ * Copyright 2008 Alin Dreghiciu
  *
  * Licensed  under the  Apache License,  Version 2.0  (the "License");
  * you may not use  this file  except in  compliance with the License.
@@ -21,42 +22,49 @@ import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.api.TestRunner;
 import org.ops4j.pax.exam.spi.ResourceLocator;
-import org.ops4j.pax.exam.spi.util.Utils;
+import org.ops4j.pax.exam.spi.util.BndUtils;
+import org.ops4j.pax.exam.spi.util.IOUtils;
 
 import java.io.*;
 import java.util.Properties;
 import java.util.jar.JarOutputStream;
 
 /**
+ * Responsible for creating the on-the fly testing probe.
+ *
  * @author Toni Menzel (tonit)
+ * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since May 29, 2008
- *        Responsible for creating the on-the fly testing probe.
- *        Expected to radically change once things are working. (1st make it work, 2nd make it efficient)
  */
-public class TestProbeBuilderImpl
+public class BndTestProbeBuilder
     implements TestProbeBuilder
 {
 
     private ResourceLocator m_finder;
-    private String m_recipeHost;
-    private String m_recipeCode;
+    private String m_testClass;
+    private String m_testMethod;
 
     /**
-     * @param recipe name of test class
-     * @param finder locator that gathers all resources that have to be inside the test probe
+     * Constructor.
+     *
+     * @param testClass  name of test class
+     * @param testMethod name of the test method
+     * @param finder     locator that gathers all resources that have to be inside the test probe
      */
-    public TestProbeBuilderImpl( String recipe, String recipeHost, ResourceLocator finder )
+    public BndTestProbeBuilder( final String testClass,
+                                 final String testMethod,
+                                 final ResourceLocator finder )
     {
-        NullArgumentException.validateNotNull( recipeHost, "recipeHost" );
+        NullArgumentException.validateNotNull( testClass, "recipeHost" );
         NullArgumentException.validateNotNull( finder, "finder" );
 
         m_finder = finder;
-        m_recipeHost = recipeHost;
-        m_recipeCode = recipe;
+        m_testClass = testClass;
+        m_testMethod = testMethod;
     }
 
     /**
-     * Implementation that uses bnd to calculate the final stuff.
+     * {@inheritDoc}
      */
     public InputStream build()
     {
@@ -70,7 +78,7 @@ public class TestProbeBuilderImpl
 
                 public void run()
                 {
-                    JarOutputStream jos = null;
+                    JarOutputStream jos;
                     try
                     {
                         jos = new DuplicateAwareJarOutputStream( pout );
@@ -99,12 +107,12 @@ public class TestProbeBuilderImpl
             // 2. wrap and calc manifest using bnd
             Properties props = new Properties();
             // Recipe Host
-            props.put( TestRunner.PROBE_TEST_CASE, m_recipeHost );
-            props.put( TestRunner.PROBE_TEST_METHOD, m_recipeCode );
+            props.put( TestRunner.PROBE_TEST_CASE, m_testClass );
+            props.put( TestRunner.PROBE_TEST_METHOD, m_testMethod );
 
             // include connector clazzes to be used inside
             //props.put( "Private-Package", "org.ops4j.pax.exam.connector.*" );
-            InputStream result = Utils.createBundle( fis, props, TestRunner.PROBE_SYMBOLICNAME );
+            InputStream result = BndUtils.createBundle( fis, props, TestRunner.PROBE_SYMBOLICNAME );
             fis.close();
             pout.close();
             return result;
@@ -127,7 +135,7 @@ public class TestProbeBuilderImpl
     {
         File finalOutput = File.createTempFile( "paxExamFinal", "jar" );
         FileOutputStream outstream = new FileOutputStream( finalOutput );
-        Utils.copy( inputStream, outstream );
+        IOUtils.copy( inputStream, outstream );
         inputStream.close();
         outstream.close();
         return new FileInputStream( finalOutput );

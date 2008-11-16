@@ -1,5 +1,6 @@
 /*
  * Copyright 2008 Toni Menzel
+ * Copyright 2008 Alin Dreghiciu
  *
  * Licensed  under the  Apache License,  Version 2.0  (the "License");
  * you may not use  this file  except in  compliance with the License.
@@ -31,6 +32,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * BND related utilities.
+ *
+ * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @author Toni Menzel (tonit)
  * @since May 29, 2008
  *        <p/>
@@ -38,7 +42,7 @@ import java.util.regex.Pattern;
  *
  *        TODO fix building pax exam contents in final probe (don't include)
  */
-public class Utils
+public class BndUtils
 {
 
     /**
@@ -50,7 +54,7 @@ public class Utils
     /**
      * Utility class. Ment to be used using static methods
      */
-    private Utils()
+    private BndUtils()
     {
         // utility class
     }
@@ -173,83 +177,6 @@ public class Utils
     private static String generateSymbolicName( final String symbolicName )
     {
         return symbolicName.replaceAll( "[^a-zA-Z_0-9.-]", "_" );
-    }
-
-    /**
-     * Parses bnd instructions out of an url query string.
-     *
-     * @param query query part of an url.
-     *
-     * @return parsed instructions as properties
-     *
-     * @throws java.net.MalformedURLException if provided path does not comply to syntax.
-     */
-    public static Properties parseInstructions( final String query )
-        throws MalformedURLException
-    {
-        final Properties instructions = new Properties();
-        if( query != null )
-        {
-            try
-            {
-                // just ignore for the moment and try out if we have valid properties separated by "&"
-                final String segments[] = query.split( "&" );
-                for( String segment : segments )
-                {
-                    // do not parse empty strings
-                    if( segment.trim().length() > 0 )
-                    {
-                        final Matcher matcher = INSTRUCTIONS_PATTERN.matcher( segment );
-                        if( matcher.matches() )
-                        {
-                            instructions.setProperty(
-                                matcher.group( 1 ),
-                                URLDecoder.decode( matcher.group( 2 ), "UTF-8" )
-                            );
-                        }
-                        else
-                        {
-                            throw new MalformedURLException( "Invalid syntax for instruction [" + segment
-                                                             + "]. Take a look at http://www.aqute.biz/Code/Bnd."
-                            );
-                        }
-                    }
-                }
-            }
-            catch( UnsupportedEncodingException e )
-            {
-                // thrown by URLDecoder but it should never happen
-                throwAsMalformedURLException( "Could not retrieve the instructions from [" + query + "]", e );
-            }
-        }
-        return instructions;
-    }
-
-    /**
-     * Creates an MalformedURLException with a message and a cause.
-     *
-     * @param message exception message
-     * @param cause   exception cause
-     *
-     * @throws MalformedURLException the created MalformedURLException
-     */
-    private static void throwAsMalformedURLException( final String message, final Exception cause )
-        throws MalformedURLException
-    {
-        final MalformedURLException exception = new MalformedURLException( message );
-        exception.initCause( cause );
-        throw exception;
-    }
-
-    public static void copy( InputStream in, OutputStream out )
-        throws IOException
-    {
-        byte[] buffer = new byte[1024];
-        int b;
-        while( ( b = in.read( buffer ) ) != -1 )
-        {
-            out.write( buffer, 0, b );
-        }
     }
 
 }

@@ -20,20 +20,20 @@ public class TestProbeBuilderImplTest
     @Test( expected = IllegalArgumentException.class )
     public void failedConstruction1()
     {
-        new TestProbeBuilderImpl( null, null, null );
+        new BndTestProbeBuilder( null, null, null );
     }
 
     @Test( expected = IllegalArgumentException.class )
     public void failedConstruction2()
     {
-        new TestProbeBuilderImpl( "", this.getClass().getName(), null );
+        new BndTestProbeBuilder( this.getClass().getName(), "", null );
     }
 
     @Test( expected = IllegalArgumentException.class )
     public void failedConstruction3()
     {
         ResourceLocator locator = createMock( ResourceLocator.class );
-        new TestProbeBuilderImpl( null, null, locator );
+        new BndTestProbeBuilder( null, null, locator );
     }
 
     @Test( expected = IllegalArgumentException.class )
@@ -43,7 +43,7 @@ public class TestProbeBuilderImplTest
         ResourceLocator locator = new IntelliResourceFinder( new File( "." ), "foo" );
 
         locator.write( ( JarOutputStream ) notNull() );
-        TestProbeBuilder builder = new TestProbeBuilderImpl( null, this.getClass().getName(), locator );
+        TestProbeBuilder builder = new BndTestProbeBuilder( this.getClass().getName(), null, locator );
         builder.build();
     }
 

@@ -22,7 +22,7 @@ import org.apache.commons.logging.LogFactory;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.TestExecutionException;
 import org.ops4j.pax.exam.spi.ResourceLocator;
-import org.ops4j.pax.exam.spi.util.Utils;
+import org.ops4j.pax.exam.spi.util.IOUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -149,7 +149,7 @@ public class IntelliResourceFinder implements ResourceLocator
         target.putNextEntry( new JarEntry( name ) );
         FileInputStream fis = new FileInputStream( f );
 
-        Utils.copy( fis, target );
+        IOUtils.copy( fis, target );
         fis.close();
     }
 }
