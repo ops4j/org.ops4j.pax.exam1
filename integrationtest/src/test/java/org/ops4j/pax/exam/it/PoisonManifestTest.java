@@ -1,4 +1,4 @@
-package org.ops4j.pax.drone.it;
+package org.ops4j.pax.exam.it;
 
 import java.io.File;
 import java.io.IOException;
