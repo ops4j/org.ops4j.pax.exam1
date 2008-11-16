@@ -19,9 +19,9 @@ package org.ops4j.pax.exam.spi.junit;
 
 import junit.framework.TestCase;
 import org.ops4j.pax.exam.api.TestExecutionSummary;
-import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.api.TestRunnerConnector;
-import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
+import org.ops4j.pax.exam.spi.OnDemandTestProbeBuilder;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -56,7 +56,7 @@ public abstract class MultiConnectorPaxExamTestCase extends TestCase
     public void runBare()
         throws Throwable
     {
-        TestProbeProvider provider = new OnDemandTestProbeProvider( getName(), this.getClass().getName() );
+        TestProbeBuilder builder = new OnDemandTestProbeBuilder( getName(), this.getClass().getName() );
 
         TestRunnerConnector[] connectors = getConnectors();
         int currentConfig = 0;
@@ -64,7 +64,7 @@ public abstract class MultiConnectorPaxExamTestCase extends TestCase
 
         for( TestRunnerConnector con : connectors )
         {
-            summaries[ currentConfig++ ] = con.execute( provider );
+            summaries[ currentConfig++ ] = con.execute( builder );
         }
 
         JUnitSummaryHandling.handleSummary( summaries );

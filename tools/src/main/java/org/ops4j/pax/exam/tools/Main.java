@@ -20,11 +20,11 @@ package org.ops4j.pax.exam.tools;
 import org.ops4j.pax.exam.api.BundleProvision;
 import org.ops4j.pax.exam.api.RunnerContext;
 import org.ops4j.pax.exam.api.TestExecutionSummary;
-import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.connector.paxrunner.internal.PaxRunnerConnectorImpl;
-import org.ops4j.pax.exam.spi.PrebuildTestProbeProvider;
+import org.ops4j.pax.exam.spi.PrebuildTestProbeBuilder;
 import org.ops4j.pax.exam.spi.TextSummary;
 import org.ops4j.pax.exam.spi.internal.BundleProvisionImpl;
 import org.ops4j.pax.exam.spi.internal.RunnerContextImpl;
@@ -79,16 +79,16 @@ public class Main
                 // or any other settings you would normally do for the system bundle:
                 // set bootdelegation packages, system environment and so on.
 
-                // you'll need a provider that will make up your test.
+                // you'll need a builder that will make up your test.
                 // though we will use a prebuild one
 
                 // TODO replace param with real recipe from recipes sub project.
 
-                TestProbeProvider provider =
-                    new PrebuildTestProbeProvider( "mvn:org.ops4j.pax.exam/pax-exam-recipe-propertycheck@update" );
+                TestProbeBuilder builder =
+                    new PrebuildTestProbeBuilder( "mvn:org.ops4j.pax.exam/pax-exam-recipe-propertycheck@update" );
 
-                // Now you can execute your connector using the provider just constructed.
-                TestExecutionSummary s = connector.execute( provider );
+                // Now you can execute your connector using the builder just constructed.
+                TestExecutionSummary s = connector.execute( builder );
 
                 // for every run you'll get a summary which contains everything you want.
                 // even (human thinkable) exceptions.

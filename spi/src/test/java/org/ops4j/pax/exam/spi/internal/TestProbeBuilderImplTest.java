@@ -3,7 +3,7 @@ package org.ops4j.pax.exam.spi.internal;
 import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.notNull;
 import org.junit.Test;
-import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.spi.ResourceLocator;
 
 import java.io.File;
@@ -43,8 +43,8 @@ public class TestProbeBuilderImplTest
         ResourceLocator locator = new IntelliResourceFinder( new File( "." ), "foo" );
 
         locator.write( ( JarOutputStream ) notNull() );
-        TestProbeProvider provider = new TestProbeBuilderImpl( null, this.getClass().getName(), locator );
-        provider.build();
+        TestProbeBuilder builder = new TestProbeBuilderImpl( null, this.getClass().getName(), locator );
+        builder.build();
     }
 
 

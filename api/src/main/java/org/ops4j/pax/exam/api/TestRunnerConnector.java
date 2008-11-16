@@ -33,9 +33,9 @@ public interface TestRunnerConnector
      * Recipes are local to the RecipeHost:
      * In UnitTests a RecipeHost is the Class and Recipes are its (public) test-Methods.
      *
-     * @param provider a pax exam provider that makes up a specific pax exam call
+     * @param builder a pax exam provider that makes up a specific pax exam call
      *
      * @return a summary of the run. Exceptions should be caught es good as possible.
      */
-    TestExecutionSummary execute( TestProbeProvider provider );
+    TestExecutionSummary execute( TestProbeBuilder builder );
 }

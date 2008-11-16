@@ -2,9 +2,9 @@ package org.ops4j.pax.exam.spi.junit;
 
 import junit.framework.TestCase;
 import org.ops4j.pax.exam.api.TestExecutionSummary;
-import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.api.TestRunnerConnector;
-import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
+import org.ops4j.pax.exam.spi.OnDemandTestProbeBuilder;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -58,14 +58,14 @@ public abstract class TestFirstTestCase extends TestCase
         // runs the same thing with two different configurations:
         // the first must fail (RecipeException), the seccond must succeed.
 
-        TestProbeProvider provider = new OnDemandTestProbeProvider( getName(), this.getClass().getName() );
-        TestExecutionSummary interMustFail = getConnectorFailing().execute( provider );
+        TestProbeBuilder builder = new OnDemandTestProbeBuilder( getName(), this.getClass().getName() );
+        TestExecutionSummary interMustFail = getConnectorFailing().execute( builder );
 
         if( interMustFail.hasFailed() )
         {
             if( interMustFail.isRecipeException() )
             {
-                TestExecutionSummary m_runnerSuc = getConnectorSuccessful().execute( provider );
+                TestExecutionSummary m_runnerSuc = getConnectorSuccessful().execute( builder );
 
             }
             else

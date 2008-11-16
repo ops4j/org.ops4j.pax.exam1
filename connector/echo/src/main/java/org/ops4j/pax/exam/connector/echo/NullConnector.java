@@ -18,7 +18,7 @@
 package org.ops4j.pax.exam.connector.echo;
 
 import org.ops4j.pax.exam.api.TestExecutionSummary;
-import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.api.TestRunnerConnector;
 
 import java.io.InputStream;
@@ -39,7 +39,7 @@ public class NullConnector implements TestRunnerConnector
         System.out.println( "NullConnector.install with InputStream: " + inp );
     }
 
-    public TestExecutionSummary execute( TestProbeProvider provider )
+    public TestExecutionSummary execute( TestProbeBuilder builder )
     {
         System.out.println( "NullConnector.execute" );
         return null;

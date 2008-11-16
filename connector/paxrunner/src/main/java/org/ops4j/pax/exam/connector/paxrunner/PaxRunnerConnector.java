@@ -91,7 +91,7 @@ public interface PaxRunnerConnector extends TestRunnerConnector
 
     // String[] getOptions();
 
-    //TestProbeProvider getBuilder();
+    //TestProbeBuilder getBuilder();
 
     // Set<String> getBundles();
 }

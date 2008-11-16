@@ -22,9 +22,9 @@ import org.junit.runner.Description;
 import org.junit.runner.Runner;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
-import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.api.TestRunnerConnector;
-import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
+import org.ops4j.pax.exam.spi.OnDemandTestProbeBuilder;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -95,7 +95,7 @@ public class PaxExamTestRunner extends Runner
 
     {
         notifier.fireTestStarted( d );
-        TestProbeProvider provider = new OnDemandTestProbeProvider( m.getName(), m_clazz.getName() );
+        TestProbeBuilder builder = new OnDemandTestProbeBuilder( m.getName(), m_clazz.getName() );
         TestRunnerConnector connector = null;
         try
         {
@@ -107,7 +107,7 @@ public class PaxExamTestRunner extends Runner
         }
         try
         {
-            JUnitSummaryHandling.handleSummary( connector.execute( provider ) );
+            JUnitSummaryHandling.handleSummary( connector.execute( builder ) );
         }
         catch( Throwable t )
         {

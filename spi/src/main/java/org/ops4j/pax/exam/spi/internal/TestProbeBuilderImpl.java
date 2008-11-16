@@ -18,7 +18,7 @@
 package org.ops4j.pax.exam.spi.internal;
 
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.api.TestRunner;
 import org.ops4j.pax.exam.spi.ResourceLocator;
 import org.ops4j.pax.exam.spi.util.Utils;
@@ -34,7 +34,7 @@ import java.util.jar.JarOutputStream;
  *        Expected to radically change once things are working. (1st make it work, 2nd make it efficient)
  */
 public class TestProbeBuilderImpl
-    implements TestProbeProvider
+    implements TestProbeBuilder
 {
 
     private ResourceLocator m_finder;

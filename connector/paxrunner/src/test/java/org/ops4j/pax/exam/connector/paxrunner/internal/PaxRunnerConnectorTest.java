@@ -21,7 +21,7 @@ import static org.easymock.EasyMock.*;
 import org.junit.Test;
 import org.ops4j.pax.exam.api.BundleProvision;
 import org.ops4j.pax.exam.api.RunnerContext;
-import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
 import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
 import org.ops4j.pax.exam.zombie.RemoteTestRunnerClient;
@@ -66,21 +66,21 @@ public class PaxRunnerConnectorTest
             }
         };
         RunnerContext context = createMock( RunnerContext.class );
-        final TestProbeProvider provider = createMock( TestProbeProvider.class );
+        final TestProbeBuilder builder = createMock( TestProbeBuilder.class );
         final BundleProvision prov = createMock( BundleProvision.class );
 
         PaxRunnerConnectorImpl connector = new PaxRunnerConnectorImpl( context, prov )
         {
 
-            public TestProbeProvider getBuilder()
+            public TestProbeBuilder getBuilder()
             {
-                return provider;
+                return builder;
             }
         };
 
         try
         {
-            connector.execute( p, client, System.out, new TestProbeProvider()
+            connector.execute( p, client, System.out, new TestProbeBuilder()
             {
 
                 public InputStream build()

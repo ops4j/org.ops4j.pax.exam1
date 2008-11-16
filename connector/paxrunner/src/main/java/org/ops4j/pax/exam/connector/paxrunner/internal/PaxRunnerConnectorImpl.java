@@ -248,11 +248,11 @@ public class PaxRunnerConnectorImpl
     }
 
     public void execute( SubProcess instance, RemoteTestRunnerClient client, PrintStream out,
-                         TestProbeProvider provider )
+                         TestProbeBuilder builder )
     {
         NullArgumentException.validateNotNull( instance, "process" );
         NullArgumentException.validateNotNull( client, "remote pax exam client handle" );
-        NullArgumentException.validateNotNull( provider, "provider" );
+        NullArgumentException.validateNotNull( builder, "builder" );
 
         try
         {
@@ -260,7 +260,7 @@ public class PaxRunnerConnectorImpl
             LOG.info( "LOADING paxrunner.." );
             instance.startup();
             LOG.info( "BUILDING and INSTALLING Pax Exam bundle.." );
-            client.install( provider.build() );
+            client.install( builder.build() );
             // use remoting client to call the tests
 
             LOG.info( "EXECUTING PAX EXAM NOW" );
@@ -277,7 +277,7 @@ public class PaxRunnerConnectorImpl
         }
     }
 
-    public TestExecutionSummary execute( TestProbeProvider provider )
+    public TestExecutionSummary execute( TestProbeBuilder builder )
     {
         Info.showLogo();
         TestExecutionSummary summary = new SummaryImpl();
@@ -291,7 +291,7 @@ public class PaxRunnerConnectorImpl
             SubProcess instance = new PaxRunnerInstanceImpl( options, workingDirectory, port );
             RemoteTestRunnerClient c = new RemoteTestRunnerClient( port );
 
-            execute( instance, c, System.out, provider );
+            execute( instance, c, System.out, builder );
         }
         catch( Exception e )
         {

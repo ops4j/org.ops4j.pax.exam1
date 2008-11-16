@@ -22,7 +22,7 @@ import org.ops4j.pax.exam.api.RunnerContext;
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.connector.paxrunner.internal.PaxRunnerConnectorImpl;
-import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
+import org.ops4j.pax.exam.spi.OnDemandTestProbeBuilder;
 import org.ops4j.pax.exam.spi.internal.BundleProvisionImpl;
 import org.ops4j.pax.exam.spi.internal.RunnerContextImpl;
 import org.osgi.framework.Bundle;
@@ -65,6 +65,6 @@ public class PaxRunnerSample
          * Consult the connector configuration wiki for more about a specific connector.
          * Here we use the PaxRunnerConnector. 
          */
-        connector.execute( new OnDemandTestProbeProvider( "simpleRecipe", PaxRunnerSample.class.getName() ) );
+        connector.execute( new OnDemandTestProbeBuilder( "simpleRecipe", PaxRunnerSample.class.getName() ) );
     }
 }

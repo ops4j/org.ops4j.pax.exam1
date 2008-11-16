@@ -6,18 +6,18 @@ import org.junit.Test;
  * @author Toni Menzel (tonit)
  * @since Oct 30, 2008
  */
-public class PrebuildTestProbeProviderTest
+public class PrebuildTestProbeBuilderTest
 {
 
     @Test( expected = IllegalArgumentException.class )
     public void testInstance()
     {
-        new PrebuildTestProbeProvider( null );
+        new PrebuildTestProbeBuilder( null );
     }
 
     @Test( expected = IllegalArgumentException.class )
     public void testInstance2()
     {
-        new PrebuildTestProbeProvider( "" );
+        new PrebuildTestProbeBuilder( "" );
     }
 }

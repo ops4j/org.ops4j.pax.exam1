@@ -19,7 +19,7 @@ package org.ops4j.pax.exam.spi.junit;
 
 import junit.framework.TestCase;
 import org.ops4j.pax.exam.api.TestRunnerConnector;
-import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
+import org.ops4j.pax.exam.spi.OnDemandTestProbeBuilder;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -58,7 +58,7 @@ public abstract class PaxExamTestCase extends TestCase
         throws Throwable
     {
         JUnitSummaryHandling.handleSummary(
-            getConnector().execute( new OnDemandTestProbeProvider( getName(), this.getClass().getName() ) )
+            getConnector().execute( new OnDemandTestProbeBuilder( getName(), this.getClass().getName() ) )
         );
 
 

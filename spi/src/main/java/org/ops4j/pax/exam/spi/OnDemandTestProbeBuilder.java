@@ -1,7 +1,7 @@
 package org.ops4j.pax.exam.spi;
 
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.spi.internal.IntelliResourceFinder;
 import org.ops4j.pax.exam.spi.internal.TestProbeBuilderImpl;
 
@@ -11,13 +11,13 @@ import java.io.InputStream;
  * @author Toni Menzel (tonit)
  * @since Oct 10, 2008
  */
-public class OnDemandTestProbeProvider implements TestProbeProvider
+public class OnDemandTestProbeBuilder implements TestProbeBuilder
 {
 
     private String m_host;
     private String m_recipe;
 
-    public OnDemandTestProbeProvider( String recipe, String host )
+    public OnDemandTestProbeBuilder( String recipe, String host )
     {
         NullArgumentException.validateNotEmpty( recipe, "recipe" );
         NullArgumentException.validateNotEmpty( host, "host" );

@@ -2,7 +2,7 @@ package org.ops4j.pax.exam.spi;
 
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.TestExecutionException;
-import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestProbeBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,12 +13,12 @@ import java.net.URL;
  * @author Toni Menzel (tonit)
  * @since Oct 10, 2008
  */
-public class PrebuildTestProbeProvider implements TestProbeProvider
+public class PrebuildTestProbeBuilder implements TestProbeBuilder
 {
 
     private String m_bundleUrl;
 
-    public PrebuildTestProbeProvider( String bundleUrl )
+    public PrebuildTestProbeBuilder( String bundleUrl )
     {
         NullArgumentException.validateNotEmpty( bundleUrl, "bundleUrl" );
         m_bundleUrl = bundleUrl;

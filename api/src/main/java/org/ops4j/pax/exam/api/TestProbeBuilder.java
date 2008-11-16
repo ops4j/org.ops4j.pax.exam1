@@ -28,7 +28,7 @@ import java.io.InputStream;
  * @author Toni Menzel (tonit)
  * @since May 29, 2008
  */
-public interface TestProbeProvider
+public interface TestProbeBuilder
 {
 
     /**
