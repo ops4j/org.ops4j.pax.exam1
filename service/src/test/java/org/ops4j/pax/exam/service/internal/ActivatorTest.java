@@ -15,13 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.drone.service.intern;
+package org.ops4j.pax.exam.service.internal;
 
 import static org.easymock.EasyMock.*;
 import org.junit.Test;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.ops4j.pax.exam.api.DroneService;
+import org.ops4j.pax.exam.service.internal.Activator;
 
 import java.util.Dictionary;
 

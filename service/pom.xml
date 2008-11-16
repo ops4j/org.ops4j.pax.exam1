@@ -16,8 +16,8 @@
   <name>OPS4J Pax Exam - Service</name>
 
   <properties>
-    <bundle.symbolicName>org.ops4j.pax.drone.service</bundle.symbolicName>
-    <bundle.namespace>org.ops4j.pax.drone.service</bundle.namespace>
+    <bundle.symbolicName>org.ops4j.pax.exam.service</bundle.symbolicName>
+    <bundle.namespace>org.ops4j.pax.exam.service</bundle.namespace>
   </properties>
 
   <dependencies>
