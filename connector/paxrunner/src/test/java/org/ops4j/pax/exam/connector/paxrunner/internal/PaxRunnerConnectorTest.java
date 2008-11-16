@@ -26,7 +26,7 @@ import org.ops4j.pax.exam.api.RunnerContext;
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
 import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
 import org.ops4j.pax.exam.connector.paxrunner.internal.PaxRunnerConnectorImpl;
-import org.ops4j.pax.drone.zombie.RemoteDroneClient;
+import org.ops4j.pax.exam.zombie.RemoteDroneClient;
 
 /**
  * @author Toni Menzel (tonit)

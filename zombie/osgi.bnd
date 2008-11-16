@@ -1,5 +1,5 @@
 Bundle-Activator:\
-  ${bundle.namespace}.intern.Activator
+  ${bundle.namespace}.internal.Activator
 
 Bundle-Version>:\
   ${pom.version}
@@ -7,12 +7,13 @@ Bundle-Version>:\
 Bundle-SymbolicName:\
   ${bundle.symbolicName}
 
-Import-Package: !aQute.lib.osgi.*,!org.ops4j.pax.url.*,!org.ops4j.lang.*,!org.ops4j.pax.runner.handler.internal,*
+Import-Package:\
+  !aQute.lib.osgi.*,!org.ops4j.pax.url.*,!org.ops4j.lang.*,!org.ops4j.pax.runner.handler.internal,*
 
 Export-Package:\
-  org.ops4j.pax.drone.*; version="${pom.version}",
+  org.ops4j.pax.exam.*; version="${pom.version}",
   org.ops4j.lang; version="${dependency.base.version}"
   
 
 Private-Package:\
-  ${bundle.namespace}.intern.*
+  ${bundle.namespace}.internal.*

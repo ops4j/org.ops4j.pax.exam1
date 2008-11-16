@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.drone.zombie;
+package org.ops4j.pax.exam.zombie;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -28,7 +28,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import org.ops4j.pax.exam.api.DroneException;
 import org.ops4j.pax.exam.api.DroneService;
-import org.ops4j.pax.drone.zombie.intern.RemoteDroneService;
+import org.ops4j.pax.exam.zombie.internal.RemoteDroneService;
 
 /**
  * This is a DroneService Proxy that access a remote DroneService via RMI

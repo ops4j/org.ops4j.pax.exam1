@@ -28,7 +28,7 @@ import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.DroneException;
 import org.ops4j.pax.exam.api.DroneService;
 import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
-import org.ops4j.pax.drone.zombie.intern.RemoteDroneService;
+import org.ops4j.pax.exam.zombie.internal.RemoteDroneService;
 import org.ops4j.pax.runner.CommandLine;
 import org.ops4j.pax.runner.CommandLineImpl;
 import org.ops4j.pax.runner.Configuration;
@@ -233,7 +233,7 @@ public class PaxRunnerInstanceImpl implements SubProcess
                     Thread.currentThread().setContextClassLoader( this.getClass().getClassLoader() );
 
                     Registry registry = LocateRegistry.getRegistry( m_communicationPort );
-                    RemoteDroneService stub = (RemoteDroneService) registry.lookup( DroneService.class.getName() );
+                    RemoteDroneService stub = ( RemoteDroneService ) registry.lookup( DroneService.class.getName() );
                     if( stub != null )
                     {
                         established = true;

@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.drone.zombie.intern;
+package org.ops4j.pax.exam.zombie.internal;
 
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
@@ -23,7 +23,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.ops4j.pax.exam.api.DroneService;
-import org.ops4j.pax.drone.zombie.RemoteDroneDelegate;
+import org.ops4j.pax.exam.zombie.RemoteDroneDelegate;
 
 /**
  * Registers the an instance of RemoteDroneService as RMI service using a port

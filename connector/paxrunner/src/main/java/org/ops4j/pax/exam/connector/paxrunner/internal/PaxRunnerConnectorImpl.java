@@ -33,7 +33,7 @@ import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
 import org.ops4j.pax.exam.spi.SummaryImpl;
-import org.ops4j.pax.drone.zombie.RemoteDroneClient;
+import org.ops4j.pax.exam.zombie.RemoteDroneClient;
 
 /**
  * Construct a PaxRunner setup in PaxDrone.

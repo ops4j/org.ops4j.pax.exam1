@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.drone.zombie.intern;
+package org.ops4j.pax.exam.zombie.internal;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

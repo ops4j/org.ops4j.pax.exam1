@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.drone.zombie;
+package org.ops4j.pax.exam.zombie;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -29,7 +29,7 @@ import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
 import org.ops4j.pax.exam.api.DroneException;
 import org.ops4j.pax.exam.api.DroneService;
-import org.ops4j.pax.drone.zombie.intern.RemoteDroneService;
+import org.ops4j.pax.exam.zombie.internal.RemoteDroneService;
 
 /**
  * @author Toni Menzel (tonit)

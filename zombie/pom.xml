@@ -16,8 +16,8 @@
   <name>OPS4J Pax Exam - Zombie Service</name>
 
   <properties>
-    <bundle.symbolicName>org.ops4j.pax.drone.zombie</bundle.symbolicName>
-    <bundle.namespace>org.ops4j.pax.drone.zombie</bundle.namespace>
+    <bundle.symbolicName>org.ops4j.pax.exam.zombie</bundle.symbolicName>
+    <bundle.namespace>org.ops4j.pax.exam.zombie</bundle.namespace>
   </properties>
 
   <build>
