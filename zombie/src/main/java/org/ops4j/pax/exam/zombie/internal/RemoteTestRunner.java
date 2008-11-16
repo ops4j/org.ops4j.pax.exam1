@@ -24,7 +24,7 @@ import java.rmi.RemoteException;
  * @author Toni Menzel (tonit)
  * @since Jun 3, 2008
  */
-public interface RemoteTestRunnerService extends Remote
+public interface RemoteTestRunner extends Remote
 {
 
     String execute()

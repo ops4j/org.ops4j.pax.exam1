@@ -24,7 +24,7 @@ import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.TestExecutionException;
 import org.ops4j.pax.exam.api.TestRunner;
 import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
-import org.ops4j.pax.exam.zombie.internal.RemoteTestRunnerService;
+import org.ops4j.pax.exam.zombie.internal.RemoteTestRunner;
 import org.ops4j.pax.runner.*;
 import org.ops4j.pax.runner.platform.JavaRunner;
 import org.ops4j.pax.runner.platform.PlatformException;
@@ -233,8 +233,8 @@ public class PaxRunnerInstanceImpl implements SubProcess
                     Thread.currentThread().setContextClassLoader( this.getClass().getClassLoader() );
 
                     Registry registry = LocateRegistry.getRegistry( m_communicationPort );
-                    RemoteTestRunnerService stub =
-                        ( RemoteTestRunnerService ) registry.lookup( TestRunner.class.getName() );
+                    RemoteTestRunner stub =
+                        ( RemoteTestRunner ) registry.lookup( TestRunner.class.getName() );
                     if( stub != null )
                     {
                         established = true;

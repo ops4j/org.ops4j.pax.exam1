@@ -19,7 +19,7 @@ package org.ops4j.pax.exam.zombie;
 
 import org.ops4j.pax.exam.api.TestExecutionException;
 import org.ops4j.pax.exam.api.TestRunner;
-import org.ops4j.pax.exam.zombie.internal.RemoteTestRunnerService;
+import org.ops4j.pax.exam.zombie.internal.RemoteTestRunner;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -69,7 +69,7 @@ public class RemoteTestRunnerClient
             // transform inputstream into bytearray for rmi transfer
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             copy( inp, out );
-            RemoteTestRunnerService s = getTestRunner();
+            RemoteTestRunner s = getTestRunner();
             s.install( out.toByteArray() );
         }
         catch( RemoteException e )
@@ -93,7 +93,7 @@ public class RemoteTestRunnerClient
         }
     }
 
-    private RemoteTestRunnerService getTestRunner()
+    private RemoteTestRunner getTestRunner()
     {
         try
         {
@@ -101,7 +101,7 @@ public class RemoteTestRunnerClient
             ); //!! Absolutely nececary for RMIClassLoading to work
 
             Registry registry = LocateRegistry.getRegistry( m_port );
-            RemoteTestRunnerService stub = ( RemoteTestRunnerService ) registry.lookup( TestRunner.class.getName() );
+            RemoteTestRunner stub = ( RemoteTestRunner ) registry.lookup( TestRunner.class.getName() );
             return stub;
         } catch( AccessException e )
         {

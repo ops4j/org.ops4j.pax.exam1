@@ -19,7 +19,7 @@ package org.ops4j.pax.exam.zombie;
 
 import org.ops4j.pax.exam.api.TestExecutionException;
 import org.ops4j.pax.exam.api.TestRunner;
-import org.ops4j.pax.exam.zombie.internal.RemoteTestRunnerService;
+import org.ops4j.pax.exam.zombie.internal.RemoteTestRunner;
 import org.osgi.framework.*;
 
 import java.io.ByteArrayInputStream;
@@ -33,7 +33,7 @@ import java.util.Dictionary;
  * @since Jun 10, 2008
  */
 public class RemoteTestRunnerDelegate
-    implements RemoteTestRunnerService, Serializable
+    implements RemoteTestRunner, Serializable
 {
 
     private transient BundleContext m_bundleContext;

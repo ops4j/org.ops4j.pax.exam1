@@ -37,7 +37,7 @@ public class Activator implements BundleActivator
 {
 
     private Registry m_registry;
-    private RemoteTestRunnerService stub;
+    private RemoteTestRunner stub;
     private RemoteTestRunnerDelegate obj;
 
     public void start( BundleContext bundleContext )
@@ -56,7 +56,7 @@ public class Activator implements BundleActivator
             Thread.currentThread().setContextClassLoader( this.getClass().getClassLoader() );
             m_registry = java.rmi.registry.LocateRegistry.createRegistry( port );
 
-            stub = ( RemoteTestRunnerService ) UnicastRemoteObject.exportObject( obj, port );
+            stub = ( RemoteTestRunner ) UnicastRemoteObject.exportObject( obj, port );
             m_registry.bind( TestRunner.class.getName(), stub );
         } catch( Exception e )
         {
@@ -80,7 +80,7 @@ public class Activator implements BundleActivator
     }
 
     /**
-     * @return the port where {@link org.ops4j.pax.exam.zombie.internal.RemoteTestRunnerService} is being exposed as an RMI service.
+     * @return the port where {@link RemoteTestRunner} is being exposed as an RMI service.
      */
     private int getPort()
     {
