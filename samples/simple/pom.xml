@@ -20,6 +20,10 @@
   <name>OPS4J Pax Exam - Simple Samples</name>
   <description>These tests are short in terms of lines of code as well as in time consumption (not many dependencies u.a)</description>
 
+  <properties>
+    <bundle.namespace>org.ops4j.pax.exam.sample</bundle.namespace>
+  </properties>  
+
   <dependencies>
     <dependency>
       <groupId>org.osgi</groupId>
@@ -52,7 +56,4 @@
     </dependency>
   </dependencies>
 
-  <properties>
-    <bundle.namespace>org.ops4j.pax.drone.sample</bundle.namespace>
-  </properties>
 </project>

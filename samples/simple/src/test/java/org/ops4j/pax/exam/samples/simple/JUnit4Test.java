@@ -1,4 +1,4 @@
-package org.ops4j.pax.drone.samples.simple;
+package org.ops4j.pax.exam.samples.simple;
 
 import static org.junit.Assert.*;
 import org.junit.Test;

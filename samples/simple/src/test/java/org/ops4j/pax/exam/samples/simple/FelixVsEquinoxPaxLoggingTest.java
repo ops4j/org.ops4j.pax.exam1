@@ -1,4 +1,4 @@
-package org.ops4j.pax.drone.samples.simple;
+package org.ops4j.pax.exam.samples.simple;
 
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.log.LogService;
