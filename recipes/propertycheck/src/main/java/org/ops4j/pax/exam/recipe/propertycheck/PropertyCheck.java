@@ -1,4 +1,4 @@
-package org.ops4j.pax.drone.recipe.propertycheck;
+package org.ops4j.pax.exam.recipe.propertycheck;
 
 import org.osgi.framework.BundleContext;
 

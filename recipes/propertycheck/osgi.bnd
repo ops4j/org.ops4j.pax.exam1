@@ -4,7 +4,11 @@ Bundle-SymbolicName:\
 Bundle-Version>:\
   ${pom.version}
 
-Export-Package: org.ops4j.pax.drone.recipe.propertycheck
+Export-Package: \
+  ${bundle.namespace}
 
-Drone-RecipeHost: org.ops4j.pax.drone.recipe.propertycheck.PropertyCheck
-Drone-RecipeCode: run
+Drone-RecipeHost:\
+  ${bundle.namespace}.PropertyCheck
+
+Drone-RecipeCode:\
+  run

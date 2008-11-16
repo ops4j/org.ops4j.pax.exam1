@@ -16,7 +16,7 @@
   <name>OPS4J Pax Exam - Recipe - PropertyCheck</name>
 
   <properties>
-    <bundle.namespace>org.ops4j.pax.drone.recipe.propertycheck</bundle.namespace>
+    <bundle.namespace>org.ops4j.pax.exam.recipe.propertycheck</bundle.namespace>
     <bundle.symbolicName>pax-exam-recipe-propertycheck</bundle.symbolicName>
   </properties>
 
