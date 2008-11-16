@@ -1,0 +1,13 @@
+# this is a sample recipe. use plain property format for now:
+
+# list of bundles to install
+bundles=mvn:org.ops4j.pax.logging/pax-logging-service,mvn:org.ops4j.pax.logging/pax-logging-api
+
+# set the platform
+paxrunner.platform=felix
+
+# drone template
+drone.template=mvn:org.ops4j.pax.drone/pax-drone-recipe-propertytest
+
+# customize template (specific to template chosen above)
+drone.template.framework-vendor=Apache Software Foundation

@@ -1,0 +1,10 @@
+Bundle-SymbolicName:\
+  ${bundle.symbolicName}
+
+Bundle-Version>:\
+  ${pom.version}
+
+Export-Package: org.ops4j.pax.drone.recipe.propertycheck
+
+Drone-RecipeHost: org.ops4j.pax.drone.recipe.propertycheck.PropertyCheck
+Drone-RecipeCode: run

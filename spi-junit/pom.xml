@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.ops4j.pax</groupId>
+    <artifactId>drone</artifactId>
+    <version>0.2.2-SNAPSHOT</version>
+  </parent>
+
+  <groupId>org.ops4j.pax.drone</groupId>
+  <artifactId>pax-drone-spi-junit</artifactId>
+  <version>0.2.2-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>OPS4J Pax Drone - SPI for JUnit</name>
+
+  <properties>
+    <bundle.namespace>org.ops4j.pax.drone.spi.junit</bundle.namespace>
+    <bundle.symbolicName>org.ops4j.pax.drone.spi-junit</bundle.symbolicName>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack-dependencies</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/classes</outputDirectory>
+              <excludeTransitive>true</excludeTransitive>
+              <excludeScope>provided</excludeScope>
+              <stripVersion>true</stripVersion>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.drone</groupId>
+      <artifactId>pax-drone-spi</artifactId>
+      <version>${pom.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.base</groupId>
+      <artifactId>ops4j-base-lang</artifactId>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+</project>

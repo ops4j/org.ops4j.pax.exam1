@@ -1,0 +1,25 @@
+Bundle-Activator:\
+  org.ops4j.pax.drone.service.intern.Activator
+
+Bundle-Version>:\
+  ${pom.version}
+
+Bundle-SymbolicName:\
+  org.ops4j.pax.drone.runtime
+
+Embed-Dependency:\
+ *;scope=runtime;inline=true
+
+Export-Package: \
+  org.ops4j.pax.drone.*,\
+  junit.*,\
+  org.easymock.*,\
+  org.hamcrest.*,\
+  org.junit.*
+
+Import-Package: !aQute.lib.osgi.*,*;resolution:=optional
+
+DynamicImport-Package: *
+
+Include-Resource:\
+ META-INF=src/main/resources/META-INF/
