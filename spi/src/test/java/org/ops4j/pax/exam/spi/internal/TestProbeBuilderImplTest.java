@@ -1,14 +1,14 @@
 package org.ops4j.pax.exam.spi.internal;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.jar.JarOutputStream;
-import static org.easymock.EasyMock.*;
+import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.notNull;
 import org.junit.Test;
 import org.ops4j.pax.exam.api.TestProbeProvider;
 import org.ops4j.pax.exam.spi.ResourceLocator;
-import org.ops4j.pax.exam.spi.internal.TestProbeBuilderImpl;
-import org.ops4j.pax.exam.spi.internal.IntelliResourceFinder;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.jar.JarOutputStream;
 
 /**
  * User: Toni Menzel (tonit)
@@ -20,7 +20,7 @@ public class TestProbeBuilderImplTest
     @Test( expected = IllegalArgumentException.class )
     public void failedConstruction1()
     {
-       new TestProbeBuilderImpl( null, null, null );
+        new TestProbeBuilderImpl( null, null, null );
     }
 
     @Test( expected = IllegalArgumentException.class )
@@ -42,11 +42,10 @@ public class TestProbeBuilderImplTest
     {
         ResourceLocator locator = new IntelliResourceFinder( new File( "." ), "foo" );
 
-        locator.write( (JarOutputStream) notNull() );
+        locator.write( ( JarOutputStream ) notNull() );
         TestProbeProvider provider = new TestProbeBuilderImpl( null, this.getClass().getName(), locator );
         provider.build();
     }
 
-   
 
 }

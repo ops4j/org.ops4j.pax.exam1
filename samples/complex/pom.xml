@@ -19,12 +19,12 @@
 
   <name>OPS4J Pax Exam - Complex Samples</name>
   <description>These tests are more complex. They can be long running, having many dependencies and complex tests.
-	These tests are also made to ensure a working pax exam distribution.
-	</description>
+    These tests are also made to ensure a working pax exam distribution.
+  </description>
 
   <properties>
     <bundle.namespace>org.ops4j.pax.exam.sample</bundle.namespace>
-  </properties>  
+  </properties>
 
   <dependencies>
     <dependency>

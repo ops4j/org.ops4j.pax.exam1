@@ -1,7 +1,8 @@
 package org.ops4j.pax.exam.samples.complex;
 
 import org.ops4j.pax.exam.api.TestRunnerConnector;
-import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
+import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.create;
+import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.createBundleProvision;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 
 /**

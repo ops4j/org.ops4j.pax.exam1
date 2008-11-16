@@ -17,15 +17,15 @@
  */
 package org.ops4j.pax.exam.service.internal;
 
-import java.util.Dictionary;
-import java.util.Hashtable;
 import static org.easymock.EasyMock.*;
 import org.junit.Test;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
 import org.ops4j.pax.exam.api.TestExecutionException;
 import org.ops4j.pax.exam.api.TestRunner;
-import org.ops4j.pax.exam.service.internal.TestRunnerImpl;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 /**
  * @author Toni Menzel (tonit)

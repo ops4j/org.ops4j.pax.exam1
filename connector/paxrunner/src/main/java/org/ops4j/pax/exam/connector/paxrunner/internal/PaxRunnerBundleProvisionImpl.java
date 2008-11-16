@@ -36,7 +36,7 @@ public class PaxRunnerBundleProvisionImpl extends BundleProvisionImpl implements
 
     public PaxRunnerBundleProvision addBundle( String bundleUrl )
     {
-        return (PaxRunnerBundleProvision) super.addBundle( bundleUrl );
+        return ( PaxRunnerBundleProvision ) super.addBundle( bundleUrl );
     }
 
     public PaxRunnerBundleProvision updateBundles( boolean doUpdate )

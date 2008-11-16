@@ -1,14 +1,14 @@
 package org.ops4j.pax.exam.samples.simple;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.osgi.framework.BundleContext;
 import org.ops4j.pax.exam.api.TestRunnerConnector;
-import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
+import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.create;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.spi.junit.Configuration;
 import org.ops4j.pax.exam.spi.junit.PaxExamTestRunner;
+import org.osgi.framework.BundleContext;
 
 /**
  * TODO fill test results with proper timesheet.
@@ -36,7 +36,7 @@ public class JUnit4Test
     public void anotherTestForTesting()
     {
         System.out.println( "Again, Hello World" );
-     //  fail( "thats bad" );
+        //  fail( "thats bad" );
     }
 
     @Test

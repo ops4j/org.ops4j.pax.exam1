@@ -18,9 +18,9 @@
 package org.ops4j.pax.exam.spi.junit;
 
 import junit.framework.TestCase;
-import org.osgi.framework.BundleContext;
 import org.ops4j.pax.exam.api.TestRunnerConnector;
 import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
+import org.osgi.framework.BundleContext;
 
 /**
  * This will be instantiated by the local junit runner as well as inside inside the OSGi Container.

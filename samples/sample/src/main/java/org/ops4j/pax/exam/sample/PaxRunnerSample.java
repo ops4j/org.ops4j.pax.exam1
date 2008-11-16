@@ -17,8 +17,6 @@
  */
 package org.ops4j.pax.exam.sample;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
 import org.ops4j.pax.exam.api.BundleProvision;
 import org.ops4j.pax.exam.api.RunnerContext;
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
@@ -27,6 +25,8 @@ import org.ops4j.pax.exam.connector.paxrunner.internal.PaxRunnerConnectorImpl;
 import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
 import org.ops4j.pax.exam.spi.internal.BundleProvisionImpl;
 import org.ops4j.pax.exam.spi.internal.RunnerContextImpl;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 
 /**
  * @author Toni Menzel (tonit)
@@ -41,7 +41,8 @@ public class PaxRunnerSample
         Bundle[] bundles = bundleContext.getBundles();
         for( int i = 0; i < bundles.length; i++ )
         {
-            System.out.println( "Found bundle: " + bundles[ i ].getSymbolicName() + " in state: " + bundles[ i ].getState() );
+            System.out
+                .println( "Found bundle: " + bundles[ i ].getSymbolicName() + " in state: " + bundles[ i ].getState() );
         }
         System.out.println( "----------------------- THIS RUNS iNSIDE THE FRAMEWORK / END -----------------------" );
     }

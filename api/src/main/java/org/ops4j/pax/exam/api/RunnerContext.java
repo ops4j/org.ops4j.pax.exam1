@@ -43,5 +43,5 @@ public interface RunnerContext
      */
     File getWorkingDirectory();
 
-    
+
 }

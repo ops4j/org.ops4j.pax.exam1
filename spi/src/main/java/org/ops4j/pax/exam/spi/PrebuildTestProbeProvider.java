@@ -1,12 +1,13 @@
 package org.ops4j.pax.exam.spi;
 
+import org.ops4j.lang.NullArgumentException;
+import org.ops4j.pax.exam.api.TestExecutionException;
+import org.ops4j.pax.exam.api.TestProbeProvider;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.api.TestExecutionException;
-import org.ops4j.pax.exam.api.TestProbeProvider;
 
 /**
  * @author Toni Menzel (tonit)
@@ -32,10 +33,14 @@ public class PrebuildTestProbeProvider implements TestProbeProvider
             return url.openStream();
         } catch( MalformedURLException e )
         {
-            throw new TestExecutionException( "Looks the url cannot be resolved (not using paxrunner connector ??: " + m_bundleUrl + ")" );
+            throw new TestExecutionException(
+                "Looks the url cannot be resolved (not using paxrunner connector ??: " + m_bundleUrl + ")"
+            );
         } catch( IOException e )
         {
-            throw new TestExecutionException( "Looks the url cannot be resolved (Not connected to the internet ?: " + m_bundleUrl + ")" );
+            throw new TestExecutionException(
+                "Looks the url cannot be resolved (Not connected to the internet ?: " + m_bundleUrl + ")"
+            );
         }
     }
 }

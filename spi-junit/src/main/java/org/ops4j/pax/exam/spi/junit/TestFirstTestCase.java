@@ -1,11 +1,11 @@
 package org.ops4j.pax.exam.spi.junit;
 
 import junit.framework.TestCase;
-import org.osgi.framework.BundleContext;
 import org.ops4j.pax.exam.api.TestExecutionSummary;
-import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
-import org.ops4j.pax.exam.api.TestRunnerConnector;
 import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestRunnerConnector;
+import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
+import org.osgi.framework.BundleContext;
 
 /**
  * TestFirst Scenario brought to osgi integration testing:

@@ -37,20 +37,24 @@ import java.util.zip.ZipEntry;
  */
 public class DuplicateAwareJarOutputStream extends JarOutputStream
 {
+
     private Set<String> m_entrynames;
     private boolean m_writable = false;
 
-    public DuplicateAwareJarOutputStream( OutputStream outputStream, Manifest manifest ) throws IOException
+    public DuplicateAwareJarOutputStream( OutputStream outputStream, Manifest manifest )
+        throws IOException
     {
         super( outputStream, manifest );
     }
 
-    public DuplicateAwareJarOutputStream( OutputStream outputStream ) throws IOException
+    public DuplicateAwareJarOutputStream( OutputStream outputStream )
+        throws IOException
     {
         super( outputStream );
     }
 
-    public void write( int i ) throws IOException
+    public void write( int i )
+        throws IOException
     {
         if( m_writable )
         {
@@ -58,7 +62,8 @@ public class DuplicateAwareJarOutputStream extends JarOutputStream
         }
     }
 
-    public synchronized void write( byte[] bytes, int i, int i1 ) throws IOException
+    public synchronized void write( byte[] bytes, int i, int i1 )
+        throws IOException
     {
         if( m_writable )
         {
@@ -66,7 +71,8 @@ public class DuplicateAwareJarOutputStream extends JarOutputStream
         }
     }
 
-    public void write( byte[] bytes ) throws IOException
+    public void write( byte[] bytes )
+        throws IOException
     {
         if( m_writable )
         {
@@ -74,7 +80,8 @@ public class DuplicateAwareJarOutputStream extends JarOutputStream
         }
     }
 
-    public void putNextEntry( ZipEntry zipEntry ) throws IOException
+    public void putNextEntry( ZipEntry zipEntry )
+        throws IOException
     {
         if( m_entrynames == null )
         {

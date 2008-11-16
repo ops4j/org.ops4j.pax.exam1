@@ -17,14 +17,15 @@
  */
 package org.ops4j.pax.exam.service.internal;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.RecipeException;
 import org.ops4j.pax.exam.api.TestExecutionException;
 import org.ops4j.pax.exam.api.TestRunner;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 /**
  * @author Toni Menzel (tonit)
@@ -52,7 +53,7 @@ public class TestRunnerImpl
 
         if( testBundle != null )
         {
-            String recipeHosts = (String) testBundle.getHeaders().get( TestRunner.PROBE_TEST_CASE );
+            String recipeHosts = ( String ) testBundle.getHeaders().get( TestRunner.PROBE_TEST_CASE );
 
             for( String recipeHost : recipeHosts.split( "," ) )
             {
@@ -69,7 +70,7 @@ public class TestRunnerImpl
                 if( clazz != null )
                 {
                     // find method
-                    String recipe = (String) testBundle.getHeaders().get( TestRunner.PROBE_TEST_METHOD );
+                    String recipe = ( String ) testBundle.getHeaders().get( TestRunner.PROBE_TEST_METHOD );
 
                     for( Method m : clazz.getDeclaredMethods() )
                     {
@@ -81,11 +82,13 @@ public class TestRunnerImpl
                             }
                             catch( InstantiationException e )
                             {
-                                throw new TestExecutionException( "InstantiationException for : " + clazz + "," + m, e );
+                                throw new TestExecutionException( "InstantiationException for : " + clazz + "," + m, e
+                                );
                             }
                             catch( IllegalAccessException e )
                             {
-                                throw new TestExecutionException( "IllegalAccessException for : " + clazz + "," + m, e );
+                                throw new TestExecutionException( "IllegalAccessException for : " + clazz + "," + m, e
+                                );
                             }
                             catch( RecipeException e )
                             {
@@ -152,7 +155,7 @@ public class TestRunnerImpl
     {
         for( Bundle bundle : m_bundleContext.getBundles() )
         {
-            String tests = (String) bundle.getHeaders().get( TestRunner.PROBE_TEST_CASE );
+            String tests = ( String ) bundle.getHeaders().get( TestRunner.PROBE_TEST_CASE );
             if( tests != null )
             {
                 return bundle;

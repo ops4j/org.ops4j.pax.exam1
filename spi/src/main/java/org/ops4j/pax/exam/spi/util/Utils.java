@@ -17,22 +17,18 @@
  */
 package org.ops4j.pax.exam.spi.util;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
-import java.io.UnsupportedEncodingException;
+import aQute.lib.osgi.Analyzer;
+import aQute.lib.osgi.Jar;
+import org.ops4j.lang.NullArgumentException;
+import org.ops4j.pax.exam.api.TestExecutionException;
+
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URLDecoder;
 import java.util.Properties;
 import java.util.jar.Manifest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import aQute.lib.osgi.Analyzer;
-import aQute.lib.osgi.Jar;
-import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.api.TestExecutionException;
 
 /**
  * @author Toni Menzel (tonit)

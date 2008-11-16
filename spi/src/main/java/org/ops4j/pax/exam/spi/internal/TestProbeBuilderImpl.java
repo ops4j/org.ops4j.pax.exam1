@@ -17,20 +17,15 @@
  */
 package org.ops4j.pax.exam.spi.internal;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
-import java.util.Properties;
-import java.util.jar.JarOutputStream;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.TestProbeProvider;
 import org.ops4j.pax.exam.api.TestRunner;
 import org.ops4j.pax.exam.spi.ResourceLocator;
 import org.ops4j.pax.exam.spi.util.Utils;
+
+import java.io.*;
+import java.util.Properties;
+import java.util.jar.JarOutputStream;
 
 /**
  * @author Toni Menzel (tonit)

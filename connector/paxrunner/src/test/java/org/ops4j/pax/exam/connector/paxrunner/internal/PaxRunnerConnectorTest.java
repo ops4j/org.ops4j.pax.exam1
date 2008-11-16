@@ -17,16 +17,16 @@
  */
 package org.ops4j.pax.exam.connector.paxrunner.internal;
 
-import java.io.InputStream;
 import static org.easymock.EasyMock.*;
 import org.junit.Test;
 import org.ops4j.pax.exam.api.BundleProvision;
-import org.ops4j.pax.exam.api.TestProbeProvider;
 import org.ops4j.pax.exam.api.RunnerContext;
+import org.ops4j.pax.exam.api.TestProbeProvider;
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
 import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
-import org.ops4j.pax.exam.connector.paxrunner.internal.PaxRunnerConnectorImpl;
 import org.ops4j.pax.exam.zombie.RemoteTestRunnerClient;
+
+import java.io.InputStream;
 
 /**
  * @author Toni Menzel (tonit)
@@ -55,7 +55,7 @@ public class PaxRunnerConnectorTest
 
         RemoteTestRunnerClient client = new RemoteTestRunnerClient( 0 )
         {
-            public String execute(  )
+            public String execute()
             {
                 return "";
             }

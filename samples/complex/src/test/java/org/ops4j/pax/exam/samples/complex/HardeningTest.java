@@ -1,7 +1,7 @@
 package org.ops4j.pax.exam.samples.complex;
 
-import org.osgi.framework.Constants;
 import org.ops4j.pax.exam.spi.junit.PaxExamTestCase;
+import org.osgi.framework.Constants;
 
 /**
  * @author Toni Menzel (tonit)

@@ -22,7 +22,7 @@
   <properties>
     <bundle.namespace>org.ops4j.pax.exam.sample</bundle.namespace>
   </properties>
-  
+
   <dependencies>
     <dependency>
       <groupId>org.osgi</groupId>

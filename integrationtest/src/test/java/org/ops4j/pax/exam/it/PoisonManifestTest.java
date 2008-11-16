@@ -1,12 +1,13 @@
 package org.ops4j.pax.exam.it;
 
+import org.junit.Test;
+import org.ops4j.pax.exam.api.TestExecutionException;
+import org.ops4j.pax.exam.spi.internal.IntelliResourceFinder;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.jar.JarOutputStream;
-import org.junit.Test;
-import org.ops4j.pax.exam.api.TestExecutionException;
-import org.ops4j.pax.exam.spi.internal.IntelliResourceFinder;
 
 /**
  * @author Toni Menzel (tonit)
@@ -14,6 +15,7 @@ import org.ops4j.pax.exam.spi.internal.IntelliResourceFinder;
  */
 public class PoisonManifestTest
 {
+
     @Test( expected = TestExecutionException.class )
     public void testForSelfishManifest()
         throws IOException

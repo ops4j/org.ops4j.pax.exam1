@@ -17,11 +17,10 @@
  */
 package org.ops4j.pax.exam.connector.paxrunner.internal;
 
-import static org.easymock.EasyMock.*;
+import static org.easymock.EasyMock.createMock;
 import org.junit.Test;
 import org.ops4j.pax.exam.api.BundleProvision;
 import org.ops4j.pax.exam.api.RunnerContext;
-import org.ops4j.pax.exam.connector.paxrunner.internal.PaxRunnerConnectorImpl;
 
 /**
  * @author Toni Menzel (tonit)

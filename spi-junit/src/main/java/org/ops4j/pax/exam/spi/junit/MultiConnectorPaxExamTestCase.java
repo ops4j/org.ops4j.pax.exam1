@@ -18,11 +18,11 @@
 package org.ops4j.pax.exam.spi.junit;
 
 import junit.framework.TestCase;
-import org.osgi.framework.BundleContext;
 import org.ops4j.pax.exam.api.TestExecutionSummary;
-import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
-import org.ops4j.pax.exam.api.TestRunnerConnector;
 import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestRunnerConnector;
+import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
+import org.osgi.framework.BundleContext;
 
 /**
  * @author Toni Menzel (tonit)
@@ -61,7 +61,7 @@ public abstract class MultiConnectorPaxExamTestCase extends TestCase
         TestRunnerConnector[] connectors = getConnectors();
         int currentConfig = 0;
         TestExecutionSummary[] summaries = new TestExecutionSummary[connectors.length];
-        
+
         for( TestRunnerConnector con : connectors )
         {
             summaries[ currentConfig++ ] = con.execute( provider );

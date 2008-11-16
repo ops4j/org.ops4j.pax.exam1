@@ -21,12 +21,13 @@ package org.ops4j.pax.exam.connector.paxrunner;
  * @author Toni Menzel (tonit)
  * @since Jun 17, 2008
  *
- * Platforms supported by Pax Runner and Pax Exam.
+ *        Platforms supported by Pax Runner and Pax Exam.
  *
- * Supported Versions are determined by the underlying Paxrunner.
- * 
+ *        Supported Versions are determined by the underlying Paxrunner.
  */
-public enum Platforms {
+public enum Platforms
+{
+
     FELIX,
     EQUINOX,
     KNOPFLERFISH,

@@ -17,10 +17,6 @@
  */
 package org.ops4j.pax.exam.connector.paxrunner.internal;
 
-import java.io.File;
-import java.io.IOException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.io.Pipe;
@@ -29,15 +25,15 @@ import org.ops4j.pax.exam.api.TestExecutionException;
 import org.ops4j.pax.exam.api.TestRunner;
 import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
 import org.ops4j.pax.exam.zombie.internal.RemoteTestRunnerService;
-import org.ops4j.pax.runner.CommandLine;
-import org.ops4j.pax.runner.CommandLineImpl;
-import org.ops4j.pax.runner.Configuration;
-import org.ops4j.pax.runner.ConfigurationImpl;
-import org.ops4j.pax.runner.OptionResolverImpl;
-import org.ops4j.pax.runner.Run;
+import org.ops4j.pax.runner.*;
 import org.ops4j.pax.runner.platform.JavaRunner;
 import org.ops4j.pax.runner.platform.PlatformException;
 import org.ops4j.pax.runner.platform.internal.CommandLineBuilder;
+
+import java.io.File;
+import java.io.IOException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 /**
  * This controls paxrunner in a separate process while mantaining the framework state (start/stop)
@@ -105,7 +101,10 @@ public class PaxRunnerInstanceImpl implements SubProcess
                 Runtime.getRuntime().removeShutdownHook( pipeShutdownHook );
                 pipeShutdownHook.start();
                 long timeout = System.currentTimeMillis() + 200;
-                while( pipeShutdownHook.isAlive() || System.currentTimeMillis() < timeout );
+                while( pipeShutdownHook.isAlive() || System.currentTimeMillis() < timeout )
+                {
+                    ;
+                }
 
                 frameworkProcess.destroy();
 
@@ -153,7 +152,6 @@ public class PaxRunnerInstanceImpl implements SubProcess
          *
          * @param commandLine
          * @param workingDirectory
-         * @throws org.ops4j.pax.runner.platform.PlatformException
          */
         private void executeProcess( String[] commandLine, final File workingDirectory )
             throws PlatformException
@@ -174,7 +172,9 @@ public class PaxRunnerInstanceImpl implements SubProcess
             pipeShutdownHook = createShutdownHook( frameworkProcess );
             Runtime.getRuntime().addShutdownHook( pipeShutdownHook );
 
-            LOG.debug( "wait for boot on port: " + m_communicationPort + " max. " + MAX_WAITING_DELAY + "ms. to wait now.." );
+            LOG.debug(
+                "wait for boot on port: " + m_communicationPort + " max. " + MAX_WAITING_DELAY + "ms. to wait now.."
+            );
             // try to reach server.. or timeout
             if( !testForRunningInstance( MAX_WAITING_DELAY ) )
             {
@@ -233,7 +233,8 @@ public class PaxRunnerInstanceImpl implements SubProcess
                     Thread.currentThread().setContextClassLoader( this.getClass().getClassLoader() );
 
                     Registry registry = LocateRegistry.getRegistry( m_communicationPort );
-                    RemoteTestRunnerService stub = ( RemoteTestRunnerService ) registry.lookup( TestRunner.class.getName() );
+                    RemoteTestRunnerService stub =
+                        ( RemoteTestRunnerService ) registry.lookup( TestRunner.class.getName() );
                     if( stub != null )
                     {
                         established = true;

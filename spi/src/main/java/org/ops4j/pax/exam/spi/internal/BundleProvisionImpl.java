@@ -17,10 +17,11 @@
  */
 package org.ops4j.pax.exam.spi.internal;
 
-import java.util.HashSet;
-import java.util.Set;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.BundleProvision;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Toni Menzel (tonit)

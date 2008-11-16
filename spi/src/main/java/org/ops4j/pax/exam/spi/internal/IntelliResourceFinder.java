@@ -17,17 +17,18 @@
  */
 package org.ops4j.pax.exam.spi.internal;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.ops4j.lang.NullArgumentException;
+import org.ops4j.pax.exam.api.TestExecutionException;
+import org.ops4j.pax.exam.spi.ResourceLocator;
+import org.ops4j.pax.exam.spi.util.Utils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.spi.ResourceLocator;
-import org.ops4j.pax.exam.spi.util.Utils;
-import org.ops4j.pax.exam.api.TestExecutionException;
 
 /**
  * Finds resources of the current module under test just by given top-level parent (whatever that is)
@@ -50,7 +51,9 @@ public class IntelliResourceFinder implements ResourceLocator
         NullArgumentException.validateNotEmpty( targetClassName, "targetClassName" );
         if( !topLevelDir.exists() || !topLevelDir.canRead() || !topLevelDir.isDirectory() )
         {
-            throw new IllegalArgumentException( "topLevelDir " + topLevelDir.getAbsolutePath() + " is not a readable folder" );
+            throw new IllegalArgumentException(
+                "topLevelDir " + topLevelDir.getAbsolutePath() + " is not a readable folder"
+            );
         }
         m_topLevelDir = topLevelDir;
         m_targetClassName = targetClassName;
@@ -103,7 +106,9 @@ public class IntelliResourceFinder implements ResourceLocator
             }
             else if( !f.isHidden() && f.getCanonicalPath().endsWith( targetClassName ) )
             {
-                return new File( f.getCanonicalPath().substring( 0, f.getCanonicalPath().length() - targetClassName.length() ) );
+                return new File(
+                    f.getCanonicalPath().substring( 0, f.getCanonicalPath().length() - targetClassName.length() )
+                );
             }
         }
         // nothing found / must be wrong topevel dir
@@ -133,10 +138,13 @@ public class IntelliResourceFinder implements ResourceLocator
     private void writeToTarget( JarOutputStream target, File f, File base )
         throws IOException
     {
-        String name = f.getCanonicalPath().substring( base.getCanonicalPath().length() + 1 ).replace( File.separatorChar, '/' );
+        String name =
+            f.getCanonicalPath().substring( base.getCanonicalPath().length() + 1 ).replace( File.separatorChar, '/' );
         if( name.equals( "META-INF/MANIFEST.MF" ) )
         {
-            throw new TestExecutionException( "You have specified a " + name + " in your probe bundle. Please make sure that you don't have it in your project's target folder. Otherwise it would lead to false assumptions and unexpected results." );
+            throw new TestExecutionException( "You have specified a " + name
+                                              + " in your probe bundle. Please make sure that you don't have it in your project's target folder. Otherwise it would lead to false assumptions and unexpected results."
+            );
         }
         target.putNextEntry( new JarEntry( name ) );
         FileInputStream fis = new FileInputStream( f );

@@ -18,22 +18,20 @@
  */
 package org.ops4j.pax.exam.connector.paxrunner.internal;
 
-import java.io.File;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.api.TestProbeProvider;
-import org.ops4j.pax.exam.api.TestExecutionSummary;
 import org.ops4j.pax.exam.api.*;
-import org.ops4j.pax.exam.api.RunnerContext;
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
 import org.ops4j.pax.exam.spi.SummaryImpl;
 import org.ops4j.pax.exam.zombie.RemoteTestRunnerClient;
+
+import java.io.File;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Construct a PaxRunner setup in Pax Exam.
@@ -198,7 +196,8 @@ public class PaxRunnerConnectorImpl
         String version = Info.getPaxExamVersion();
         // if pax exam is in snapshot version we should always use the latest. Otherwise we can
         // keep it without update so that subsequent pax exam calls are much faster.
-        if (version != null && version.endsWith( "SNAPSHOT" )) {
+        if( version != null && version.endsWith( "SNAPSHOT" ) )
+        {
             version += "@update";
         }
         full.add( "scan-bundle:mvn:org.ops4j.pax.exam/pax-exam-zombie/" + version );
@@ -210,7 +209,6 @@ public class PaxRunnerConnectorImpl
         {
             full.add( bundle );
         }
-        
 
         full.add( "--platform=" + m_selectedPlatform.toString().toLowerCase() );
         if( m_selectedPlatformVersion != null )
@@ -249,7 +247,8 @@ public class PaxRunnerConnectorImpl
         return full.toArray( new String[full.size()] );
     }
 
-    public void execute( SubProcess instance, RemoteTestRunnerClient client, PrintStream out, TestProbeProvider provider )
+    public void execute( SubProcess instance, RemoteTestRunnerClient client, PrintStream out,
+                         TestProbeProvider provider )
     {
         NullArgumentException.validateNotNull( instance, "process" );
         NullArgumentException.validateNotNull( client, "remote pax exam client handle" );

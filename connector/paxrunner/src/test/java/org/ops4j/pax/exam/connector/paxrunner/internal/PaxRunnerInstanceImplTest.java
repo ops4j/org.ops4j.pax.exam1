@@ -17,9 +17,9 @@
  */
 package org.ops4j.pax.exam.connector.paxrunner.internal;
 
-import java.io.File;
 import org.junit.Test;
-import org.ops4j.pax.exam.connector.paxrunner.internal.PaxRunnerInstanceImpl;
+
+import java.io.File;
 
 /**
  * @author Toni Menzel (tonit)

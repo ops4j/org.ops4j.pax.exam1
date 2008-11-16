@@ -1,8 +1,8 @@
 package org.ops4j.pax.exam.spi.junit;
 
 import junit.framework.AssertionFailedError;
-import org.ops4j.pax.exam.api.TestExecutionSummary;
 import org.ops4j.pax.exam.api.RecipeException;
+import org.ops4j.pax.exam.api.TestExecutionSummary;
 import org.ops4j.pax.exam.spi.TextSummary;
 
 /**

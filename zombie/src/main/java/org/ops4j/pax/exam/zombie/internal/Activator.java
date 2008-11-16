@@ -17,13 +17,14 @@
  */
 package org.ops4j.pax.exam.zombie.internal;
 
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
+import org.ops4j.pax.exam.api.TestRunner;
+import org.ops4j.pax.exam.zombie.RemoteTestRunnerDelegate;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
-import org.ops4j.pax.exam.api.TestRunner;
-import org.ops4j.pax.exam.zombie.RemoteTestRunnerDelegate;
+
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
 /**
  * Registers the an instance of RemoteTestRunnerService as RMI service using a port set by system property

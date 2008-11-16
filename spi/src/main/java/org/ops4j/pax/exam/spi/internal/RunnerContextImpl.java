@@ -1,9 +1,10 @@
 package org.ops4j.pax.exam.spi.internal;
 
-import java.io.File;
-import java.rmi.registry.Registry;
 import org.ops4j.net.FreePort;
 import org.ops4j.pax.exam.api.RunnerContext;
+
+import java.io.File;
+import java.rmi.registry.Registry;
 
 /**
  * A context is a shared resource.

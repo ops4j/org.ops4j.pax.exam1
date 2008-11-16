@@ -30,8 +30,8 @@ public interface PaxRunnerBundleProvision extends BundleProvision
 
     PaxRunnerBundleProvision addBundle( String bundleUrl );
 
-    PaxRunnerBundleProvision updateBundles(boolean doUpdate);
+    PaxRunnerBundleProvision updateBundles( boolean doUpdate );
 
-    PaxRunnerBundleProvision prefixScanDirective(boolean doPrefix);
+    PaxRunnerBundleProvision prefixScanDirective( boolean doPrefix );
 
 }

@@ -3,7 +3,6 @@ package org.ops4j.pax.exam.spi;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.ops4j.pax.exam.api.RecipeException;
-import org.ops4j.pax.exam.spi.SummaryImpl;
 
 /**
  * @author Toni Menzel (tonit)

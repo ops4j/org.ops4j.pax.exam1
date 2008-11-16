@@ -51,7 +51,8 @@ public class RecipeException extends Exception
             }
             m_message = cause.getMessage();
             // fuzzy way to detect a junit exception without having the clazz itself
-            m_assertError = ( cause.getClass().getName().endsWith( "AssertionFailedError" ) || (cause instanceof AssertionError ));
+            m_assertError = ( cause.getClass().getName().endsWith( "AssertionFailedError" )
+                              || ( cause instanceof AssertionError ) );
             ByteArrayOutputStream arrOut = new ByteArrayOutputStream();
             PrintStream writer = new PrintStream( arrOut );
             cause.printStackTrace( writer );

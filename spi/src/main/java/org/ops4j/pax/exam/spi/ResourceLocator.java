@@ -17,17 +17,18 @@
  */
 package org.ops4j.pax.exam.spi;
 
-import java.util.jar.JarOutputStream;
 import java.io.IOException;
+import java.util.jar.JarOutputStream;
 
 /**
  * @author Toni Menzel (tonit)
  * @since May 30, 2008
  *
- * Locates resources and writes them in a unifed manner into the give JarOutputStream
+ *        Locates resources and writes them in a unifed manner into the give JarOutputStream
  */
 public interface ResourceLocator
 {
+
     void write( JarOutputStream jos )
         throws IOException;
 }

@@ -18,8 +18,8 @@
 package org.ops4j.pax.exam.spi;
 
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.api.TestExecutionSummary;
 import org.ops4j.pax.exam.api.RecipeException;
+import org.ops4j.pax.exam.api.TestExecutionSummary;
 
 /**
  * @author Toni Menzel (tonit)

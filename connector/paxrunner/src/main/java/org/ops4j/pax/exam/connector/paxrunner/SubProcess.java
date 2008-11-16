@@ -19,11 +19,12 @@ package org.ops4j.pax.exam.connector.paxrunner;
 
 /**
  * Just here to have an abstraction of starting/stopping something to be able to mock stuff out.
- * 
+ *
  * @author Toni Menzel (tonit)
  * @since Jun 18, 2008
  */
-public interface SubProcess {
+public interface SubProcess
+{
 
     /**
      * This will start the subject.

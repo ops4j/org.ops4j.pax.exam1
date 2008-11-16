@@ -1,13 +1,13 @@
 package org.ops4j.pax.exam.spi.internal;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import org.junit.Test;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.jar.JarOutputStream;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import org.junit.Test;
-import org.ops4j.pax.exam.spi.internal.IntelliResourceFinder;
 
 /**
  * User: Toni Menzel (tonit)
@@ -33,7 +33,6 @@ public class IntelliResourceFinderTest
     {
         new IntelliResourceFinder( new File( "foo" ), null );
     }
-
 
     @Test( expected = IllegalArgumentException.class )
     public void createWithEmptyClassName()
@@ -69,39 +68,44 @@ public class IntelliResourceFinderTest
     }
 
     @Test( expected = IllegalArgumentException.class )
-    public void findNonExistingClass() throws IOException
+    public void findNonExistingClass()
+        throws IOException
     {
         IntelliResourceFinder finder = new IntelliResourceFinder( new File( "." ), "nonexistingclass" );
         JarOutputStream target = new JarOutputStream( new OutputStream()
         {
 
-            public void write( int i ) throws IOException
+            public void write( int i )
+                throws IOException
             {
                 fail( "nothing to write, so nothing to call.." );
             }
-        } );
+        }
+        );
 
         finder.write( target );
     }
 
     @Test
-    public void findExistingClass() throws IOException
+    public void findExistingClass()
+        throws IOException
     {
         IntelliResourceFinder finder = new IntelliResourceFinder( new File( "." ), this.getClass().getName() );
         final boolean[] blnFlag = new boolean[]{ false };
         JarOutputStream target = new JarOutputStream( new OutputStream()
         {
 
-            public void write( int i ) throws IOException
+            public void write( int i )
+                throws IOException
             {
                 blnFlag[ 0 ] = true;
             }
-        } );
+        }
+        );
 
         finder.write( target );
         assertTrue( blnFlag[ 0 ] );
     }
-
 
     private File getTestFolder()
     {

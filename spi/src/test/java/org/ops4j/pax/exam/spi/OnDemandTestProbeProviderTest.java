@@ -1,7 +1,6 @@
 package org.ops4j.pax.exam.spi;
 
 import org.junit.Test;
-import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
 
 /**
  * @author Toni Menzel (tonit)

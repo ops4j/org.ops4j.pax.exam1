@@ -1,12 +1,12 @@
 package org.ops4j.pax.exam.spi.internal;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.zip.ZipEntry;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import org.junit.Test;
-import org.ops4j.pax.exam.spi.internal.DuplicateAwareJarOutputStream;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.zip.ZipEntry;
 
 /**
  * User: Toni Menzel (tonit)
@@ -14,15 +14,18 @@ import org.ops4j.pax.exam.spi.internal.DuplicateAwareJarOutputStream;
  */
 public class DuplicationAwareJarOutputStreamTest
 {
+
     @Test
-    public void createAndCallNormal() throws IOException
+    public void createAndCallNormal()
+        throws IOException
     {
         final boolean[] flag = new boolean[]{ false };
 
         OutputStream backing = new OutputStream()
         {
 
-            public void write( int i ) throws IOException
+            public void write( int i )
+                throws IOException
             {
 
                 flag[ 0 ] = true;
@@ -36,14 +39,16 @@ public class DuplicationAwareJarOutputStreamTest
     }
 
     @Test
-    public void createAndCallWithDuplicate() throws IOException
+    public void createAndCallWithDuplicate()
+        throws IOException
     {
         final boolean[] flag = new boolean[]{ false };
 
         OutputStream backing = new OutputStream()
         {
 
-            public void write( int i ) throws IOException
+            public void write( int i )
+                throws IOException
             {
                 if( !flag[ 0 ] )
                 {
@@ -61,14 +66,16 @@ public class DuplicationAwareJarOutputStreamTest
     }
 
     @Test
-    public void createAndCallWithDuplicateAndKeepGoing() throws IOException
+    public void createAndCallWithDuplicateAndKeepGoing()
+        throws IOException
     {
         final boolean[] flag = new boolean[]{ false };
 
         OutputStream backing = new OutputStream()
         {
 
-            public void write( int i ) throws IOException
+            public void write( int i )
+                throws IOException
             {
                 if( !flag[ 0 ] )
                 {

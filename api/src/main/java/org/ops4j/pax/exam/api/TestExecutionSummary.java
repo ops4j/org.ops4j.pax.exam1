@@ -36,5 +36,5 @@ public interface TestExecutionSummary
     Throwable getCause();
 
     Exception getException();
-    
+
 }

@@ -17,16 +17,17 @@
  */
 package org.ops4j.pax.exam.spi.junit;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import org.junit.Test;
 import org.junit.runner.Description;
 import org.junit.runner.Runner;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
-import org.ops4j.pax.exam.api.TestRunnerConnector;
 import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestRunnerConnector;
 import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 /**
  * JUnit4 Runner to be used with the {@link org.junit.runner.RunWith} annotation

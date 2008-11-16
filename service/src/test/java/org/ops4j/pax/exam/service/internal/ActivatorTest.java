@@ -19,10 +19,9 @@ package org.ops4j.pax.exam.service.internal;
 
 import static org.easymock.EasyMock.*;
 import org.junit.Test;
+import org.ops4j.pax.exam.api.TestRunner;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
-import org.ops4j.pax.exam.api.TestRunner;
-import org.ops4j.pax.exam.service.internal.Activator;
 
 import java.util.Dictionary;
 
@@ -30,27 +29,35 @@ import java.util.Dictionary;
  * @author Toni Menzel (tonit)
  * @since Jun 20, 2008
  */
-public class ActivatorTest {
+public class ActivatorTest
+{
+
     @Test
-    public void start() throws Exception {
+    public void start()
+        throws Exception
+    {
         Activator act = new Activator();
-        BundleContext bundleContext = createMock(BundleContext.class);
-        expect(bundleContext.registerService(eq( TestRunner.class.getName()),notNull(),(Dictionary)notNull())).andReturn(createMock(ServiceRegistration.class));
-        replay(bundleContext);
-        act.start(bundleContext);
-        verify(bundleContext);
+        BundleContext bundleContext = createMock( BundleContext.class );
+        expect( bundleContext.registerService( eq( TestRunner.class.getName() ), notNull(), ( Dictionary ) notNull() ) )
+            .andReturn( createMock( ServiceRegistration.class ) );
+        replay( bundleContext );
+        act.start( bundleContext );
+        verify( bundleContext );
     }
 
     @Test
-    public void stop() throws Exception {
+    public void stop()
+        throws Exception
+    {
         Activator act = new Activator();
-        BundleContext bundleContext = createMock(BundleContext.class);
-        ServiceRegistration reg = createMock(ServiceRegistration.class);
-        expect(bundleContext.registerService(eq( TestRunner.class.getName()),notNull(),(Dictionary)notNull())).andReturn(reg);
+        BundleContext bundleContext = createMock( BundleContext.class );
+        ServiceRegistration reg = createMock( ServiceRegistration.class );
+        expect( bundleContext.registerService( eq( TestRunner.class.getName() ), notNull(), ( Dictionary ) notNull() ) )
+            .andReturn( reg );
         reg.unregister();
-        replay(bundleContext,reg);
-        act.start(bundleContext);
-        act.stop(bundleContext);
-        verify(bundleContext,reg);
+        replay( bundleContext, reg );
+        act.start( bundleContext );
+        act.stop( bundleContext );
+        verify( bundleContext, reg );
     }
 }
