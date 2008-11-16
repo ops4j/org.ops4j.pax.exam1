@@ -25,18 +25,18 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.api.DroneProvider;
-import org.ops4j.pax.exam.api.DroneSummary;
+import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestExecutionSummary;
 import org.ops4j.pax.exam.api.*;
 import org.ops4j.pax.exam.api.RunnerContext;
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
 import org.ops4j.pax.exam.spi.SummaryImpl;
-import org.ops4j.pax.exam.zombie.RemoteDroneClient;
+import org.ops4j.pax.exam.zombie.RemoteTestRunnerClient;
 
 /**
- * Construct a PaxRunner setup in PaxDrone.
+ * Construct a PaxRunner setup in Pax Exam.
  *
  * @author Toni Menzel
  * @author Alin Dreghiciu
@@ -72,7 +72,7 @@ public class PaxRunnerConnectorImpl
 
     /**
      * Allows to set the virtual machine options.
-     * Will be delegated 1:1 to pax runners equivalent option + drone related options.
+     * Will be delegated 1:1 to pax runners equivalent option + pax exam related options.
      */
     private StringBuilder m_vmOptions;
 
@@ -194,10 +194,10 @@ public class PaxRunnerConnectorImpl
         NullArgumentException.validateNotNull( m_selectedPlatform, "m_selectedPlatform" );
 
         List<String> full = new ArrayList<String>();
-        // Add dependencies from paxdrone itself:
-        String version = Info.getPaxDroneVersion();
-        // if drone is in snapshot version we should always use the latest. Otherwise we can
-        // keep it without update so that subsequent dronecalls are much faster.
+        // Add dependencies from pax exam itself:
+        String version = Info.getPaxExamVersion();
+        // if pax exam is in snapshot version we should always use the latest. Otherwise we can
+        // keep it without update so that subsequent pax exam calls are much faster.
         if (version != null && version.endsWith( "SNAPSHOT" )) {
             version += "@update";
         }
@@ -221,7 +221,7 @@ public class PaxRunnerConnectorImpl
         full.add( "--log=debug" );
 
         final StringBuilder vmOptions = new StringBuilder( "--vmOptions=" );
-        vmOptions.append( "-Ddrone.communication.port=" ).append( m_context.getCommunicationPort() ).append( " " );
+        vmOptions.append( "-Dpax.exam.communication.port=" ).append( m_context.getCommunicationPort() ).append( " " );
         if( m_vmOptions != null && m_vmOptions.length() > 0 )
         {
             vmOptions.append( m_vmOptions );
@@ -249,10 +249,10 @@ public class PaxRunnerConnectorImpl
         return full.toArray( new String[full.size()] );
     }
 
-    public void execute( SubProcess instance, RemoteDroneClient client, PrintStream out, DroneProvider provider )
+    public void execute( SubProcess instance, RemoteTestRunnerClient client, PrintStream out, TestProbeProvider provider )
     {
         NullArgumentException.validateNotNull( instance, "process" );
-        NullArgumentException.validateNotNull( client, "remote drone client handle" );
+        NullArgumentException.validateNotNull( client, "remote pax exam client handle" );
         NullArgumentException.validateNotNull( provider, "provider" );
 
         try
@@ -260,28 +260,28 @@ public class PaxRunnerConnectorImpl
             // start the instance
             LOG.info( "LOADING paxrunner.." );
             instance.startup();
-            LOG.info( "BUILDING and INSTALLING drone bundle.." );
+            LOG.info( "BUILDING and INSTALLING Pax Exam bundle.." );
             client.install( provider.build() );
             // use remoting client to call the tests
 
-            LOG.info( "EXECUTING DRONE NOW" );
+            LOG.info( "EXECUTING PAX EXAM NOW" );
             out.println( client.execute() );
         }
         finally
         {
             if( instance != null )
             {
-                LOG.info( "PAX DRONE HAS FINISHED ITS JOB." );
+                LOG.info( "PAX EXAM HAS FINISHED ITS JOB." );
 
                 instance.shutdown();
             }
         }
     }
 
-    public DroneSummary execute( DroneProvider provider )
+    public TestExecutionSummary execute( TestProbeProvider provider )
     {
         Info.showLogo();
-        DroneSummary summary = new SummaryImpl();
+        TestExecutionSummary summary = new SummaryImpl();
 
         String[] options = calculateOptions();
         File workingDirectory = m_context.getWorkingDirectory();
@@ -290,7 +290,7 @@ public class PaxRunnerConnectorImpl
         try
         {
             SubProcess instance = new PaxRunnerInstanceImpl( options, workingDirectory, port );
-            RemoteDroneClient c = new RemoteDroneClient( port );
+            RemoteTestRunnerClient c = new RemoteTestRunnerClient( port );
 
             execute( instance, c, System.out, provider );
         }

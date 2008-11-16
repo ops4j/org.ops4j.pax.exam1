@@ -20,7 +20,7 @@ package org.ops4j.pax.exam.api;
 import java.io.File;
 
 /**
- * A (possibly shared) of information used by a pax drone connector instance.
+ * A (possibly shared) of information used by a pax exam connector instance.
  * Implementations should be thread-safe.
  *
  * @author Toni Menzel (tonit)

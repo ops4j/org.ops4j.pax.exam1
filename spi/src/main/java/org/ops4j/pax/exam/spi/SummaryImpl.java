@@ -18,14 +18,14 @@
 package org.ops4j.pax.exam.spi;
 
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.api.DroneSummary;
+import org.ops4j.pax.exam.api.TestExecutionSummary;
 import org.ops4j.pax.exam.api.RecipeException;
 
 /**
  * @author Toni Menzel (tonit)
  * @since Oct 3, 2008
  */
-public class SummaryImpl implements DroneSummary
+public class SummaryImpl implements TestExecutionSummary
 {
 
     private boolean m_isRecipe = false;

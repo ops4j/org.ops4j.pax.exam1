@@ -18,26 +18,23 @@
 package org.ops4j.pax.exam.api;
 
 /**
- * Exception mother of all Drone based exceptions as well as catched and validated original exceptions.
+ * Interface to final information about a single TestRunnerConnecor.execute(..) run.
+ * In essense, this should deal also with nested "original" exceptions.
  *
  * @author Toni Menzel (tonit)
- * @since Oct 2, 2008
+ * @since Oct 3, 2008
  */
-public class DroneException extends RuntimeException
+public interface TestExecutionSummary
 {
 
-    public DroneException( Exception e )
-    {
-        super( e );
-    }
+    boolean hasFailed();
 
-    public DroneException( String e )
-    {
-        super( e );
-    }
+    boolean isRecipeException();
 
-    public DroneException( String s, Exception e )
-    {
-        super( s, e );
-    }
+    void setException( Exception e );
+
+    Throwable getCause();
+
+    Exception getException();
+    
 }

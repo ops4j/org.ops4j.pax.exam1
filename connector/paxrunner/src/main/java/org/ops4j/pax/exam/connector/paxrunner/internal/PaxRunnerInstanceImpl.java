@@ -25,10 +25,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.io.Pipe;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.api.DroneException;
-import org.ops4j.pax.exam.api.DroneService;
+import org.ops4j.pax.exam.api.TestExecutionException;
+import org.ops4j.pax.exam.api.TestRunner;
 import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
-import org.ops4j.pax.exam.zombie.internal.RemoteDroneService;
+import org.ops4j.pax.exam.zombie.internal.RemoteTestRunnerService;
 import org.ops4j.pax.runner.CommandLine;
 import org.ops4j.pax.runner.CommandLineImpl;
 import org.ops4j.pax.runner.Configuration;
@@ -113,7 +113,7 @@ public class PaxRunnerInstanceImpl implements SubProcess
             }
         } catch( Exception e )
         {
-            throw new DroneException( "Exception during shutdown process..", e );
+            throw new TestExecutionException( "Exception during shutdown process..", e );
         }
     }
 
@@ -215,7 +215,7 @@ public class PaxRunnerInstanceImpl implements SubProcess
 
 
                 }
-            }, "Pax-Drone shutdown hook"
+            }, "Pax Exam shutdown hook"
             );
 
             return shutdownHook;
@@ -233,7 +233,7 @@ public class PaxRunnerInstanceImpl implements SubProcess
                     Thread.currentThread().setContextClassLoader( this.getClass().getClassLoader() );
 
                     Registry registry = LocateRegistry.getRegistry( m_communicationPort );
-                    RemoteDroneService stub = ( RemoteDroneService ) registry.lookup( DroneService.class.getName() );
+                    RemoteTestRunnerService stub = ( RemoteTestRunnerService ) registry.lookup( TestRunner.class.getName() );
                     if( stub != null )
                     {
                         established = true;

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.jar.JarOutputStream;
 import org.junit.Test;
-import org.ops4j.pax.exam.api.DroneException;
+import org.ops4j.pax.exam.api.TestExecutionException;
 import org.ops4j.pax.exam.spi.internal.IntelliResourceFinder;
 
 /**
@@ -14,7 +14,7 @@ import org.ops4j.pax.exam.spi.internal.IntelliResourceFinder;
  */
 public class PoisonManifestTest
 {
-    @Test( expected = DroneException.class )
+    @Test( expected = TestExecutionException.class )
     public void testForSelfishManifest()
         throws IOException
     {

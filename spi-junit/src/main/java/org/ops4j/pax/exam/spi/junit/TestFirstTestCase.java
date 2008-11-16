@@ -2,10 +2,10 @@ package org.ops4j.pax.exam.spi.junit;
 
 import junit.framework.TestCase;
 import org.osgi.framework.BundleContext;
-import org.ops4j.pax.exam.api.DroneSummary;
-import org.ops4j.pax.exam.spi.OnDemandDroneProvider;
-import org.ops4j.pax.exam.api.DroneConnector;
-import org.ops4j.pax.exam.api.DroneProvider;
+import org.ops4j.pax.exam.api.TestExecutionSummary;
+import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
+import org.ops4j.pax.exam.api.TestRunnerConnector;
+import org.ops4j.pax.exam.api.TestProbeProvider;
 
 /**
  * TestFirst Scenario brought to osgi integration testing:
@@ -23,14 +23,14 @@ public abstract class TestFirstTestCase extends TestCase
      * Will be injected inside the framework
      */
     public BundleContext bundleContext = null;
-    private transient DroneConnector m_connectorSuccessful;
-    private transient DroneConnector m_connectorFailing;
+    private transient TestRunnerConnector m_connectorSuccessful;
+    private transient TestRunnerConnector m_connectorFailing;
 
-    protected abstract DroneConnector configureFailing();
+    protected abstract TestRunnerConnector configureFailing();
 
-    protected abstract DroneConnector configureSuccessful();
+    protected abstract TestRunnerConnector configureSuccessful();
 
-    protected final DroneConnector getConnectorSuccessful()
+    protected final TestRunnerConnector getConnectorSuccessful()
     {
         if( m_connectorSuccessful == null )
         {
@@ -39,7 +39,7 @@ public abstract class TestFirstTestCase extends TestCase
         return m_connectorSuccessful;
     }
 
-    protected final DroneConnector getConnectorFailing()
+    protected final TestRunnerConnector getConnectorFailing()
     {
         if( m_connectorFailing == null )
         {
@@ -50,7 +50,7 @@ public abstract class TestFirstTestCase extends TestCase
 
     /**
      * Instantiates a single runner per call. Slow but max. side-effect free.
-     * Hence, the underlying builder should make sure that the drone will not be rebuild each rime (does not change)
+     * Hence, the underlying builder should make sure that the probe will not be rebuild each rime (does not change)
      */
     public void runBare()
         throws Throwable
@@ -58,14 +58,14 @@ public abstract class TestFirstTestCase extends TestCase
         // runs the same thing with two different configurations:
         // the first must fail (RecipeException), the seccond must succeed.
 
-        DroneProvider provider = new OnDemandDroneProvider( getName(), this.getClass().getName() );
-        DroneSummary interMustFail = getConnectorFailing().execute( provider );
+        TestProbeProvider provider = new OnDemandTestProbeProvider( getName(), this.getClass().getName() );
+        TestExecutionSummary interMustFail = getConnectorFailing().execute( provider );
 
         if( interMustFail.hasFailed() )
         {
             if( interMustFail.isRecipeException() )
             {
-                DroneSummary m_runnerSuc = getConnectorSuccessful().execute( provider );
+                TestExecutionSummary m_runnerSuc = getConnectorSuccessful().execute( provider );
 
             }
             else

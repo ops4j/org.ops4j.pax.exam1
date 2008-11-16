@@ -26,8 +26,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.spi.ResourceLocator;
-import org.ops4j.pax.exam.spi.util.DroneUtils;
-import org.ops4j.pax.exam.api.DroneException;
+import org.ops4j.pax.exam.spi.util.Utils;
+import org.ops4j.pax.exam.api.TestExecutionException;
 
 /**
  * Finds resources of the current module under test just by given top-level parent (whatever that is)
@@ -136,12 +136,12 @@ public class IntelliResourceFinder implements ResourceLocator
         String name = f.getCanonicalPath().substring( base.getCanonicalPath().length() + 1 ).replace( File.separatorChar, '/' );
         if( name.equals( "META-INF/MANIFEST.MF" ) )
         {
-            throw new DroneException( "You have specified a " + name + " in your drone bundle. Please make sure that you don't have it in your project's target folder. Otherwise it would lead to false assumptions and unexpected results." );
+            throw new TestExecutionException( "You have specified a " + name + " in your probe bundle. Please make sure that you don't have it in your project's target folder. Otherwise it would lead to false assumptions and unexpected results." );
         }
         target.putNextEntry( new JarEntry( name ) );
         FileInputStream fis = new FileInputStream( f );
 
-        DroneUtils.copy( fis, target );
+        Utils.copy( fis, target );
         fis.close();
     }
 }

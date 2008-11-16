@@ -22,12 +22,12 @@ import java.rmi.server.UnicastRemoteObject;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
-import org.ops4j.pax.exam.api.DroneService;
-import org.ops4j.pax.exam.zombie.RemoteDroneDelegate;
+import org.ops4j.pax.exam.api.TestRunner;
+import org.ops4j.pax.exam.zombie.RemoteTestRunnerDelegate;
 
 /**
- * Registers the an instance of RemoteDroneService as RMI service using a port
- * set by system property drone.communication.port
+ * Registers the an instance of RemoteTestRunnerService as RMI service using a port set by system property
+ * pax.exam.communication.port.
  *
  * @author Toni Menzel (tonit)
  * @since Jun 2, 2008
@@ -36,8 +36,8 @@ public class Activator implements BundleActivator
 {
 
     private Registry m_registry;
-    private RemoteDroneService stub;
-    private RemoteDroneDelegate obj;
+    private RemoteTestRunnerService stub;
+    private RemoteTestRunnerDelegate obj;
 
     public void start( BundleContext bundleContext )
         throws Exception
@@ -46,7 +46,7 @@ public class Activator implements BundleActivator
         try
         {
             // create new instance
-            obj = new RemoteDroneDelegate( bundleContext );
+            obj = new RemoteTestRunnerDelegate( bundleContext );
             cl = Thread.currentThread().getContextClassLoader();
             // try to find port from property
             int port = getPort();
@@ -55,8 +55,8 @@ public class Activator implements BundleActivator
             Thread.currentThread().setContextClassLoader( this.getClass().getClassLoader() );
             m_registry = java.rmi.registry.LocateRegistry.createRegistry( port );
 
-            stub = (RemoteDroneService) UnicastRemoteObject.exportObject( obj, port );
-            m_registry.bind( DroneService.class.getName(), stub );
+            stub = ( RemoteTestRunnerService ) UnicastRemoteObject.exportObject( obj, port );
+            m_registry.bind( TestRunner.class.getName(), stub );
         } catch( Exception e )
         {
             throw new BundleException( "Problem setting up rmi registry", e );
@@ -79,13 +79,13 @@ public class Activator implements BundleActivator
     }
 
     /**
-     * @return the port where RemoteDroneService is being exposed as an RMI service.
+     * @return the port where {@link org.ops4j.pax.exam.zombie.internal.RemoteTestRunnerService} is being exposed as an RMI service.
      */
     private int getPort()
     {
         /**
          * The port is usually given by starting client (owner of this process).
          */
-        return Integer.parseInt( System.getProperty( DroneService.PROPERTY_COMMUNICATION_PORT ) );
+        return Integer.parseInt( System.getProperty( TestRunner.PROPERTY_COMMUNICATION_PORT ) );
     }
 }

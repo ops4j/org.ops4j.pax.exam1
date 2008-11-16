@@ -24,7 +24,7 @@ import org.ops4j.pax.exam.api.RunnerContext;
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.connector.paxrunner.internal.PaxRunnerConnectorImpl;
-import org.ops4j.pax.exam.spi.OnDemandDroneProvider;
+import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
 import org.ops4j.pax.exam.spi.internal.BundleProvisionImpl;
 import org.ops4j.pax.exam.spi.internal.RunnerContextImpl;
 
@@ -35,7 +35,7 @@ import org.ops4j.pax.exam.spi.internal.RunnerContextImpl;
 public class PaxRunnerSample
 {
 
-    public void simpleDroneRecipe( BundleContext bundleContext )
+    public void simpleRecipe( BundleContext bundleContext )
     {
         System.out.println( "----------------------- THIS RUNS iNSIDE THE FRAMEWORK / START -----------------------" );
         Bundle[] bundles = bundleContext.getBundles();
@@ -50,8 +50,7 @@ public class PaxRunnerSample
         throws Throwable
     {
         /**
-         * Here we see the bare bones what we need to do in order to run a minimum but full featured paxdrone run:
-         * The DroneRunner is being constructed with a DroneConnector and can then accept execution calls via the run method.
+         * Here we see the bare bones what we need to do in order to run a minimum but full featured pax exam run:
          *
          * We say: we want the PaxRunnerConnector:
          */
@@ -65,6 +64,6 @@ public class PaxRunnerSample
          * Consult the connector configuration wiki for more about a specific connector.
          * Here we use the PaxRunnerConnector. 
          */
-        connector.execute( new OnDemandDroneProvider( "simpleDroneRecipe", PaxRunnerSample.class.getName() ) );
+        connector.execute( new OnDemandTestProbeProvider( "simpleRecipe", PaxRunnerSample.class.getName() ) );
     }
 }

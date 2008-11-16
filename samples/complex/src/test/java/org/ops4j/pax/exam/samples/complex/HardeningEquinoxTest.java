@@ -1,6 +1,6 @@
 package org.ops4j.pax.exam.samples.complex;
 
-import org.ops4j.pax.exam.api.DroneConnector;
+import org.ops4j.pax.exam.api.TestRunnerConnector;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.create;
 
@@ -11,7 +11,7 @@ import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.create;
 public class HardeningEquinoxTest extends HardeningTest
 {
 
-    protected DroneConnector configure()
+    protected TestRunnerConnector configure()
     {
          return create().setPlatform( Platforms.EQUINOX );
     }

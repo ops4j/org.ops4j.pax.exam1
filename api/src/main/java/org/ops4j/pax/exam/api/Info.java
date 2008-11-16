@@ -21,7 +21,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * A helper class to find versioning and other meta information about this pax drone delivery.
+ * A helper class to find versioning and other meta information about this pax exam delivery.
  *
  * Fully static
  *
@@ -40,15 +40,15 @@ public class Info
     }
 
     /**
-     * Discovers the Pax Drone version. If version cannot be determined returns an empty string.
+     * Discovers the Pax Exam version. If version cannot be determined returns an empty string.
      *
-     * @return pax drone version
+     * @return pax exam version
      */
-    public static String getPaxDroneVersion()
+    public static String getPaxExamVersion()
     {
         try
         {
-            final InputStream is = Info.class.getClassLoader().getResourceAsStream( "META-INF/paxdrone.version" );
+            final InputStream is = Info.class.getClassLoader().getResourceAsStream( "META-INF/paxexam.version" );
             if( is != null )
             {
                 final Properties properties = new Properties();
@@ -79,7 +79,7 @@ public class Info
         System.out.println( " /  /    /  / /  / / _\\ \\" );
         System.out.println( "/__/    /__/ /__/ /_/ /_/" );
         System.out.println();
-        final String logo = "Pax Drone " + Info.getPaxDroneVersion() + " from OPS4J - http://www.ops4j.org";
+        final String logo = "Pax Exam " + Info.getPaxExamVersion() + " from OPS4J - http://www.ops4j.org";
         System.out.println( logo );
         System.out.println(
             "---------------------------------------------------------------------------------------------------------"

@@ -17,21 +17,21 @@
  */
 package org.ops4j.pax.exam.connector.echo;
 
-import java.io.InputStream;
+import org.ops4j.pax.exam.api.TestExecutionSummary;
+import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestRunnerConnector;
 
-import org.ops4j.pax.exam.api.DroneSummary;
-import org.ops4j.pax.exam.api.DroneConnector;
-import org.ops4j.pax.exam.api.DroneProvider;
+import java.io.InputStream;
 
 /**
  * User: Toni Menzel (tonit)
  * Date: May 28, 2008
  *
- * The NullConnector implements DroneConnector.
+ * The NullConnector implements {@link TestRunnerConnector}.
  * It prints out messages to System.out on every service call and does nothing useful.
  * It is a dummy.
  */
-public class NullConnector implements DroneConnector
+public class NullConnector implements TestRunnerConnector
 {
 
     public void install( InputStream inp )
@@ -39,7 +39,7 @@ public class NullConnector implements DroneConnector
         System.out.println( "NullConnector.install with InputStream: " + inp );
     }
 
-    public DroneSummary execute( DroneProvider provider )
+    public TestExecutionSummary execute( TestProbeProvider provider )
     {
         System.out.println( "NullConnector.execute" );
         return null;

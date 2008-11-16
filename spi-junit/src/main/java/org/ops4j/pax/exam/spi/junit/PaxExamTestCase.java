@@ -19,8 +19,8 @@ package org.ops4j.pax.exam.spi.junit;
 
 import junit.framework.TestCase;
 import org.osgi.framework.BundleContext;
-import org.ops4j.pax.exam.api.DroneConnector;
-import org.ops4j.pax.exam.spi.OnDemandDroneProvider;
+import org.ops4j.pax.exam.api.TestRunnerConnector;
+import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
 
 /**
  * This will be instantiated by the local junit runner as well as inside inside the OSGi Container.
@@ -29,7 +29,7 @@ import org.ops4j.pax.exam.spi.OnDemandDroneProvider;
  * @author Toni Menzel (tonit)
  * @since May 28, 2008
  */
-public abstract class DroneTestCase extends TestCase
+public abstract class PaxExamTestCase extends TestCase
 {
 
     /**
@@ -37,11 +37,11 @@ public abstract class DroneTestCase extends TestCase
      */
     public BundleContext bundleContext = null;
 
-    private transient DroneConnector m_connector;
+    private transient TestRunnerConnector m_connector;
 
-    protected abstract DroneConnector configure();
+    protected abstract TestRunnerConnector configure();
 
-    protected final DroneConnector getConnector()
+    protected final TestRunnerConnector getConnector()
     {
         if( m_connector == null )
         {
@@ -52,13 +52,13 @@ public abstract class DroneTestCase extends TestCase
 
     /**
      * Instantiates a single runner per call. Slow but max. side-effect free.
-     * Hence, the underlying builder should make sure that the drone will not be rebuild each rime (does not change)
+     * Hence, the underlying builder should make sure that the probe will not be rebuild each rime (does not change)
      */
     public void runBare()
         throws Throwable
     {
         JUnitSummaryHandling.handleSummary(
-            getConnector().execute( new OnDemandDroneProvider( getName(), this.getClass().getName() ) )
+            getConnector().execute( new OnDemandTestProbeProvider( getName(), this.getClass().getName() ) )
         );
 
 

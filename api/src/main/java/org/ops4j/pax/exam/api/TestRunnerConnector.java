@@ -18,14 +18,14 @@
 package org.ops4j.pax.exam.api;
 
 /**
- * DroneConnectors are a simple astraction for launching a specific recipe (which is just an identifier).
+ * A simple astraction for launching a specific recipe (which is just an identifier).
  * It is up to the run-method what actually a recipe is.
  * For unit tests, this will be a specific test method.
  *
  * @author Toni Menzel (tonit)
  * @since May 28, 2008
  */
-public interface DroneConnector
+public interface TestRunnerConnector
 {
 
     /**
@@ -33,9 +33,9 @@ public interface DroneConnector
      * Recipes are local to the RecipeHost:
      * In UnitTests a RecipeHost is the Class and Recipes are its (public) test-Methods.
      *
-     * @param provider a drone provider that makes up a specific drone call
+     * @param provider a pax exam provider that makes up a specific pax exam call
      *
      * @return a summary of the run. Exceptions should be caught es good as possible.
      */
-    DroneSummary execute( DroneProvider provider );
+    TestExecutionSummary execute( TestProbeProvider provider );
 }

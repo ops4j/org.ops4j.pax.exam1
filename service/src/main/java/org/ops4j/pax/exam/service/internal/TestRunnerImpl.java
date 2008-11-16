@@ -23,8 +23,8 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.RecipeException;
-import org.ops4j.pax.exam.api.DroneException;
-import org.ops4j.pax.exam.api.DroneService;
+import org.ops4j.pax.exam.api.TestExecutionException;
+import org.ops4j.pax.exam.api.TestRunner;
 
 /**
  * @author Toni Menzel (tonit)
@@ -32,13 +32,13 @@ import org.ops4j.pax.exam.api.DroneService;
  *
  *        This service is responsible to load the testclass, inject bundleContext, start tests
  */
-public class DroneServiceImpl
-    implements DroneService
+public class TestRunnerImpl
+    implements TestRunner
 {
 
     private BundleContext m_bundleContext;
 
-    public DroneServiceImpl( BundleContext ctx )
+    public TestRunnerImpl( BundleContext ctx )
     {
         NullArgumentException.validateNotNull( ctx, "ctx" );
         m_bundleContext = ctx;
@@ -52,7 +52,7 @@ public class DroneServiceImpl
 
         if( testBundle != null )
         {
-            String recipeHosts = (String) testBundle.getHeaders().get( DroneService.DRONE_RECIPE_HOST_HEADER );
+            String recipeHosts = (String) testBundle.getHeaders().get( TestRunner.PROBE_TEST_CASE );
 
             for( String recipeHost : recipeHosts.split( "," ) )
             {
@@ -63,13 +63,13 @@ public class DroneServiceImpl
                 }
                 catch( ClassNotFoundException e )
                 {
-                    throw new DroneException( "Recipe Host class not found: " + recipeHost );
+                    throw new TestExecutionException( "Test case class not found: " + recipeHost );
                 }
 
                 if( clazz != null )
                 {
                     // find method
-                    String recipe = (String) testBundle.getHeaders().get( DroneService.DRONE_RECIPE_CODE_HEADER );
+                    String recipe = (String) testBundle.getHeaders().get( TestRunner.PROBE_TEST_METHOD );
 
                     for( Method m : clazz.getDeclaredMethods() )
                     {
@@ -81,30 +81,30 @@ public class DroneServiceImpl
                             }
                             catch( InstantiationException e )
                             {
-                                throw new DroneException( "InstantiationException for : " + clazz + "," + m, e );
+                                throw new TestExecutionException( "InstantiationException for : " + clazz + "," + m, e );
                             }
                             catch( IllegalAccessException e )
                             {
-                                throw new DroneException( "IllegalAccessException for : " + clazz + "," + m, e );
+                                throw new TestExecutionException( "IllegalAccessException for : " + clazz + "," + m, e );
                             }
                             catch( RecipeException e )
                             {
-                                throw new DroneException( "Wrap the RecipeException", e );
+                                throw new TestExecutionException( "Wrap the RecipeException", e );
                             }
                         }
                     }
                 }
                 else
                 {
-                    throw new DroneException( "RecipeHost " + recipeHost + " not found!" );
+                    throw new TestExecutionException( "Test case " + recipeHost + " not found!" );
                 }
 
             }
         }
         else
         {
-            throw new DroneException(
-                "No recipe host found (bundle that has a valid  " + DroneService.DRONE_RECIPE_HOST_HEADER + " header)"
+            throw new TestExecutionException(
+                "No recipe host found (bundle that has a valid  " + TestRunner.PROBE_TEST_CASE + " header)"
             );
         }
         return "";
@@ -134,7 +134,7 @@ public class DroneServiceImpl
         {
             if( m.getParameterTypes().length == 1 )
             {
-                // must be of type DroneContext ! TODO add additional validation
+                // TODO add additional validation
                 m.invoke( o, bundleContext );
             }
             else
@@ -152,7 +152,7 @@ public class DroneServiceImpl
     {
         for( Bundle bundle : m_bundleContext.getBundles() )
         {
-            String tests = (String) bundle.getHeaders().get( DroneService.DRONE_RECIPE_HOST_HEADER );
+            String tests = (String) bundle.getHeaders().get( TestRunner.PROBE_TEST_CASE );
             if( tests != null )
             {
                 return bundle;

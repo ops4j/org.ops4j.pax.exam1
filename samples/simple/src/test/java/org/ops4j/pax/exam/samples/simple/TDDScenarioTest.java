@@ -2,7 +2,7 @@ package org.ops4j.pax.exam.samples.simple;
 
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.log.LogService;
-import org.ops4j.pax.exam.api.DroneConnector;
+import org.ops4j.pax.exam.api.TestRunnerConnector;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.spi.junit.TestFirstTestCase;
@@ -14,12 +14,12 @@ import org.ops4j.pax.exam.spi.junit.TestFirstTestCase;
 public class TDDScenarioTest extends TestFirstTestCase
 {
 
-    protected DroneConnector configureFailing()
+    protected TestRunnerConnector configureFailing()
     {
         return create().setPlatform( Platforms.FELIX );
     }
 
-    protected DroneConnector configureSuccessful()
+    protected TestRunnerConnector configureSuccessful()
     {
         return create( createBundleProvision()
             .addBundle( "mvn:org.ops4j.pax.logging/pax-logging-api" )

@@ -23,22 +23,22 @@ import static org.easymock.EasyMock.*;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
-import org.ops4j.pax.exam.api.DroneException;
-import org.ops4j.pax.exam.api.DroneService;
-import org.ops4j.pax.exam.service.internal.DroneServiceImpl;
+import org.ops4j.pax.exam.api.TestExecutionException;
+import org.ops4j.pax.exam.api.TestRunner;
+import org.ops4j.pax.exam.service.internal.TestRunnerImpl;
 
 /**
  * @author Toni Menzel (tonit)
  * @since Jun 20, 2008
  */
-public class DroneServiceImplTest
+public class TestRunnerImplTest
 {
 
     @Test( expected = IllegalArgumentException.class )
     public void createWithNull()
         throws Exception
     {
-        new DroneServiceImpl( null );
+        new TestRunnerImpl( null );
     }
 
     @Test
@@ -47,23 +47,23 @@ public class DroneServiceImplTest
     {
         BundleContext bundleContext = createMock( BundleContext.class );
         replay( bundleContext );
-        new DroneServiceImpl( bundleContext );
+        new TestRunnerImpl( bundleContext );
         verify( bundleContext );
     }
 
-    @Test( expected = DroneException.class )
+    @Test( expected = TestExecutionException.class )
     public void executeWithoutBundlesInstalled()
         throws Exception
     {
         BundleContext bundleContext = createMock( BundleContext.class );
         expect( bundleContext.getBundles() ).andReturn( new Bundle[0] );
         replay( bundleContext );
-        DroneServiceImpl act = new DroneServiceImpl( bundleContext );
+        TestRunnerImpl act = new TestRunnerImpl( bundleContext );
         act.execute();
         verify( bundleContext );
     }
 
-    @Test( expected = DroneException.class )
+    @Test( expected = TestExecutionException.class )
     public void executeWithoutValidBundles()
         throws Exception
     {
@@ -73,7 +73,7 @@ public class DroneServiceImplTest
         expect( bundle.getHeaders() ).andReturn( dict );
         expect( bundleContext.getBundles() ).andReturn( new Bundle[]{ bundle } );
         replay( bundleContext, bundle );
-        DroneServiceImpl act = new DroneServiceImpl( bundleContext );
+        TestRunnerImpl act = new TestRunnerImpl( bundleContext );
         act.execute();
         verify( bundleContext, bundle );
     }
@@ -85,7 +85,7 @@ public class DroneServiceImplTest
         BundleContext bundleContext = createMock( BundleContext.class );
         Bundle bundle = createMock( Bundle.class );
         Dictionary dict = new Hashtable();
-        dict.put( DroneService.DRONE_RECIPE_HOST_HEADER, "foo" );
+        dict.put( TestRunner.PROBE_TEST_CASE, "foo" );
         expect( bundle.getHeaders() ).andReturn( dict ).anyTimes();
 
         expect( bundleContext.getBundles() ).andReturn( new Bundle[]{ bundle } );
@@ -95,7 +95,7 @@ public class DroneServiceImplTest
         expect( bundleContext.getBundle() ).andReturn( loadingBundle );
 
         replay( bundleContext, bundle );
-        DroneServiceImpl act = new DroneServiceImpl( bundleContext );
+        TestRunnerImpl act = new TestRunnerImpl( bundleContext );
         act.execute();
         verify( bundleContext, bundle );
     }

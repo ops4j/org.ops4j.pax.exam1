@@ -27,22 +27,22 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
-import org.ops4j.pax.exam.api.DroneException;
-import org.ops4j.pax.exam.api.DroneService;
-import org.ops4j.pax.exam.zombie.internal.RemoteDroneService;
+import org.ops4j.pax.exam.api.TestExecutionException;
+import org.ops4j.pax.exam.api.TestRunner;
+import org.ops4j.pax.exam.zombie.internal.RemoteTestRunnerService;
 
 /**
  * @author Toni Menzel (tonit)
  * @since Jun 10, 2008
  */
-public class RemoteDroneDelegate
-    implements RemoteDroneService, Serializable
+public class RemoteTestRunnerDelegate
+    implements RemoteTestRunnerService, Serializable
 {
 
     private transient BundleContext m_bundleContext;
     private transient int i;
 
-    public RemoteDroneDelegate( BundleContext bundleContext )
+    public RemoteTestRunnerDelegate( BundleContext bundleContext )
     {
         m_bundleContext = bundleContext;
     }
@@ -52,15 +52,15 @@ public class RemoteDroneDelegate
     {
         startAllBundles();
 
-        ServiceReference ref = m_bundleContext.getServiceReference( DroneService.class.getName() );
+        ServiceReference ref = m_bundleContext.getServiceReference( TestRunner.class.getName() );
         if( ref != null )
         {
-            DroneService s = (DroneService) m_bundleContext.getService( ref );
+            TestRunner s = ( TestRunner ) m_bundleContext.getService( ref );
             return s.execute();
         }
         else
         {
-            throw new DroneException( "DroneService is not available inside the OSGi framework." );
+            throw new TestExecutionException( "TestRunner is not available inside the OSGi framework." );
         }
     }
 
@@ -101,7 +101,7 @@ public class RemoteDroneDelegate
                 long bundleId = bundle.getBundleId();
                 String bundleName = bundle.getSymbolicName();
                 String bundleStateStr = bundleStateToString( bundleState );
-                throw new DroneException(
+                throw new TestExecutionException(
                     "Bundle (" + bundleId + ", " + bundleName + ") not started (still " + bundleStateStr + ")"
                 );
             }

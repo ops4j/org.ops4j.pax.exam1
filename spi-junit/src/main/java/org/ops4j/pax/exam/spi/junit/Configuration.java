@@ -6,17 +6,16 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marker Annotation to declare the configure method
- * for a Drone based Junit4 testcase.
+ * Marker Annotation to declare the configure method for a Pax Exam based Junit4 testcase.
  *
- * Must return DroneConnector.
+ * Must return {@link org.ops4j.pax.exam.api.TestRunnerConnector}.
  * 
  * @author Toni Menzel (tonit)
  * @since Oct 14, 2008
  */
 @Retention( RetentionPolicy.RUNTIME )
 @Target( ElementType.METHOD )
-public @interface DroneConfiguration
+public @interface Configuration
 {
    // marker
 }

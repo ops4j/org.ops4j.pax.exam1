@@ -37,7 +37,7 @@ public class RunnerContextImpl
         {
             String currentUser = "";
             currentUser = System.getProperty( "user.name" );
-            m_work = new File( System.getProperty( "java.io.tmpdir" ) + "/paxdrone_runner_" + currentUser );
+            m_work = new File( System.getProperty( "java.io.tmpdir" ) + "/paxexam_runner_" + currentUser );
             // create if not existent:
             if( !m_work.exists() )
             {

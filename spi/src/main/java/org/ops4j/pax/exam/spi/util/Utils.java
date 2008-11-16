@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 import aQute.lib.osgi.Analyzer;
 import aQute.lib.osgi.Jar;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.api.DroneException;
+import org.ops4j.pax.exam.api.TestExecutionException;
 
 /**
  * @author Toni Menzel (tonit)
@@ -40,9 +40,9 @@ import org.ops4j.pax.exam.api.DroneException;
  *        <p/>
  *        Derived from pax url bnd.
  *
- *        TODO fix building paxdrone contents in final drone (don't include)
+ *        TODO fix building pax exam contents in final probe (don't include)
  */
-public class DroneUtils
+public class Utils
 {
 
     /**
@@ -54,7 +54,7 @@ public class DroneUtils
     /**
      * Utility class. Ment to be used using static methods
      */
-    private DroneUtils()
+    private Utils()
     {
         // utility class
     }
@@ -133,7 +133,7 @@ public class DroneUtils
                     catch( IOException ignore )
                     {
                         // if we getProperty here something is very wrong
-                        throw new DroneException( "Cannot close ???", ignore );
+                        throw new TestExecutionException( "Cannot close ???", ignore );
                     }
                 }
             }

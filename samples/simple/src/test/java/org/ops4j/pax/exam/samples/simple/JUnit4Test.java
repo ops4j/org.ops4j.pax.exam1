@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.osgi.framework.BundleContext;
-import org.ops4j.pax.exam.api.DroneConnector;
+import org.ops4j.pax.exam.api.TestRunnerConnector;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
-import org.ops4j.pax.exam.spi.junit.DroneConfiguration;
-import org.ops4j.pax.exam.spi.junit.DroneTestRunner;
+import org.ops4j.pax.exam.spi.junit.Configuration;
+import org.ops4j.pax.exam.spi.junit.PaxExamTestRunner;
 
 /**
  * TODO fill test results with proper timesheet.
@@ -16,12 +16,12 @@ import org.ops4j.pax.exam.spi.junit.DroneTestRunner;
  * @author Toni Menzel (tonit)
  * @since Oct 14, 2008
  */
-@RunWith( DroneTestRunner.class )
+@RunWith( PaxExamTestRunner.class )
 public class JUnit4Test
 {
 
-    @DroneConfiguration
-    public DroneConnector configure()
+    @Configuration
+    public TestRunnerConnector configure()
     {
         return create().setPlatform( Platforms.FELIX );
     }

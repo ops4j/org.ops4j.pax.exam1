@@ -17,24 +17,22 @@
  */
 package org.ops4j.pax.exam.tools;
 
-import java.io.PrintStream;
-
-import org.ops4j.pax.exam.api.DroneSummary;
+import org.ops4j.pax.exam.api.BundleProvision;
 import org.ops4j.pax.exam.api.RunnerContext;
+import org.ops4j.pax.exam.api.TestExecutionSummary;
+import org.ops4j.pax.exam.api.TestProbeProvider;
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.connector.paxrunner.internal.PaxRunnerConnectorImpl;
-import org.ops4j.pax.exam.spi.PrebuildDroneProvider;
+import org.ops4j.pax.exam.spi.PrebuildTestProbeProvider;
 import org.ops4j.pax.exam.spi.TextSummary;
 import org.ops4j.pax.exam.spi.internal.BundleProvisionImpl;
 import org.ops4j.pax.exam.spi.internal.RunnerContextImpl;
-import org.ops4j.pax.exam.api.BundleProvision;
-import org.ops4j.pax.exam.api.DroneProvider;
+
+import java.io.PrintStream;
 
 /**
- * Commandline tool to use paxdrone with
- * prebuild tests with customized configurataion
- * from commandline.
+ * Commandline tool to use pax exam with prebuild tests with customized configuration from commandline.
  *
  * @author Toni Menzel (tonit)
  * @since Oct 4, 2008
@@ -51,7 +49,7 @@ public class Main
 
     private void run( String[] args, PrintStream out )
     {
-        System.out.println( "--> Pax Drone Tools <--" );
+        System.out.println( "--> Pax Exam Tools <--" );
 
         if( args.length > 0 )
         {
@@ -86,10 +84,11 @@ public class Main
 
                 // TODO replace param with real recipe from recipes sub project.
 
-                DroneProvider provider = new PrebuildDroneProvider( "mvn:org.ops4j.pax.exam/pax-exam-recipe-propertycheck@update" );
+                TestProbeProvider provider =
+                    new PrebuildTestProbeProvider( "mvn:org.ops4j.pax.exam/pax-exam-recipe-propertycheck@update" );
 
                 // Now you can execute your connector using the provider just constructed.
-                DroneSummary s = connector.execute( provider );
+                TestExecutionSummary s = connector.execute( provider );
 
                 // for every run you'll get a summary which contains everything you want.
                 // even (human thinkable) exceptions.

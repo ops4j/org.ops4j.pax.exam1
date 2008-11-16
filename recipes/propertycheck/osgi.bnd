@@ -7,8 +7,8 @@ Bundle-Version>:\
 Export-Package: \
   ${bundle.namespace}
 
-Drone-RecipeHost:\
+Pax-Exam-RecipeHost:\
   ${bundle.namespace}.PropertyCheck
 
-Drone-RecipeCode:\
+Pax-Exam-RecipeCode:\
   run

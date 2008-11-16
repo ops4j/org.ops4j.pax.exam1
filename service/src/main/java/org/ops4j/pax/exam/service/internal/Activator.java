@@ -21,10 +21,10 @@ import java.util.Hashtable;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
-import org.ops4j.pax.exam.api.DroneService;
+import org.ops4j.pax.exam.api.TestRunner;
 
 /**
- * This activator publishes a DroneService implementation.
+ * This activator publishes a {@link TestRunner} implementation.
  *
  * @author Toni Menzel (tonit)
  * @since May 28, 2008
@@ -40,7 +40,7 @@ public class Activator implements BundleActivator
         // register service
         Hashtable props = new Hashtable();
         // TODO the service publication should be delayed until a certain state (all bundles in ACTIVE state ?) is satisfied.
-        m_serviceRegistration = bundleContext.registerService( DroneService.class.getName(), new DroneServiceImpl( bundleContext ), props );
+        m_serviceRegistration = bundleContext.registerService( TestRunner.class.getName(), new TestRunnerImpl( bundleContext ), props );
     }
 
     public void stop( BundleContext bundleContext )

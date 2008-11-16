@@ -21,7 +21,7 @@ import static org.easymock.EasyMock.*;
 import org.junit.Test;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
-import org.ops4j.pax.exam.api.DroneService;
+import org.ops4j.pax.exam.api.TestRunner;
 import org.ops4j.pax.exam.service.internal.Activator;
 
 import java.util.Dictionary;
@@ -35,7 +35,7 @@ public class ActivatorTest {
     public void start() throws Exception {
         Activator act = new Activator();
         BundleContext bundleContext = createMock(BundleContext.class);
-        expect(bundleContext.registerService(eq(DroneService.class.getName()),notNull(),(Dictionary)notNull())).andReturn(createMock(ServiceRegistration.class));
+        expect(bundleContext.registerService(eq( TestRunner.class.getName()),notNull(),(Dictionary)notNull())).andReturn(createMock(ServiceRegistration.class));
         replay(bundleContext);
         act.start(bundleContext);
         verify(bundleContext);
@@ -46,7 +46,7 @@ public class ActivatorTest {
         Activator act = new Activator();
         BundleContext bundleContext = createMock(BundleContext.class);
         ServiceRegistration reg = createMock(ServiceRegistration.class);
-        expect(bundleContext.registerService(eq( DroneService.class.getName()),notNull(),(Dictionary)notNull())).andReturn(reg);
+        expect(bundleContext.registerService(eq( TestRunner.class.getName()),notNull(),(Dictionary)notNull())).andReturn(reg);
         reg.unregister();
         replay(bundleContext,reg);
         act.start(bundleContext);

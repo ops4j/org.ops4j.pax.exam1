@@ -27,7 +27,7 @@ import org.ops4j.pax.exam.spi.internal.RunnerContextImpl;
  * The utility to create and configure connectors based on paxrunner connector.
  *
  * Use static import like this:
- * import static org.ops4j.pax.drone.connector.paxrunner.GenericConnector.*;
+ * import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
  *
  * To get a short but very powerfull api inside your testcase.
  * The use its methods to create and configure your connector.

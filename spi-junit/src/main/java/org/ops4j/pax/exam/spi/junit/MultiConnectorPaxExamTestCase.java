@@ -19,16 +19,16 @@ package org.ops4j.pax.exam.spi.junit;
 
 import junit.framework.TestCase;
 import org.osgi.framework.BundleContext;
-import org.ops4j.pax.exam.api.DroneSummary;
-import org.ops4j.pax.exam.spi.OnDemandDroneProvider;
-import org.ops4j.pax.exam.api.DroneConnector;
-import org.ops4j.pax.exam.api.DroneProvider;
+import org.ops4j.pax.exam.api.TestExecutionSummary;
+import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
+import org.ops4j.pax.exam.api.TestRunnerConnector;
+import org.ops4j.pax.exam.api.TestProbeProvider;
 
 /**
  * @author Toni Menzel (tonit)
  * @since Nov 11, 2008
  */
-public abstract class MultiConnectorDroneTestCase extends TestCase
+public abstract class MultiConnectorPaxExamTestCase extends TestCase
 {
 
     /**
@@ -36,11 +36,11 @@ public abstract class MultiConnectorDroneTestCase extends TestCase
      */
     public BundleContext bundleContext = null;
 
-    private transient DroneConnector[] m_connectors;
+    private transient TestRunnerConnector[] m_connectors;
 
-    protected abstract DroneConnector[] configure();
+    protected abstract TestRunnerConnector[] configure();
 
-    protected final DroneConnector[] getConnectors()
+    protected final TestRunnerConnector[] getConnectors()
     {
         if( m_connectors == null )
         {
@@ -51,18 +51,18 @@ public abstract class MultiConnectorDroneTestCase extends TestCase
 
     /**
      * Instantiates a single runner per call. Slow but max. side-effect free.
-     * Hence, the underlying builder should make sure that the drone will not be rebuild each rime (does not change)
+     * Hence, the underlying builder should make sure that the probe will not be rebuild each rime (does not change)
      */
     public void runBare()
         throws Throwable
     {
-        DroneProvider provider = new OnDemandDroneProvider( getName(), this.getClass().getName() );
+        TestProbeProvider provider = new OnDemandTestProbeProvider( getName(), this.getClass().getName() );
 
-        DroneConnector[] connectors = getConnectors();
+        TestRunnerConnector[] connectors = getConnectors();
         int currentConfig = 0;
-        DroneSummary[] summaries = new DroneSummary[connectors.length];
+        TestExecutionSummary[] summaries = new TestExecutionSummary[connectors.length];
         
-        for( DroneConnector con : connectors )
+        for( TestRunnerConnector con : connectors )
         {
             summaries[ currentConfig++ ] = con.execute( provider );
         }

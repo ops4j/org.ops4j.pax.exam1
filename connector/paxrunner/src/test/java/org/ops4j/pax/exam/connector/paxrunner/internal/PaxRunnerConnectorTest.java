@@ -21,12 +21,12 @@ import java.io.InputStream;
 import static org.easymock.EasyMock.*;
 import org.junit.Test;
 import org.ops4j.pax.exam.api.BundleProvision;
-import org.ops4j.pax.exam.api.DroneProvider;
+import org.ops4j.pax.exam.api.TestProbeProvider;
 import org.ops4j.pax.exam.api.RunnerContext;
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
 import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
 import org.ops4j.pax.exam.connector.paxrunner.internal.PaxRunnerConnectorImpl;
-import org.ops4j.pax.exam.zombie.RemoteDroneClient;
+import org.ops4j.pax.exam.zombie.RemoteTestRunnerClient;
 
 /**
  * @author Toni Menzel (tonit)
@@ -53,7 +53,7 @@ public class PaxRunnerConnectorTest
         p.shutdown();
         replay( p, config );
 
-        RemoteDroneClient client = new RemoteDroneClient( 0 )
+        RemoteTestRunnerClient client = new RemoteTestRunnerClient( 0 )
         {
             public String execute(  )
             {
@@ -66,13 +66,13 @@ public class PaxRunnerConnectorTest
             }
         };
         RunnerContext context = createMock( RunnerContext.class );
-        final DroneProvider provider = createMock( DroneProvider.class );
+        final TestProbeProvider provider = createMock( TestProbeProvider.class );
         final BundleProvision prov = createMock( BundleProvision.class );
 
         PaxRunnerConnectorImpl connector = new PaxRunnerConnectorImpl( context, prov )
         {
 
-            public DroneProvider getBuilder()
+            public TestProbeProvider getBuilder()
             {
                 return provider;
             }
@@ -80,7 +80,7 @@ public class PaxRunnerConnectorTest
 
         try
         {
-            connector.execute( p, client, System.out, new DroneProvider()
+            connector.execute( p, client, System.out, new TestProbeProvider()
             {
 
                 public InputStream build()

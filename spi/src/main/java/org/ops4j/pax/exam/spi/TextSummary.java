@@ -1,15 +1,16 @@
 package org.ops4j.pax.exam.spi;
 
+import org.ops4j.pax.exam.api.TestExecutionSummary;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
-import org.ops4j.pax.exam.api.DroneSummary;
 
 /**
- * This is a text output utility for DroneSummaries.
- * While DroneSummary exactly describes one drone execution, this helper supports many executions and will print a
+ * This is a text output utility for {@link org.ops4j.pax.exam.api.TestExecutionSummary}.
+ * While {@link org.ops4j.pax.exam.api.TestExecutionSummary} exactly describes one pax exam execution, this helper supports many executions and will print a
  * user friendly message.
  *
  * @author Toni Menzel (tonit)
@@ -18,33 +19,33 @@ import org.ops4j.pax.exam.api.DroneSummary;
 public class TextSummary
 {
 
-    private List<DroneSummary> m_droneSummaries;
+    private List<TestExecutionSummary> m_testExecutionSummaries;
 
-    public TextSummary( DroneSummary summary )
+    public TextSummary( TestExecutionSummary summary )
     {
-        m_droneSummaries = new ArrayList<DroneSummary>();
-        m_droneSummaries.add( summary );
+        m_testExecutionSummaries = new ArrayList<TestExecutionSummary>();
+        m_testExecutionSummaries.add( summary );
     }
 
     public TextSummary()
     {
-        m_droneSummaries = new ArrayList<DroneSummary>();
+        m_testExecutionSummaries = new ArrayList<TestExecutionSummary>();
     }
 
     public void printSummary( boolean showStackTrace )
     {
         PrintStream out = System.err;
         out.println( "------------------------------------------------------------------------" );
-        out.println( "Pax Drone Summary:" );
+        out.println( "Pax Exam Summary:" );
         out.println( "------------------------------------------------------------------------" );
-        out.println( "Configurations : " + m_droneSummaries.size() );
+        out.println( "Configurations : " + m_testExecutionSummaries.size() );
 
-        for( int i = 0; i < m_droneSummaries.size(); i++ )
+        for( int i = 0; i < m_testExecutionSummaries.size(); i++ )
         {
-            DroneSummary summary = m_droneSummaries.get( i );
+            TestExecutionSummary summary = m_testExecutionSummaries.get( i );
             if( !summary.hasFailed() )
             {
-                out.println( "Configuration " + ( i + 1 ) + " of " + ( m_droneSummaries.size() )
+                out.println( "Configuration " + ( i + 1 ) + " of " + ( m_testExecutionSummaries.size() )
                              + " has passed the test successfully."
                 );
             }
@@ -53,7 +54,7 @@ public class TextSummary
                 if( summary.isRecipeException() )
                 {
                     out.println(
-                        "Configuration " + ( i + 1 ) + " of " + ( m_droneSummaries.size() ) + " has a failure."
+                        "Configuration " + ( i + 1 ) + " of " + ( m_testExecutionSummaries.size() ) + " has a failure."
                     );
 
                     out.println( "Original exception message: " + summary.getCause().getMessage() );
@@ -67,9 +68,9 @@ public class TextSummary
                 }
                 else
                 {
-                    // PaxDrone problem.
+                    // Pax Exam problem.
                     out.println(
-                        "Configuration " + ( i + 1 ) + " of " + ( m_droneSummaries.size() ) + " has an error."
+                        "Configuration " + ( i + 1 ) + " of " + ( m_testExecutionSummaries.size() ) + " has an error."
                     );
 
                     out.println( "Serious Problem in Setup/Environment: " + summary.getCause().getMessage() );
@@ -102,8 +103,8 @@ public class TextSummary
         return bout.toString();
     }
 
-    public void addSummary( DroneSummary droneSummary )
+    public void addSummary( TestExecutionSummary testExecutionSummary )
     {
-        m_droneSummaries.add( droneSummary );
+        m_testExecutionSummaries.add( testExecutionSummary );
     }
 }

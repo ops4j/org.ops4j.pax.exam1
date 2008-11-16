@@ -5,19 +5,19 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.api.DroneException;
-import org.ops4j.pax.exam.api.DroneProvider;
+import org.ops4j.pax.exam.api.TestExecutionException;
+import org.ops4j.pax.exam.api.TestProbeProvider;
 
 /**
  * @author Toni Menzel (tonit)
  * @since Oct 10, 2008
  */
-public class PrebuildDroneProvider implements DroneProvider
+public class PrebuildTestProbeProvider implements TestProbeProvider
 {
 
     private String m_bundleUrl;
 
-    public PrebuildDroneProvider( String bundleUrl )
+    public PrebuildTestProbeProvider( String bundleUrl )
     {
         NullArgumentException.validateNotEmpty( bundleUrl, "bundleUrl" );
         m_bundleUrl = bundleUrl;
@@ -32,10 +32,10 @@ public class PrebuildDroneProvider implements DroneProvider
             return url.openStream();
         } catch( MalformedURLException e )
         {
-            throw new DroneException( "Looks the url cannot be resolved (not using paxrunner connector ??: " + m_bundleUrl + ")" );
+            throw new TestExecutionException( "Looks the url cannot be resolved (not using paxrunner connector ??: " + m_bundleUrl + ")" );
         } catch( IOException e )
         {
-            throw new DroneException( "Looks the url cannot be resolved (Not connected to the internet ?: " + m_bundleUrl + ")" );
+            throw new TestExecutionException( "Looks the url cannot be resolved (Not connected to the internet ?: " + m_bundleUrl + ")" );
         }
     }
 }

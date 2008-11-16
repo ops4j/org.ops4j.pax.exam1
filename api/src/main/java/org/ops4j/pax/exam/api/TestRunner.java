@@ -19,24 +19,24 @@
 package org.ops4j.pax.exam.api;
 
 /**
- * This is the service that will be installed by drone-service in your target environment.
- * DroneConnector.execute(recipe) will result in DroneService.execute(recipe) calls in the running
+ * This is the service that will be installed by Pax Exam in your target environment.
+ * TestConnector.execute(recipe) will result in TestRunner.execute(recipe) calls in the running
  * OSGi framework.
  * This Service is being exposed for remote invocation if necessary. (remote osgi frameworks)
  *
  * @author Toni Menzel (tonit)
  * @since May 29, 2008
  */
-public interface DroneService
+public interface TestRunner
 {
 
-    final String PROPERTY_COMMUNICATION_PORT = "drone.communication.port";
-    final String DRONE_RECIPE_HOST_HEADER = "Drone-RecipeHost";
-    final String DRONE_RECIPE_CODE_HEADER = "Drone-RecipeCode";
-    final String DRONE_SYMBOLICNAME = "pax-exam-probe";
+    final String PROPERTY_COMMUNICATION_PORT = "pax.exam.communication.port";
+    final String PROBE_TEST_CASE = "PaxExam-RecipeHost";
+    final String PROBE_TEST_METHOD = "PaxExam-RecipeCode";
+    final String PROBE_SYMBOLICNAME = "pax-exam-probe";
 
     /**
-     * Triggers whatever the drone implementation is about.
+     * Triggers whatever the executor implementation is about.
      * Currenlty its about invoking the in-container integration tests.
      * But this is just one use-case.
      *

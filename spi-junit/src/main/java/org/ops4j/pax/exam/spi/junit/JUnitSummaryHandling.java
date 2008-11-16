@@ -1,12 +1,12 @@
 package org.ops4j.pax.exam.spi.junit;
 
 import junit.framework.AssertionFailedError;
-import org.ops4j.pax.exam.api.DroneSummary;
+import org.ops4j.pax.exam.api.TestExecutionSummary;
 import org.ops4j.pax.exam.api.RecipeException;
 import org.ops4j.pax.exam.spi.TextSummary;
 
 /**
- * This handles droneSummaries in a junit runner usecase.
+ * This handles test execution summaries in a junit runner usecase.
  * So, it
  * - prints the summary to syserr
  * - recovers assertionfailures
@@ -17,19 +17,19 @@ import org.ops4j.pax.exam.spi.TextSummary;
 public class JUnitSummaryHandling
 {
 
-    public static void handleSummary( DroneSummary summary )
+    public static void handleSummary( TestExecutionSummary summary )
         throws Throwable
     {
-        handleSummary( new DroneSummary[]{ summary } );
+        handleSummary( new TestExecutionSummary[]{ summary } );
     }
 
-    public static void handleSummary( DroneSummary[] summaries )
+    public static void handleSummary( TestExecutionSummary[] summaries )
         throws Throwable
     {
         TextSummary textSummary = new TextSummary();
 
-        DroneSummary firstError = null;
-        for( DroneSummary con : summaries )
+        TestExecutionSummary firstError = null;
+        for( TestExecutionSummary con : summaries )
         {
             if( con.hasFailed() || con.isRecipeException() )
             {

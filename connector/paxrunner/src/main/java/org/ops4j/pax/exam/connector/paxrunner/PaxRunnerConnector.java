@@ -18,7 +18,7 @@
  */
 package org.ops4j.pax.exam.connector.paxrunner;
 
-import org.ops4j.pax.exam.api.DroneConnector;
+import org.ops4j.pax.exam.api.TestRunnerConnector;
 
 /**
  * This covers the connector that will execute a pax runner process.
@@ -31,7 +31,7 @@ import org.ops4j.pax.exam.api.DroneConnector;
  * @author Alin Dreghiciu
  * @since 0.1.0, June 17, 2008
  */
-public interface PaxRunnerConnector extends DroneConnector
+public interface PaxRunnerConnector extends TestRunnerConnector
 {
 
     /**
@@ -91,7 +91,7 @@ public interface PaxRunnerConnector extends DroneConnector
 
     // String[] getOptions();
 
-    //DroneProvider getBuilder();
+    //TestProbeProvider getBuilder();
 
     // Set<String> getBundles();
 }

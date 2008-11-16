@@ -27,19 +27,19 @@ import java.io.PipedOutputStream;
 import java.util.Properties;
 import java.util.jar.JarOutputStream;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.api.DroneProvider;
-import org.ops4j.pax.exam.api.DroneService;
+import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.api.TestRunner;
 import org.ops4j.pax.exam.spi.ResourceLocator;
-import org.ops4j.pax.exam.spi.util.DroneUtils;
+import org.ops4j.pax.exam.spi.util.Utils;
 
 /**
  * @author Toni Menzel (tonit)
  * @since May 29, 2008
- *        Responsible for creating the on-the fly testing drone.
+ *        Responsible for creating the on-the fly testing probe.
  *        Expected to radically change once things are working. (1st make it work, 2nd make it efficient)
  */
-public class DroneBuilderImpl
-    implements DroneProvider
+public class TestProbeBuilderImpl
+    implements TestProbeProvider
 {
 
     private ResourceLocator m_finder;
@@ -48,9 +48,9 @@ public class DroneBuilderImpl
 
     /**
      * @param recipe name of test class
-     * @param finder locator that gathers all resources that have to be inside the drone
+     * @param finder locator that gathers all resources that have to be inside the test probe
      */
-    public DroneBuilderImpl( String recipe, String recipeHost, ResourceLocator finder )
+    public TestProbeBuilderImpl( String recipe, String recipeHost, ResourceLocator finder )
     {
         NullArgumentException.validateNotNull( recipeHost, "recipeHost" );
         NullArgumentException.validateNotNull( finder, "finder" );
@@ -95,7 +95,7 @@ public class DroneBuilderImpl
                         }
                         catch( Exception e )
                         {
-                            //  throw new DroneException( "Cannot close builder stream ??", e );
+                            //  throw new TestExecutionException( "Cannot close builder stream ??", e );
                         }
                     }
                 }
@@ -104,12 +104,12 @@ public class DroneBuilderImpl
             // 2. wrap and calc manifest using bnd
             Properties props = new Properties();
             // Recipe Host
-            props.put( DroneService.DRONE_RECIPE_HOST_HEADER, m_recipeHost );
-            props.put( DroneService.DRONE_RECIPE_CODE_HEADER, m_recipeCode );
+            props.put( TestRunner.PROBE_TEST_CASE, m_recipeHost );
+            props.put( TestRunner.PROBE_TEST_METHOD, m_recipeCode );
 
             // include connector clazzes to be used inside
-            //props.put( "Private-Package", "org.ops4j.pax.drone.connector.*" );
-            InputStream result = DroneUtils.createBundle( fis, props, DroneService.DRONE_SYMBOLICNAME );
+            //props.put( "Private-Package", "org.ops4j.pax.exam.connector.*" );
+            InputStream result = Utils.createBundle( fis, props, TestRunner.PROBE_SYMBOLICNAME );
             fis.close();
             pout.close();
             return result;
@@ -130,9 +130,9 @@ public class DroneBuilderImpl
     private InputStream traceResultBundle( InputStream inputStream )
         throws IOException
     {
-        File finalOutput = File.createTempFile( "droneFinal", "jar" );
+        File finalOutput = File.createTempFile( "paxExamFinal", "jar" );
         FileOutputStream outstream = new FileOutputStream( finalOutput );
-        DroneUtils.copy( inputStream, outstream );
+        Utils.copy( inputStream, outstream );
         inputStream.close();
         outstream.close();
         return new FileInputStream( finalOutput );

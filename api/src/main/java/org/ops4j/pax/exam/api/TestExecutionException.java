@@ -15,21 +15,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.exam.zombie.internal;
-
-import java.rmi.Remote;
-import java.rmi.RemoteException;
+package org.ops4j.pax.exam.api;
 
 /**
+ * Exception mother of all Pax Exam based exceptions as well as catched and validated original exceptions.
+ *
  * @author Toni Menzel (tonit)
- * @since Jun 3, 2008
+ * @since Oct 2, 2008
  */
-public interface RemoteDroneService extends Remote
+public class TestExecutionException extends RuntimeException
 {
 
-    String execute()
-        throws RemoteException;
+    public TestExecutionException( Exception e )
+    {
+        super( e );
+    }
 
-    void install( byte[] inp )
-        throws RemoteException;
+    public TestExecutionException( String e )
+    {
+        super( e );
+    }
+
+    public TestExecutionException( String s, Exception e )
+    {
+        super( s, e );
+    }
 }

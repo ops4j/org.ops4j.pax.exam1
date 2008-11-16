@@ -22,20 +22,20 @@ import java.io.InputStream;
 /**
  * Delegates the actual build action until "build" is called. (dereferred)
  *
- * This produces a test drone.
+ * This produces a test probe.
  * Implementations should cache results between build calls to optimize performance for bulk tests.
  *
  * @author Toni Menzel (tonit)
  * @since May 29, 2008
  */
-public interface DroneProvider
+public interface TestProbeProvider
 {
 
     /**
      * Bundle that should be installable and startable.
      * It must contain the following headers in addition to the osgi mandatory/recommended ones:
-     * Drone-RecipeHost: Class that contains the code to be executed as a "test"
-     * Drone-RecipeCode: Method or identifier to be run inside the osgi framework.
+     * PaxExam-RecipeHost: Class that contains the code to be executed as a "test"
+     * PaxExam-RecipeCode: Method or identifier to be run inside the osgi framework.
      *
      * The bundle can be derived by static references (file, url) as well as being built on demand.
      */

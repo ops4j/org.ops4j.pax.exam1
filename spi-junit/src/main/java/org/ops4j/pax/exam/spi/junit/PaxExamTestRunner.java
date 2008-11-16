@@ -24,18 +24,18 @@ import org.junit.runner.Description;
 import org.junit.runner.Runner;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
-import org.ops4j.pax.exam.api.DroneConnector;
-import org.ops4j.pax.exam.api.DroneProvider;
-import org.ops4j.pax.exam.spi.OnDemandDroneProvider;
+import org.ops4j.pax.exam.api.TestRunnerConnector;
+import org.ops4j.pax.exam.api.TestProbeProvider;
+import org.ops4j.pax.exam.spi.OnDemandTestProbeProvider;
 
 /**
  * JUnit4 Runner to be used with the {@link org.junit.runner.RunWith} annotation
- * to run with Pax Drone.
+ * to run with Pax Exam.
  *
  * @author Toni Menzel (tonit)
  * @since Oct 14, 2008
  */
-public class DroneTestRunner extends Runner
+public class PaxExamTestRunner extends Runner
 {
 
     private final Class m_clazz;
@@ -43,7 +43,7 @@ public class DroneTestRunner extends Runner
     private Method m_config;
     private ArrayList<Method> m_tests;
 
-    public DroneTestRunner( Class testClazz )
+    public PaxExamTestRunner( Class testClazz )
     {
         m_clazz = testClazz;
         m_suite = Description.createSuiteDescription( m_clazz );
@@ -57,7 +57,7 @@ public class DroneTestRunner extends Runner
                 m_tests.add( m );
             }
 
-            if( m.getAnnotation( DroneConfiguration.class ) != null )
+            if( m.getAnnotation( Configuration.class ) != null )
             {
                 m_config = m;
             }
@@ -94,11 +94,11 @@ public class DroneTestRunner extends Runner
 
     {
         notifier.fireTestStarted( d );
-        DroneProvider provider = new OnDemandDroneProvider( m.getName(), m_clazz.getName() );
-        DroneConnector connector = null;
+        TestProbeProvider provider = new OnDemandTestProbeProvider( m.getName(), m_clazz.getName() );
+        TestRunnerConnector connector = null;
         try
         {
-            connector = (DroneConnector) m_config.invoke( m_clazz.newInstance() );
+            connector = ( TestRunnerConnector ) m_config.invoke( m_clazz.newInstance() );
         }
         catch( Exception e )
         {

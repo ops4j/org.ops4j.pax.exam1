@@ -26,23 +26,23 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import org.ops4j.pax.exam.api.DroneException;
-import org.ops4j.pax.exam.api.DroneService;
-import org.ops4j.pax.exam.zombie.internal.RemoteDroneService;
+import org.ops4j.pax.exam.api.TestExecutionException;
+import org.ops4j.pax.exam.api.TestRunner;
+import org.ops4j.pax.exam.zombie.internal.RemoteTestRunnerService;
 
 /**
- * This is a DroneService Proxy that access a remote DroneService via RMI
+ * This is a [@link TestRunner} Proxy that access a remote [@link TestRunner} via RMI
  *
  * @author Toni Menzel (tonit)
  * @since Jun 2, 2008
  */
-public class RemoteDroneClient
-    implements DroneService
+public class RemoteTestRunnerClient
+    implements TestRunner
 {
 
     private int m_port;
 
-    public RemoteDroneClient( int port )
+    public RemoteTestRunnerClient( int port )
     {
         m_port = port;
     }
@@ -52,12 +52,12 @@ public class RemoteDroneClient
     {
         try
         {
-            return getDroneService().execute();
+            return getTestRunner().execute();
 
         } catch( RemoteException e )
         {
-            // we cannot do much more, just pack it into a DroneException and be fine
-            throw new DroneException( "Derived from Remote by calling recipe ", e );
+            // we cannot do much more, just pack it into a TestExecutionException and be fine
+            throw new TestExecutionException( "Derived from Remote by calling recipe ", e );
         }
     }
 
@@ -68,7 +68,7 @@ public class RemoteDroneClient
             // transform inputstream into bytearray for rmi transfer
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             copy( inp, out );
-            RemoteDroneService s = getDroneService();
+            RemoteTestRunnerService s = getTestRunner();
             s.install( out.toByteArray() );
         }
         catch( RemoteException e )
@@ -92,24 +92,24 @@ public class RemoteDroneClient
         }
     }
 
-    private RemoteDroneService getDroneService()
+    private RemoteTestRunnerService getTestRunner()
     {
         try
         {
             Thread.currentThread().setContextClassLoader( this.getClass().getClassLoader() ); //!! Absolutely nececary for RMIClassLoading to work
 
             Registry registry = LocateRegistry.getRegistry( m_port );
-            RemoteDroneService stub = (RemoteDroneService) registry.lookup( DroneService.class.getName() );
+            RemoteTestRunnerService stub = ( RemoteTestRunnerService ) registry.lookup( TestRunner.class.getName() );
             return stub;
         } catch( AccessException e )
         {
-            throw new DroneException( "Problem accessing the rmi registry for stub: " + DroneService.class.getName(), e );
+            throw new TestExecutionException( "Problem accessing the rmi registry for stub: " + TestRunner.class.getName(), e );
         } catch( NotBoundException e )
         {
-            throw new DroneException( "Problem accessing the rmi registry for stub: " + DroneService.class.getName(), e );
+            throw new TestExecutionException( "Problem accessing the rmi registry for stub: " + TestRunner.class.getName(), e );
         } catch( RemoteException e )
         {
-            throw new DroneException( "Problem accessing the rmi registry for stub: " + DroneService.class.getName(), e );
+            throw new TestExecutionException( "Problem accessing the rmi registry for stub: " + TestRunner.class.getName(), e );
         }
     }
 }
