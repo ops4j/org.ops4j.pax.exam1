@@ -10,7 +10,7 @@
   </parent>
 
   <groupId>org.ops4j.pax.exam</groupId>
-  <artifactId>pax-exam-zombie</artifactId>
+  <artifactId>pax-exam-runtime-connector-rmi</artifactId>
   <version>0.3.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 

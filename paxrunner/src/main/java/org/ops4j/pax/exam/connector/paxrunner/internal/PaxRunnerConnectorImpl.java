@@ -200,8 +200,8 @@ public class PaxRunnerConnectorImpl
         {
             version += "@update";
         }
-        full.add( "scan-bundle:mvn:org.ops4j.pax.exam/pax-exam-zombie/" + version );
         full.add( "scan-bundle:mvn:org.ops4j.pax.exam/pax-exam-runtime/" + version );
+        full.add( "scan-bundle:mvn:org.ops4j.pax.exam/pax-exam-runtime-connector-rmi/" + version );
 
         // Add custom dependency bundles:
         String[] bundles = m_provision.getBundles();

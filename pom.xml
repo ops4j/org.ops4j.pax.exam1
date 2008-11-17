@@ -108,9 +108,9 @@
         <module>api</module>
         <module>spi</module>
         <module>spi-junit</module>
-        <module>zombie</module>
         <module>paxrunner</module>
         <module>runtime</module>
+        <module>runtime-connector-rmi</module>
       </modules>
     </profile>
     <profile>
@@ -125,9 +125,9 @@
         <module>api</module>
         <module>spi</module>
         <module>spi-junit</module>
-        <module>zombie</module>
         <module>paxrunner</module>
         <module>runtime</module>
+        <module>runtime-connector-rmi</module>
         <module>samples</module>
         <module>integrationtest</module>
       </modules>
