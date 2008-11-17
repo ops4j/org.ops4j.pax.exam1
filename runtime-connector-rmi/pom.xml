@@ -17,8 +17,8 @@
   <name>OPS4J Pax Exam - Zombie Service</name>
 
   <properties>
-    <bundle.symbolicName>org.ops4j.pax.exam.zombie</bundle.symbolicName>
-    <bundle.namespace>org.ops4j.pax.exam.zombie</bundle.namespace>
+    <bundle.symbolicName>org.ops4j.pax.exam.runtime.connector.rmi</bundle.symbolicName>
+    <bundle.namespace>org.ops4j.pax.exam.runtime.connector.rmi</bundle.namespace>
   </properties>
 
   <build>

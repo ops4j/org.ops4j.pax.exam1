@@ -15,10 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.exam.zombie.internal;
+package org.ops4j.pax.exam.runtime.connector.rmi.internal;
 
 import org.ops4j.pax.exam.api.TestRunner;
-import org.ops4j.pax.exam.zombie.RemoteTestRunner;
+import org.ops4j.pax.exam.runtime.connector.rmi.RemoteTestRunner;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;

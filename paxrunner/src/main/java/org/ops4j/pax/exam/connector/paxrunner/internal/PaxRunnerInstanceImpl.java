@@ -24,7 +24,7 @@ import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.TestExecutionException;
 import org.ops4j.pax.exam.api.TestRunner;
 import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
-import org.ops4j.pax.exam.zombie.RemoteTestRunner;
+import org.ops4j.pax.exam.runtime.connector.rmi.RemoteTestRunner;
 import org.ops4j.pax.runner.*;
 import org.ops4j.pax.runner.platform.JavaRunner;
 import org.ops4j.pax.runner.platform.PlatformException;

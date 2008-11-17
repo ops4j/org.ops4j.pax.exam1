@@ -24,7 +24,7 @@ import org.ops4j.pax.exam.api.RunnerContext;
 import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
 import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
-import org.ops4j.pax.exam.zombie.RemoteTestRunnerClient;
+import org.ops4j.pax.exam.runtime.connector.rmi.RemoteTestRunnerClient;
 
 import java.io.InputStream;
 
