@@ -15,11 +15,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.exam.zombie;
+package org.ops4j.pax.exam.zombie.internal;
 
 import org.ops4j.pax.exam.api.TestExecutionException;
 import org.ops4j.pax.exam.api.TestRunner;
-import org.ops4j.pax.exam.zombie.internal.RemoteTestRunner;
+import org.ops4j.pax.exam.zombie.RemoteTestRunner;
 import org.osgi.framework.*;
 
 import java.io.ByteArrayInputStream;

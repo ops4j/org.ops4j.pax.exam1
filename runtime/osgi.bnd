@@ -7,24 +7,27 @@ Bundle-Version>:\
 Bundle-SymbolicName:\
   ${bundle.symbolicName}
 
-Embed-Dependency:\
- *;scope=runtime;inline=true
-
-Export-Package: \
-  org.ops4j.pax.exam.*,\
-  junit.*,\
-  org.easymock.*,\
-  org.hamcrest.*,\
-  org.junit.*
+Import-Package:\
+  *;resolution:=optional
+  
+Export-Package:
 
 Private-Package:\
-  org.ops4j.lang.*
-
-Import-Package:\
-  !aQute.lib.osgi.*,*;resolution:=optional
+  ${bundle.namespace}.internal.*
 
 DynamicImport-Package:\
   *
 
-Include-Resource:\
-  META-INF=src/main/resources/META-INF/
+Embed-Dependency:\
+  *; scope=compile; type=!pom
+
+Embed-Transitive:\
+  true
+
+-exportcontents:\
+  org.ops4j.pax.exam.api; version="${pom.version}",\
+  org.ops4j.pax.exam.spi.junit; version="${pom.version}",\
+  junit.*,\
+  org.easymock.*,\
+  org.hamcrest.*,\
+  org.junit.*

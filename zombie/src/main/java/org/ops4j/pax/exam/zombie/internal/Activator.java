@@ -18,7 +18,7 @@
 package org.ops4j.pax.exam.zombie.internal;
 
 import org.ops4j.pax.exam.api.TestRunner;
-import org.ops4j.pax.exam.zombie.RemoteTestRunnerDelegate;
+import org.ops4j.pax.exam.zombie.RemoteTestRunner;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
