@@ -109,7 +109,7 @@
         <module>spi</module>
         <module>spi-junit</module>
         <module>zombie</module>
-        <module>connector</module>
+        <module>paxrunner</module>
         <module>runtime</module>
       </modules>
     </profile>
@@ -126,7 +126,7 @@
         <module>spi</module>
         <module>spi-junit</module>
         <module>zombie</module>
-        <module>connector</module>
+        <module>paxrunner</module>
         <module>runtime</module>
         <module>samples</module>
         <module>integrationtest</module>
