@@ -132,7 +132,7 @@ public class RemoteTestRunnerDelegate
     public void install( byte[] bundle )
         throws RemoteException
     {
-        String bundleLocationIdentifier = "zombie" + ( i++ );
+        String bundleLocationIdentifier = "pax-exam-probe" + ( i++ );
         ByteArrayInputStream inp = new ByteArrayInputStream( bundle );
         try
         {
