@@ -424,8 +424,6 @@
       <module fileurl="file://$PROJECT_DIR$/connector/echo/pax-exam-connector-echo.iml" filepath="$PROJECT_DIR$/connector/echo/pax-exam-connector-echo.iml" />
       <module fileurl="file://$PROJECT_DIR$/connector/paxrunner/pax-exam-connector-paxrunner.iml" filepath="$PROJECT_DIR$/connector/paxrunner/pax-exam-connector-paxrunner.iml" />
       <module fileurl="file://$PROJECT_DIR$/integrationtest/pax-exam-integrationtest.iml" filepath="$PROJECT_DIR$/integrationtest/pax-exam-integrationtest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/recipes/propertycheck/pax-exam-recipe-propertycheck.iml" filepath="$PROJECT_DIR$/recipes/propertycheck/pax-exam-recipe-propertycheck.iml" />
-      <module fileurl="file://$PROJECT_DIR$/recipes/pax-exam-recipes.iml" filepath="$PROJECT_DIR$/recipes/pax-exam-recipes.iml" />
       <module fileurl="file://$PROJECT_DIR$/runtime/pax-exam-runtime.iml" filepath="$PROJECT_DIR$/runtime/pax-exam-runtime.iml" />
       <module fileurl="file://$PROJECT_DIR$/samples/sample/pax-exam-sample.iml" filepath="$PROJECT_DIR$/samples/sample/pax-exam-sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/samples/complex/pax-exam-sample-complex.iml" filepath="$PROJECT_DIR$/samples/complex/pax-exam-sample-complex.iml" />
@@ -434,7 +432,6 @@
       <module fileurl="file://$PROJECT_DIR$/service/pax-exam-service.iml" filepath="$PROJECT_DIR$/service/pax-exam-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/spi/pax-exam-spi.iml" filepath="$PROJECT_DIR$/spi/pax-exam-spi.iml" />
       <module fileurl="file://$PROJECT_DIR$/spi-junit/pax-exam-spi-junit.iml" filepath="$PROJECT_DIR$/spi-junit/pax-exam-spi-junit.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tools/pax-exam-tools.iml" filepath="$PROJECT_DIR$/tools/pax-exam-tools.iml" />
       <module fileurl="file://$PROJECT_DIR$/zombie/pax-exam-zombie.iml" filepath="$PROJECT_DIR$/zombie/pax-exam-zombie.iml" />
     </modules>
   </component>
