@@ -1,11 +1,11 @@
 Bundle-Activator:\
-  org.ops4j.pax.exam.service.internal.Activator
+  ${bundle.namespace}.internal.Activator
 
 Bundle-Version>:\
   ${pom.version}
 
 Bundle-SymbolicName:\
-  org.ops4j.pax.exam.runtime
+  ${bundle.symbolicName}
 
 Embed-Dependency:\
  *;scope=runtime;inline=true
@@ -16,6 +16,9 @@ Export-Package: \
   org.easymock.*,\
   org.hamcrest.*,\
   org.junit.*
+
+Private-Package:\
+  org.ops4j.lang.*
 
 Import-Package:\
   !aQute.lib.osgi.*,*;resolution:=optional

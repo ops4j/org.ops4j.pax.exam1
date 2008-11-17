@@ -15,9 +15,11 @@
   <packaging>bundle</packaging>
 
   <name>OPS4J Pax Exam - Runtime</name>
-  <description>This artifact is an assembly that acumulates all stuff needed at runtime. Its bundle manifest will
-    reference the Activator in pax-exam-service as activator.
-  </description>
+
+  <properties>
+    <bundle.symbolicName>org.ops4j.pax.exam.runtime</bundle.symbolicName>
+    <bundle.namespace>org.ops4j.pax.exam.runtime</bundle.namespace>
+  </properties>
 
   <build>
     <plugins>
@@ -41,13 +43,11 @@
     <dependency>
       <groupId>org.ops4j.base</groupId>
       <artifactId>ops4j-base-lang</artifactId>
-      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-api</artifactId>
       <version>${pom.version}</version>
-      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>

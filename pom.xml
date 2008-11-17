@@ -108,7 +108,6 @@
         <module>api</module>
         <module>spi</module>
         <module>spi-junit</module>
-        <module>service</module>
         <module>zombie</module>
         <module>connector</module>
         <module>runtime</module>
@@ -126,7 +125,6 @@
         <module>api</module>
         <module>spi</module>
         <module>spi-junit</module>
-        <module>service</module>
         <module>zombie</module>
         <module>connector</module>
         <module>runtime</module>
