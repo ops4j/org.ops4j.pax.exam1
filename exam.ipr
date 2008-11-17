@@ -75,6 +75,15 @@
         <option name="VARIABLE_ANNOTATION_WRAP" value="5" />
         <option name="SPACE_WITHIN_ANNOTATION_PARENTHESES" value="true" />
         <option name="ENUM_CONSTANTS_WRAP" value="5" />
+        <ADDITIONAL_INDENT_OPTIONS fileType="groovy">
+          <option name="INDENT_SIZE" value="2" />
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
+          <option name="TAB_SIZE" value="4" />
+          <option name="USE_TAB_CHARACTER" value="false" />
+          <option name="SMART_TABS" value="false" />
+          <option name="LABEL_INDENT_SIZE" value="0" />
+          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
+        </ADDITIONAL_INDENT_OPTIONS>
         <ADDITIONAL_INDENT_OPTIONS fileType="gsp">
           <option name="INDENT_SIZE" value="2" />
           <option name="CONTINUATION_INDENT_SIZE" value="8" />
@@ -370,10 +379,10 @@
       <module fileurl="file://$PROJECT_DIR$/paxrunner/pax-exam-connector-paxrunner.iml" filepath="$PROJECT_DIR$/paxrunner/pax-exam-connector-paxrunner.iml" />
       <module fileurl="file://$PROJECT_DIR$/integrationtest/pax-exam-integrationtest.iml" filepath="$PROJECT_DIR$/integrationtest/pax-exam-integrationtest.iml" />
       <module fileurl="file://$PROJECT_DIR$/runtime/pax-exam-runtime.iml" filepath="$PROJECT_DIR$/runtime/pax-exam-runtime.iml" />
-      <module fileurl="file://$PROJECT_DIR$/samples/sample/pax-exam-sample.iml" filepath="$PROJECT_DIR$/samples/sample/pax-exam-sample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/samples/complex/pax-exam-sample-complex.iml" filepath="$PROJECT_DIR$/samples/complex/pax-exam-sample-complex.iml" />
-      <module fileurl="file://$PROJECT_DIR$/samples/simple/pax-exam-sample-simple.iml" filepath="$PROJECT_DIR$/samples/simple/pax-exam-sample-simple.iml" />
-      <module fileurl="file://$PROJECT_DIR$/samples/pax-exam-samples.iml" filepath="$PROJECT_DIR$/samples/pax-exam-samples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/samples/sample/pax-exam-sample.iml" filepath="$PROJECT_DIR$/samples/sample/pax-exam-sample.iml" group="pax-exam-samples and modules" />
+      <module fileurl="file://$PROJECT_DIR$/samples/complex/pax-exam-sample-complex.iml" filepath="$PROJECT_DIR$/samples/complex/pax-exam-sample-complex.iml" group="pax-exam-samples and modules" />
+      <module fileurl="file://$PROJECT_DIR$/samples/simple/pax-exam-sample-simple.iml" filepath="$PROJECT_DIR$/samples/simple/pax-exam-sample-simple.iml" group="pax-exam-samples and modules" />
+      <module fileurl="file://$PROJECT_DIR$/samples/pax-exam-samples.iml" filepath="$PROJECT_DIR$/samples/pax-exam-samples.iml" group="pax-exam-samples and modules" />
       <module fileurl="file://$PROJECT_DIR$/spi/pax-exam-spi.iml" filepath="$PROJECT_DIR$/spi/pax-exam-spi.iml" />
       <module fileurl="file://$PROJECT_DIR$/spi-junit/pax-exam-spi-junit.iml" filepath="$PROJECT_DIR$/spi-junit/pax-exam-spi-junit.iml" />
       <module fileurl="file://$PROJECT_DIR$/zombie/pax-exam-zombie.iml" filepath="$PROJECT_DIR$/zombie/pax-exam-zombie.iml" />
