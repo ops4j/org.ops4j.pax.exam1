@@ -418,7 +418,6 @@
       <module fileurl="file://$PROJECT_DIR$/exam.iml" filepath="$PROJECT_DIR$/exam.iml" />
       <module fileurl="file://$PROJECT_DIR$/api/pax-exam-api.iml" filepath="$PROJECT_DIR$/api/pax-exam-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/paxrunner/pax-exam-connector-paxrunner.iml" filepath="$PROJECT_DIR$/paxrunner/pax-exam-connector-paxrunner.iml" />
-      <module fileurl="file://$PROJECT_DIR$/integrationtest/pax-exam-integrationtest.iml" filepath="$PROJECT_DIR$/integrationtest/pax-exam-integrationtest.iml" />
       <module fileurl="file://$PROJECT_DIR$/runtime/pax-exam-runtime.iml" filepath="$PROJECT_DIR$/runtime/pax-exam-runtime.iml" />
       <module fileurl="file://$PROJECT_DIR$/runtime-connector-rmi/pax-exam-runtime-connector-rmi.iml" filepath="$PROJECT_DIR$/runtime-connector-rmi/pax-exam-runtime-connector-rmi.iml" />
       <module fileurl="file://$PROJECT_DIR$/samples/sample/pax-exam-sample.iml" filepath="$PROJECT_DIR$/samples/sample/pax-exam-sample.iml" group="pax-exam-samples and modules" />

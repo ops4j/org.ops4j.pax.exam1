@@ -129,13 +129,13 @@
         <module>runtime</module>
         <module>runtime-connector-rmi</module>
         <module>samples</module>
-        <module>integrationtest</module>
+        <module>it</module>
       </modules>
     </profile>
     <profile>
       <id>it</id>
       <modules>
-        <module>integrationtest</module>
+        <module>it</module>
       </modules>
     </profile>
   </profiles>
