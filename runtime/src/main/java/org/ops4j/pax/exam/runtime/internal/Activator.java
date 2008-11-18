@@ -1,5 +1,6 @@
 /*
  * Copyright 2008 Toni Menzel
+ * Copyright 2008 Alin Dreghiciu
  *
  * Licensed  under the  Apache License,  Version 2.0  (the "License");
  * you may not use  this file  except in  compliance with the License.
@@ -17,37 +18,37 @@
  */
 package org.ops4j.pax.exam.runtime.internal;
 
-import org.ops4j.pax.exam.api.TestRunner;
+import java.util.Hashtable;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceRegistration;
-
-import java.util.Hashtable;
+import org.ops4j.pax.exam.api.TestRunner;
 
 /**
  * This activator publishes a {@link TestRunner} implementation.
  *
  * @author Toni Menzel (tonit)
+ * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since May 28, 2008
  */
-public class Activator implements BundleActivator
+public class Activator
+    implements BundleActivator
 {
-
-    private ServiceRegistration m_serviceRegistration;
 
     public void start( BundleContext bundleContext )
         throws Exception
     {
-        // register service
-        Hashtable props = new Hashtable();
         // TODO the service publication should be delayed until a certain state (all bundles in ACTIVE state ?) is satisfied.
-        m_serviceRegistration =
-            bundleContext.registerService( TestRunner.class.getName(), new TestRunnerImpl( bundleContext ), props );
+        bundleContext.registerService(
+            TestRunner.class.getName(),
+            new TestRunnerImpl( bundleContext ),
+            new Hashtable()
+        );
     }
 
     public void stop( BundleContext bundleContext )
         throws Exception
     {
-        m_serviceRegistration.unregister();
+        // do nothing
     }
+
 }
