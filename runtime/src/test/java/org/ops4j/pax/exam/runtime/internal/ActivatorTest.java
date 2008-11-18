@@ -17,13 +17,12 @@
  */
 package org.ops4j.pax.exam.runtime.internal;
 
+import java.util.Dictionary;
 import static org.easymock.EasyMock.*;
 import org.junit.Test;
-import org.ops4j.pax.exam.api.TestRunner;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
-
-import java.util.Dictionary;
+import org.ops4j.pax.exam.api.TestRunner;
 
 /**
  * @author Toni Menzel (tonit)
@@ -38,7 +37,7 @@ public class ActivatorTest
     {
         Activator act = new Activator();
         BundleContext bundleContext = createMock( BundleContext.class );
-        expect( bundleContext.registerService( eq( TestRunner.class.getName() ), notNull(), ( Dictionary ) notNull() ) )
+        expect( bundleContext.registerService( eq( TestRunner.class.getName() ), notNull(), (Dictionary) notNull() ) )
             .andReturn( createMock( ServiceRegistration.class ) );
         replay( bundleContext );
         act.start( bundleContext );
@@ -52,9 +51,8 @@ public class ActivatorTest
         Activator act = new Activator();
         BundleContext bundleContext = createMock( BundleContext.class );
         ServiceRegistration reg = createMock( ServiceRegistration.class );
-        expect( bundleContext.registerService( eq( TestRunner.class.getName() ), notNull(), ( Dictionary ) notNull() ) )
+        expect( bundleContext.registerService( eq( TestRunner.class.getName() ), notNull(), (Dictionary) notNull() ) )
             .andReturn( reg );
-        reg.unregister();
         replay( bundleContext, reg );
         act.start( bundleContext );
         act.stop( bundleContext );
