@@ -15,8 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.exam.spi.junit;
+package org.ops4j.pax.exam.junit;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import org.junit.Test;
 import org.junit.runner.Description;
 import org.junit.runner.Runner;
@@ -24,10 +26,8 @@ import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
 import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.api.TestRunnerConnector;
+import org.ops4j.pax.exam.junit.internal.JUnitSummaryHandling;
 import org.ops4j.pax.exam.spi.OnDemandTestProbeBuilder;
-
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 
 /**
  * JUnit4 Runner to be used with the {@link org.junit.runner.RunWith} annotation
@@ -36,7 +36,7 @@ import java.util.ArrayList;
  * @author Toni Menzel (tonit)
  * @since Oct 14, 2008
  */
-public class PaxExamTestRunner extends Runner
+public class OsgiTestRunner extends Runner
 {
 
     private final Class m_clazz;
@@ -44,7 +44,7 @@ public class PaxExamTestRunner extends Runner
     private Method m_config;
     private ArrayList<Method> m_tests;
 
-    public PaxExamTestRunner( Class testClazz )
+    public OsgiTestRunner( Class testClazz )
     {
         m_clazz = testClazz;
         m_suite = Description.createSuiteDescription( m_clazz );
@@ -99,7 +99,7 @@ public class PaxExamTestRunner extends Runner
         TestRunnerConnector connector = null;
         try
         {
-            connector = ( TestRunnerConnector ) m_config.invoke( m_clazz.newInstance() );
+            connector = (TestRunnerConnector) m_config.invoke( m_clazz.newInstance() );
         }
         catch( Exception e )
         {

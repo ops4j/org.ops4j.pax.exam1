@@ -1,4 +1,4 @@
-package org.ops4j.pax.exam.spi.junit;
+package org.ops4j.pax.exam.junit.internal;
 
 import junit.framework.AssertionFailedError;
 import org.ops4j.pax.exam.api.RecipeException;
@@ -44,7 +44,7 @@ public class JUnitSummaryHandling
         {
             if( firstError.isRecipeException() )
             {
-                RecipeException rec = ( RecipeException ) firstError.getCause();
+                RecipeException rec = (RecipeException) firstError.getCause();
                 if( rec.isAssertionError() )
                 {
                     // recover junit error so that junit fails and does not tell an error.

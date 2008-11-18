@@ -1,13 +1,13 @@
 package org.ops4j.pax.exam.samples.complex;
 
-import org.ops4j.pax.exam.spi.junit.PaxExamTestCase;
 import org.osgi.framework.Constants;
+import org.ops4j.pax.exam.junit.OsgiTestCase;
 
 /**
  * @author Toni Menzel (tonit)
  * @since Oct 1, 2008
  */
-public abstract class HardeningTest extends PaxExamTestCase
+public abstract class HardeningTest extends OsgiTestCase
 {
 
     public void testPrintProperties1()

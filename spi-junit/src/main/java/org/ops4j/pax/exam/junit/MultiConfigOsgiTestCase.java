@@ -15,21 +15,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.exam.spi.junit;
+package org.ops4j.pax.exam.junit;
 
 import junit.framework.TestCase;
-import org.ops4j.pax.exam.api.TestRunnerConnector;
-import org.ops4j.pax.exam.spi.OnDemandTestProbeBuilder;
 import org.osgi.framework.BundleContext;
+import org.ops4j.pax.exam.api.TestExecutionSummary;
+import org.ops4j.pax.exam.api.TestProbeBuilder;
+import org.ops4j.pax.exam.api.TestRunnerConnector;
+import org.ops4j.pax.exam.junit.internal.JUnitSummaryHandling;
+import org.ops4j.pax.exam.spi.OnDemandTestProbeBuilder;
 
 /**
- * This will be instantiated by the local junit runner as well as inside inside the OSGi Container.
- * (where the actual test will run)
- *
  * @author Toni Menzel (tonit)
- * @since May 28, 2008
+ * @since Nov 11, 2008
  */
-public abstract class PaxExamTestCase extends TestCase
+public abstract class MultiConfigOsgiTestCase extends TestCase
 {
 
     /**
@@ -37,17 +37,17 @@ public abstract class PaxExamTestCase extends TestCase
      */
     public BundleContext bundleContext = null;
 
-    private transient TestRunnerConnector m_connector;
+    private transient TestRunnerConnector[] m_connectors;
 
-    protected abstract TestRunnerConnector configure();
+    protected abstract TestRunnerConnector[] configure();
 
-    protected final TestRunnerConnector getConnector()
+    protected final TestRunnerConnector[] getConnectors()
     {
-        if( m_connector == null )
+        if( m_connectors == null )
         {
-            m_connector = configure();
+            m_connectors = configure();
         }
-        return m_connector;
+        return m_connectors;
     }
 
     /**
@@ -57,12 +57,17 @@ public abstract class PaxExamTestCase extends TestCase
     public void runBare()
         throws Throwable
     {
-        JUnitSummaryHandling.handleSummary(
-            getConnector().execute( new OnDemandTestProbeBuilder( getName(), this.getClass().getName() ) )
-        );
+        TestProbeBuilder builder = new OnDemandTestProbeBuilder( getName(), this.getClass().getName() );
 
+        TestRunnerConnector[] connectors = getConnectors();
+        int currentConfig = 0;
+        TestExecutionSummary[] summaries = new TestExecutionSummary[connectors.length];
 
+        for( TestRunnerConnector con : connectors )
+        {
+            summaries[ currentConfig++ ] = con.execute( builder );
+        }
+
+        JUnitSummaryHandling.handleSummary( summaries );
     }
-
-
 }

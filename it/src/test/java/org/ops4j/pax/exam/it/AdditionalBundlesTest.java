@@ -24,14 +24,14 @@ import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.api.TestRunnerConnector;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
-import org.ops4j.pax.exam.spi.junit.Configuration;
-import org.ops4j.pax.exam.spi.junit.PaxExamTestRunner;
+import org.ops4j.pax.exam.junit.Configuration;
+import org.ops4j.pax.exam.junit.OsgiTestRunner;
 
 /**
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, November 18, 2008
  */
-@RunWith( PaxExamTestRunner.class )
+@RunWith( OsgiTestRunner.class )
 public class AdditionalBundlesTest
 {
 
