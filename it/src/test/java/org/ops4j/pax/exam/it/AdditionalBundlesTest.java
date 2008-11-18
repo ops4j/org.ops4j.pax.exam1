@@ -21,7 +21,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.osgi.framework.BundleContext;
 import org.ops4j.pax.exam.api.TestRunnerConnector;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
@@ -54,6 +53,6 @@ public class AdditionalBundlesTest
     public void logMessage()
     {
         LOG.info( "This test is just about logging this message" );
-    }   
+    }
 
 }
