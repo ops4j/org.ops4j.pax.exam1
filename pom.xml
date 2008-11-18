@@ -107,7 +107,7 @@
       <modules>
         <module>api</module>
         <module>spi</module>
-        <module>spi-junit</module>
+        <module>junit</module>
         <module>paxrunner</module>
         <module>runtime</module>
         <module>runtime-connector-rmi</module>
@@ -124,7 +124,7 @@
       <modules>
         <module>api</module>
         <module>spi</module>
-        <module>spi-junit</module>
+        <module>junit</module>
         <module>paxrunner</module>
         <module>runtime</module>
         <module>runtime-connector-rmi</module>
