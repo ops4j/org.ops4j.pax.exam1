@@ -22,6 +22,10 @@ import java.util.Hashtable;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.ops4j.pax.exam.api.TestRunner;
+import org.ops4j.pax.swissbox.extender.BundleManifestScanner;
+import org.ops4j.pax.swissbox.extender.BundleWatcher;
+import org.ops4j.pax.swissbox.extender.ManifestEntry;
+import org.ops4j.pax.swissbox.extender.RegexKeyManifestFilter;
 
 /**
  * This activator publishes a {@link TestRunner} implementation.
@@ -34,6 +38,14 @@ public class Activator
     implements BundleActivator
 {
 
+    /**
+     * Bundle watcher of web.xml.
+     */
+    private BundleWatcher<ManifestEntry> m_probeWatcher;
+
+    /**
+     * {@inheritDoc}
+     */
     public void start( BundleContext bundleContext )
         throws Exception
     {
@@ -43,12 +55,25 @@ public class Activator
             new TestRunnerImpl( bundleContext ),
             new Hashtable()
         );
+        m_probeWatcher = new BundleWatcher<ManifestEntry>(
+            bundleContext,
+            new BundleManifestScanner(
+                new RegexKeyManifestFilter(
+                    "PaxExam-.*"
+                )
+            ),
+            new ProbeObserver()
+        );
+        m_probeWatcher.start();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void stop( BundleContext bundleContext )
         throws Exception
     {
-        // do nothing
+        m_probeWatcher.stop();
     }
 
 }

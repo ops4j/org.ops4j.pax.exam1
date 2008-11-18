@@ -8,7 +8,8 @@ Bundle-SymbolicName:\
   ${bundle.symbolicName}
 
 Import-Package:\
-  *;resolution:=optional
+  org.apache.commons.logging; version="[1.0.4,2.0.0)"; resolution:=optional,\
+  *; resolution:=optional
   
 Export-Package:
 
