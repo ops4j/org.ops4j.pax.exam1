@@ -17,11 +17,18 @@
  */
 package org.ops4j.pax.exam.runtime.internal;
 
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceRegistration;
 import org.ops4j.pax.exam.api.TestRunner;
+import org.ops4j.pax.swissbox.core.BundleUtils;
 import org.ops4j.pax.swissbox.extender.BundleObserver;
 import org.ops4j.pax.swissbox.extender.ManifestEntry;
 
@@ -39,6 +46,18 @@ class ProbeObserver
      * Logger.
      */
     private static final Log LOG = LogFactory.getLog( ProbeObserver.class );
+    /**
+     * Holder for test runner registrations per bundle.
+     */
+    private final Map<Bundle, Registration> m_registrations;
+
+    /**
+     * Constructor.
+     */
+    ProbeObserver()
+    {
+        m_registrations = new HashMap<Bundle, Registration>();
+    }
 
     /**
      * {@inheritDoc}
@@ -61,6 +80,17 @@ class ProbeObserver
             }
         }
         LOG.info( "Found test: " + testCase + "." + testMethod );
+        Dictionary<String, String> props = new Hashtable<String, String>();
+        props.put( "testCase", testCase );
+        props.put( "testMethod", testMethod );
+        final BundleContext bundleContext = BundleUtils.getBundleContext( bundle );
+        final ServiceRegistration serviceRegistration = bundleContext.registerService(
+            TestRunner.class.getName(),
+            new TestRunnerImpl( bundleContext, testCase, testMethod ),
+            props
+        );
+        m_registrations.put( bundle, new Registration( testCase, testMethod, serviceRegistration ) );
+        LOG.info( "Registered testcase [" + testCase + "." + testMethod + "]" );
     }
 
     /**
@@ -70,6 +100,32 @@ class ProbeObserver
     public void removingEntries( final Bundle bundle,
                                  final List<ManifestEntry> manifestEntries )
     {
-        //To change body of implemented methods use File | Settings | File Templates.
+        final Registration registration = m_registrations.remove( bundle );
+        if( registration != null )
+        {
+            registration.serviceRegistration.unregister();
+            LOG.info( "Unregistered testcase [" + registration.testCase + "." + registration.testMethod + "]" );
+        }
     }
+
+    /**
+     * Registration holder.
+     */
+    private static class Registration
+    {
+
+        final String testCase;
+        final String testMethod;
+        final ServiceRegistration serviceRegistration;
+
+        public Registration( final String testCase,
+                             final String testMethod,
+                             final ServiceRegistration serviceRegistration )
+        {
+            this.testCase = testCase;
+            this.testMethod = testMethod;
+            this.serviceRegistration = serviceRegistration;
+        }
+    }
+
 }

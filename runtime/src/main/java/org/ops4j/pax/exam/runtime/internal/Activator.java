@@ -49,12 +49,6 @@ public class Activator
     public void start( BundleContext bundleContext )
         throws Exception
     {
-        // TODO the service publication should be delayed until a certain state (all bundles in ACTIVE state ?) is satisfied.
-        bundleContext.registerService(
-            TestRunner.class.getName(),
-            new TestRunnerImpl( bundleContext ),
-            new Hashtable()
-        );
         m_probeWatcher = new BundleWatcher<ManifestEntry>(
             bundleContext,
             new BundleManifestScanner(
