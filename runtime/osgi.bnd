@@ -27,7 +27,7 @@ Embed-Transitive:\
 
 -exportcontents:\
   org.ops4j.pax.exam.api; version="${pom.version}",\
-  org.ops4j.pax.exam.spi.junit; version="${pom.version}",\
+  org.ops4j.pax.exam.junit; version="${pom.version}",\
   junit.*,\
   org.easymock.*,\
   org.hamcrest.*,\

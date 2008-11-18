@@ -422,6 +422,7 @@
       <module fileurl="file://$PROJECT_DIR$/api/pax-exam-api.iml" filepath="$PROJECT_DIR$/api/pax-exam-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/paxrunner/pax-exam-connector-paxrunner.iml" filepath="$PROJECT_DIR$/paxrunner/pax-exam-connector-paxrunner.iml" />
       <module fileurl="file://$PROJECT_DIR$/it/pax-exam-it.iml" filepath="$PROJECT_DIR$/it/pax-exam-it.iml" />
+      <module fileurl="file://$PROJECT_DIR$/junit/pax-exam-junit.iml" filepath="$PROJECT_DIR$/junit/pax-exam-junit.iml" />
       <module fileurl="file://$PROJECT_DIR$/runtime/pax-exam-runtime.iml" filepath="$PROJECT_DIR$/runtime/pax-exam-runtime.iml" />
       <module fileurl="file://$PROJECT_DIR$/runtime-connector-rmi/pax-exam-runtime-connector-rmi.iml" filepath="$PROJECT_DIR$/runtime-connector-rmi/pax-exam-runtime-connector-rmi.iml" />
       <module fileurl="file://$PROJECT_DIR$/samples/sample/pax-exam-sample.iml" filepath="$PROJECT_DIR$/samples/sample/pax-exam-sample.iml" group="pax-exam-samples and modules" />
@@ -429,7 +430,6 @@
       <module fileurl="file://$PROJECT_DIR$/samples/simple/pax-exam-sample-simple.iml" filepath="$PROJECT_DIR$/samples/simple/pax-exam-sample-simple.iml" group="pax-exam-samples and modules" />
       <module fileurl="file://$PROJECT_DIR$/samples/pax-exam-samples.iml" filepath="$PROJECT_DIR$/samples/pax-exam-samples.iml" group="pax-exam-samples and modules" />
       <module fileurl="file://$PROJECT_DIR$/spi/pax-exam-spi.iml" filepath="$PROJECT_DIR$/spi/pax-exam-spi.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spi-junit/pax-exam-spi-junit.iml" filepath="$PROJECT_DIR$/spi-junit/pax-exam-spi-junit.iml" />
     </modules>
   </component>
   <component name="ProjectReloadState">
@@ -751,6 +751,17 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-core/0.2.0/pax-swissbox-core-0.2.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.ops4j.pax.exam:pax-exam-spi-junit:0.3.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-spi-junit/0.3.0-SNAPSHOT/pax-exam-spi-junit-0.3.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-spi-junit/0.3.0-SNAPSHOT/pax-exam-spi-junit-0.3.0-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-spi-junit/0.3.0-SNAPSHOT/pax-exam-spi-junit-0.3.0-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
   </component>

@@ -9,6 +9,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="pax-exam-spi-junit" exported="" />
     <orderEntry type="library" name="Maven: junit:junit:4.4" level="project" />
     <orderEntry type="library" name="Maven: org.easymock:easymock:2.4" level="project" />
     <orderEntry type="library" name="Maven: org.osgi:org.osgi.core:4.0.1" level="project" />
@@ -19,7 +20,7 @@
     <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-lang:0.5.3" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-monitors:0.5.3" level="project" />
     <orderEntry type="library" exported="" name="Maven: biz.aQute:bndlib:0.0.255" level="project" />
-    <orderEntry type="module" module-name="pax-exam-spi-junit" exported="" />
+    <orderEntry type="module" module-name="pax-exam-junit" exported="" />
     <orderEntry type="module" module-name="pax-exam-connector-paxrunner" exported="" />
     <orderEntry type="module" module-name="pax-exam-runtime-connector-rmi" exported="" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.16.0" level="project" />
