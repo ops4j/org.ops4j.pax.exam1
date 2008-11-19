@@ -21,10 +21,11 @@ package org.ops4j.pax.exam.api;
  * @author Toni Menzel (tonit)
  * @since Oct 23, 2008
  */
-public interface BundleProvision
-{
+public interface BundleProvision {
 
-    BundleProvision addBundle( String bundleUrl );
+    BundleProvision addBundle(String bundleUrl);
+
+    BundleProvision addBundle(String[] bundleUrl);
 
     String[] getBundles();
 }

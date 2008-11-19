@@ -5,6 +5,7 @@ import org.ops4j.pax.exam.api.TestRunnerConnector;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.junit.OsgiTestCase;
+import org.ops4j.pax.exam.junit.JunitSupport;
 
 /**
  * @author Toni Menzel (tonit)
@@ -15,7 +16,7 @@ public class SimpleFelixTest extends OsgiTestCase
 
     protected TestRunnerConnector configure()
     {
-        return create().setPlatform( Platforms.FELIX );
+        return create(createBundleProvision().addBundle( JunitSupport.bundles() )).setPlatform( Platforms.FELIX );
     }
 
     public void testSayHello()

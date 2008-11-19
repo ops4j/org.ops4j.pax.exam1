@@ -6,6 +6,7 @@ import org.ops4j.pax.exam.api.TestRunnerConnector;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.junit.OsgiTestCase;
+import org.ops4j.pax.exam.junit.JunitSupport;
 
 /**
  * @author Toni Menzel (tonit)
@@ -20,13 +21,14 @@ public class SimpleExtraBundle extends OsgiTestCase
             .addBundle( "mvn:org.ops4j.pax.logging/pax-logging-api" )
             .addBundle( "mvn:org.ops4j.pax.logging/pax-logging-service" )
             .updateBundles( false )
+            .addBundle( JunitSupport.bundles() )
         ).setPlatform( Platforms.FELIX );
     }
 
     public void testBundlesInstalledAndServiceExposed()
     {
-        // must have three bundles
-        assertEquals( 7, bundleContext.getBundles().length );
+        // must have eight bundles
+        assertEquals( 8, bundleContext.getBundles().length );
         // all should be running
         for( Bundle b : bundleContext.getBundles() )
         {

@@ -28,29 +28,28 @@ import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.OsgiTestRunner;
+import org.ops4j.pax.exam.junit.JunitSupport;
 
 /**
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
+ * @author Toni Menzel (tonimenzel@gmx.de)
  * @since 0.3.0, November 17, 2008
  */
-@RunWith( OsgiTestRunner.class )
-public class EquinoxTest
-{
+@RunWith(OsgiTestRunner.class)
+public class EquinoxTest {
 
     @Configuration
-    public TestRunnerConnector configure()
-    {
-        return create( createBundleProvision() ).setPlatform( Platforms.EQUINOX );
+    public TestRunnerConnector configure() {
+        return create(createBundleProvision().addBundle(JunitSupport.bundles())).setPlatform(Platforms.EQUINOX);
     }
 
     @Test
-    public void frameworkIsUpAndRunning( final BundleContext bundleContext )
-    {
-        assertThat( "Bundle context", bundleContext, is( notNullValue() ) );
+    public void frameworkIsUpAndRunning(final BundleContext bundleContext) {
+        assertThat("Bundle context", bundleContext, is(notNullValue()));
         assertThat(
-            "Framework vendor",
-            bundleContext.getProperty( Constants.FRAMEWORK_VENDOR ),
-            is( equalTo( "Eclipse" ) )
+                "Framework vendor",
+                bundleContext.getProperty(Constants.FRAMEWORK_VENDOR),
+                is(equalTo("Eclipse"))
         );
     }
 
