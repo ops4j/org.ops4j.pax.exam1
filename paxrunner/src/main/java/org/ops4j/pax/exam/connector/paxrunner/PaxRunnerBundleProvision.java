@@ -18,7 +18,6 @@
 package org.ops4j.pax.exam.connector.paxrunner;
 
 import org.ops4j.pax.exam.api.BundleProvision;
-import com.sun.tools.corba.se.idl.ValueEntry;
 
 /**
  * This adds some special marker methods to BundleProvision that are specific to paxrunner.
