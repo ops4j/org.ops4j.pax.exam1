@@ -4,6 +4,7 @@ import org.ops4j.pax.exam.api.TestRunnerConnector;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.create;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.createBundleProvision;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
+import org.ops4j.pax.exam.junit.JunitSupport;
 
 /**
  * @author Toni Menzel (tonit)
@@ -17,6 +18,7 @@ public class HardeningFelixTest extends HardeningTest
         return create( createBundleProvision()
             .addBundle( "mvn:org.ops4j.pax.logging/pax-logging-api" )
             .addBundle( "mvn:org.ops4j.pax.logging/pax-logging-service" )
+            .addBundle( JunitSupport.bundles() )
         ).setPlatform( Platforms.FELIX );
     }
 }
