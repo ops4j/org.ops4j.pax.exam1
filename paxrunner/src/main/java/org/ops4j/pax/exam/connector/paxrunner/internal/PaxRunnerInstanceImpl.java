@@ -34,6 +34,8 @@ import java.io.File;
 import java.io.IOException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.RemoteException;
+import java.rmi.NotBoundException;
 
 /**
  * This controls paxrunner in a separate process while mantaining the framework state (start/stop)
@@ -46,7 +48,7 @@ public class PaxRunnerInstanceImpl implements SubProcess
 {
 
     private static final Log LOG = LogFactory.getLog( PaxRunnerInstanceImpl.class );
-    private static final int MAX_WAITING_DELAY = 5000;
+    private int m_waitingDelay;
     private Process frameworkProcess;
     private Thread pipeShutdownHook;
     private String[] m_options;
@@ -55,12 +57,18 @@ public class PaxRunnerInstanceImpl implements SubProcess
 
     PaxRunnerInstanceImpl( String[] options, File workingDirectory, int communicationPort )
     {
+        this( options, workingDirectory, communicationPort, PaxRunnerConnectorImpl.DEFAULT_TIMEOUT );
+    }
+
+    PaxRunnerInstanceImpl( String[] options, File workingDirectory, int communicationPort, int waitingDelay )
+    {
         NullArgumentException.validateNotNull( options, "options" );
         NullArgumentException.validateNotNull( workingDirectory, "workingDirectory" );
 
         m_options = options;
         m_work = workingDirectory;
         m_communicationPort = communicationPort;
+        m_waitingDelay = waitingDelay;
     }
 
     /**
@@ -82,7 +90,6 @@ public class PaxRunnerInstanceImpl implements SubProcess
             );
             LOG.info( "OSGi Framework has been started successfully!" );
         }
-
         else
         {
             throw new RuntimeException( "There is already an instance running!" );
@@ -110,7 +117,8 @@ public class PaxRunnerInstanceImpl implements SubProcess
 
 
             }
-        } catch( Exception e )
+        }
+        catch( Exception e )
         {
             throw new TestExecutionException( "Exception during shutdown process..", e );
         }
@@ -158,13 +166,14 @@ public class PaxRunnerInstanceImpl implements SubProcess
         {
             try
             {
-                if( testForRunningInstance( 0 ) )
+                if( getRemoteTestRunner() != null )
                 {
                     throw new RuntimeException( "PaxRunner Instance is already running..!" );
                 }
                 frameworkProcess = Runtime.getRuntime().exec( commandLine, null, workingDirectory );
 
-            } catch( IOException e )
+            }
+            catch( IOException e )
             {
                 throw new RuntimeException( "Could not start up the process", e );
             }
@@ -173,10 +182,10 @@ public class PaxRunnerInstanceImpl implements SubProcess
             Runtime.getRuntime().addShutdownHook( pipeShutdownHook );
 
             LOG.debug(
-                "wait for boot on port: " + m_communicationPort + " max. " + MAX_WAITING_DELAY + "ms. to wait now.."
+                "wait for boot on port: " + m_communicationPort + " max. " + m_waitingDelay + "ms. to wait now.."
             );
             // try to reach server.. or timeout
-            if( !testForRunningInstance( MAX_WAITING_DELAY ) )
+            if( !testForRunningInstance( m_waitingDelay ) )
             {
                 throw new RuntimeException( "NOT RESPONDING! Last exception: " );
             }
@@ -221,30 +230,56 @@ public class PaxRunnerInstanceImpl implements SubProcess
             return shutdownHook;
         }
 
-        private boolean testForRunningInstance( long wait )
+        /**
+         * Tests for a running instance and keeps trying until the instance is retrieved (return true) or the amount of timout (milliseconds)
+         * has passed (return false)
+         *
+         * @param timeout the amount of time to keep trying (milliseconds)
+         *
+         * @return true if instance has been found. Otherwise (timed out) false
+         */
+        private boolean testForRunningInstance( long timeout )
         {
-            long t = System.currentTimeMillis();
-            boolean established = false;
+            long startedTrying = System.currentTimeMillis();
             do
             {
                 try
                 {
-                    //!! Absolutely nececary for RMIClassLoading to work
-                    Thread.currentThread().setContextClassLoader( this.getClass().getClassLoader() );
-
-                    Registry registry = LocateRegistry.getRegistry( m_communicationPort );
-                    RemoteTestRunner stub =
-                        ( RemoteTestRunner ) registry.lookup( TestRunner.class.getName() );
-                    if( stub != null )
+                    // exit conditions: established connection or timeout reached.
+                    if( getRemoteTestRunner() != null )
                     {
-                        established = true;
+                        return true;
+
                     }
                 }
                 catch( Exception e )
                 {
+                    // if this happens, we just leave the loop and trust in value of {established}
+                    break;
                 }
-            } while( !established && System.currentTimeMillis() < t + wait );
-            return established;
+            }
+            while( timeout == 0 || System.currentTimeMillis() < startedTrying + timeout );
+
+            return false;
+        }
+
+        private RemoteTestRunner getRemoteTestRunner()
+
+        {
+            RemoteTestRunner stub = null;
+            try
+            {
+                //!! Absolutely nececary for RMIClassLoading to work
+                Thread.currentThread().setContextClassLoader( this.getClass().getClassLoader() );
+
+                Registry registry = LocateRegistry.getRegistry( m_communicationPort );
+                stub = (RemoteTestRunner) registry.lookup( TestRunner.class.getName() );
+            }
+            catch( Exception e )
+            {
+
+            }
+            return stub;
         }
     }
 

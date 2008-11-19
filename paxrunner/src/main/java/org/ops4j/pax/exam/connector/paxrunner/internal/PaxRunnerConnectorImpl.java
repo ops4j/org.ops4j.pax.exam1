@@ -46,6 +46,8 @@ public class PaxRunnerConnectorImpl
 
     private static final Log LOG = LogFactory.getLog( PaxRunnerConnectorImpl.class );
 
+    public static final int DEFAULT_TIMEOUT = 5000;
+
     /**
      * The context (configuration & information) for this connector.
      */
@@ -86,6 +88,10 @@ public class PaxRunnerConnectorImpl
     private String m_selectedPlatformVersion;
 
     private BundleProvision m_provision;
+    /**
+     * Timeout for the underlying process to respond
+     */
+    private int m_timeout = DEFAULT_TIMEOUT;
 
     public PaxRunnerConnectorImpl( RunnerContext context, BundleProvision bundleProvision )
     {
@@ -178,6 +184,12 @@ public class PaxRunnerConnectorImpl
             m_rawOptions = new ArrayList<String>();
         }
         m_rawOptions.add( options );
+        return this;
+    }
+
+    public TestRunnerConnector setStartupTimeout( int i )
+    {
+        m_timeout = i;
         return this;
     }
 
@@ -288,7 +300,7 @@ public class PaxRunnerConnectorImpl
         int port = m_context.getCommunicationPort();
         try
         {
-            SubProcess instance = new PaxRunnerInstanceImpl( options, workingDirectory, port );
+            SubProcess instance = new PaxRunnerInstanceImpl( options, workingDirectory, port, m_timeout );
             RemoteTestRunnerClient c = new RemoteTestRunnerClient( port );
 
             execute( instance, c, System.out, builder );
