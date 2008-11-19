@@ -18,7 +18,6 @@
  */
 package org.ops4j.pax.exam.runtime.internal;
 
-import java.util.Hashtable;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.ops4j.pax.exam.api.TestRunner;

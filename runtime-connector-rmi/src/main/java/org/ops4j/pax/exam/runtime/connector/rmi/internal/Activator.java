@@ -17,14 +17,13 @@
  */
 package org.ops4j.pax.exam.runtime.connector.rmi.internal;
 
-import org.ops4j.pax.exam.api.TestRunner;
-import org.ops4j.pax.exam.runtime.connector.rmi.RemoteTestRunner;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
-
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
+import org.ops4j.pax.exam.api.TestRunner;
+import org.ops4j.pax.exam.runtime.connector.rmi.RemoteTestRunner;
 
 /**
  * Registers the an instance of RemoteTestRunnerService as RMI service using a port set by system property
@@ -56,12 +55,14 @@ public class Activator implements BundleActivator
             Thread.currentThread().setContextClassLoader( this.getClass().getClassLoader() );
             m_registry = java.rmi.registry.LocateRegistry.createRegistry( port );
 
-            stub = ( RemoteTestRunner ) UnicastRemoteObject.exportObject( obj, port );
+            stub = (RemoteTestRunner) UnicastRemoteObject.exportObject( obj, port );
             m_registry.bind( TestRunner.class.getName(), stub );
-        } catch( Exception e )
+        }
+        catch( Exception e )
         {
             throw new BundleException( "Problem setting up rmi registry", e );
-        } finally
+        }
+        finally
         {
             // reset classloader:
             if( cl != null )

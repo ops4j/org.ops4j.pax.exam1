@@ -1,14 +1,12 @@
 package org.ops4j.pax.exam.spi.internal;
 
-import static org.easymock.EasyMock.createMock;
-import static org.easymock.EasyMock.notNull;
-import org.junit.Test;
-import org.ops4j.pax.exam.api.TestProbeBuilder;
-import org.ops4j.pax.exam.spi.ResourceLocator;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.jar.JarOutputStream;
+import static org.easymock.EasyMock.*;
+import org.junit.Test;
+import org.ops4j.pax.exam.api.TestProbeBuilder;
+import org.ops4j.pax.exam.spi.ResourceLocator;
 
 /**
  * User: Toni Menzel (tonit)
@@ -42,7 +40,7 @@ public class TestProbeBuilderImplTest
     {
         ResourceLocator locator = new IntelliResourceLocator( new File( "." ), "foo" );
 
-        locator.write( ( JarOutputStream ) notNull() );
+        locator.write( (JarOutputStream) notNull() );
         TestProbeBuilder builder = new BndTestProbeBuilder( this.getClass().getName(), null, locator );
         builder.build();
     }

@@ -17,6 +17,8 @@
  */
 package org.ops4j.pax.exam.sample;
 
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.ops4j.pax.exam.api.BundleProvision;
 import org.ops4j.pax.exam.api.RunnerContext;
 import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
@@ -25,8 +27,6 @@ import org.ops4j.pax.exam.connector.paxrunner.internal.PaxRunnerConnectorImpl;
 import org.ops4j.pax.exam.spi.OnDemandTestProbeBuilder;
 import org.ops4j.pax.exam.spi.internal.BundleProvisionImpl;
 import org.ops4j.pax.exam.spi.internal.RunnerContextImpl;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
 
 /**
  * @author Toni Menzel (tonit)

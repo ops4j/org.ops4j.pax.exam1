@@ -22,8 +22,8 @@ import org.osgi.service.log.LogService;
 import org.ops4j.pax.exam.api.TestRunnerConnector;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
-import org.ops4j.pax.exam.junit.TestFirstOsgiTestCase;
 import org.ops4j.pax.exam.junit.JunitSupport;
+import org.ops4j.pax.exam.junit.TestFirstOsgiTestCase;
 
 /**
  * @author Toni Menzel (tonit)
@@ -34,7 +34,7 @@ public class TDDScenarioOsgiTest extends TestFirstOsgiTestCase
 
     protected TestRunnerConnector configureFailing()
     {
-        return create(createBundleProvision().addBundle( JunitSupport.bundles() )).setPlatform( Platforms.FELIX );
+        return create( createBundleProvision().addBundle( JunitSupport.bundles() ) ).setPlatform( Platforms.FELIX );
     }
 
     protected TestRunnerConnector configureSuccessful()

@@ -22,7 +22,7 @@ import java.util.jar.JarOutputStream;
 
 /**
  * Locates resources and writes them in a unifed manner into the give JarOutputStream
- * 
+ *
  * @author Toni Menzel (tonit)
  * @since May 30, 2008
  */
@@ -32,5 +32,5 @@ public interface ResourceLocator
     // TODO add JavaDoc
     void write( JarOutputStream jos )
         throws IOException;
-    
+
 }

@@ -24,7 +24,8 @@ import org.ops4j.pax.exam.spi.internal.BundleProvisionImpl;
  * @author Toni Menzel (tonit)
  * @since Nov 11, 2008
  */
-public class PaxRunnerBundleProvisionImpl extends BundleProvisionImpl implements PaxRunnerBundleProvision {
+public class PaxRunnerBundleProvisionImpl extends BundleProvisionImpl implements PaxRunnerBundleProvision
+{
 
     // default scanner used.
     public static final String SCANNER_PREFIX = "scan-bundle:";
@@ -33,36 +34,44 @@ public class PaxRunnerBundleProvisionImpl extends BundleProvisionImpl implements
 
     private boolean prefix = true;
 
-    public PaxRunnerBundleProvision addBundle(String bundleUrl) {
-        return (PaxRunnerBundleProvision) super.addBundle(bundleUrl);
+    public PaxRunnerBundleProvision addBundle( String bundleUrl )
+    {
+        return (PaxRunnerBundleProvision) super.addBundle( bundleUrl );
     }
 
-    public PaxRunnerBundleProvision addBundle(String[] bundleUrls) {
-        return (PaxRunnerBundleProvision) super.addBundle(bundleUrls);
+    public PaxRunnerBundleProvision addBundle( String[] bundleUrls )
+    {
+        return (PaxRunnerBundleProvision) super.addBundle( bundleUrls );
     }
 
-    public PaxRunnerBundleProvision updateBundles(boolean doUpdate) {
+    public PaxRunnerBundleProvision updateBundles( boolean doUpdate )
+    {
         update = doUpdate;
         return this;
     }
 
-    public PaxRunnerBundleProvision prefixScanDirective(boolean doPrefix) {
+    public PaxRunnerBundleProvision prefixScanDirective( boolean doPrefix )
+    {
         prefix = doPrefix;
         return this;
     }
 
-    public String[] getBundles() {
+    public String[] getBundles()
+    {
 
         String[] arr = super.getBundles();
 
         // enhance update
-        for (int i = 0; i < arr.length; i++) {
-            String b = arr[i];
-            if (update && (b.indexOf("@update") < 0)) {
-                arr[i] = b + "@update";
+        for( int i = 0; i < arr.length; i++ )
+        {
+            String b = arr[ i ];
+            if( update && ( b.indexOf( "@update" ) < 0 ) )
+            {
+                arr[ i ] = b + "@update";
             }
-            if (prefix) {
-                arr[i] = SCANNER_PREFIX + arr[i];
+            if( prefix )
+            {
+                arr[ i ] = SCANNER_PREFIX + arr[ i ];
             }
         }
         return arr;

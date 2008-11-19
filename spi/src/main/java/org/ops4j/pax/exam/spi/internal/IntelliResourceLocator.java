@@ -17,18 +17,17 @@
  */
 package org.ops4j.pax.exam.spi.internal;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.jar.JarEntry;
+import java.util.jar.JarOutputStream;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.TestExecutionException;
 import org.ops4j.pax.exam.spi.ResourceLocator;
 import org.ops4j.pax.exam.spi.util.IOUtils;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.jar.JarEntry;
-import java.util.jar.JarOutputStream;
 
 /**
  * Finds resources of the current module under test just by given top-level parent (whatever that is)

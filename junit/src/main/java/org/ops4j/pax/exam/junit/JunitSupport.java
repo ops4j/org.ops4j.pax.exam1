@@ -13,5 +13,5 @@ public class JunitSupport
     {
         return new String[]{ "mvn:org.ops4j.pax.exam/pax-exam-junit/" + Info.getPaxExamVersion() };
     }
-    
+
 }

@@ -1,12 +1,10 @@
 package org.ops4j.pax.exam.spi.internal;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import org.junit.Test;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.zip.ZipEntry;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  * User: Toni Menzel (tonit)

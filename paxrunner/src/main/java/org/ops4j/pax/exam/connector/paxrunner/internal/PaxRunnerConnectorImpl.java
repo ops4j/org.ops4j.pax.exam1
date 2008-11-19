@@ -18,20 +18,24 @@
  */
 package org.ops4j.pax.exam.connector.paxrunner.internal;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.api.*;
-import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
-import org.ops4j.pax.exam.connector.paxrunner.Platforms;
-import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
-import org.ops4j.pax.exam.spi.SummaryImpl;
-import org.ops4j.pax.exam.runtime.connector.rmi.RemoteTestRunnerClient;
-
 import java.io.File;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.ops4j.lang.NullArgumentException;
+import org.ops4j.pax.exam.api.BundleProvision;
+import org.ops4j.pax.exam.api.Info;
+import org.ops4j.pax.exam.api.RunnerContext;
+import org.ops4j.pax.exam.api.TestExecutionSummary;
+import org.ops4j.pax.exam.api.TestProbeBuilder;
+import org.ops4j.pax.exam.api.TestRunnerConnector;
+import org.ops4j.pax.exam.connector.paxrunner.PaxRunnerConnector;
+import org.ops4j.pax.exam.connector.paxrunner.Platforms;
+import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
+import org.ops4j.pax.exam.runtime.connector.rmi.RemoteTestRunnerClient;
+import org.ops4j.pax.exam.spi.SummaryImpl;
 
 /**
  * Construct a PaxRunner setup in Pax Exam.

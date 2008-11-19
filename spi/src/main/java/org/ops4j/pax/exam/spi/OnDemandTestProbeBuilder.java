@@ -1,11 +1,10 @@
 package org.ops4j.pax.exam.spi;
 
+import java.io.InputStream;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.spi.internal.BndTestProbeBuilder;
 import org.ops4j.pax.exam.spi.internal.IntelliResourceLocator;
-
-import java.io.InputStream;
 
 /**
  * @author Toni Menzel (tonit)

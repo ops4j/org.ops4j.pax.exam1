@@ -30,7 +30,7 @@ public interface PaxRunnerBundleProvision extends BundleProvision
 
     PaxRunnerBundleProvision addBundle( String bundleUrl );
 
-    PaxRunnerBundleProvision addBundle(String[] bundleUrl);
+    PaxRunnerBundleProvision addBundle( String[] bundleUrl );
 
     PaxRunnerBundleProvision updateBundles( boolean doUpdate );
 

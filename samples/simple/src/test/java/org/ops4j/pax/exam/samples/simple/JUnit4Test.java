@@ -25,8 +25,8 @@ import org.ops4j.pax.exam.api.TestRunnerConnector;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.junit.Configuration;
-import org.ops4j.pax.exam.junit.OsgiTestRunner;
 import org.ops4j.pax.exam.junit.JunitSupport;
+import org.ops4j.pax.exam.junit.OsgiTestRunner;
 
 /**
  * TODO fill test results with proper timesheet.

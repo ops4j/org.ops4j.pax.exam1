@@ -17,6 +17,10 @@
  */
 package org.ops4j.pax.exam.connector.paxrunner.internal;
 
+import java.io.File;
+import java.io.IOException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.io.Pipe;
@@ -25,17 +29,15 @@ import org.ops4j.pax.exam.api.TestExecutionException;
 import org.ops4j.pax.exam.api.TestRunner;
 import org.ops4j.pax.exam.connector.paxrunner.SubProcess;
 import org.ops4j.pax.exam.runtime.connector.rmi.RemoteTestRunner;
-import org.ops4j.pax.runner.*;
+import org.ops4j.pax.runner.CommandLine;
+import org.ops4j.pax.runner.CommandLineImpl;
+import org.ops4j.pax.runner.Configuration;
+import org.ops4j.pax.runner.ConfigurationImpl;
+import org.ops4j.pax.runner.OptionResolverImpl;
+import org.ops4j.pax.runner.Run;
 import org.ops4j.pax.runner.platform.JavaRunner;
 import org.ops4j.pax.runner.platform.PlatformException;
 import org.ops4j.pax.runner.platform.internal.CommandLineBuilder;
-
-import java.io.File;
-import java.io.IOException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.RemoteException;
-import java.rmi.NotBoundException;
 
 /**
  * This controls paxrunner in a separate process while mantaining the framework state (start/stop)

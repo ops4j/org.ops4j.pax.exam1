@@ -17,9 +17,6 @@
  */
 package org.ops4j.pax.exam.runtime.connector.rmi;
 
-import org.ops4j.pax.exam.api.TestExecutionException;
-import org.ops4j.pax.exam.api.TestRunner;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,6 +26,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import org.ops4j.pax.exam.api.TestExecutionException;
+import org.ops4j.pax.exam.api.TestRunner;
 
 /**
  * This is a [@link TestRunner} Proxy that access a remote [@link TestRunner} via RMI
@@ -54,7 +53,8 @@ public class RemoteTestRunnerClient
         {
             return getTestRunner().execute();
 
-        } catch( RemoteException e )
+        }
+        catch( RemoteException e )
         {
             // we cannot do much more, just pack it into a TestExecutionException and be fine
             throw new TestExecutionException( "Derived from Remote by calling recipe ", e );
@@ -100,19 +100,22 @@ public class RemoteTestRunnerClient
             ); //!! Absolutely nececary for RMIClassLoading to work
 
             Registry registry = LocateRegistry.getRegistry( m_port );
-            RemoteTestRunner stub = ( RemoteTestRunner ) registry.lookup( TestRunner.class.getName() );
+            RemoteTestRunner stub = (RemoteTestRunner) registry.lookup( TestRunner.class.getName() );
             return stub;
-        } catch( AccessException e )
+        }
+        catch( AccessException e )
         {
             throw new TestExecutionException(
                 "Problem accessing the rmi registry for stub: " + TestRunner.class.getName(), e
             );
-        } catch( NotBoundException e )
+        }
+        catch( NotBoundException e )
         {
             throw new TestExecutionException(
                 "Problem accessing the rmi registry for stub: " + TestRunner.class.getName(), e
             );
-        } catch( RemoteException e )
+        }
+        catch( RemoteException e )
         {
             throw new TestExecutionException(
                 "Problem accessing the rmi registry for stub: " + TestRunner.class.getName(), e

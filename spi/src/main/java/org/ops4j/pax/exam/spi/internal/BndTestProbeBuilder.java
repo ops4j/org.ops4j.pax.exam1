@@ -18,16 +18,21 @@
  */
 package org.ops4j.pax.exam.spi.internal;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
+import java.util.Properties;
+import java.util.jar.JarOutputStream;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.api.TestRunner;
 import org.ops4j.pax.exam.spi.ResourceLocator;
 import org.ops4j.pax.exam.spi.util.BndUtils;
 import org.ops4j.pax.exam.spi.util.IOUtils;
-
-import java.io.*;
-import java.util.Properties;
-import java.util.jar.JarOutputStream;
 
 /**
  * Responsible for creating the on-the fly testing probe.
@@ -52,8 +57,8 @@ public class BndTestProbeBuilder
      * @param finder     locator that gathers all resources that have to be inside the test probe
      */
     public BndTestProbeBuilder( final String testClass,
-                                 final String testMethod,
-                                 final ResourceLocator finder )
+                                final String testMethod,
+                                final ResourceLocator finder )
     {
         NullArgumentException.validateNotNull( testClass, "recipeHost" );
         NullArgumentException.validateNotNull( finder, "finder" );

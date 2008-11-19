@@ -1,11 +1,9 @@
 package org.ops4j.pax.exam.spi.internal;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import java.io.File;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import org.ops4j.pax.exam.api.RunnerContext;
-
-import java.io.File;
 
 /**
  * @author Toni Menzel (tonit)

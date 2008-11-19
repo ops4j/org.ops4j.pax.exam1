@@ -27,33 +27,36 @@ import org.ops4j.pax.exam.api.TestRunnerConnector;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
 import org.ops4j.pax.exam.junit.Configuration;
-import org.ops4j.pax.exam.junit.OsgiTestRunner;
 import org.ops4j.pax.exam.junit.JunitSupport;
+import org.ops4j.pax.exam.junit.OsgiTestRunner;
 
 /**
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @author Toni Menzel (tonimenzel@gmx.de)
  * @since 0.3.0, November 17, 2008
  */
-@RunWith(OsgiTestRunner.class)
-public class FelixTest {
+@RunWith( OsgiTestRunner.class )
+public class FelixTest
+{
 
     @Configuration
-    public TestRunnerConnector configure() {
-        return create(createBundleProvision()
-                // see AddtionalApiTest for explanation
-                .addBundle(JunitSupport.bundles())
+    public TestRunnerConnector configure()
+    {
+        return create( createBundleProvision()
+            // see AddtionalApiTest for explanation
+            .addBundle( JunitSupport.bundles() )
         )
-                .setPlatform(Platforms.FELIX);
+            .setPlatform( Platforms.FELIX );
     }
 
     @Test
-    public void frameworkIsUpAndRunning(final BundleContext bundleContext) {
-        assertThat("Bundle context", bundleContext, is(notNullValue()));
+    public void frameworkIsUpAndRunning( final BundleContext bundleContext )
+    {
+        assertThat( "Bundle context", bundleContext, is( notNullValue() ) );
         assertThat(
-                "Framework vendor",
-                bundleContext.getProperty(Constants.FRAMEWORK_VENDOR),
-                is(equalTo("Apache Software Foundation"))
+            "Framework vendor",
+            bundleContext.getProperty( Constants.FRAMEWORK_VENDOR ),
+            is( equalTo( "Apache Software Foundation" ) )
         );
     }
 

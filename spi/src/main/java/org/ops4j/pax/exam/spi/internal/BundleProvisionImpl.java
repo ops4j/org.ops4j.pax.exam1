@@ -17,39 +17,44 @@
  */
 package org.ops4j.pax.exam.spi.internal;
 
-import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.api.BundleProvision;
-
 import java.util.HashSet;
 import java.util.Set;
+import org.ops4j.lang.NullArgumentException;
+import org.ops4j.pax.exam.api.BundleProvision;
 
 /**
  * @author Toni Menzel (tonit)
  * @since Oct 23, 2008
  */
-public class BundleProvisionImpl implements BundleProvision {
+public class BundleProvisionImpl implements BundleProvision
+{
 
     private Set<String> m_bundles;
 
-    public BundleProvisionImpl() {
+    public BundleProvisionImpl()
+    {
         m_bundles = new HashSet<String>();
     }
 
-    public BundleProvision addBundle(String bundleUrl) {
-        NullArgumentException.validateNotEmpty(bundleUrl, "bundleUrl");
+    public BundleProvision addBundle( String bundleUrl )
+    {
+        NullArgumentException.validateNotEmpty( bundleUrl, "bundleUrl" );
 
-        m_bundles.add(bundleUrl);
+        m_bundles.add( bundleUrl );
         return this;
     }
 
-    public BundleProvision addBundle(String[] bundleUrl) {
-        for (String b : bundleUrl) {
-            addBundle(b);
+    public BundleProvision addBundle( String[] bundleUrl )
+    {
+        for( String b : bundleUrl )
+        {
+            addBundle( b );
         }
         return this;
     }
 
-    public String[] getBundles() {
-        return m_bundles.toArray(new String[m_bundles.size()]);
+    public String[] getBundles()
+    {
+        return m_bundles.toArray( new String[m_bundles.size()] );
     }
 }

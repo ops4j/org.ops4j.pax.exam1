@@ -1,12 +1,11 @@
 package org.ops4j.pax.exam.spi;
 
-import org.ops4j.pax.exam.api.TestExecutionSummary;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import org.ops4j.pax.exam.api.TestExecutionSummary;
 
 /**
  * This is a text output utility for {@link org.ops4j.pax.exam.api.TestExecutionSummary}.
