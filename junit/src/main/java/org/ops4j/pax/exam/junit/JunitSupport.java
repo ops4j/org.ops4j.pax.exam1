@@ -6,8 +6,12 @@ import org.ops4j.pax.exam.api.Info;
  * @author Toni Menzel (tonit)
  * @since Nov 19, 2008
  */
-public class JunitSupport {
-    public static String[] bundles() {
-        return new String[]{"wrap:mvn:org.ops4j.pax.exam/pax-exam-junit/" + Info.getPaxExamVersion()};
+public class JunitSupport
+{
+
+    public static String[] bundles()
+    {
+        return new String[]{ "mvn:org.ops4j.pax.exam/pax-exam-junit/" + Info.getPaxExamVersion() };
     }
+    
 }

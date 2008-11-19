@@ -21,8 +21,8 @@ import org.osgi.framework.Constants;
 import org.ops4j.pax.exam.api.TestRunnerConnector;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
-import org.ops4j.pax.exam.junit.OsgiTestCase;
 import org.ops4j.pax.exam.junit.JunitSupport;
+import org.ops4j.pax.exam.junit.OsgiTestCase;
 
 /**
  * @author Toni Menzel (tonit)
@@ -33,7 +33,9 @@ public class SimpleFelixTest extends OsgiTestCase
 
     protected TestRunnerConnector configure()
     {
-        return create(createBundleProvision().addBundle( JunitSupport.bundles() )).setPlatform( Platforms.FELIX );
+        return create( createBundleProvision()
+            .addBundle( JunitSupport.bundles() )
+        ).setPlatform( Platforms.FELIX );
     }
 
     public void testSayHello()

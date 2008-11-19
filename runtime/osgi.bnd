@@ -20,15 +20,11 @@ DynamicImport-Package:\
   *
 
 Embed-Dependency:\
-  *; scope=compile; type=!pom
+  *; scope=compile|runtime; type=!pom
 
 Embed-Transitive:\
   true
 
 -exportcontents:\
-  org.ops4j.pax.exam.api; version="${pom.version}",\
-  org.ops4j.pax.exam.junit; version="${pom.version}",\
-  #junit.*,\
-  #org.easymock.*,\
-  #org.hamcrest.*,\
-  #org.junit.*
+  ${namespace}.api; version="${pom.version}",\
+  ${namespace}.spi; version="${pom.version}"

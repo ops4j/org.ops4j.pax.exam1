@@ -22,8 +22,8 @@ import org.osgi.service.log.LogService;
 import org.ops4j.pax.exam.api.TestRunnerConnector;
 import static org.ops4j.pax.exam.connector.paxrunner.GenericConnector.*;
 import org.ops4j.pax.exam.connector.paxrunner.Platforms;
-import org.ops4j.pax.exam.junit.OsgiTestCase;
 import org.ops4j.pax.exam.junit.JunitSupport;
+import org.ops4j.pax.exam.junit.OsgiTestCase;
 
 /**
  * @author Toni Menzel (tonit)
@@ -37,8 +37,8 @@ public class SimpleExtraBundle extends OsgiTestCase
         return create( createBundleProvision()
             .addBundle( "mvn:org.ops4j.pax.logging/pax-logging-api" )
             .addBundle( "mvn:org.ops4j.pax.logging/pax-logging-service" )
-            .updateBundles( false )
             .addBundle( JunitSupport.bundles() )
+            .updateBundles( false )
         ).setPlatform( Platforms.FELIX );
     }
 

@@ -12,34 +12,20 @@
   <groupId>org.ops4j.pax.exam</groupId>
   <artifactId>pax-exam-junit</artifactId>
   <version>0.3.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>bundle</packaging>
 
   <name>OPS4J Pax Exam - JUnit Support</name>
 
   <properties>
-    <bundle.namespace>org.ops4j.pax.exam.junit</bundle.namespace>
-    <bundle.symbolicName>org.ops4j.pax.exam.junit</bundle.symbolicName>
+    <bundle.namespace>${namespace}.junit</bundle.namespace>
+    <bundle.symbolicName>${namespace}.junit</bundle.symbolicName>
   </properties>
 
   <build>
     <plugins>
       <plugin>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>unpack-dependencies</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>unpack-dependencies</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.build.directory}/classes</outputDirectory>
-              <excludeTransitive>true</excludeTransitive>
-              <excludeScope>provided</excludeScope>
-              <stripVersion>true</stripVersion>
-            </configuration>
-          </execution>
-        </executions>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

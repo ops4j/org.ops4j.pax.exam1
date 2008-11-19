@@ -17,7 +17,7 @@
   <name>OPS4J Pax Exam - SPI</name>
 
   <properties>
-    <bundle.namespace>org.ops4j.pax.exam.spi</bundle.namespace>
+    <bundle.namespace>${namespace}.spi</bundle.namespace>
   </properties>
 
   <dependencies>

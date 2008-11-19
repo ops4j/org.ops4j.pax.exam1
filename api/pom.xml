@@ -17,7 +17,7 @@
   <name>OPS4J Pax Exam - API</name>
 
   <properties>
-    <bundle.namespace>org.ops4j.pax.exam.api</bundle.namespace>
+    <bundle.namespace>${namespace}.api</bundle.namespace>
   </properties>
 
   <dependencies>

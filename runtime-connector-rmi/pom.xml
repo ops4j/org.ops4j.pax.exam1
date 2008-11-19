@@ -17,8 +17,8 @@
   <name>OPS4J Pax Exam - Runtime - RMI Connector</name>
 
   <properties>
-    <bundle.symbolicName>org.ops4j.pax.exam.runtime.connector.rmi</bundle.symbolicName>
-    <bundle.namespace>org.ops4j.pax.exam.runtime.connector.rmi</bundle.namespace>
+    <bundle.symbolicName>${namespace}.runtime.connector.rmi</bundle.symbolicName>
+    <bundle.namespace>${namespace}.runtime.connector.rmi</bundle.namespace>
   </properties>
 
   <build>
