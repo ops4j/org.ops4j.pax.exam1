@@ -95,5 +95,5 @@ public interface PaxRunnerConnector extends TestRunnerConnector
 
     // Set<String> getBundles();
 
-    TestRunnerConnector setStartupTimeout( int i );
+    PaxRunnerConnector setStartupTimeout( int i );
 }

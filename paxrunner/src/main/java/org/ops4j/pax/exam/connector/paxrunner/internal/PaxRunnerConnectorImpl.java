@@ -191,7 +191,7 @@ public class PaxRunnerConnectorImpl
         return this;
     }
 
-    public TestRunnerConnector setStartupTimeout( int i )
+    public PaxRunnerConnector setStartupTimeout( int i )
     {
         m_timeout = i;
         return this;
