@@ -6,7 +6,7 @@ Bundle-SymbolicName:\
 
 Import-Package:\
   ${namespace}.api; version="${pom.version}",\
-  ${namespace}.spi; version="${pom.version}",\
+  !${namespace}.spi; version="${pom.version}",\
   org.osgi.framework; version="1.3"
   
 Export-Package:\

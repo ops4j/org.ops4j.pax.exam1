@@ -30,7 +30,7 @@ import java.util.jar.JarOutputStream;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.TestProbeBuilder;
 import org.ops4j.pax.exam.api.TestRunner;
-import org.ops4j.pax.exam.spi.ResourceLocator;
+import org.ops4j.pax.exam.api.ResourceLocator;
 import org.ops4j.pax.exam.spi.util.BndUtils;
 import org.ops4j.pax.exam.spi.util.IOUtils;
 

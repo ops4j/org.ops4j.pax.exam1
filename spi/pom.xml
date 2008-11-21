@@ -15,6 +15,7 @@
   <packaging>jar</packaging>
 
   <name>OPS4J Pax Exam - SPI</name>
+  <description>Classes used at compile/probe creation-time. Not included into runtime!</description>
 
   <properties>
     <bundle.namespace>${namespace}.spi</bundle.namespace>

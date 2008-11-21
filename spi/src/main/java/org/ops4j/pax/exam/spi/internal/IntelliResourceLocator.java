@@ -26,7 +26,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.api.TestExecutionException;
-import org.ops4j.pax.exam.spi.ResourceLocator;
+import org.ops4j.pax.exam.api.ResourceLocator;
 import org.ops4j.pax.exam.spi.util.IOUtils;
 
 /**

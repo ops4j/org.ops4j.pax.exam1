@@ -6,7 +6,7 @@ import java.util.jar.JarOutputStream;
 import static org.easymock.EasyMock.*;
 import org.junit.Test;
 import org.ops4j.pax.exam.api.TestProbeBuilder;
-import org.ops4j.pax.exam.spi.ResourceLocator;
+import org.ops4j.pax.exam.api.ResourceLocator;
 
 /**
  * User: Toni Menzel (tonit)
