@@ -33,13 +33,13 @@ import static org.ops4j.pax.exam.paxrunner.PaxRunnerOptions.*;
  * @since 0.3.0, November 18, 2008
  */
 @RunWith( OsgiTestRunner.class )
-public class NewApiTest
+public class NewApi
 {
 
     /**
      * Logger.
      */
-    private static final Log LOG = LogFactory.getLog( NewApiTest.class );
+    private static final Log LOG = LogFactory.getLog( NewApi.class );
 
     public Configuration configure()
     {

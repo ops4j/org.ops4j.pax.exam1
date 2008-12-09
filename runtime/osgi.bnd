@@ -27,4 +27,5 @@ Embed-Transitive:\
 
 -exportcontents:\
   ${namespace}.api; version="${pom.version}",\
-  ${namespace}.spi; version="${pom.version}"
+  ${namespace}.spi; version="${pom.version}",\
+  ${namespace}.options; version="${pom.version}"
