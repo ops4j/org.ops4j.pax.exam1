@@ -88,6 +88,25 @@ public class CoreOptions
     }
 
     /**
+     * Creates a composite option of all {@link FelixFrameworkOption} versions (up to the date of Pax Exam release).
+     *
+     * @return all felix framework versions composite option
+     */
+    public static Option allFelixVersions()
+    {
+        return new DefaultCompositeOption(
+            felix().version( "1.0.0" ),
+            felix().version( "1.0.1" ),
+            felix().version( "1.0.3" ),
+            felix().version( "1.0.4" ),
+            felix().version( "1.2.0" ),
+            felix().version( "1.2.1" ),
+            felix().version( "1.2.2" ),
+            felix().version( "1.4.0" )
+        );
+    }
+
+    /**
      * Creates a {@link EquinoxFrameworkOption}.
      *
      * @return equinox framework option
@@ -98,6 +117,23 @@ public class CoreOptions
     }
 
     /**
+     * Creates a composite option of all {@link EquinoxFrameworkOption} versions (up to the date of Pax Exam release).
+     *
+     * @return all equinox framework versions composite option
+     */
+    public static Option allEquinoxVersions()
+    {
+        return new DefaultCompositeOption(
+            equinox().version( "3.2.1" ),
+            equinox().version( "3.3.0" ),
+            equinox().version( "3.3.1" ),
+            equinox().version( "3.3.2" ),
+            equinox().version( "3.4.0" ),
+            equinox().version( "3.4.1" )
+        );
+    }
+
+    /**
      * Creates a {@link KnopflerfishFrameworkOption}.
      *
      * @return knopflerfish framework option
@@ -105,6 +141,52 @@ public class CoreOptions
     public static KnopflerfishFrameworkOption knopflerfish()
     {
         return new KnopflerfishFrameworkOption();
+    }
+
+    /**
+     * Creates a composite option of all {@link KnopflerfishFrameworkOption} versions (up to the date of Pax Exam
+     * release).
+     *
+     * @return all knopflerfish framework versions composite option
+     */
+    public static Option allKnopflerfishVersions()
+    {
+        return new DefaultCompositeOption(
+            knopflerfish().version( "2.0.0" ),
+            knopflerfish().version( "2.0.3" ),
+            knopflerfish().version( "2.0.4" ),
+            knopflerfish().version( "2.0.5" ),
+            knopflerfish().version( "2.1.0" ),
+            knopflerfish().version( "2.1.1" )
+        );
+    }
+
+    /**
+     * Creates a composite option of latest versions of Felix, Equinox and Knopflerfish.
+     *
+     * @return latest versions of all frameworks composite option
+     */
+    public static Option allFrameworks()
+    {
+        return new DefaultCompositeOption(
+            felix(),
+            equinox(),
+            knopflerfish()
+        );
+    }
+
+    /**
+     * Creates a composite option of all versions of Felix, Equinox and Knopflerfish.
+     *
+     * @return all framework versions composite option
+     */
+    public static Option allFrameworksVersions()
+    {
+        return new DefaultCompositeOption(
+            allFelixVersions(),
+            allEquinoxVersions(),
+            allKnopflerfishVersions()
+        );
     }
 
     /**
