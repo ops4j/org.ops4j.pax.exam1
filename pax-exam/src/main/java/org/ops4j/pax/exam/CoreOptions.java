@@ -1,0 +1,264 @@
+/*
+ * Copyright 2008 Alin Dreghiciu.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.
+ *
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.ops4j.pax.exam;
+
+import java.util.ArrayList;
+import java.util.List;
+import static org.ops4j.lang.NullArgumentException.*;
+import static org.ops4j.pax.exam.OptionUtils.*;
+import org.ops4j.pax.exam.options.BootDelegationOption;
+import org.ops4j.pax.exam.options.DefaultCompositeOption;
+import org.ops4j.pax.exam.options.EquinoxFrameworkOption;
+import org.ops4j.pax.exam.options.FelixFrameworkOption;
+import org.ops4j.pax.exam.options.FrameworkOption;
+import org.ops4j.pax.exam.options.KnopflerfishFrameworkOption;
+import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
+import org.ops4j.pax.exam.options.ProvisionOption;
+import org.ops4j.pax.exam.options.SystemPackageOption;
+import org.ops4j.pax.exam.options.SystemPropertyOption;
+import org.ops4j.pax.exam.options.UrlProvisionOption;
+
+/**
+ * Factory methods for core options.
+ *
+ * @author Alin Dreghiciu (adreghiciu@gmail.com)
+ * @since 0.3.0, December 08, 2008
+ */
+public class CoreOptions
+{
+
+    /**
+     * Utility class. Ment to be used via the static factory methods.
+     */
+    private CoreOptions()
+    {
+        // utility class
+    }
+
+    /**
+     * Convenience method (more to be used for a nice fluent api) for creating an array of options.
+     * It also expands the composite options.
+     *
+     * @param options options
+     *
+     * @return provided options, expanded
+     *
+     * @see OptionUtils#expand(Option[])
+     */
+    public static Option[] options( final Option... options )
+    {
+        return expand( options );
+    }
+
+    /**
+     * Creates a composite option of {@link FrameworkOption}s.
+     *
+     * @param frameworks framework options
+     *
+     * @return composite option of framework options
+     */
+    public static Option frameworks( final FrameworkOption... frameworks )
+    {
+        return new DefaultCompositeOption( frameworks );
+    }
+
+    /**
+     * Creates a {@link FelixFrameworkOption}.
+     *
+     * @return felix framework option
+     */
+    public static FelixFrameworkOption felix()
+    {
+        return new FelixFrameworkOption();
+    }
+
+    /**
+     * Creates a {@link EquinoxFrameworkOption}.
+     *
+     * @return equinox framework option
+     */
+    public static EquinoxFrameworkOption equinox()
+    {
+        return new EquinoxFrameworkOption();
+    }
+
+    /**
+     * Creates a {@link KnopflerfishFrameworkOption}.
+     *
+     * @return knopflerfish framework option
+     */
+    public static KnopflerfishFrameworkOption knopflerfish()
+    {
+        return new KnopflerfishFrameworkOption();
+    }
+
+    /**
+     * Creates a composite option of {@link ProvisionOption}s.
+     *
+     * @param urls provision urls (cannot be null or containing null entries)
+     *
+     * @return composite option of provision options
+     *
+     * @throws IllegalArgumentException - If urls array is null or contains null entries
+     */
+    public static Option provision( final String... urls )
+    {
+        validateNotEmptyContent( urls, true, "URLs" );
+        final List<ProvisionOption> options = new ArrayList<ProvisionOption>();
+        for( String url : urls )
+        {
+            options.add( new UrlProvisionOption( url ) );
+        }
+        return provision( options.toArray( new ProvisionOption[options.size()] ) );
+    }
+
+    /**
+     * Creates a composite option of {@link ProvisionOption}s.
+     *
+     * @param urls provision options
+     *
+     * @return composite option of provision options
+     */
+    public static Option provision( final ProvisionOption... urls )
+    {
+        return new DefaultCompositeOption( urls );
+    }
+
+    /**
+     * Creates a {@link MavenUrlProvisionOption}.
+     *
+     * @return maven specific provisioning option
+     */
+    public static MavenUrlProvisionOption mavenBundle()
+    {
+        return new MavenUrlProvisionOption();
+    }
+
+    /**
+     * Creates a composite option of {@link BootDelegationOption}s.
+     *
+     * @param packages boot delegation packages (cannot be null or containing null entries)
+     *
+     * @return composite option of boot delegation package options
+     *
+     * @throws IllegalArgumentException - If urls array is null or contains null entries
+     */
+    public static Option bootDelegationPackages( final String... packages )
+    {
+        validateNotEmptyContent( packages, true, "Packages" );
+        final List<BootDelegationOption> options = new ArrayList<BootDelegationOption>();
+        for( String pkg : packages )
+        {
+            options.add( bootDelegationPackage( pkg ) );
+        }
+        return bootDelegationPackages( options.toArray( new BootDelegationOption[options.size()] ) );
+    }
+
+    /**
+     * Creates a composite option of {@link BootDelegationOption}s.
+     *
+     * @param packages boot delegation package options
+     *
+     * @return composite option of boot delegation package options
+     */
+    public static Option bootDelegationPackages( final BootDelegationOption... packages )
+    {
+        return new DefaultCompositeOption( packages );
+    }
+
+    /**
+     * Creates a {@link BootDelegationOption}.
+     *
+     * @param pkg boot delegation package
+     *
+     * @return boot delegation package option
+     */
+    public static BootDelegationOption bootDelegationPackage( final String pkg )
+    {
+        return new BootDelegationOption( pkg );
+    }
+
+    /**
+     * Creates a composite option of {@link SystemPackageOption}s.
+     *
+     * @param packages system packages (cannot be null or containing null entries)
+     *
+     * @return composite option of system package options
+     *
+     * @throws IllegalArgumentException - If urls array is null or contains null entries
+     */
+    public static Option systemPackages( final String... packages )
+    {
+        validateNotEmptyContent( packages, true, "Packages" );
+        final List<SystemPackageOption> options = new ArrayList<SystemPackageOption>();
+        for( String pkg : packages )
+        {
+            options.add( systemPackage( pkg ) );
+        }
+        return systemPackages( options.toArray( new SystemPackageOption[options.size()] ) );
+    }
+
+    /**
+     * Creates a composite option of {@link SystemPackageOption}s.
+     *
+     * @param packages system package options
+     *
+     * @return composite option of system package options
+     */
+    public static Option systemPackages( final SystemPackageOption... packages )
+    {
+        return new DefaultCompositeOption( packages );
+    }
+
+    /**
+     * Creates a {@link SystemPackageOption}.
+     *
+     * @param pkg system package
+     *
+     * @return system package option
+     */
+    public static SystemPackageOption systemPackage( final String pkg )
+    {
+        return new SystemPackageOption( pkg );
+    }
+
+    /**
+     * Creates a composite option of {@link SystemPropertyOption}s.
+     *
+     * @param systemProperties system property options
+     *
+     * @return composite option of system property options
+     */
+    public static Option systemProperties( final SystemPropertyOption... systemProperties )
+    {
+        return new DefaultCompositeOption( systemProperties );
+    }
+
+    /**
+     * Creates a {@link SystemPropertyOption}.
+     *
+     * @param key system property key
+     *
+     * @return system property option
+     */
+    public static SystemPropertyOption systemProperty( final String key )
+    {
+        return new SystemPropertyOption( key );
+    }
+
+}

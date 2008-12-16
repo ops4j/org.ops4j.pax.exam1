@@ -93,7 +93,7 @@
   </developers>
 
   <properties>
-    <dependency.runner.version>0.16.0</dependency.runner.version>
+    <dependency.runner.version>0.16.1-SNAPSHOT</dependency.runner.version>
     <dependency.swissbox.version>0.2.0</dependency.swissbox.version>
     <dependency.base.version>0.5.3</dependency.base.version>
     <namespace>org.ops4j.pax.exam</namespace>
@@ -106,39 +106,25 @@
         <activeByDefault>true</activeByDefault>
       </activation>
       <modules>
-        <module>api</module>
-        <module>spi</module>
-        <module>junit</module>
-        <module>paxrunner</module>
-        <module>runtime</module>
-        <module>runtime-connector-rmi</module>
+        <module>pax-exam</module>
+        <module>pax-exam-spi</module>
+        <module>pax-exam-runtime</module>
+        <module>pax-exam-container-rbc</module>
+        <module>pax-exam-container-rbc-client</module>
+        <module>pax-exam-container-default</module>
+        <module>pax-exam-junit</module>
+        <module>pax-exam-junit-extender</module>
+        <module>pax-exam-junit-extender-impl</module>
       </modules>
     </profile>
-    <profile>
-      <id>samples</id>
-      <modules>
-        <module>samples</module>
-      </modules>
-    </profile>
-    <profile>
-      <id>all</id>
-      <modules>
-        <module>api</module>
-        <module>spi</module>
-        <module>junit</module>
-        <module>paxrunner</module>
-        <module>runtime</module>
-        <module>runtime-connector-rmi</module>
-        <module>samples</module>
-        <module>it</module>
-      </modules>
-    </profile>
+
     <profile>
       <id>it</id>
       <modules>
-        <module>it</module>
+        <module>pax-exam-it-01</module>
       </modules>
     </profile>
+
   </profiles>
 
   <build>
@@ -214,64 +200,44 @@
         <scope>test</scope>
       </dependency>
       <dependency>
-        <groupId>org.ops4j.pax.runner</groupId>
-        <artifactId>pax-runner-no-jcl</artifactId>
-        <version>${dependency.runner.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>biz.aQute</groupId>
-        <artifactId>bndlib</artifactId>
-        <version>0.0.255</version>
-        <scope>compile</scope>
-      </dependency>
-      <dependency>
         <groupId>org.ops4j.base</groupId>
         <artifactId>ops4j-base-lang</artifactId>
         <version>${dependency.base.version}</version>
-        <optional>true</optional>
-        <scope>compile</scope>
       </dependency>
       <dependency>
         <groupId>org.ops4j.base</groupId>
         <artifactId>ops4j-base-io</artifactId>
         <version>${dependency.base.version}</version>
-        <optional>true</optional>
-        <scope>compile</scope>
       </dependency>
       <dependency>
         <groupId>org.ops4j.base</groupId>
         <artifactId>ops4j-base-net</artifactId>
         <version>${dependency.base.version}</version>
-        <optional>true</optional>
-        <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.ops4j.pax.swissbox</groupId>
+        <artifactId>pax-swissbox-core</artifactId>
+        <version>${dependency.swissbox.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.ops4j.pax.swissbox</groupId>
+        <artifactId>pax-swissbox-extender</artifactId>
+        <version>${dependency.swissbox.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.ops4j.pax.swissbox</groupId>
+        <artifactId>pax-swissbox-optional-jcl</artifactId>
+        <version>${dependency.swissbox.version}</version>
       </dependency>
       <dependency>
         <groupId>org.ops4j.pax.runner</groupId>
-        <artifactId>pax-runner-handler</artifactId>
+        <artifactId>pax-runner-no-jcl</artifactId>
         <version>${dependency.runner.version}</version>
-        <scope>compile</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.ops4j.pax.url</groupId>
-        <artifactId>pax-url-mvn</artifactId>
-        <version>0.3.2</version>
-        <exclusions>
-          <exclusion>
-            <groupId>org.ops4j.swissbox</groupId>
-            <artifactId>pax-swissbox-optional-jcl</artifactId>
-          </exclusion>
-          <exclusion>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-logging</artifactId>
-          </exclusion>
-        </exclusions>
-        <scope>compile</scope>
       </dependency>
       <dependency>
         <groupId>commons-logging</groupId>
         <artifactId>commons-logging</artifactId>
         <version>1.1</version>
-        <scope>provided</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
