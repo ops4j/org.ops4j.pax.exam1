@@ -19,7 +19,6 @@ package org.ops4j.pax.exam.it;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.osgi.framework.BundleContext;
@@ -37,7 +36,7 @@ import org.ops4j.pax.exam.junit.JUnit4TestRunner;
  * @since 0.3.0, November 17, 2008
  */
 @RunWith( JUnit4TestRunner.class )
-public class FrameworkOptionsTest
+public class MultiFrameworkOptionsTest
 {
 
     /**
@@ -55,21 +54,7 @@ public class FrameworkOptionsTest
     }
 
     /**
-     * Pax Exam test options that specified Equinox as test framework.
-     * Valid for test methods that starts with "equinox".
-     *
-     * @return test options
-     */
-    @Configuration( "equinox.*" )
-    public static Option[] configureEquinox()
-    {
-        return options(
-            equinox()
-        );
-    }
-
-    /**
-     * Pax Exam test options that specified Felix as test framework.
+     * Pax Exam test options that specified more Felix versions as test framework.
      * Valid for test methods that starts with "felix".
      *
      * @return test options
@@ -78,37 +63,30 @@ public class FrameworkOptionsTest
     public static Option[] configureFelix()
     {
         return options(
-            felix()
+            frameworks(
+                felix().version( "1.0.0" ),
+                felix().version( "1.0.3" ),
+                felix().version( "1.0.4" ),
+                felix()
+            )
         );
     }
 
     /**
-     * Pax Exam test options that specified Knopflerfish as test framework.
-     * Valid for test methods that starts with "knopflerfish".
+     * Pax Exam test options that specified all frameworks as test framework.
+     * Valid for test methods that starts with "all".
      *
      * @return test options
      */
-    @Configuration( "knopflerfish.*" )
-    public static Option[] configureKnopflerfish()
+    @Configuration( "multiple.*" )
+    public static Option[] configureAllFrameworks()
     {
         return options(
-            knopflerfish()
-        );
-    }
-
-    /**
-     * Test that the started framewrok is Equinox.
-     *
-     * @param bundleContext injected bundle context
-     */
-    @Test
-    public void equinoxIsUpAndRunning( final BundleContext bundleContext )
-    {
-        assertThat( "Bundle context", bundleContext, is( notNullValue() ) );
-        assertThat(
-            "Framework vendor",
-            bundleContext.getProperty( Constants.FRAMEWORK_VENDOR ),
-            is( equalTo( "Eclipse" ) )
+            frameworks(
+                equinox(),
+                felix(),
+                knopflerfish()
+            )
         );
     }
 
@@ -128,19 +106,14 @@ public class FrameworkOptionsTest
         );
     }
 
-    /**
-     * Test that the started framewrok is Knopflerfish.
-     *
-     * @param bundleContext injected bundle context
-     */
     @Test
-    public void knopflerfishIsUpAndRunning( final BundleContext bundleContext )
+    public void multipleIsUpAndRunning( final BundleContext bundleContext )
     {
         assertThat( "Bundle context", bundleContext, is( notNullValue() ) );
         assertThat(
             "Framework vendor",
             bundleContext.getProperty( Constants.FRAMEWORK_VENDOR ),
-            is( equalTo( "Knopflerfish" ) )
+            is( notNullValue() )
         );
     }
 

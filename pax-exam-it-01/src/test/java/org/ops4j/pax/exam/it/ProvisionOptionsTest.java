@@ -25,7 +25,7 @@ import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import org.ops4j.pax.exam.junit.Configuration;
-import org.ops4j.pax.exam.junit.OsgiTestRunner;
+import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
 /**
  * Provisioning integration tests.
@@ -33,7 +33,7 @@ import org.ops4j.pax.exam.junit.OsgiTestRunner;
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, November 18, 2008
  */
-@RunWith( OsgiTestRunner.class )
+@RunWith( JUnit4TestRunner.class )
 public class ProvisionOptionsTest
 {
 
@@ -43,7 +43,7 @@ public class ProvisionOptionsTest
      * @return integration tests options
      */
     @Configuration
-    public Option[] configure()
+    public static Option[] configure()
     {
         return options(
             provision(

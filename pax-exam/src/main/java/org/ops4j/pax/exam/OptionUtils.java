@@ -41,7 +41,8 @@ public class OptionUtils
     }
 
     /**
-     * Expand options to one level by expanding eventual {@link CompositeOption}.
+     * Expand options to one level by expanding eventual {@link CompositeOption}. During this process null options are
+     * eliminated.
      *
      * @param options options to be expanded (can be null or an empty array)
      *
@@ -54,13 +55,16 @@ public class OptionUtils
         {
             for( Option option : options )
             {
-                if( option instanceof CompositeOption )
+                if( option != null )
                 {
-                    expanded.addAll( Arrays.asList( ( (CompositeOption) option ).getOptions() ) );
-                }
-                else
-                {
-                    expanded.add( option );
+                    if( option instanceof CompositeOption )
+                    {
+                        expanded.addAll( Arrays.asList( ( (CompositeOption) option ).getOptions() ) );
+                    }
+                    else
+                    {
+                        expanded.add( option );
+                    }
                 }
             }
         }
@@ -126,6 +130,30 @@ public class OptionUtils
         }
         final T[] result = (T[]) Array.newInstance( optionType, filtered.size() );
         return filtered.toArray( result );
+    }
+
+    /**
+     * Removes from the provided options all options that are instance of the provided class, returning the remaining
+     * options.
+     *
+     * @param optionType class of the desired options to be removed
+     * @param options    options to be filtered (can be null or empty array)
+     *
+     * @return array of remaining options (never null) after removing the desired type
+     */
+
+    public static Option[] remove( final Class<? extends Option> optionType,
+                                   final Option... options )
+    {
+        final List<Option> filtered = new ArrayList<Option>();
+        for( Option option : expand( options ) )
+        {
+            if( !optionType.isAssignableFrom( option.getClass() ) )
+            {
+                filtered.add( option );
+            }
+        }
+        return filtered.toArray( new Option[filtered.size()] );
     }
 
 }

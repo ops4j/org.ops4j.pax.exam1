@@ -51,14 +51,14 @@ import org.ops4j.pax.exam.spi.container.TestContainerFactory;
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since Oct 14, 2008
  */
-public class OsgiTestRunner extends Runner
+public class OsgiTestRunnerObsolete extends Runner
 {
 
     private final Description m_suite;
     private List<Method> m_tests;
     private List<ConfigMethod> m_configs;
 
-    public OsgiTestRunner( Class testClass )
+    public OsgiTestRunnerObsolete( Class testClass )
     {
         m_suite = Description.createSuiteDescription( testClass );
         m_tests = new ArrayList<Method>();
@@ -174,7 +174,7 @@ public class OsgiTestRunner extends Runner
             mavenBundle()
                 .group( "org.ops4j.pax.url" )
                 .artifact( "pax-url-dir" )
-                .version( "0.3.3-SNAPSHOT" )
+                .version( Info.getPaxUrlVersion() )
         );
         // add options based on available configuration options from the test itself
         for( ConfigMethod config : m_configs )

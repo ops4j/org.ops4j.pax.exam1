@@ -24,7 +24,7 @@ import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import org.ops4j.pax.exam.junit.Configuration;
 import static org.ops4j.pax.exam.junit.JUnitOptions.*;
-import org.ops4j.pax.exam.junit.OsgiTestRunner;
+import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
 /**
  * JUnit options integration tests.
@@ -32,7 +32,7 @@ import org.ops4j.pax.exam.junit.OsgiTestRunner;
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, November 17, 2008
  */
-@RunWith( OsgiTestRunner.class )
+@RunWith( JUnit4TestRunner.class )
 public class JUnitOptionsTest
 {
 
@@ -43,7 +43,7 @@ public class JUnitOptionsTest
      * @return test options
      */
     @Configuration
-    public Option[] configure()
+    public static Option[] configure()
     {
         return options(
             logProfile()
@@ -51,7 +51,7 @@ public class JUnitOptionsTest
     }
 
     @Configuration( "junitBundlesSpecified" )
-    public Option[] configureAnotherVersionOfJUnit()
+    public static Option[] configureAnotherVersionOfJUnit()
     {
         return options(
             junitBundles().version( "4.5.0" )

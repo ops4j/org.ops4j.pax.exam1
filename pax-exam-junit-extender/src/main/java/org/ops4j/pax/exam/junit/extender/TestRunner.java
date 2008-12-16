@@ -18,7 +18,10 @@
 
 package org.ops4j.pax.exam.junit.extender;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
+ * TODO review JavaDoc
  * This is the service that will be installed by Pax Exam in your target environment.
  * TestConnector.execute(recipe) will result in TestRunner.execute(recipe) calls in the running
  * OSGi framework.
@@ -31,11 +34,12 @@ public interface TestRunner
 {
 
     /**
+     * TODO review JavaDoc
      * Triggers whatever the executor implementation is about.
      * Currenlty its about invoking the in-container integration tests.
      * But this is just one use-case.
-     *
-     * @throws RecipeException if the recipe code throws an exception, it is being wrapped into a (unchecked) RecipeException
      */
-    String execute();
+    void execute()
+        throws IllegalAccessException, InvocationTargetException, InstantiationException;
+
 }

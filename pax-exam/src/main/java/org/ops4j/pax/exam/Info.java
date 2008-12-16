@@ -31,6 +31,32 @@ import java.util.Properties;
 public class Info
 {
 
+    private static final String m_paxExamVersion;
+    private static final String m_paxUrlVersion;
+
+    static
+    {
+        String paxExamVersion = "";
+        String paxUrlVersion = "";
+        try
+        {
+            final InputStream is = Info.class.getClassLoader().getResourceAsStream( "META-INF/version.properties" );
+            if( is != null )
+            {
+                final Properties properties = new Properties();
+                properties.load( is );
+                paxExamVersion = properties.getProperty( "pax.exam.version", "" ).trim();
+                paxUrlVersion = properties.getProperty( "pax.url.version", "" ).trim();
+            }
+        }
+        catch( Exception ignore )
+        {
+            // use default versions
+        }
+        m_paxExamVersion = paxExamVersion;
+        m_paxUrlVersion = paxUrlVersion;
+    }
+
     /**
      * No instances should be made (does not make sense).
      */
@@ -46,26 +72,17 @@ public class Info
      */
     public static String getPaxExamVersion()
     {
-        try
-        {
-            final InputStream is = Info.class.getClassLoader().getResourceAsStream( "META-INF/paxexam.version" );
-            if( is != null )
-            {
-                final Properties properties = new Properties();
-                properties.load( is );
-                final String version = properties.getProperty( "version" );
-                if( version != null )
-                {
-                    return version.trim();
-                }
-                return "";
-            }
-            return "";
-        }
-        catch( Exception ignore )
-        {
-            return "";
-        }
+        return m_paxExamVersion;
+    }
+
+    /**
+     * Discovers the Pax Url version. If version cannot be determined returns an empty string.
+     *
+     * @return pax url version
+     */
+    public static String getPaxUrlVersion()
+    {
+        return m_paxUrlVersion;
     }
 
     /**

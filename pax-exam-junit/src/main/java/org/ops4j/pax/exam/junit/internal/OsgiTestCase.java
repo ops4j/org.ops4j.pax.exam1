@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.exam.junit;
+package org.ops4j.pax.exam.junit.internal;
 
 import junit.framework.TestCase;
 import org.osgi.framework.BundleContext;

@@ -19,10 +19,10 @@
 package org.ops4j.pax.exam.junit.extender.impl.internal;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import org.osgi.framework.BundleContext;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.junit.extender.RecipeException;
 import org.ops4j.pax.exam.junit.extender.TestExecutionException;
 import org.ops4j.pax.exam.junit.extender.TestRunner;
 
@@ -64,54 +64,28 @@ class TestRunnerImpl
     /**
      * {@inheritDoc}
      */
-    public String execute()
+    public void execute()
+        throws IllegalAccessException, InvocationTargetException, InstantiationException
     {
-        Class clazz;
         try
         {
-            clazz = m_bundleContext.getBundle().loadClass( m_testCase );
+            final Class clazz = m_bundleContext.getBundle().loadClass( m_testCase );
+            for( Method method : clazz.getDeclaredMethods() )
+            {
+                if( method.getName().equals( m_testMethod ) )
+                {
+                    injectContextAndInvoke( clazz, method, clazz.newInstance(), m_bundleContext );
+                }
+            }
         }
         catch( ClassNotFoundException e )
         {
             throw new TestExecutionException( "Test case class not found: " + m_testCase );
         }
-
-        if( clazz != null )
-        {
-            for( Method m : clazz.getDeclaredMethods() )
-            {
-                if( m.getName().equals( m_testMethod ) )
-                {
-                    try
-                    {
-                        injectContextAndInvoke( clazz, m, clazz.newInstance(), m_bundleContext );
-                    }
-                    catch( InstantiationException e )
-                    {
-                        throw new TestExecutionException( "InstantiationException for : " + clazz + "," + m, e
-                        );
-                    }
-                    catch( IllegalAccessException e )
-                    {
-                        throw new TestExecutionException( "IllegalAccessException for : " + clazz + "," + m, e
-                        );
-                    }
-                    catch( RecipeException e )
-                    {
-                        throw new TestExecutionException( "Wrap the RecipeException", e );
-                    }
-                }
-            }
-        }
-        else
-        {
-            throw new TestExecutionException( "Test case " + m_testCase + " not found!" );
-        }
-        return "";
     }
 
     private void injectContextAndInvoke( Class clazz, Method m, Object o, BundleContext bundleContext )
-        throws RecipeException
+        throws IllegalAccessException, InvocationTargetException
     {
         try
         {
@@ -128,23 +102,17 @@ class TestRunnerImpl
         }
         catch( IllegalAccessException e )
         {
-            //e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            // TODO print a warning message about bundle context field not being accessible
+            //e.printStackTrace();
         }
-        try
+        if( m.getParameterTypes().length == 1 )
         {
-            if( m.getParameterTypes().length == 1 )
-            {
-                // TODO add additional validation
-                m.invoke( o, bundleContext );
-            }
-            else
-            {
-                m.invoke( o );
-            }
+            // TODO add additional validation
+            m.invoke( o, bundleContext );
         }
-        catch( Exception e )
+        else
         {
-            throw new RecipeException( e );
+            m.invoke( o );
         }
     }
 
