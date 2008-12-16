@@ -48,5 +48,5 @@ public class JunitAnnotationsTest
     {
         throw new RuntimeException( "This exception should not fail the test" );
     }
-    
+
 }

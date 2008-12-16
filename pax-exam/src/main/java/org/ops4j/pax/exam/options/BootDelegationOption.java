@@ -70,5 +70,5 @@ public class BootDelegationOption
         sb.append( '}' );
         return sb.toString();
     }
-    
+
 }

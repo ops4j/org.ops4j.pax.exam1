@@ -23,8 +23,8 @@ import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import org.ops4j.pax.exam.junit.Configuration;
-import static org.ops4j.pax.exam.junit.JUnitOptions.*;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
+import static org.ops4j.pax.exam.junit.JUnitOptions.*;
 
 /**
  * JUnit options integration tests.

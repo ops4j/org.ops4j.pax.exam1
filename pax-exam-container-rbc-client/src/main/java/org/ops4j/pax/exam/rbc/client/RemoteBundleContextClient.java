@@ -184,7 +184,7 @@ public class RemoteBundleContextClient
     public void stop()
     {
         // TODO will be better to stop the framework via this method
-        throw new UnsupportedOperationException( "Stop via the remote bundle context is not supported");
+        throw new UnsupportedOperationException( "Stop via the remote bundle context is not supported" );
     }
 
     private RemoteBundleContext getRemoteBundleContext()

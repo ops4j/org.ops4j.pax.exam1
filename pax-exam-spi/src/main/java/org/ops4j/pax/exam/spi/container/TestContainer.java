@@ -42,7 +42,7 @@ public interface TestContainer
 
     void startBundle( long bundleId )
         throws TestContainerException;
-    
+
     /**
      * Stops the osgi container.
      */
