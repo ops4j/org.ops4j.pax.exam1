@@ -15,29 +15,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.ops4j.pax.exam.junit.extender;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
- * Exception mother of all Pax Exam based exceptions as well as catched and validated original exceptions.
+ * A callable test method.
  *
  * @author Toni Menzel (tonit)
- * @since Oct 2, 2008
+ * @since May 29, 2008
  */
-public class TestRunnerException extends RuntimeException
+public interface CallableTestMethod
 {
 
-    public TestRunnerException( Exception e )
-    {
-        super( e );
-    }
+    /**
+     * Executes the test method.
+     *
+     * @throws ClassNotFoundException    - If the test class cannot be loaded
+     * @throws InstantiationException    - If an instance of the test class cannot be created
+     * @throws IllegalAccessException    - Re-thrown from reflective invokation of test method
+     * @throws InvocationTargetException - Re-thrown from reflective invokation of test method
+     */
+    void call()
+        throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException;
 
-    public TestRunnerException( String e )
-    {
-        super( e );
-    }
-
-    public TestRunnerException( String s, Exception e )
-    {
-        super( s, e );
-    }
 }

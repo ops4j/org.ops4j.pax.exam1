@@ -25,8 +25,8 @@ import org.junit.internal.runners.TestMethod;
 import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.OptionUtils;
+import org.ops4j.pax.exam.junit.extender.CallableTestMethod;
 import org.ops4j.pax.exam.junit.extender.Constants;
-import org.ops4j.pax.exam.junit.extender.TestRunner;
 import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.runtime.PaxExamRuntime;
 import org.ops4j.pax.exam.spi.container.TestContainer;
@@ -94,16 +94,18 @@ public class JUnit4TestMethod
         final TestContainerFactory containerFactory = PaxExamRuntime.getTestContainerFactory();
         final TestContainer container = containerFactory.newInstance( m_options );
         container.startBundle( container.installBundle( m_testBundleUrl ) );
-        final TestRunner testRunner = container.getService( TestRunner.class );
+        final CallableTestMethod callable = container.getService( CallableTestMethod.class );
         try
         {
-            testRunner.execute();
+            callable.call();
         }
         catch( InstantiationException e )
         {
-            e.printStackTrace();
-            //TODO handle exception
-            throw new RuntimeException( e );
+            throw new InvocationTargetException( e );
+        }
+        catch( ClassNotFoundException e )
+        {
+            throw new InvocationTargetException( e );
         }
     }
 

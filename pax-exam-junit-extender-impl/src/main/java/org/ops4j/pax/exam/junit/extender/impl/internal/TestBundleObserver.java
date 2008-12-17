@@ -27,8 +27,8 @@ import org.apache.commons.logging.LogFactory;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
+import org.ops4j.pax.exam.junit.extender.CallableTestMethod;
 import org.ops4j.pax.exam.junit.extender.Constants;
-import org.ops4j.pax.exam.junit.extender.TestRunner;
 import org.ops4j.pax.swissbox.core.BundleUtils;
 import org.ops4j.pax.swissbox.extender.BundleObserver;
 import org.ops4j.pax.swissbox.extender.ManifestEntry;
@@ -67,31 +67,34 @@ class TestBundleObserver
     public void addingEntries( final Bundle bundle,
                                final List<ManifestEntry> manifestEntries )
     {
-        String testCase = null;
-        String testMethod = null;
+        String testClassName = null;
+        String testMethodName = null;
         for( ManifestEntry manifestEntry : manifestEntries )
         {
-            if( Constants.PROBE_TEST_CASE.equals( manifestEntry.getKey() ) )
+            if( Constants.PROBE_TEST_CLASS.equals( manifestEntry.getKey() ) )
             {
-                testCase = manifestEntry.getValue();
+                testClassName = manifestEntry.getValue();
             }
             if( Constants.PROBE_TEST_METHOD.equals( manifestEntry.getKey() ) )
             {
-                testMethod = manifestEntry.getValue();
+                testMethodName = manifestEntry.getValue();
             }
         }
-        LOG.info( "Found test: " + testCase + "." + testMethod );
-        Dictionary<String, String> props = new Hashtable<String, String>();
-        props.put( "testCase", testCase );
-        props.put( "testMethod", testMethod );
-        final BundleContext bundleContext = BundleUtils.getBundleContext( bundle );
-        final ServiceRegistration serviceRegistration = bundleContext.registerService(
-            TestRunner.class.getName(),
-            new TestRunnerImpl( bundleContext, testCase, testMethod ),
-            props
-        );
-        m_registrations.put( bundle, new Registration( testCase, testMethod, serviceRegistration ) );
-        LOG.info( "Registered testcase [" + testCase + "." + testMethod + "]" );
+        if( testClassName != null && testMethodName != null )
+        {
+            LOG.info( "Found test: " + testClassName + "." + testMethodName );
+            Dictionary<String, String> props = new Hashtable<String, String>();
+            props.put( Constants.TEST_CASE_ATTRIBUTE, testClassName );
+            props.put( Constants.TEST_METHOD_ATTRIBUTE, testMethodName );
+            final BundleContext bundleContext = BundleUtils.getBundleContext( bundle );
+            final ServiceRegistration serviceRegistration = bundleContext.registerService(
+                CallableTestMethod.class.getName(),
+                new CallableTestMethodImpl( bundleContext, testClassName, testMethodName ),
+                props
+            );
+            m_registrations.put( bundle, new Registration( testClassName, testMethodName, serviceRegistration ) );
+            LOG.info( "Registered testcase [" + testClassName + "." + testMethodName + "]" );
+        }
     }
 
     /**

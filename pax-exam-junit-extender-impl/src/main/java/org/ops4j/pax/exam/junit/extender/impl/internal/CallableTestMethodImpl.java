@@ -21,20 +21,20 @@ package org.ops4j.pax.exam.junit.extender.impl.internal;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.concurrent.Callable;
 import org.osgi.framework.BundleContext;
 import static org.ops4j.lang.NullArgumentException.*;
-import org.ops4j.pax.exam.junit.extender.TestRunner;
-import org.ops4j.pax.exam.junit.extender.TestRunnerException;
+import org.ops4j.pax.exam.junit.extender.CallableTestMethod;
 
 /**
- * {@link TestRunner} implementation.
+ * {@link Callable} implementation.
  *
  * @author Toni Menzel (tonit)
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since May 29, 2008
  */
-class TestRunnerImpl
-    implements TestRunner
+class CallableTestMethodImpl
+    implements CallableTestMethod
 {
 
     /**
@@ -61,9 +61,9 @@ class TestRunnerImpl
      *                                  - If test class name is null or empty
      *                                  - If test method name is null or empty
      */
-    TestRunnerImpl( final BundleContext bundleContext,
-                    final String testClassName,
-                    final String testMethodName )
+    CallableTestMethodImpl( final BundleContext bundleContext,
+                            final String testClassName,
+                            final String testMethodName )
     {
         validateNotNull( bundleContext, "Bundle context" );
         validateNotEmpty( testClassName, true, "Test class name" );
@@ -77,23 +77,16 @@ class TestRunnerImpl
     /**
      * {@inheritDoc}
      */
-    public void execute()
-        throws IllegalAccessException, InvocationTargetException, InstantiationException
+    public void call()
+        throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException
     {
-        try
+        final Class testClass = m_bundleContext.getBundle().loadClass( m_testClassName );
+        for( final Method testMethod : testClass.getDeclaredMethods() )
         {
-            final Class testClass = m_bundleContext.getBundle().loadClass( m_testClassName );
-            for( final Method testMethod : testClass.getDeclaredMethods() )
+            if( testMethod.getName().equals( m_testMethodName ) )
             {
-                if( testMethod.getName().equals( m_testMethodName ) )
-                {
-                    injectContextAndInvoke( testClass.newInstance(), testMethod );
-                }
+                injectContextAndInvoke( testClass.newInstance(), testMethod );
             }
-        }
-        catch( ClassNotFoundException e )
-        {
-            throw new TestRunnerException( "Test case class not found: " + m_testClassName );
         }
     }
 

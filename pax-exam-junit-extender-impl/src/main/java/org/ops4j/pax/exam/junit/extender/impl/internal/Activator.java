@@ -20,14 +20,13 @@ package org.ops4j.pax.exam.junit.extender.impl.internal;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.ops4j.pax.exam.junit.extender.TestRunner;
 import org.ops4j.pax.swissbox.extender.BundleManifestScanner;
 import org.ops4j.pax.swissbox.extender.BundleWatcher;
 import org.ops4j.pax.swissbox.extender.ManifestEntry;
 import org.ops4j.pax.swissbox.extender.RegexKeyManifestFilter;
 
 /**
- * This activator publishes a {@link TestRunner} implementation.
+ * Bundle activator. Starts up an test bundle observer.
  *
  * @author Toni Menzel (tonit)
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
