@@ -55,6 +55,10 @@ import org.ops4j.pax.exam.options.FrameworkOption;
 
 /**
  * JUnit4 Runner to be used with the {@link org.junit.runner.RunWith} annotation to run with Pax Exam.
+ * The class is basically a copy of {@link org.junit.internal.runners.JUnit4ClassRunner} addapted to Pax Exam, keeping
+ * as much as possible the original implementation.
+ * It was not possible to just extend and override the JUnit4ClassRunner due to internal list fTestMethods that is a
+ * list of Methods, and we have to keep extra info about the test methods and Method is a final class.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, December 16, 2008
@@ -64,16 +68,16 @@ public class JUnit4TestRunner
     implements Filterable, Sortable
 {
 
-    private final List<JUnit4TestMethod> fTestMethods;
-    private TestClass fTestClass;
+    private final List<JUnit4TestMethod> m_testMethods;
+    private final TestClass m_testClass;
 
     public JUnit4TestRunner( Class<?> klass )
         throws InitializationError
     {
-        fTestClass = new TestClass( klass );
+        m_testClass = new TestClass( klass );
         try
         {
-            fTestMethods = getTestMethods();
+            m_testMethods = getTestMethods();
         }
         catch( Exception e )
         {
@@ -86,12 +90,12 @@ public class JUnit4TestRunner
         throws IllegalAccessException, InvocationTargetException, InstantiationException
     {
         final List<JUnit4ConfigMethod> configMethods = new ArrayList<JUnit4ConfigMethod>();
-        for( Method configMethod : fTestClass.getAnnotatedMethods( Configuration.class ) )
+        for( Method configMethod : m_testClass.getAnnotatedMethods( Configuration.class ) )
         {
             if( !Modifier.isStatic( configMethod.getModifiers() ) )
             {
                 System.err.println(
-                    "!WARNING: Configuration method [" + configMethod.getName() + "] in [" + fTestClass.getName()
+                    "!WARNING: Configuration method [" + configMethod.getName() + "] in [" + m_testClass.getName()
                     + "] must be static"
                 );
                 continue;
@@ -99,7 +103,7 @@ public class JUnit4TestRunner
             if( Modifier.isAbstract( configMethod.getModifiers() ) )
             {
                 System.err.println(
-                    "!WARNING: Configuration method [" + configMethod.getName() + "] in [" + fTestClass.getName()
+                    "!WARNING: Configuration method [" + configMethod.getName() + "] in [" + m_testClass.getName()
                     + "] cannot be abstract"
                 );
                 continue;
@@ -107,7 +111,7 @@ public class JUnit4TestRunner
             configMethods.add( new JUnit4ConfigMethod( configMethod ) );
         }
         final List<JUnit4TestMethod> methods = new ArrayList<JUnit4TestMethod>();
-        final List<Method> testMethods = fTestClass.getAnnotatedMethods( Test.class );
+        final List<Method> testMethods = m_testClass.getAnnotatedMethods( Test.class );
         for( Method testMethod : testMethods )
         {
             final Option configOptions = getOptions( testMethod.getName(), configMethods );
@@ -115,13 +119,13 @@ public class JUnit4TestRunner
             final Option[] filteredOptions = OptionUtils.remove( FrameworkOption.class, configOptions );
             if( frameworkOptions.length == 0 )
             {
-                methods.add( new JUnit4TestMethod( testMethod, fTestClass, null, filteredOptions ) );
+                methods.add( new JUnit4TestMethod( testMethod, m_testClass, null, filteredOptions ) );
             }
             else
             {
                 for( FrameworkOption frameworkOption : frameworkOptions )
                 {
-                    methods.add( new JUnit4TestMethod( testMethod, fTestClass, frameworkOption, filteredOptions ) );
+                    methods.add( new JUnit4TestMethod( testMethod, m_testClass, frameworkOption, filteredOptions ) );
                 }
             }
         }
@@ -131,7 +135,7 @@ public class JUnit4TestRunner
     protected void validate()
         throws InitializationError
     {
-        MethodValidator methodValidator = new MethodValidator( fTestClass );
+        MethodValidator methodValidator = new MethodValidator( m_testClass );
         // skip the validation bellow as we may have BundleContext as parameter
         // TODO shall we validate that just max one param (bundle context) is possible to be used?
         // methodValidator.validateMethodsForDefaultRunner();
@@ -141,7 +145,7 @@ public class JUnit4TestRunner
     @Override
     public void run( final RunNotifier notifier )
     {
-        new ClassRoadie( notifier, fTestClass, getDescription(), new Runnable()
+        new ClassRoadie( notifier, m_testClass, getDescription(), new Runnable()
         {
             public void run()
             {
@@ -153,7 +157,7 @@ public class JUnit4TestRunner
 
     protected void runMethods( final RunNotifier notifier )
     {
-        for( JUnit4TestMethod method : fTestMethods )
+        for( JUnit4TestMethod method : m_testMethods )
         {
             invokeTestMethod( method, notifier );
         }
@@ -163,7 +167,7 @@ public class JUnit4TestRunner
     public Description getDescription()
     {
         Description spec = Description.createSuiteDescription( getName(), classAnnotations() );
-        List<JUnit4TestMethod> testMethods = fTestMethods;
+        List<JUnit4TestMethod> testMethods = m_testMethods;
         for( JUnit4TestMethod method : testMethods )
         {
             spec.addChild( methodDescription( method ) );
@@ -173,7 +177,7 @@ public class JUnit4TestRunner
 
     protected Annotation[] classAnnotations()
     {
-        return fTestClass.getJavaClass().getAnnotations();
+        return m_testClass.getJavaClass().getAnnotations();
     }
 
     protected String getName()
@@ -210,7 +214,7 @@ public class JUnit4TestRunner
 
     protected TestMethod wrapMethod( Method method )
     {
-        return new TestMethod( method, fTestClass );
+        return new TestMethod( method, m_testClass );
     }
 
     protected String testName( Method method )
@@ -233,7 +237,7 @@ public class JUnit4TestRunner
     protected Description methodDescription( JUnit4TestMethod method )
     {
         return Description.createTestDescription( getTestClass().getJavaClass(), testName( method ),
-                                                  testAnnotations( method.getJavaMethod() )
+                                                  testAnnotations( method.getTestMethod() )
         );
     }
 
@@ -245,15 +249,15 @@ public class JUnit4TestRunner
     public void filter( Filter filter )
         throws NoTestsRemainException
     {
-        for( Iterator<JUnit4TestMethod> iter = fTestMethods.iterator(); iter.hasNext(); )
+        for( Iterator<JUnit4TestMethod> iter = m_testMethods.iterator(); iter.hasNext(); )
         {
             JUnit4TestMethod method = iter.next();
-            if( !filter.shouldRun( methodDescription( method.getJavaMethod() ) ) )
+            if( !filter.shouldRun( methodDescription( method.getTestMethod() ) ) )
             {
                 iter.remove();
             }
         }
-        if( fTestMethods.isEmpty() )
+        if( m_testMethods.isEmpty() )
         {
             throw new NoTestsRemainException();
         }
@@ -261,7 +265,7 @@ public class JUnit4TestRunner
 
     public void sort( final Sorter sorter )
     {
-        Collections.sort( fTestMethods, new Comparator<JUnit4TestMethod>()
+        Collections.sort( m_testMethods, new Comparator<JUnit4TestMethod>()
         {
             public int compare( JUnit4TestMethod o1, JUnit4TestMethod o2 )
             {
@@ -273,7 +277,7 @@ public class JUnit4TestRunner
 
     protected TestClass getTestClass()
     {
-        return fTestClass;
+        return m_testClass;
     }
 
     private static Option getOptions( final String methodName,

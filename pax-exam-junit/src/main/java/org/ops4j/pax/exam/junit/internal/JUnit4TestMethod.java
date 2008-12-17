@@ -22,6 +22,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import org.junit.internal.runners.TestClass;
 import org.junit.internal.runners.TestMethod;
+import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.OptionUtils;
 import org.ops4j.pax.exam.junit.extender.Constants;
@@ -32,7 +33,7 @@ import org.ops4j.pax.exam.spi.container.TestContainer;
 import org.ops4j.pax.exam.spi.container.TestContainerFactory;
 
 /**
- * TODO Add JavaDoc.
+ * A {@link TestMethod} that upon invokation starts a {@link TestContainer} and executes the test in the test container.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0 December 16, 2008
@@ -41,23 +42,51 @@ public class JUnit4TestMethod
     extends TestMethod
 {
 
-    private final Method m_method;
+    /**
+     * Test method. Cannot reuse the one from super class as it is not public.
+     */
+    private final Method m_testMethod;
+    /**
+     * Configuration options.
+     */
     private final Option[] m_options;
+    /**
+     * Configuration method name (test method name and eventual the framework and framework version)
+     */
     private final String m_name;
+    /**
+     * Test bundle URL.
+     */
     private final String m_testBundleUrl;
 
-    public JUnit4TestMethod( final Method method,
+    /**
+     * Constructor.
+     *
+     * @param testMethod      test method (cannot be null)
+     * @param testClass       test class (cannot be null)
+     * @param frameworkOption framework option (on which framework the test method should be run) (can be null = default
+     *                        framework)
+     * @param userOptions     user options (can be null)
+     */
+    public JUnit4TestMethod( final Method testMethod,
                              final TestClass testClass,
                              final FrameworkOption frameworkOption,
                              final Option... userOptions )
     {
-        super( method, testClass );
-        m_method = method;
+        super( testMethod, testClass );
+        validateNotNull( testMethod, "Test method" );
+        validateNotNull( testClass, "Test class" );
+
+        m_testMethod = testMethod;
         m_options = OptionUtils.combine( userOptions, frameworkOption );
-        m_name = calculateName( method, frameworkOption );
-        m_testBundleUrl = getTestBundleUrl( testClass.getName(), m_method.getName() );
+        m_name = calculateName( testMethod.getName(), frameworkOption );
+        m_testBundleUrl = getTestBundleUrl( testClass.getName(), m_testMethod.getName() );
     }
 
+    /**
+     * {@inheritDoc}
+     * Starts the test container, installs the test bundle and executes the test within the container.
+     */
     @Override
     public void invoke( Object test )
         throws IllegalArgumentException, IllegalAccessException, InvocationTargetException
@@ -78,11 +107,39 @@ public class JUnit4TestMethod
         }
     }
 
-    private static String calculateName( final Method method,
+    /**
+     * Getter.
+     *
+     * @return test method
+     */
+    public Method getTestMethod()
+    {
+        return m_testMethod;
+    }
+
+    /**
+     * Getter.
+     *
+     * @return test method name
+     */
+    public String getName()
+    {
+        return m_name;
+    }
+
+    /**
+     * Computes the test method name out of test method name, framework and framework version.
+     *
+     * @param testMethodName  test method name
+     * @param frameworkOption framework option
+     *
+     * @return test method name
+     */
+    private static String calculateName( final String testMethodName,
                                          final FrameworkOption frameworkOption )
     {
         final StringBuilder name = new StringBuilder();
-        name.append( method.getName() );
+        name.append( testMethodName );
         if( frameworkOption != null )
         {
             name.append( " [" ).append( frameworkOption.getName() );
@@ -96,16 +153,14 @@ public class JUnit4TestMethod
         return name.toString();
     }
 
-    public Method getJavaMethod()
-    {
-        return m_method;
-    }
-
-    public String getName()
-    {
-        return m_name;
-    }
-
+    /**
+     * Returns the test bundle url using an Pax URL Dir url.
+     *
+     * @param testClassName  test class name
+     * @param testMethodName test method name
+     *
+     * @return test bundle url
+     */
     private static String getTestBundleUrl( final String testClassName,
                                             final String testMethodName )
     {

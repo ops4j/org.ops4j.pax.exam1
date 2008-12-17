@@ -19,11 +19,13 @@ package org.ops4j.pax.exam.junit.internal;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.AppliesTo;
+import org.ops4j.pax.exam.junit.Configuration;
 
 /**
- * TODO Add JavaDoc.
+ * Models a configuration method (those marked with {@link Configuration} annotation.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, December 16, 2008
@@ -31,12 +33,29 @@ import org.ops4j.pax.exam.junit.AppliesTo;
 public class JUnit4ConfigMethod
 {
 
+    /**
+     * Configuration method. Must be a static, accessible method (cannot be null).
+     */
     private final Method m_method;
+    /**
+     * Array of regular expression that are matched against test method name (cannot be null or empty).
+     */
     private final String[] m_patterns;
+    /**
+     * Configuration options. Initialized only when the getter is called.
+     */
     private Option[] m_options;
 
+    /**
+     * Constructor.
+     *
+     * @param method configuration method (cannot be null)
+     *
+     * @throws IllegalArgumentException - If method is null
+     */
     public JUnit4ConfigMethod( final Method method )
     {
+        validateNotNull( method, "Configuration method" );
         m_method = method;
         final AppliesTo appliesTo = method.getAnnotation( AppliesTo.class );
         if( appliesTo != null )
@@ -49,8 +68,18 @@ public class JUnit4ConfigMethod
         }
     }
 
-    public boolean matches( String methodName )
+    /**
+     * Matches a test method name against this configuration method.
+     *
+     * @param methodName test method name (cannot be null or empty)
+     *
+     * @return true if the test method name matches the configuration method, false otherwise
+     *
+     * @throws IllegalArgumentException - If method name is null or empty
+     */
+    public boolean matches( final String methodName )
     {
+        validateNotEmpty( methodName, true, "Method name" );
         for( String pattern : m_patterns )
         {
             if( methodName.matches( pattern ) )
@@ -61,6 +90,15 @@ public class JUnit4ConfigMethod
         return false;
     }
 
+    /**
+     * Returns the configuration options for this configuration method.
+     *
+     * @return array of configuration options
+     *
+     * @throws IllegalAccessException    - Re-thrown, from invoking the configuration method via reflection
+     * @throws InvocationTargetException - Re-thrown, from invoking the configuration method via reflection
+     * @throws InstantiationException    - Re-thrown, from invoking the configuration method via reflection
+     */
     public Option[] getOptions()
         throws IllegalAccessException, InvocationTargetException, InstantiationException
     {
