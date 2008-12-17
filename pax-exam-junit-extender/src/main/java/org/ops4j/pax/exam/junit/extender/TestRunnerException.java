@@ -23,20 +23,20 @@ package org.ops4j.pax.exam.junit.extender;
  * @author Toni Menzel (tonit)
  * @since Oct 2, 2008
  */
-public class TestExecutionException extends RuntimeException
+public class TestRunnerException extends RuntimeException
 {
 
-    public TestExecutionException( Exception e )
+    public TestRunnerException( Exception e )
     {
         super( e );
     }
 
-    public TestExecutionException( String e )
+    public TestRunnerException( String e )
     {
         super( e );
     }
 
-    public TestExecutionException( String s, Exception e )
+    public TestRunnerException( String s, Exception e )
     {
         super( s, e );
     }

@@ -18,16 +18,25 @@
 package org.ops4j.pax.exam.junit.extender;
 
 /**
- * TODO Add JavaDoc.
+ * Constants related to on the fly created test bundle.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
- * @since 12 13, 2008
+ * @since 0.3.0, December 13, 2008
  */
 public class Constants
 {
 
-    public static final String PROBE_TEST_CASE = "PaxExam-RecipeHost";
-    public static final String PROBE_TEST_METHOD = "PaxExam-RecipeCode";
+    /**
+     * Manifest header specifying the full qualified name of the test class.
+     */
+    public static final String PROBE_TEST_CASE = "PaxExam-TestClassName";
+    /**
+     * Manifest header specifying the test method name in the test class.
+     */
+    public static final String PROBE_TEST_METHOD = "PaxExam-TestMethodName";
+    /**
+     * Test bundle symbolic name.
+     */
     public static final String PROBE_SYMBOLICNAME = "pax-exam-probe";
 
 }

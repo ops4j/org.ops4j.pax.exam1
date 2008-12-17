@@ -23,7 +23,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import org.osgi.framework.BundleContext;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.junit.extender.TestExecutionException;
+import org.ops4j.pax.exam.junit.extender.TestRunnerException;
 import org.ops4j.pax.exam.junit.extender.TestRunner;
 
 /**
@@ -80,7 +80,7 @@ class TestRunnerImpl
         }
         catch( ClassNotFoundException e )
         {
-            throw new TestExecutionException( "Test case class not found: " + m_testCase );
+            throw new TestRunnerException( "Test case class not found: " + m_testCase );
         }
     }
 

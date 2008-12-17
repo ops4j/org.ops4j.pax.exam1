@@ -172,7 +172,11 @@ public class JUnit4TestMethod
             .append( "," )
             .append( Constants.PROBE_TEST_CASE ).append( "=" ).append( testClassName )
             .append( "," )
-            .append( Constants.PROBE_TEST_METHOD ).append( "=" ).append( testMethodName );
+            .append( Constants.PROBE_TEST_METHOD ).append( "=" ).append( testMethodName )
+            .append( "," )
+            .append( org.osgi.framework.Constants.BUNDLE_SYMBOLICNAME )
+            .append( "=" )
+            .append( Constants.PROBE_SYMBOLICNAME );
         return url.toString();
     }
 
