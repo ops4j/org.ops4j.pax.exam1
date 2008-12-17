@@ -93,7 +93,7 @@
   </developers>
 
   <properties>
-    <dependency.runner.version>0.16.1-SNAPSHOT</dependency.runner.version>
+    <dependency.runner.version>0.17.0-SNAPSHOT</dependency.runner.version>
     <dependency.swissbox.version>0.2.0</dependency.swissbox.version>
     <dependency.base.version>0.5.3</dependency.base.version>
     <dependency.url.version>0.3.3-SNAPSHOT</dependency.url.version>

@@ -18,7 +18,7 @@
 package org.ops4j.pax.exam.container.def.options;
 
 import org.ops4j.pax.exam.options.ProvisionOption;
-import static org.ops4j.pax.runner.provision.scanner.ScannerConstants.*;
+import static org.ops4j.pax.runner.provision.ServiceConstants.*;
 
 /**
  * Abstract implementation of {@link ScannerProvisionOption}.
@@ -171,15 +171,15 @@ abstract class AbstractScannerProvisionOption<T extends AbstractScannerProvision
         final StringBuilder options = new StringBuilder();
         if( m_shouldUpdate != null && m_shouldUpdate )
         {
-            options.append( SEPARATOR_OPTIONS ).append( UPDATE_OPTION );
+            options.append( SEPARATOR_OPTION ).append( OPTION_UPDATE );
         }
         if( m_shouldStart != null && !m_shouldStart )
         {
-            options.append( SEPARATOR_OPTIONS ).append( NO_START_OPTION );
+            options.append( SEPARATOR_OPTION ).append( OPTION_NO_START );
         }
         if( m_startLevel != null )
         {
-            options.append( SEPARATOR_OPTIONS ).append( m_startLevel );
+            options.append( SEPARATOR_OPTION ).append( m_startLevel );
         }
         return options.toString();
     }

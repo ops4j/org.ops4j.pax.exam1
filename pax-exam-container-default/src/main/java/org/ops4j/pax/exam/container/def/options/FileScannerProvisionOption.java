@@ -18,39 +18,54 @@
 package org.ops4j.pax.exam.container.def.options;
 
 import static org.ops4j.lang.NullArgumentException.*;
+import org.ops4j.pax.exam.options.ProvisionOption;
+import org.ops4j.pax.exam.options.UrlProvisionOption;
 import static org.ops4j.pax.runner.provision.ServiceConstants.*;
 import static org.ops4j.pax.runner.scanner.dir.ServiceConstants.*;
 
 /**
- * Option specifying provision form an Pax Runner Dir scanner.
+ * Option specifying provision form an Pax Runner File scanner.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, December 17, 2008
  */
-public class DirScannerProvisionOption
-    extends AbstractScannerProvisionOption<DirScannerProvisionOption>
+public class FileScannerProvisionOption
+    extends AbstractScannerProvisionOption<FileScannerProvisionOption>
 {
 
     /**
-     * Directory path (cannot be null or empty).
+     * Provision url (cannot be null or empty).
      */
-    private final String m_path;
-    /**
-     * Ant style regular expresion to be matched against file names (can be null = no filtering)
-     */
-    private String m_filter;
+    private final ProvisionOption m_url;
 
     /**
      * Constructor.
      *
-     * @param path directory to be scanned path (cannot be null or empty)
+     * @param url provision url (cannot be null or empty)
      *
      * @throws IllegalArgumentException - If url is null or empty
      */
-    public DirScannerProvisionOption( final String path )
+    public FileScannerProvisionOption( final String url )
     {
-        validateNotEmpty( path, true, "Directory path" );
-        m_path = path;
+        validateNotEmpty( url, true, "URL" );
+        m_url = new UrlProvisionOption( url );
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param url provision url (cannot be null or a {@link ScannerProvisionOption})
+     *
+     * @throws IllegalArgumentException - If url is null or is an {@link ScannerProvisionOption}
+     */
+    public FileScannerProvisionOption( final ProvisionOption url )
+    {
+        validateNotNull( url, "URL" );
+        if( url instanceof ScannerProvisionOption )
+        {
+            throw new IllegalArgumentException( "URL cannot be an " + ScannerProvisionOption.class.getSimpleName() );
+        }
+        m_url = url;
     }
 
     /**
@@ -58,29 +73,12 @@ public class DirScannerProvisionOption
      */
     public String getURL()
     {
-        final StringBuilder url = new StringBuilder().append( SCHEMA ).append( SEPARATOR_SCHEME ).append( m_path );
-        if( m_filter != null )
-        {
-            url.append( SEPARATOR_FILTER ).append( m_filter );
-        }
-        url.append( getOptions() );
-        return url.toString();
-    }
-
-    /**
-     * Sets the filter to be applied to the scanned file names.
-     *
-     * @param filter ant style regular expresion to be matched against file names (cannot be null or empty)
-     *
-     * @return itself, for fluent api usage
-     *
-     * @throws IllegalArgumentException - If filter is null or empty
-     */
-    public DirScannerProvisionOption filter( final String filter )
-    {
-        validateNotEmpty( filter, true, "Filter" );
-        m_filter = filter;
-        return this;
+        return new StringBuilder()
+            .append( SCHEMA )
+            .append( SEPARATOR_SCHEME )
+            .append( m_url.getURL() )
+            .append( getOptions() )
+            .toString();
     }
 
     /**
@@ -90,7 +88,7 @@ public class DirScannerProvisionOption
     public String toString()
     {
         final StringBuilder sb = new StringBuilder();
-        sb.append( "DirScannerProvisionOption" );
+        sb.append( "FileScannerProvisionOption" );
         sb.append( "{url='" ).append( getURL() ).append( '\'' );
         sb.append( '}' );
         return sb.toString();
@@ -99,7 +97,7 @@ public class DirScannerProvisionOption
     /**
      * {@inheritDoc}
      */
-    DirScannerProvisionOption itself()
+    FileScannerProvisionOption itself()
     {
         return this;
     }

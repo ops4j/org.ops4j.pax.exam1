@@ -815,6 +815,17 @@
         <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit-extender-api/0.3.0-SNAPSHOT/pax-exam-junit-extender-api-0.3.0-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.17.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.17.0-SNAPSHOT/pax-runner-no-jcl-0.17.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.17.0-SNAPSHOT/pax-runner-no-jcl-0.17.0-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.17.0-SNAPSHOT/pax-runner-no-jcl-0.17.0-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
   </component>
   <UsedPathMacros>
     <macro name="M2_REPO" />

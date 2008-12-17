@@ -22,6 +22,7 @@ import org.junit.runner.RunWith;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
+import org.ops4j.pax.exam.junit.AppliesTo;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
@@ -50,10 +51,33 @@ public class PaxRunnerOptionsTest
     }
 
     /**
+     * Pax Exam test options that adds provisioning via a file scanner.
+     * Valid for all test methods.
+     *
+     * @return test options
+     */
+    @Configuration
+    @AppliesTo( "file.*" )
+    public static Option[] configureFileScanner()
+    {
+        return options(
+            scanFile( "x" ).noStart().update().startLevel( 10 )
+        );
+    }
+
+    /**
      * TODO what we can test here?
      */
     @Test
     public void dirScanner()
+    {
+    }
+
+    /**
+     * TODO what we can test here?
+     */
+    @Test
+    public void fileScanner()
     {
     }
 

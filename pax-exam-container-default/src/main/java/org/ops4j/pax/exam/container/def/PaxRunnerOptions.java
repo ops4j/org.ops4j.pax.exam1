@@ -22,10 +22,12 @@ import java.util.List;
 import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.container.def.options.DirScannerProvisionOption;
+import org.ops4j.pax.exam.container.def.options.FileScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
 import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
+import org.ops4j.pax.exam.options.ProvisionOption;
 
 /**
  * Factory methods for Pax Runner options.
@@ -145,7 +147,7 @@ public class PaxRunnerOptions
     }
 
     /**
-     * Creates a {@link org.ops4j.pax.exam.container.def.options.DirScannerProvisionOption}.
+     * Creates a {@link DirScannerProvisionOption}.
      *
      * @param directory directory to be scanned
      *
@@ -156,5 +158,28 @@ public class PaxRunnerOptions
         return new DirScannerProvisionOption( directory );
     }
 
+    /**
+     * Creates a {@link FileScannerProvisionOption}.
+     *
+     * @param url url of the file to be scanned
+     *
+     * @return file scanner option
+     */
+    public static FileScannerProvisionOption scanFile( final String url )
+    {
+        return new FileScannerProvisionOption( url );
+    }
+
+    /**
+     * Creates a {@link FileScannerProvisionOption}.
+     *
+     * @param provision file to be scanned as a provision option
+     *
+     * @return file scanner option
+     */
+    public static FileScannerProvisionOption scanFile( final ProvisionOption provision )
+    {
+        return new FileScannerProvisionOption( provision );
+    }
 
 }
