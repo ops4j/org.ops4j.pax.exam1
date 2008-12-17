@@ -27,8 +27,8 @@ import static org.ops4j.pax.runner.scanner.dir.ServiceConstants.*;
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, December 17, 2008
  */
-public class DirScannerProvisionOptionx
-    extends AbstractScannerProvisionOption<DirScannerProvisionOptionx>
+public class DirScannerProvisionOption
+    extends AbstractScannerProvisionOption<DirScannerProvisionOption>
 {
 
     /**
@@ -47,7 +47,7 @@ public class DirScannerProvisionOptionx
      *
      * @throws IllegalArgumentException - If url is null or empty
      */
-    public DirScannerProvisionOptionx( final String path )
+    public DirScannerProvisionOption( final String path )
     {
         validateNotEmpty( path, true, "Directory path" );
         m_path = path;
@@ -76,7 +76,7 @@ public class DirScannerProvisionOptionx
      *
      * @throws IllegalArgumentException - If filter is null or empty
      */
-    public DirScannerProvisionOptionx filter( final String filter )
+    public DirScannerProvisionOption filter( final String filter )
     {
         validateNotEmpty( filter, true, "Filter" );
         m_filter = filter;
@@ -90,7 +90,7 @@ public class DirScannerProvisionOptionx
     public String toString()
     {
         final StringBuilder sb = new StringBuilder();
-        sb.append( "DirScannerProvisionOptionx" );
+        sb.append( "DirScannerProvisionOption" );
         sb.append( "{url='" ).append( getURL() ).append( '\'' );
         sb.append( '}' );
         return sb.toString();
@@ -99,7 +99,7 @@ public class DirScannerProvisionOptionx
     /**
      * {@inheritDoc}
      */
-    DirScannerProvisionOptionx itself()
+    DirScannerProvisionOption itself()
     {
         return this;
     }

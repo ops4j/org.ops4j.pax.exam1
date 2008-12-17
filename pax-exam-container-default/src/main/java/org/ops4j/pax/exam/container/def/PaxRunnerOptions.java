@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.Option;
-import org.ops4j.pax.exam.container.def.options.DirScannerProvisionOptionx;
+import org.ops4j.pax.exam.container.def.options.DirScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
 import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
@@ -145,15 +145,15 @@ public class PaxRunnerOptions
     }
 
     /**
-     * Creates a {@link org.ops4j.pax.exam.container.def.options.DirScannerProvisionOptionx}.
+     * Creates a {@link org.ops4j.pax.exam.container.def.options.DirScannerProvisionOption}.
      *
      * @param directory directory to be scanned
      *
      * @return directory scanner option
      */
-    public static DirScannerProvisionOptionx scanDir( final String directory )
+    public static DirScannerProvisionOption scanDir( final String directory )
     {
-        return new DirScannerProvisionOptionx( directory );
+        return new DirScannerProvisionOption( directory );
     }
 
 
