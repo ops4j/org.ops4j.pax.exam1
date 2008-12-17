@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.container.def.options.DirScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
 import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
@@ -126,7 +127,7 @@ public class PaxRunnerOptions
      *
      * @return composite option of virtual machine options
      */
-    private static Option vmOptions( final VMOption... vmOptions )
+    public static Option vmOptions( final VMOption... vmOptions )
     {
         return new DefaultCompositeOption( vmOptions );
     }
@@ -138,9 +139,22 @@ public class PaxRunnerOptions
      *
      * @return virtual machine option
      */
-    private static VMOption vmOption( String vmOption )
+    public static VMOption vmOption( final String vmOption )
     {
         return new VMOption( vmOption );
     }
+
+    /**
+     * Creates a {@link DirScannerProvisionOption}.
+     *
+     * @param directory directory to be scanned
+     *
+     * @return directory scanner option
+     */
+    public static DirScannerProvisionOption scanDir( final String directory )
+    {
+        return new DirScannerProvisionOption( directory );
+    }
+
 
 }
