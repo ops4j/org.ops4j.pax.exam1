@@ -118,6 +118,15 @@ public class RemoteBundleContextImpl
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public void stopBundle( long bundleId )
+        throws BundleException
+    {
+        m_bundleContext.getBundle( bundleId ).stop();
+    }
+
+    /**
      * Lookup a service in the service registry.
      *
      * @param serviceType     service class

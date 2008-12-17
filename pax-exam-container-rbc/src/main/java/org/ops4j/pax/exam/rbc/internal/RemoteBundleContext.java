@@ -53,4 +53,7 @@ public interface RemoteBundleContext
     void startBundle( long bundleId )
         throws RemoteException, BundleException;
 
+    void stopBundle( long bundleId )
+        throws RemoteException, BundleException;
+
 }

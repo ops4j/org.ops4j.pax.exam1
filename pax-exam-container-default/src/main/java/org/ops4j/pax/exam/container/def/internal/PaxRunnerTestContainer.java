@@ -18,6 +18,8 @@
 package org.ops4j.pax.exam.container.def.internal;
 
 import java.rmi.registry.Registry;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.ops4j.net.FreePort;
 import org.ops4j.pax.exam.CoreOptions;
 import org.ops4j.pax.exam.Info;
@@ -42,6 +44,11 @@ import org.ops4j.pax.runner.platform.StoppableJavaRunner;
 class PaxRunnerTestContainer
     implements TestContainer
 {
+
+    /**
+     * JCL logger.
+     */
+    private static final Log LOG = LogFactory.getLog( PaxRunnerTestContainer.class );
 
     /**
      * Number of ports to check for a free rmi communication port.
@@ -70,6 +77,7 @@ class PaxRunnerTestContainer
     PaxRunnerTestContainer( final StoppableJavaRunner javaRunner,
                             final Option... options )
     {
+        LOG.info( "Starting up the test container (Pax Runner " + Info.getPaxRunnerVersion() + " )" );
         // TODO wrap maven bundle with a @update if a version is a snapshot
         m_remoteBundleContextClient = new RemoteBundleContextClient(
             findFreeCommunicationPort(),
@@ -85,6 +93,7 @@ class PaxRunnerTestContainer
      */
     public <T> T getService( final Class<T> serviceType )
     {
+        LOG.debug( "Lookup a [" + serviceType.getName() + "]" );
         return m_remoteBundleContextClient.getService( serviceType );
     }
 
@@ -95,6 +104,7 @@ class PaxRunnerTestContainer
     public <T> T getService( final Class<T> serviceType,
                              final int timeoutInMillis )
     {
+        LOG.debug( "Lookup a [" + serviceType.getName() + "]" );
         return m_remoteBundleContextClient.getService( serviceType, timeoutInMillis );
     }
 
@@ -104,6 +114,7 @@ class PaxRunnerTestContainer
      */
     public long installBundle( final String bundleUrl )
     {
+        LOG.debug( "Install bundle [" + bundleUrl + "]" );
         return m_remoteBundleContextClient.installBundle( bundleUrl );
     }
 
@@ -132,7 +143,9 @@ class PaxRunnerTestContainer
      */
     public void stop()
     {
-        m_javaRunner.shutdown();
+        LOG.info( "Shutting down the test container (Pax Runner)" );
+        m_remoteBundleContextClient.stop();
+        //m_javaRunner.shutdown();
     }
 
     /**

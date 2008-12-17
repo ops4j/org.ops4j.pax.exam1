@@ -31,13 +31,24 @@ import java.util.Properties;
 public class Info
 {
 
+    /**
+     * Pax Exam version.
+     */
     private static final String m_paxExamVersion;
+    /**
+     * Pax URL version.
+     */
     private static final String m_paxUrlVersion;
+    /**
+     * Pax Runner version.
+     */
+    private static final String m_paxRunnerVersion;
 
     static
     {
         String paxExamVersion = "";
         String paxUrlVersion = "";
+        String paxRunnerVersion = "";
         try
         {
             final InputStream is = Info.class.getClassLoader().getResourceAsStream( "META-INF/version.properties" );
@@ -47,6 +58,7 @@ public class Info
                 properties.load( is );
                 paxExamVersion = properties.getProperty( "pax.exam.version", "" ).trim();
                 paxUrlVersion = properties.getProperty( "pax.url.version", "" ).trim();
+                paxRunnerVersion = properties.getProperty( "pax.runner.version", "" ).trim();
             }
         }
         catch( Exception ignore )
@@ -55,6 +67,7 @@ public class Info
         }
         m_paxExamVersion = paxExamVersion;
         m_paxUrlVersion = paxUrlVersion;
+        m_paxRunnerVersion = paxRunnerVersion;
     }
 
     /**
@@ -83,6 +96,16 @@ public class Info
     public static String getPaxUrlVersion()
     {
         return m_paxUrlVersion;
+    }
+
+    /**
+     * Discovers the Pax Runner version. If version cannot be determined returns an empty string.
+     *
+     * @return pax runner version
+     */
+    public static String getPaxRunnerVersion()
+    {
+        return m_paxRunnerVersion;
     }
 
     /**

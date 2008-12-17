@@ -174,7 +174,7 @@ public class RemoteBundleContextClient
         }
         catch( BundleException e )
         {
-            throw new TestContainerException( "Bundle cannot be installed", e );
+            throw new TestContainerException( "Bundle cannot be started", e );
         }
     }
 
@@ -183,8 +183,18 @@ public class RemoteBundleContextClient
      */
     public void stop()
     {
-        // TODO will be better to stop the framework via this method
-        throw new UnsupportedOperationException( "Stop via the remote bundle context is not supported" );
+        try
+        {
+            getRemoteBundleContext().startBundle( 0 );
+        }
+        catch( RemoteException e )
+        {
+            throw new TestContainerException( "Remote exception", e );
+        }
+        catch( BundleException e )
+        {
+            throw new TestContainerException( "System bundle cannot be stopped", e );
+        }
     }
 
     private RemoteBundleContext getRemoteBundleContext()

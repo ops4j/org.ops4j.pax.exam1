@@ -109,6 +109,7 @@ public class JUnit4TestMethod
         {
             throw new InvocationTargetException( e );
         }
+        container.stop();
     }
 
     /**
