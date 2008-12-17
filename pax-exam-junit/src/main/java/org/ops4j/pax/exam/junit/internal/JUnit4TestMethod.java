@@ -23,6 +23,7 @@ import java.lang.reflect.Method;
 import org.junit.internal.runners.TestClass;
 import org.junit.internal.runners.TestMethod;
 import static org.ops4j.lang.NullArgumentException.*;
+import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.OptionUtils;
 import org.ops4j.pax.exam.junit.extender.CallableTestMethod;
@@ -91,6 +92,7 @@ public class JUnit4TestMethod
     public void invoke( Object test )
         throws IllegalArgumentException, IllegalAccessException, InvocationTargetException
     {
+        Info.showLogo();
         final TestContainerFactory containerFactory = PaxExamRuntime.getTestContainerFactory();
         final TestContainer container = containerFactory.newInstance( m_options );
         container.startBundle( container.installBundle( m_testBundleUrl ) );
