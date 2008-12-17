@@ -23,15 +23,24 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation marking Pax Exam configuration method.
+ * Annotation specifying to which method names the configuration applies. The value of configuration is an array of
+ * regular expressions that are matched against test method names (those methods marked with {@link org.junit.Test}).
+ * A configuration method can match multiple test methods, case when the options will be merged.
  *
- * @author Toni Menzel (tonit)
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
- * @since Oct 14, 2008
+ * @since 0.3.0, December 17, 2008
  */
 @Retention( RetentionPolicy.RUNTIME )
 @Target( ElementType.METHOD )
-public @interface Configuration
+public @interface AppliesTo
 {
+
+    /**
+     * Array of regular expressions that are matched agains test methods names.
+     * By default (value not specified) matches all test methods (".*").
+     *
+     * @return array of regular expressions
+     */
+    public abstract String[] value() default { ".*" };
 
 }

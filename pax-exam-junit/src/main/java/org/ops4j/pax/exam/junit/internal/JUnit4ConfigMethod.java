@@ -20,13 +20,13 @@ package org.ops4j.pax.exam.junit.internal;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import org.ops4j.pax.exam.Option;
-import org.ops4j.pax.exam.junit.Configuration;
+import org.ops4j.pax.exam.junit.AppliesTo;
 
 /**
  * TODO Add JavaDoc.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
- * @since 12 16, 2008
+ * @since 0.3.0, December 16, 2008
  */
 public class JUnit4ConfigMethod
 {
@@ -38,7 +38,15 @@ public class JUnit4ConfigMethod
     public JUnit4ConfigMethod( final Method method )
     {
         m_method = method;
-        m_patterns = method.getAnnotation( Configuration.class ).value();
+        final AppliesTo appliesTo = method.getAnnotation( AppliesTo.class );
+        if( appliesTo != null )
+        {
+            m_patterns = appliesTo.value();
+        }
+        else
+        {
+            m_patterns = new String[]{ ".*" };
+        }
     }
 
     public boolean matches( String methodName )

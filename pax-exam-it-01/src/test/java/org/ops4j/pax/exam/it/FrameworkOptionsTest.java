@@ -26,6 +26,7 @@ import org.osgi.framework.Constants;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
+import org.ops4j.pax.exam.junit.AppliesTo;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
@@ -59,7 +60,8 @@ public class FrameworkOptionsTest
      *
      * @return test options
      */
-    @Configuration( "equinox.*" )
+    @Configuration
+    @AppliesTo( "equinox.*" )
     public static Option[] configureEquinox()
     {
         return options(
@@ -73,7 +75,8 @@ public class FrameworkOptionsTest
      *
      * @return test options
      */
-    @Configuration( "felix.*" )
+    @Configuration
+    @AppliesTo( "felix.*" )
     public static Option[] configureFelix()
     {
         return options(
@@ -87,7 +90,8 @@ public class FrameworkOptionsTest
      *
      * @return test options
      */
-    @Configuration( "knopflerfish.*" )
+    @Configuration
+    @AppliesTo( "knopflerfish.*" )
     public static Option[] configureKnopflerfish()
     {
         return options(

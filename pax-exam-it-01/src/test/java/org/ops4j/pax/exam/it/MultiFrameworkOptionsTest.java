@@ -28,6 +28,7 @@ import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
+import org.ops4j.pax.exam.junit.AppliesTo;
 
 /**
  * Framework options integration tests.
@@ -59,7 +60,8 @@ public class MultiFrameworkOptionsTest
      *
      * @return test options
      */
-    @Configuration( "felix.*" )
+    @Configuration
+    @AppliesTo( "felix.*" )
     public static Option[] configureFelix()
     {
         return options(
@@ -78,7 +80,8 @@ public class MultiFrameworkOptionsTest
      *
      * @return test options
      */
-    @Configuration( "multiple.*" )
+    @Configuration
+    @AppliesTo( "multiple.*" )
     public static Option[] configureAllFrameworks()
     {
         return options(
