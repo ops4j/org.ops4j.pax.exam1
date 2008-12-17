@@ -22,12 +22,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import org.osgi.framework.BundleContext;
-import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.junit.extender.TestRunnerException;
+import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.junit.extender.TestRunner;
+import org.ops4j.pax.exam.junit.extender.TestRunnerException;
 
 /**
- * Test runner service responsible for loading the test class, inject bundle context and run the test.
+ * {@link TestRunner} implementation.
  *
  * @author Toni Menzel (tonit)
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
@@ -37,28 +37,41 @@ class TestRunnerImpl
     implements TestRunner
 {
 
+    /**
+     * Bundle context of the bundle containing the test class (cannot be null).
+     */
     private BundleContext m_bundleContext;
-    private final String m_testCase;
-    private final String m_testMethod;
+    /**
+     * Test class name (cannot be null or empty).
+     */
+    private final String m_testClassName;
+    /**
+     * Test method name (cannot be null or empty).
+     */
+    private final String m_testMethodName;
 
     /**
      * Constructor.
      *
-     * @param bundleContext bundle context to be injected into test method
-     * @param testCase      test case class name
-     * @param testMethod    test method name
+     * @param bundleContext  bundle context of the bundle containing the test class (cannot be null)
+     * @param testClassName  test class name (cannot be null  or empty)
+     * @param testMethodName test method name (cannot be null or empty)
+     *
+     * @throws IllegalArgumentException - If bundle context is null
+     *                                  - If test class name is null or empty
+     *                                  - If test method name is null or empty
      */
     TestRunnerImpl( final BundleContext bundleContext,
-                    final String testCase,
-                    final String testMethod )
+                    final String testClassName,
+                    final String testMethodName )
     {
-        NullArgumentException.validateNotNull( bundleContext, "bundle context" );
-        NullArgumentException.validateNotEmpty( testCase, true, "test case" );
-        NullArgumentException.validateNotEmpty( testMethod, true, "test method" );
+        validateNotNull( bundleContext, "Bundle context" );
+        validateNotEmpty( testClassName, true, "Test class name" );
+        validateNotEmpty( testMethodName, true, "Test method name" );
 
-        m_testCase = testCase;
-        m_testMethod = testMethod;
         m_bundleContext = bundleContext;
+        m_testClassName = testClassName;
+        m_testMethodName = testMethodName;
     }
 
     /**
@@ -69,31 +82,41 @@ class TestRunnerImpl
     {
         try
         {
-            final Class clazz = m_bundleContext.getBundle().loadClass( m_testCase );
-            for( Method method : clazz.getDeclaredMethods() )
+            final Class testClass = m_bundleContext.getBundle().loadClass( m_testClassName );
+            for( final Method testMethod : testClass.getDeclaredMethods() )
             {
-                if( method.getName().equals( m_testMethod ) )
+                if( testMethod.getName().equals( m_testMethodName ) )
                 {
-                    injectContextAndInvoke( clazz, method, clazz.newInstance(), m_bundleContext );
+                    injectContextAndInvoke( testClass.newInstance(), testMethod );
                 }
             }
         }
         catch( ClassNotFoundException e )
         {
-            throw new TestRunnerException( "Test case class not found: " + m_testCase );
+            throw new TestRunnerException( "Test case class not found: " + m_testClassName );
         }
     }
 
-    private void injectContextAndInvoke( Class clazz, Method m, Object o, BundleContext bundleContext )
+    /**
+     * Invokes the bundle context (if possible and required) and executes the test method.
+     *
+     * @param testInstance an instance of the test class
+     * @param testMethod   test method
+     *
+     * @throws IllegalAccessException    - Re-thrown from reflection invokation
+     * @throws InvocationTargetException - Re-thrown from reflection invokation
+     */
+    private void injectContextAndInvoke( final Object testInstance,
+                                         final Method testMethod )
         throws IllegalAccessException, InvocationTargetException
     {
         try
         {
-            Field field = clazz.getField( "bundleContext" );
+            final Field field = testInstance.getClass().getField( "bundleContext" );
             if( field != null )
             {
                 field.setAccessible( true );
-                field.set( o, bundleContext );
+                field.set( testInstance, m_bundleContext );
             }
         }
         catch( NoSuchFieldException e )
@@ -105,14 +128,14 @@ class TestRunnerImpl
             // TODO print a warning message about bundle context field not being accessible
             //e.printStackTrace();
         }
-        if( m.getParameterTypes().length == 1 )
+        if( testMethod.getParameterTypes().length == 1 )
         {
             // TODO add additional validation
-            m.invoke( o, bundleContext );
+            testMethod.invoke( testInstance, m_bundleContext );
         }
         else
         {
-            m.invoke( o );
+            testMethod.invoke( testInstance );
         }
     }
 

@@ -170,7 +170,7 @@ public class JUnit4TestMethod
             .append( "$" )
             .append( "anchor=" ).append( testClassName.replace( ".", "/" ) ).append( ".class" )
             .append( "," )
-            .append( Constants.PROBE_TEST_CASE ).append( "=" ).append( testClassName )
+            .append( Constants.PROBE_TEST_CLASS ).append( "=" ).append( testClassName )
             .append( "," )
             .append( Constants.PROBE_TEST_METHOD ).append( "=" ).append( testMethodName )
             .append( "," )

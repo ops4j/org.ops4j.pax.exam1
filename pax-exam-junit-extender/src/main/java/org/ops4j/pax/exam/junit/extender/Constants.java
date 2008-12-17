@@ -29,7 +29,7 @@ public class Constants
     /**
      * Manifest header specifying the full qualified name of the test class.
      */
-    public static final String PROBE_TEST_CASE = "PaxExam-TestClassName";
+    public static final String PROBE_TEST_CLASS = "PaxExam-TestClassName";
     /**
      * Manifest header specifying the test method name in the test class.
      */
@@ -38,5 +38,13 @@ public class Constants
      * Test bundle symbolic name.
      */
     public static final String PROBE_SYMBOLICNAME = "pax-exam-probe";
+    /**
+     * Test class name service attribute.
+     */
+    public static final String TEST_CASE_ATTRIBUTE = "org.ops4j.pax.exam.test.class";
+    /**
+     * Test method name service attribute.
+     */
+    public static final String TEST_METHOD_ATTRIBUTE = "org.ops4j.pax.exam.test.method";
 
 }
