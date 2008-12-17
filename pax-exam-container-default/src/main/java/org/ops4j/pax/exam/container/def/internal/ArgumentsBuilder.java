@@ -32,7 +32,7 @@ import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
 
 /**
- * TODO Add JavaDoc.
+ * Utility methods for converting configuration options to Pax Runner arguments.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0 December 10, 2008
@@ -40,42 +40,76 @@ import org.ops4j.pax.exam.options.SystemPropertyOption;
 class ArgumentsBuilder
 {
 
+    /**
+     * Utility class. Ment to be used via the static methods.
+     */
+    private ArgumentsBuilder()
+    {
+        // utility class
+    }
+
+    /**
+     * Converts configuration options to Pax Runner arguments.
+     *
+     * @param options array of configuration options
+     *
+     * @return Pax Runner arguments
+     */
     static String[] buildArguments( final Option... options )
     {
-        final List<String> runnerOptions = new ArrayList<String>();
+        final List<String> arguments = new ArrayList<String>();
 
-        add( runnerOptions, defaultArguments() );
-        add( runnerOptions, extractArguments( filter( FrameworkOption.class, options ) ) );
-        add( runnerOptions, extractArguments( filter( ProfileOption.class, options ) ) );
-        add( runnerOptions, extractArguments( filter( BootDelegationOption.class, options ) ) );
-        add( runnerOptions, extractArguments( filter( SystemPackageOption.class, options ) ) );
-        add( runnerOptions, extractArguments( filter( ProvisionOption.class, options ) ) );
-        add( runnerOptions,
+        add( arguments, defaultArguments() );
+        add( arguments, extractArguments( filter( FrameworkOption.class, options ) ) );
+        add( arguments, extractArguments( filter( ProfileOption.class, options ) ) );
+        add( arguments, extractArguments( filter( BootDelegationOption.class, options ) ) );
+        add( arguments, extractArguments( filter( SystemPackageOption.class, options ) ) );
+        add( arguments, extractArguments( filter( ProvisionOption.class, options ) ) );
+        add( arguments,
              extractArguments(
                  filter( SystemPropertyOption.class, options ),
                  filter( VMOption.class, options )
              )
         );
 
-        return runnerOptions.toArray( new String[runnerOptions.size()] );
+        return arguments.toArray( new String[arguments.size()] );
     }
 
-    private static void add( List<String> runnerOptions, Collection<String> options )
+    /**
+     * Adds a collection of arguments to a list of arguments by skipping null arguments.
+     *
+     * @param arguments      list to which the arguments should be added
+     * @param argumentsToAdd arguments to be added (can be null or empty)
+     */
+    private static void add( final List<String> arguments,
+                             final Collection<String> argumentsToAdd )
     {
-        if( options != null && options.size() > 0 )
+        if( argumentsToAdd != null && argumentsToAdd.size() > 0 )
         {
-            runnerOptions.addAll( options );
+            arguments.addAll( argumentsToAdd );
         }
     }
 
-    private static void add( List<String> runnerOptions, String option )
+    /**
+     * Adds an argumentto a list of arguments by skipping null or empty arguments.
+     *
+     * @param arguments list to which the arguments should be added
+     * @param argument  argument to be added (can be null or empty)
+     */
+    private static void add( final List<String> arguments,
+                             final String argument )
     {
-        if( option != null && option.trim().length() > 0 )
+        if( argument != null && argument.trim().length() > 0 )
         {
-            runnerOptions.add( option );
+            arguments.add( argument );
         }
     }
 
+    /**
+     * Returns a collection of default Pax Runner arguments.
+     *
+     * @return collection of default arguments
+     */
     private static Collection<String> defaultArguments()
     {
         final List<String> options = new ArrayList<String>();
@@ -86,6 +120,15 @@ class ArgumentsBuilder
         return options;
     }
 
+    /**
+     * Converts framework options into corresponding arguments (--platform, --version).
+     *
+     * @param frameworks framework options
+     *
+     * @return converted Pax Runner collection of arguments
+     *
+     * @throws IllegalArgumentException - If there are more then one framework options
+     */
     private static Collection<String> extractArguments( final FrameworkOption[] frameworks )
     {
         final List<String> options = new ArrayList<String>();
@@ -105,6 +148,13 @@ class ArgumentsBuilder
         return options;
     }
 
+    /**
+     * Converts provision options into corresponding arguments (provision urls).
+     *
+     * @param bundles provision options
+     *
+     * @return converted Pax Runner collection of arguments
+     */
     private static Collection<String> extractArguments( final ProvisionOption[] bundles )
     {
         final List<String> options = new ArrayList<String>();
@@ -115,6 +165,13 @@ class ArgumentsBuilder
         return options;
     }
 
+    /**
+     * Converts profile options into corresponding arguments (--profiles).
+     *
+     * @param profiles profile options
+     *
+     * @return converted Pax Runner collection of arguments
+     */
     private static String extractArguments( final ProfileOption[] profiles )
     {
         final StringBuilder option = new StringBuilder();
@@ -139,6 +196,13 @@ class ArgumentsBuilder
         return option.toString();
     }
 
+    /**
+     * Converts boot delegation packages options into corresponding arguments (--bootDelegation).
+     *
+     * @param packages boot delegation package options
+     *
+     * @return converted Pax Runner collection of arguments
+     */
     private static String extractArguments( final BootDelegationOption[] packages )
     {
         final StringBuilder option = new StringBuilder();
@@ -163,6 +227,13 @@ class ArgumentsBuilder
         return option.toString();
     }
 
+    /**
+     * Converts system package options into corresponding arguments (--systemPackages).
+     *
+     * @param packages system package options
+     *
+     * @return converted Pax Runner collection of arguments
+     */
     private static String extractArguments( final SystemPackageOption[] packages )
     {
         final StringBuilder option = new StringBuilder();
@@ -187,6 +258,14 @@ class ArgumentsBuilder
         return option.toString();
     }
 
+    /**
+     * Converts system properties and vm options into corresponding arguments (--vmOptions).
+     *
+     * @param systemProperties system property options
+     * @param vmOptions        virtual machine options
+     *
+     * @return converted Pax Runner argument
+     */
     private static String extractArguments( final SystemPropertyOption[] systemProperties,
                                             final VMOption[] vmOptions )
     {
@@ -226,12 +305,18 @@ class ArgumentsBuilder
         return option.toString();
     }
 
-    public static File createWorkingDirectory()
+    /**
+     * Creates a working directory as ${java.io.tmpdir}/paxexam_runner_${user.name}.
+     *
+     * @return created working directory
+     */
+    private static File createWorkingDirectory()
     {
 
-        String currentUser = "";
-        currentUser = System.getProperty( "user.name" );
-        File workDir = new File( System.getProperty( "java.io.tmpdir" ) + "/paxexam_runner_" + currentUser );
+        final File workDir = new File( System.getProperty( "java.io.tmpdir" )
+                                       + "/paxexam_runner_"
+                                       + System.getProperty( "user.name" )
+        );
         // create if not existent:
         if( !workDir.exists() )
         {
@@ -239,4 +324,5 @@ class ArgumentsBuilder
         }
         return workDir;
     }
+
 }
