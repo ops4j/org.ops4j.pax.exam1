@@ -66,6 +66,14 @@ public class PaxRunnerOptionsTest
     }
 
     /**
+     * TODO what we can test here?
+     */
+    @Test
+    public void dirScanner()
+    {
+    }
+
+    /**
      * Pax Exam test options that adds provisioning via a file scanner.
      * Valid for test methods that starts with "file".
      *
@@ -78,6 +86,14 @@ public class PaxRunnerOptionsTest
         return options(
             scanFile( "file://foo/bar.bundles" ).noStart().update().startLevel( 10 )
         );
+    }
+
+    /**
+     * TODO what we can test here?
+     */
+    @Test
+    public void fileScanner()
+    {
     }
 
     /**
@@ -95,22 +111,6 @@ public class PaxRunnerOptionsTest
             scanBundle( bundle( "file:bar/foo.jar" ) ).noStart().update().startLevel( 10 ),
             scanBundle( mavenBundle().group( "foo" ).artifact( "bar" ) ).noStart().update().startLevel( 10 )
         );
-    }
-
-    /**
-     * TODO what we can test here?
-     */
-    @Test
-    public void dirScanner()
-    {
-    }
-
-    /**
-     * TODO what we can test here?
-     */
-    @Test
-    public void fileScanner()
-    {
     }
 
     /**
