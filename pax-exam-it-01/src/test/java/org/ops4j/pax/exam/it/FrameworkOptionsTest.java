@@ -71,36 +71,6 @@ public class FrameworkOptionsTest
     }
 
     /**
-     * Pax Exam test options that specified Felix as test framework.
-     * Valid for test methods that starts with "felix".
-     *
-     * @return test options
-     */
-    @Configuration
-    @AppliesTo( "felix.*" )
-    public static Option[] configureFelix()
-    {
-        return options(
-            felix()
-        );
-    }
-
-    /**
-     * Pax Exam test options that specified Knopflerfish as test framework.
-     * Valid for test methods that starts with "knopflerfish".
-     *
-     * @return test options
-     */
-    @Configuration
-    @AppliesTo( "knopflerfish.*" )
-    public static Option[] configureKnopflerfish()
-    {
-        return options(
-            knopflerfish()
-        );
-    }
-
-    /**
      * Test that the started framewrok is Equinox.
      *
      * @param bundleContext injected bundle context
@@ -117,6 +87,21 @@ public class FrameworkOptionsTest
     }
 
     /**
+     * Pax Exam test options that specified Felix as test framework.
+     * Valid for test methods that starts with "felix".
+     *
+     * @return test options
+     */
+    @Configuration
+    @AppliesTo( "felix.*" )
+    public static Option[] configureFelix()
+    {
+        return options(
+            felix()
+        );
+    }
+
+    /**
      * Test that the started framewrok is Felix.
      *
      * @param bundleContext injected bundle context
@@ -129,6 +114,21 @@ public class FrameworkOptionsTest
             "Framework vendor",
             bundleContext.getProperty( Constants.FRAMEWORK_VENDOR ),
             is( equalTo( "Apache Software Foundation" ) )
+        );
+    }
+
+    /**
+     * Pax Exam test options that specified Knopflerfish as test framework.
+     * Valid for test methods that starts with "knopflerfish".
+     *
+     * @return test options
+     */
+    @Configuration
+    @AppliesTo( "knopflerfish.*" )
+    public static Option[] configureKnopflerfish()
+    {
+        return options(
+            knopflerfish()
         );
     }
 
