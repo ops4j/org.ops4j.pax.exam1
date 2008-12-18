@@ -27,6 +27,7 @@ import org.ops4j.pax.exam.container.def.options.FileScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
 import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
+import org.ops4j.pax.exam.container.def.options.RepositoriesOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 
@@ -143,6 +144,11 @@ public class PaxRunnerOptions
     public static VMOption vmOption( final String vmOption )
     {
         return new VMOption( vmOption );
+    }
+
+     public static RepositoriesOption repository( final String repositoryOption )
+    {
+        return new RepositoriesOption( repositoryOption );
     }
 
     /**

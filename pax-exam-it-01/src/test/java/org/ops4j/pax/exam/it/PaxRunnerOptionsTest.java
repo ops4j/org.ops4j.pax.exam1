@@ -18,7 +18,6 @@
 package org.ops4j.pax.exam.it;
 
 import org.junit.Test;
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Option;
@@ -70,7 +69,6 @@ public class PaxRunnerOptionsTest
      * TODO what we can test here?
      */
     @Test
-    @Ignore
     public void dirScanner()
     {
     }
@@ -94,7 +92,6 @@ public class PaxRunnerOptionsTest
      * TODO what we can test here?
      */
     @Test
-    @Ignore
     public void fileScanner()
     {
     }
@@ -120,10 +117,31 @@ public class PaxRunnerOptionsTest
      * TODO what we can test here?
      */
     @Test
-    @Ignore
     public void bundleScanner()
     {
     }
 
 
+    /**
+     * Pax Exam test options that adds provisioning via a bundle scanner.
+     * Valid for test methods that starts with "bundle".
+     *
+     * @return test options
+     */
+    @Configuration
+    @AppliesTo( "repository.*" )
+    public static Option[] configureRepositories()
+    {
+        return options(
+            repository( "http://repository.ops4j.org/mvn-snapshots" ).disableReleases().allowSnapshots()
+        );
+    }
+
+    /**
+     * TODO what we can test here?
+     */
+    @Test
+    public void repositoryTest()
+    {
+    }
 }
