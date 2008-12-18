@@ -20,6 +20,7 @@ package org.ops4j.pax.exam.it;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
@@ -110,6 +111,7 @@ public class MultiFrameworkOptionsTest
     }
 
     @Test
+    @Ignore
     public void multipleIsUpAndRunning( final BundleContext bundleContext )
     {
         assertThat( "Bundle context", bundleContext, is( notNullValue() ) );

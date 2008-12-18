@@ -18,6 +18,7 @@
 package org.ops4j.pax.exam.it;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Option;
@@ -69,6 +70,7 @@ public class PaxRunnerOptionsTest
      * TODO what we can test here?
      */
     @Test
+    @Ignore
     public void dirScanner()
     {
     }
@@ -92,6 +94,7 @@ public class PaxRunnerOptionsTest
      * TODO what we can test here?
      */
     @Test
+    @Ignore
     public void fileScanner()
     {
     }
@@ -117,6 +120,7 @@ public class PaxRunnerOptionsTest
      * TODO what we can test here?
      */
     @Test
+    @Ignore
     public void bundleScanner()
     {
     }
