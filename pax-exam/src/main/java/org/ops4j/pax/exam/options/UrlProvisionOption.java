@@ -26,7 +26,7 @@ import static org.ops4j.lang.NullArgumentException.*;
  * @since 0.3.0, December 08, 2008
  */
 public class UrlProvisionOption
-    implements ProvisionOption
+    extends AbstractProvisionOption<UrlProvisionOption>
 {
 
     /**
@@ -66,6 +66,14 @@ public class UrlProvisionOption
         sb.append( "{url='" ).append( m_url ).append( '\'' );
         sb.append( '}' );
         return sb.toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected UrlProvisionOption itself()
+    {
+        return this;
     }
 
 }

@@ -17,7 +17,8 @@
  */
 package org.ops4j.pax.exam.container.def.options;
 
-import static org.ops4j.lang.NullArgumentException.*;
+import static org.ops4j.pax.exam.container.def.options.ScannerUtils.*;
+import org.ops4j.pax.exam.options.AbstractProvisionWrapperOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import static org.ops4j.pax.runner.provision.ServiceConstants.*;
@@ -30,13 +31,8 @@ import static org.ops4j.pax.runner.scanner.file.ServiceConstants.*;
  * @since 0.3.0, December 17, 2008
  */
 public class FileScannerProvisionOption
-    extends AbstractScannerProvisionOption<FileScannerProvisionOption>
+    extends AbstractProvisionWrapperOption<FileScannerProvisionOption>
 {
-
-    /**
-     * Provision url (cannot be null or empty).
-     */
-    private final ProvisionOption m_url;
 
     /**
      * Constructor.
@@ -47,25 +43,19 @@ public class FileScannerProvisionOption
      */
     public FileScannerProvisionOption( final String url )
     {
-        validateNotEmpty( url, true, "URL" );
-        m_url = new UrlProvisionOption( url );
+        super( new UrlProvisionOption( url ) );
     }
 
     /**
      * Constructor.
      *
-     * @param url provision url (cannot be null or a {@link ScannerProvisionOption})
+     * @param url provision url (cannot be null)
      *
-     * @throws IllegalArgumentException - If url is null or is an {@link ScannerProvisionOption}
+     * @throws IllegalArgumentException - If url is null
      */
     public FileScannerProvisionOption( final ProvisionOption url )
     {
-        validateNotNull( url, "URL" );
-        if( url instanceof ScannerProvisionOption )
-        {
-            throw new IllegalArgumentException( "URL cannot be an " + ScannerProvisionOption.class.getSimpleName() );
-        }
-        m_url = url;
+        super( url );
     }
 
     /**
@@ -76,8 +66,8 @@ public class FileScannerProvisionOption
         return new StringBuilder()
             .append( SCHEMA )
             .append( SEPARATOR_SCHEME )
-            .append( m_url.getURL() )
-            .append( getOptions() )
+            .append( super.getURL() )
+            .append( getOptions( this ) )
             .toString();
     }
 
@@ -97,7 +87,7 @@ public class FileScannerProvisionOption
     /**
      * {@inheritDoc}
      */
-    FileScannerProvisionOption itself()
+    protected FileScannerProvisionOption itself()
     {
         return this;
     }

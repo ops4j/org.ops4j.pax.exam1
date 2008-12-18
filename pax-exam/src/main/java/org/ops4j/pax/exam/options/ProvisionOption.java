@@ -25,7 +25,7 @@ import org.ops4j.pax.exam.Option;
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, December 08, 2008
  */
-public interface ProvisionOption
+public interface ProvisionOption<T extends ProvisionOption>
     extends Option
 {
 
@@ -35,5 +35,84 @@ public interface ProvisionOption
      * @return provision url (cannot be null)
      */
     String getURL();
+
+    /**
+     * If the provisioned bundle(s) should be updated (re-downloaded).
+     * By default bundles should be updated.
+     *
+     * @return true if the bundle(s) should be updated, false otherwise.
+     */
+    boolean shouldUpdate();
+
+    /**
+     * If the provisioned bundle(s) should be started.
+     * By default bundles should be started.
+     *
+     * @return true if the bundle(s) should be started, false otherwise.
+     */
+    boolean shouldStart();
+
+    /**
+     * The start level for the provisioned bundle(s).
+     *
+     * @return start level.
+     *         If the returned value is null, default behavior will be used
+     */
+    Integer getStartLevel();
+
+    /**
+     * Setter.
+     *
+     * @param shouldUpdate true if the provisioned bundle(s) should be updated, false otherwise
+     *
+     * @return itself, for fluent api usage
+     */
+    T update( boolean shouldUpdate );
+
+    /**
+     * Setter. Specifyies that the provisioned bundle(s) should be updated.
+     *
+     * @return itself, for fluent api usage
+     */
+    T update();
+
+    /**
+     * Setter. Specifyies that the provisioned bundle(s) should not be updated.
+     *
+     * @return itself, for fluent api usage
+     */
+    T noUpdate();
+
+    /**
+     * Setter.
+     *
+     * @param shouldStart true if the provisioned bundle(s) should be started, false otherwise
+     *
+     * @return itself, for fluent api usage
+     */
+    T start( boolean shouldStart );
+
+    /**
+     * Setter. Specifyies that the provisioned bundle(s) should be started.
+     *
+     * @return itself, for fluent api usage
+     */
+    T start();
+
+    /**
+     * Setter. Specifyies that the provisioned bundle(s) should not be started.
+     *
+     * @return itself, for fluent api usage
+     */
+    T noStart();
+
+    /**
+     * Setter.
+     *
+     * @param startLevel start level of the provisioned bundle(s)
+     *
+     * @return itself, for fluent api usage
+     */
+    T startLevel( final int startLevel );
 
 }

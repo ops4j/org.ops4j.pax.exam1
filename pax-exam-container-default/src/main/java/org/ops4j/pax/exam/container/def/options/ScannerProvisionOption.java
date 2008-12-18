@@ -25,31 +25,8 @@ import org.ops4j.pax.exam.options.ProvisionOption;
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, December 08, 2008
  */
-public interface ScannerProvisionOption
-    extends ProvisionOption
+public interface ScannerProvisionOption<T extends ScannerProvisionOption>
+    extends ProvisionOption<T>
 {
-
-    /**
-     * If the bundles provisioned by this scanner should be updated (re-downloaded).
-     *
-     * @return true if the bundles should be updated, false otherwise.
-     *         If the returned value is null, default of Pax Runner will be used
-     */
-    Boolean shouldUpdate();
-
-    /**
-     * If the bundles provisioned by this scanner should be started.
-     *
-     * @return true if the bundles should be started, false otherwise.
-     *         If the returned value is null, default of Pax Runner will be used
-     */
-    Boolean shouldStart();
-
-    /**
-     * The start level for the bundles provisioned by this scanner
-     *
-     * @return start level. If the returned value is null, default of Pax Runner will be used
-     */
-    Integer startLevel();
 
 }

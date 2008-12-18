@@ -17,8 +17,8 @@
  */
 package org.ops4j.pax.exam.junit.options;
 
+import org.ops4j.pax.exam.options.AbstractProvisionWrapperOption;
 import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
-import org.ops4j.pax.exam.options.ProvisionOption;
 
 /**
  * Option specifying junit bundles (osgi-fyed JUnit).
@@ -28,23 +28,20 @@ import org.ops4j.pax.exam.options.ProvisionOption;
  * @since 0.3.0, December 09, 2008
  */
 public class JUnitBundlesOption
-    implements ProvisionOption
+    extends AbstractProvisionWrapperOption<JUnitBundlesOption>
 {
-
-    /**
-     * JUnit bundle maven provision url.
-     */
-    private final MavenUrlProvisionOption m_url;
 
     /**
      * Constructor.
      */
     public JUnitBundlesOption()
     {
-        m_url = new MavenUrlProvisionOption()
+        super( new MavenUrlProvisionOption()
             .group( "org.junit" )
             .artifact( "com.springsource.org.junit" )
-            .version( "4.4.0" );
+            .version( "4.4.0" )
+            .noUpdate()
+        );
     }
 
     /**
@@ -56,16 +53,8 @@ public class JUnitBundlesOption
      */
     public JUnitBundlesOption version( final String version )
     {
-        m_url.version( version );
+        ( (MavenUrlProvisionOption) getDelegate() ).version( version );
         return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String getURL()
-    {
-        return m_url.getURL();
     }
 
     /**
@@ -76,9 +65,17 @@ public class JUnitBundlesOption
     {
         final StringBuilder sb = new StringBuilder();
         sb.append( "JUnitBundlesOption" );
-        sb.append( "{url=" ).append( m_url );
+        sb.append( "{url=" ).append( getURL() );
         sb.append( '}' );
         return sb.toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected JUnitBundlesOption itself()
+    {
+        return this;
     }
 
 }

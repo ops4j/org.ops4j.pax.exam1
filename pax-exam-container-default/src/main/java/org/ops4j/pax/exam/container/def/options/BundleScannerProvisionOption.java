@@ -17,7 +17,8 @@
  */
 package org.ops4j.pax.exam.container.def.options;
 
-import static org.ops4j.lang.NullArgumentException.*;
+import static org.ops4j.pax.exam.container.def.options.ScannerUtils.*;
+import org.ops4j.pax.exam.options.AbstractProvisionWrapperOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import static org.ops4j.pax.runner.provision.ServiceConstants.*;
@@ -30,13 +31,8 @@ import static org.ops4j.pax.runner.scanner.bundle.ServiceConstants.*;
  * @since 0.3.0, December 17, 2008
  */
 public class BundleScannerProvisionOption
-    extends AbstractScannerProvisionOption<BundleScannerProvisionOption>
+    extends AbstractProvisionWrapperOption<BundleScannerProvisionOption>
 {
-
-    /**
-     * Provision url (cannot be null or empty).
-     */
-    private final ProvisionOption m_url;
 
     /**
      * Constructor.
@@ -47,8 +43,7 @@ public class BundleScannerProvisionOption
      */
     public BundleScannerProvisionOption( final String url )
     {
-        validateNotEmpty( url, true, "URL" );
-        m_url = new UrlProvisionOption( url );
+        super( new UrlProvisionOption( url ) );
     }
 
     /**
@@ -60,12 +55,7 @@ public class BundleScannerProvisionOption
      */
     public BundleScannerProvisionOption( final ProvisionOption url )
     {
-        validateNotNull( url, "URL" );
-        if( url instanceof ScannerProvisionOption )
-        {
-            throw new IllegalArgumentException( "URL cannot be an " + ScannerProvisionOption.class.getSimpleName() );
-        }
-        m_url = url;
+        super( url );
     }
 
     /**
@@ -76,8 +66,8 @@ public class BundleScannerProvisionOption
         return new StringBuilder()
             .append( SCHEMA )
             .append( SEPARATOR_SCHEME )
-            .append( m_url.getURL() )
-            .append( getOptions() )
+            .append( super.getURL() )
+            .append( getOptions( this ) )
             .toString();
     }
 
@@ -97,7 +87,7 @@ public class BundleScannerProvisionOption
     /**
      * {@inheritDoc}
      */
-    BundleScannerProvisionOption itself()
+    protected BundleScannerProvisionOption itself()
     {
         return this;
     }

@@ -17,8 +17,8 @@
  */
 package org.ops4j.pax.exam.junit.options;
 
+import org.ops4j.pax.exam.options.AbstractProvisionWrapperOption;
 import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
-import org.ops4j.pax.exam.options.ProvisionOption;
 
 /**
  * Option specifying Easymock bundles (osgi-fyed easymock).
@@ -28,54 +28,55 @@ import org.ops4j.pax.exam.options.ProvisionOption;
  * @since 0.3.0, December 09, 2008
  */
 public class EasyMockBundlesOption
-    implements ProvisionOption
+    extends AbstractProvisionWrapperOption<EasyMockBundlesOption>
 {
-
-    /**
-     * Easymock bundle maven provision url.
-     */
-    private final MavenUrlProvisionOption m_url;
 
     /**
      * Constructor.
      */
     public EasyMockBundlesOption()
     {
-        m_url = new MavenUrlProvisionOption()
-            .group( "org.easymock" )
-            .artifact( "com.springsource.org.easymock" )
-            .version( "2.3.0" );
+        super(
+            new MavenUrlProvisionOption()
+                .group( "org.easymock" )
+                .artifact( "com.springsource.org.easymock" )
+                .version( "2.3.0" )
+                .noUpdate()
+        );
     }
 
     /**
      * Sets the easymock version.
      *
-     * @param version junit version.
+     * @param version easymock version.
      *
      * @return itself, for fluent api usage
      */
     public EasyMockBundlesOption version( final String version )
     {
-        m_url.version( version );
+        ( (MavenUrlProvisionOption) getDelegate() ).version( version );
         return this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public String getURL()
-    {
-        return m_url.getURL();
-    }
-
     @Override
     public String toString()
     {
         final StringBuilder sb = new StringBuilder();
         sb.append( "EasyMockBundlesOption" );
-        sb.append( "{url=" ).append( m_url );
+        sb.append( "{url=" ).append( getURL() );
         sb.append( '}' );
         return sb.toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected EasyMockBundlesOption itself()
+    {
+        return this;
     }
 
 }

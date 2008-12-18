@@ -18,6 +18,8 @@
 package org.ops4j.pax.exam.container.def.internal;
 
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.net.FreePort;
@@ -25,14 +27,17 @@ import org.ops4j.pax.exam.CoreOptions;
 import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.OptionUtils.*;
+import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import static org.ops4j.pax.exam.container.def.internal.ArgumentsBuilder.*;
+import org.ops4j.pax.exam.container.def.options.BundleScannerProvisionOption;
+import org.ops4j.pax.exam.container.def.options.ScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.TimeoutOption;
+import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.rbc.Constants;
 import org.ops4j.pax.exam.rbc.client.RemoteBundleContextClient;
 import org.ops4j.pax.exam.spi.container.TestContainer;
 import org.ops4j.pax.exam.spi.container.TestContainerException;
 import static org.ops4j.pax.runner.Run.*;
-import org.ops4j.pax.runner.platform.JavaRunner;
 import org.ops4j.pax.runner.platform.StoppableJavaRunner;
 
 /**
@@ -60,10 +65,6 @@ class PaxRunnerTestContainer
     private static final Integer DEFAULT_RMI_LOOKUP_TIMEOUT = 5000;
 
     /**
-     * {@link JavaRunner} used to start up Pax Runner.
-     */
-    private final StoppableJavaRunner m_javaRunner;
-    /**
      * Remote bundle context client.
      */
     private final RemoteBundleContextClient m_remoteBundleContextClient;
@@ -78,13 +79,11 @@ class PaxRunnerTestContainer
                             final Option... options )
     {
         LOG.info( "Starting up the test container (Pax Runner " + Info.getPaxRunnerVersion() + " )" );
-        // TODO wrap maven bundle with a @update if a version is a snapshot
         m_remoteBundleContextClient = new RemoteBundleContextClient(
             findFreeCommunicationPort(),
             getRMILookupTimeout( options )
         );
-        final Option[] expandedOptions = expand( combine( options, localOptions() ) );
-        start( m_javaRunner = javaRunner, buildArguments( expandedOptions ) );
+        start( javaRunner, buildArguments( wrap( expand( combine( options, localOptions() ) ) ) ) );
     }
 
     /**
@@ -160,11 +159,53 @@ class PaxRunnerTestContainer
             CoreOptions.mavenBundle()
                 .group( "org.ops4j.pax.exam" )
                 .artifact( "pax-exam-container-rbc" )
-                .version( Info.getPaxExamVersion() ),
+                .version( Info.getPaxExamVersion() )
+                .update( Info.isPaxExamSnapshotVersion() ),
             // rmi communication port
             CoreOptions.systemProperty( Constants.RMI_PORT_PROPERTY )
                 .value( m_remoteBundleContextClient.getRmiPort().toString() )
         };
+    }
+
+    /**
+     * Wrap provision options that are not already scanner provision bundles with a {@link BundleScannerProvisionOption}
+     * in order to force update.
+     *
+     * @param options options to be wrapped (can be null or an empty array)
+     *
+     * @return eventual wrapped bundles
+     */
+    private Option[] wrap( final Option... options )
+    {
+        if( options != null && options.length > 0 )
+        {
+            // get provison options out of options
+            final ProvisionOption[] provisionOptions = filter( ProvisionOption.class, options );
+            if( provisionOptions != null && provisionOptions.length > 0 )
+            {
+                final List<Option> processed = new ArrayList<Option>();
+                for( final ProvisionOption provisionOption : provisionOptions )
+                {
+                    if( !( provisionOption instanceof ScannerProvisionOption ) )
+                    {
+                        // if is not a scanner the wrap as scanner and force update
+                        processed.add( scanBundle( provisionOption ) );
+                    }
+                    else
+                    {
+                        processed.add( provisionOption );
+                    }
+                }
+                // finally combine the processed provision options with the original options
+                // (where provison options are removed)
+                return combine(
+                    remove( ProvisionOption.class, options ),
+                    processed.toArray( new Option[processed.size()] )
+                );
+            }
+        }
+        // if there is nothing to process of there are no provision options just return the original options
+        return options;
     }
 
     /**

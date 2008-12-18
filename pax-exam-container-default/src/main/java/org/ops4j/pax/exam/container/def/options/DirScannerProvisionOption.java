@@ -18,6 +18,8 @@
 package org.ops4j.pax.exam.container.def.options;
 
 import static org.ops4j.lang.NullArgumentException.*;
+import static org.ops4j.pax.exam.container.def.options.ScannerUtils.*;
+import org.ops4j.pax.exam.options.AbstractProvisionOption;
 import static org.ops4j.pax.runner.provision.ServiceConstants.*;
 import static org.ops4j.pax.runner.scanner.dir.ServiceConstants.*;
 
@@ -28,7 +30,7 @@ import static org.ops4j.pax.runner.scanner.dir.ServiceConstants.*;
  * @since 0.3.0, December 17, 2008
  */
 public class DirScannerProvisionOption
-    extends AbstractScannerProvisionOption<DirScannerProvisionOption>
+    extends AbstractProvisionOption<DirScannerProvisionOption>
 {
 
     /**
@@ -63,7 +65,7 @@ public class DirScannerProvisionOption
         {
             url.append( SEPARATOR_FILTER ).append( m_filter );
         }
-        url.append( getOptions() );
+        url.append( getOptions( this ) );
         return url.toString();
     }
 
@@ -99,7 +101,7 @@ public class DirScannerProvisionOption
     /**
      * {@inheritDoc}
      */
-    DirScannerProvisionOption itself()
+    protected DirScannerProvisionOption itself()
     {
         return this;
     }

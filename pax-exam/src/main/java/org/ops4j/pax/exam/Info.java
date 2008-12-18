@@ -43,6 +43,14 @@ public class Info
      * Pax Runner version.
      */
     private static final String m_paxRunnerVersion;
+    /**
+     * True if pax exam is a snapshot version.
+     */
+    private static boolean m_paxExamSnapshotVersion;
+    /**
+     * True if pax url is a snapshot version.
+     */
+    private static boolean m_paxUrlSnapshotVersion;
 
     static
     {
@@ -68,6 +76,8 @@ public class Info
         m_paxExamVersion = paxExamVersion;
         m_paxUrlVersion = paxUrlVersion;
         m_paxRunnerVersion = paxRunnerVersion;
+        m_paxExamSnapshotVersion = paxExamVersion.endsWith( "SNAPSHOT" );
+        m_paxUrlSnapshotVersion = paxUrlVersion.endsWith( "SNAPSHOT" );
     }
 
     /**
@@ -109,6 +119,26 @@ public class Info
     }
 
     /**
+     * Getter.
+     *
+     * @return true if pax exam is a snapshot version, false otherwise
+     */
+    public static boolean isPaxExamSnapshotVersion()
+    {
+        return m_paxExamSnapshotVersion;
+    }
+
+    /**
+     * Getter.
+     *
+     * @return true if pax url is a snapshot version, false otherwise
+     */
+    public static boolean isPaxUrlSnapshotVersion()
+    {
+        return m_paxUrlSnapshotVersion;
+    }
+
+    /**
      * Display ops4j logo to console.
      */
     public static void showLogo()
@@ -127,4 +157,5 @@ public class Info
         );
         System.out.println();
     }
+
 }

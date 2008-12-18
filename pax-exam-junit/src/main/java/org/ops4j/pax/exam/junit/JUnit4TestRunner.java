@@ -289,19 +289,23 @@ public class JUnit4TestRunner
             mavenBundle()
                 .group( "org.ops4j.pax.exam" )
                 .artifact( "pax-exam" )
-                .version( Info.getPaxExamVersion() ),
+                .version( Info.getPaxExamVersion() )
+                .update( Info.isPaxExamSnapshotVersion() ),
             mavenBundle()
                 .group( "org.ops4j.pax.exam" )
                 .artifact( "pax-exam-junit-extender" )
-                .version( Info.getPaxExamVersion() ),
+                .version( Info.getPaxExamVersion() )
+                .update( Info.isPaxExamSnapshotVersion() ),
             mavenBundle()
                 .group( "org.ops4j.pax.exam" )
                 .artifact( "pax-exam-junit-extender-impl" )
-                .version( Info.getPaxExamVersion() ),
+                .version( Info.getPaxExamVersion() )
+                .update( Info.isPaxExamSnapshotVersion() ),
             mavenBundle()
                 .group( "org.ops4j.pax.url" )
                 .artifact( "pax-url-dir" )
                 .version( Info.getPaxUrlVersion() )
+                .update( Info.isPaxUrlSnapshotVersion() )
         );
         // add options based on available configuration options from the test itself
         for( JUnit4ConfigMethod configMethod : configMethods )
