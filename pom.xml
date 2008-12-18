@@ -3,30 +3,6 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <licenses>
-    <license>
-      <name>Apache License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-      <comments>
-        Copyright 2008 Toni Menzel, Stuart McCulloch, Alin Dreghiciu.
-
-        Licensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
-        You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-        Unless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-        implied.
-
-        See the License for the specific language governing permissions and
-        limitations under the License.
-      </comments>
-    </license>
-  </licenses>
-
   <parent>
     <groupId>org.ops4j.pax</groupId>
     <artifactId>master</artifactId>
@@ -41,63 +17,17 @@
   <name>OPS4J Pax Exam (Build POM)</name>
 
   <description>
-    OPS4J Pax Exam - Integration testing framework for OSGi.
-    Detailed information to be found at http://wiki.ops4j.org/confluence/x/KABo.
+    OPS4J Pax Exam - Integration testing framework for OSGi. Detailed information to be found at
+    http://wiki.ops4j.org/confluence/x/KABo.
   </description>
 
-  <url>http://www.ops4j.org/projects/pax/web/exam/</url>
-
-  <issueManagement>
-    <system>jira</system>
-    <url>http://issues.ops4j.org/jira/browse/PAXEXAM</url>
-  </issueManagement>
-
-  <scm>
-    <connection>scm:svn:https://scm.ops4j.org/repos/ops4j/projects/pax/exam</connection>
-    <developerConnection>scm:svn:https://scm.ops4j.org/repos/ops4j/projects/pax/exam</developerConnection>
-  </scm>
-
-  <developers>
-    <developer>
-      <id>tonit</id>
-      <name>Toni Menzel</name>
-      <email>tonimenzel@gmx.de</email>
-      <organization>independent software developer</organization>
-      <roles>
-        <role>Developer</role>
-      </roles>
-      <timezone>UTC+1</timezone>
-    </developer>
-    <developer>
-      <id>mcculls</id>
-      <name>Stuart McCulloch</name>
-      <email>stuart.mcculloch@jayway.net</email>
-      <organization>Jayway Malaysia Sdn Bhd</organization>
-      <organizationUrl>http://malaysia.jayway.net</organizationUrl>
-      <roles>
-        <role>Developer</role>
-      </roles>
-      <timezone>UTC+8</timezone>
-    </developer>
-    <developer>
-      <id>adreghiciu</id>
-      <name>Alin Dreghiciu</name>
-      <email>adreghiciu@gmail.com</email>
-      <organization>Jayway Malaysia Sdn Bhd</organization>
-      <organizationUrl>http://malaysia.jayway.net</organizationUrl>
-      <roles>
-        <role>Developer</role>
-      </roles>
-      <timezone>UTC+2</timezone>
-    </developer>
-  </developers>
-
   <properties>
+    <namespace>org.ops4j.pax.exam</namespace>
+
     <dependency.runner.version>0.17.0-SNAPSHOT</dependency.runner.version>
     <dependency.swissbox.version>0.2.0</dependency.swissbox.version>
     <dependency.base.version>0.5.3</dependency.base.version>
     <dependency.url.version>0.3.3-SNAPSHOT</dependency.url.version>
-    <namespace>org.ops4j.pax.exam</namespace>
   </properties>
 
   <profiles>
@@ -160,8 +90,7 @@
       </plugins>
     </pluginManagement>
   </build>
-  <!-- Global dependencies
-  -->
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -172,8 +101,7 @@
       <artifactId>easymock</artifactId>
     </dependency>
   </dependencies>
-  <!-- Global dependency versions and scopes
-  -->
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -266,5 +194,76 @@
       </snapshots>
     </repository>
   </repositories>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+      <comments>
+        Copyright 2008 Toni Menzel, Stuart McCulloch, Alin Dreghiciu.
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+        implied.
+
+        See the License for the specific language governing permissions and
+        limitations under the License.
+      </comments>
+    </license>
+  </licenses>
+
+  <url>http://www.ops4j.org/projects/pax/web/exam/</url>
+
+  <issueManagement>
+    <system>jira</system>
+    <url>http://issues.ops4j.org/jira/browse/PAXEXAM</url>
+  </issueManagement>
+
+  <scm>
+    <connection>scm:svn:https://scm.ops4j.org/repos/ops4j/projects/pax/exam</connection>
+    <developerConnection>scm:svn:https://scm.ops4j.org/repos/ops4j/projects/pax/exam</developerConnection>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>tonit</id>
+      <name>Toni Menzel</name>
+      <email>tonimenzel@gmx.de</email>
+      <organization>independent software developer</organization>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>UTC+1</timezone>
+    </developer>
+    <developer>
+      <id>mcculls</id>
+      <name>Stuart McCulloch</name>
+      <email>stuart.mcculloch@jayway.net</email>
+      <organization>Jayway Malaysia Sdn Bhd</organization>
+      <organizationUrl>http://malaysia.jayway.net</organizationUrl>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>UTC+8</timezone>
+    </developer>
+    <developer>
+      <id>adreghiciu</id>
+      <name>Alin Dreghiciu</name>
+      <email>adreghiciu@gmail.com</email>
+      <organization>Jayway Malaysia Sdn Bhd</organization>
+      <organizationUrl>http://malaysia.jayway.net</organizationUrl>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>UTC+2</timezone>
+    </developer>
+  </developers>
 
 </project>
