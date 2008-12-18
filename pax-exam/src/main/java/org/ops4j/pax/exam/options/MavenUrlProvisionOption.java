@@ -45,6 +45,10 @@ public class MavenUrlProvisionOption
      * Artifact version/version range (can be null case when latest version will be used).
      */
     private String m_version;
+    /**
+     * True if the user used update method.
+     */
+    private boolean m_updateUsed;
 
     /**
      * Sets the artifact group id.
@@ -59,6 +63,7 @@ public class MavenUrlProvisionOption
     {
         validateNotEmpty( groupId, true, "Group" );
         m_groupId = groupId;
+        m_updateUsed = false;
         return this;
     }
 
@@ -95,7 +100,9 @@ public class MavenUrlProvisionOption
     }
 
     /**
-     * Sets the artifact version or version range.
+     * Sets the artifact version or version range. If version is a SNAPSHOT version the bundle will be set to updatable,
+     * otherwise the bundle will not be updated. This handling happens only if the user dows not use the update() by
+     * itself (see {@link org.ops4j.pax.exam.options.ProvisionOption#update(boolean)}).
      *
      * @param version artifact version / version range (cannot be null or empty)
      *
@@ -107,6 +114,10 @@ public class MavenUrlProvisionOption
     {
         validateNotEmpty( version, true, "Version" );
         m_version = version;
+        if( !m_updateUsed )
+        {
+            update( m_version.endsWith( "SNAPSHOT" ) );
+        }
         return this;
     }
 
@@ -114,7 +125,7 @@ public class MavenUrlProvisionOption
      * {@inheritDoc}
      *
      * @throws IllegalArgumentException - If group id is null or empty
-     * @throws IllegalArgumentException - If artifact id is null or empty
+     *                                  - If artifact id is null or empty
      */
     public String getURL()
     {
@@ -127,6 +138,18 @@ public class MavenUrlProvisionOption
             url.append( "/" ).append( m_version );
         }
         return url.toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     * Keep track if the user used the update method, so we do not override the value when handling automatic update on
+     * SNAPSHOT versions.
+     */
+    @Override
+    public MavenUrlProvisionOption update( boolean shouldUpdate )
+    {
+        m_updateUsed = true;
+        return super.update( shouldUpdate );
     }
 
     /**
