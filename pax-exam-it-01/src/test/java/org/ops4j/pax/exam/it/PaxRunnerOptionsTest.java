@@ -51,6 +51,21 @@ public class PaxRunnerOptionsTest
     }
 
     /**
+     * Pax Exam test options that adds provisioning via a directory scanner.
+     * Valid for test methods that starts with "dir".
+     *
+     * @return test options
+     */
+    @Configuration
+    @AppliesTo( "dir.*" )
+    public static Option[] configureDirScanner()
+    {
+        return options(
+            scanDir( "/foo/bar/" ).filter( "*.jar" ).noStart().update().startLevel( 10 )
+        );
+    }
+
+    /**
      * Pax Exam test options that adds provisioning via a file scanner.
      * Valid for test methods that starts with "file".
      *
@@ -61,7 +76,7 @@ public class PaxRunnerOptionsTest
     public static Option[] configureFileScanner()
     {
         return options(
-            scanFile( "x" ).noStart().update().startLevel( 10 )
+            scanFile( "file://foo/bar.bundles" ).noStart().update().startLevel( 10 )
         );
     }
 
