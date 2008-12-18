@@ -222,6 +222,18 @@ public class CoreOptions
     }
 
     /**
+     * Creates a {@link UrlProvisionOption}.
+     *
+     * @param url bundle url
+     *
+     * @return url provisioning option
+     */
+    public static UrlProvisionOption bundle( final String url )
+    {
+        return new UrlProvisionOption( url );
+    }
+
+    /**
      * Creates a {@link MavenUrlProvisionOption}.
      *
      * @return maven specific provisioning option

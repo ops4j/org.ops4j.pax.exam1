@@ -26,6 +26,7 @@ import org.ops4j.pax.exam.container.def.options.FileScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
 import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
+import org.ops4j.pax.exam.container.def.options.BundleScannerProvisionOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 
@@ -180,6 +181,30 @@ public class PaxRunnerOptions
     public static FileScannerProvisionOption scanFile( final ProvisionOption provision )
     {
         return new FileScannerProvisionOption( provision );
+    }
+
+    /**
+     * Creates a {@link BundleScannerProvisionOption}.
+     *
+     * @param url url of the bundle to be scanned
+     *
+     * @return bundle scanner option
+     */
+    public static BundleScannerProvisionOption scanBundle( final String url )
+    {
+        return new BundleScannerProvisionOption( url );
+    }
+
+    /**
+     * Creates a {@link BundleScannerProvisionOption}.
+     *
+     * @param provision bundle to be scanned as a provision option
+     *
+     * @return bundle scanner option
+     */
+    public static BundleScannerProvisionOption scanBundle( final ProvisionOption provision )
+    {
+        return new BundleScannerProvisionOption( provision );
     }
 
 }

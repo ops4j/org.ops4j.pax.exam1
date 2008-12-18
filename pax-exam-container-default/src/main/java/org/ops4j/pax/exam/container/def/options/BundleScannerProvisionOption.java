@@ -21,16 +21,16 @@ import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import static org.ops4j.pax.runner.provision.ServiceConstants.*;
-import static org.ops4j.pax.runner.scanner.file.ServiceConstants.*;
+import static org.ops4j.pax.runner.scanner.bundle.ServiceConstants.*;
 
 /**
- * Option specifying provision form an Pax Runner File scanner.
+ * Option specifying provision form an Pax Runner Bundle scanner (scan-bundle).
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, December 17, 2008
  */
-public class FileScannerProvisionOption
-    extends AbstractScannerProvisionOption<FileScannerProvisionOption>
+public class BundleScannerProvisionOption
+    extends AbstractScannerProvisionOption<BundleScannerProvisionOption>
 {
 
     /**
@@ -45,7 +45,7 @@ public class FileScannerProvisionOption
      *
      * @throws IllegalArgumentException - If url is null or empty
      */
-    public FileScannerProvisionOption( final String url )
+    public BundleScannerProvisionOption( final String url )
     {
         validateNotEmpty( url, true, "URL" );
         m_url = new UrlProvisionOption( url );
@@ -58,7 +58,7 @@ public class FileScannerProvisionOption
      *
      * @throws IllegalArgumentException - If url is null or is an {@link ScannerProvisionOption}
      */
-    public FileScannerProvisionOption( final ProvisionOption url )
+    public BundleScannerProvisionOption( final ProvisionOption url )
     {
         validateNotNull( url, "URL" );
         if( url instanceof ScannerProvisionOption )
@@ -88,7 +88,7 @@ public class FileScannerProvisionOption
     public String toString()
     {
         final StringBuilder sb = new StringBuilder();
-        sb.append( "FileScannerProvisionOption" );
+        sb.append( "BundleScannerProvisionOption" );
         sb.append( "{url='" ).append( getURL() ).append( '\'' );
         sb.append( '}' );
         return sb.toString();
@@ -97,7 +97,7 @@ public class FileScannerProvisionOption
     /**
      * {@inheritDoc}
      */
-    FileScannerProvisionOption itself()
+    BundleScannerProvisionOption itself()
     {
         return this;
     }
