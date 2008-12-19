@@ -17,7 +17,6 @@
  */
 package org.ops4j.pax.exam.container.def.options;
 
-import org.ops4j.pax.exam.Option;
 import static org.ops4j.lang.NullArgumentException.*;
 
 /**
@@ -26,7 +25,7 @@ import static org.ops4j.lang.NullArgumentException.*;
  * @author Toni Menzel (tonit)
  * @since Dec 18, 2008
  */
-public class RepositoriesOption implements Option
+public class RepositoryOptionImpl implements RepositoryOption
 {
 
     /**
@@ -41,26 +40,25 @@ public class RepositoriesOption implements Option
 
     private String m_repository;
 
-    public RepositoriesOption( String repositoryOption )
+    public RepositoryOptionImpl( String repositoryOption )
     {
         validateNotEmpty( repositoryOption, "repository" );
         m_repository = repositoryOption;
     }
 
-    public RepositoriesOption allowSnapshots()
+    public RepositoryOptionImpl allowSnapshots()
     {
         allowSnapshots = true;
         return this;
     }
 
-    public RepositoriesOption disableReleases()
+    public RepositoryOptionImpl disableReleases()
     {
         allowReleases = false;
         return this;
     }
 
     /**
-     *
      * @return the full repository as given plus eventual snapshot/release tags.
      */
     public String getRepositoryAsOption()
@@ -93,7 +91,7 @@ public class RepositoriesOption implements Option
     public String toString()
     {
         final StringBuilder sb = new StringBuilder();
-        sb.append( "RepositoriesOption {" );
+        sb.append( "RepositoryOptionImpl {" );
 
         sb.append( getRepositoryAsOption() );
 

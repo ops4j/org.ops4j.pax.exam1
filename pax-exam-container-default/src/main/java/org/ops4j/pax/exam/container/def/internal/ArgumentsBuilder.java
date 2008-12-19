@@ -25,7 +25,7 @@ import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.OptionUtils.*;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
-import org.ops4j.pax.exam.container.def.options.RepositoriesOption;
+import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
@@ -66,33 +66,15 @@ class ArgumentsBuilder
         add( arguments, extractArguments( filter( BootDelegationOption.class, options ) ) );
         add( arguments, extractArguments( filter( SystemPackageOption.class, options ) ) );
         add( arguments, extractArguments( filter( ProvisionOption.class, options ) ) );
+        add( arguments, extractArguments( filter( RepositoryOptionImpl.class, options ) ) );
         add( arguments,
              extractArguments(
                  filter( SystemPropertyOption.class, options ),
                  filter( VMOption.class, options )
              )
         );
-        add( arguments, extractArguments( filter( RepositoriesOption.class, options ) ) );
 
         return arguments.toArray( new String[arguments.size()] );
-    }
-
-    private static Collection<String> extractArguments( RepositoriesOption[] repositoriesOptions )
-    {
-        // concat all
-        final StringBuilder options = new StringBuilder();
-        options.append( "--repositories=" );
-        for( int i = 0; i < repositoriesOptions.length; i++ )
-        {
-            options.append( repositoriesOptions[ i ].getRepositoryAsOption() );
-            if( i + 1 < repositoriesOptions.length )
-            {
-                options.append( "," );
-            }
-        }
-        List<String> res = new ArrayList<String>();
-        res.add( options.toString() );
-        return res;
     }
 
     /**
@@ -323,6 +305,26 @@ class ArgumentsBuilder
             option.insert( 0, "--vmOptions=" );
         }
         return option.toString();
+    }
+
+    private static String extractArguments( RepositoryOptionImpl[] repositoriesOptions )
+    {
+        final StringBuilder options = new StringBuilder();
+                
+        if( repositoriesOptions.length > 0 )
+        {
+            options.append( "--repositories=" );
+            for( int i = 0; i < repositoriesOptions.length; i++ )
+            {
+                options.append( repositoriesOptions[ i ].getRepositoryAsOption() );
+                if( i + 1 < repositoriesOptions.length )
+                {
+                    options.append( "," );
+                }
+            }
+
+        }
+        return options.toString();
     }
 
     /**
