@@ -137,7 +137,6 @@ public class JUnit4TestRunner
     {
         MethodValidator methodValidator = new MethodValidator( m_testClass );
         // skip the validation bellow as we may have BundleContext as parameter
-        // TODO shall we validate that just max one param (bundle context) is possible to be used?
         // methodValidator.validateMethodsForDefaultRunner();
         methodValidator.assertValid();
     }
