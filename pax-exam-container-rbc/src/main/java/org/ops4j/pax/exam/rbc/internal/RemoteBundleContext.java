@@ -23,7 +23,7 @@ import java.rmi.RemoteException;
 import org.osgi.framework.BundleException;
 
 /**
- * TODO Add JavaDoc.
+ * Remote bundle acontext access.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, December 10, 2008
@@ -32,9 +32,23 @@ public interface RemoteBundleContext
     extends Remote
 {
 
+    /**
+     * Makes a remote call on a service.
+     *
+     * @param serviceType      service class of the remote service
+     * @param methodName       method name
+     * @param methodParamTypes method parameters types
+     * @param timeoutInMillis  timeout for looking up the service
+     * @param actualParams     actual parameters (must match the given method params)
+     *
+     * @throws NoSuchServiceException    - If a service of the specified type cannot be located
+     * @throws NoSuchMethodException     - If the given method cannot be found
+     * @throws IllegalAccessException    - Specified method cannot be accessed
+     * @throws InvocationTargetException - Wraps an eventual exception occured during method invocation
+     */
     Object remoteCall( Class<?> serviceType,
                        String methodName,
-                       Class<?>[] methodParams,
+                       Class<?>[] methodParamTypes,
                        int timeoutInMillis,
                        Object... actualParams )
         throws
@@ -44,15 +58,52 @@ public interface RemoteBundleContext
         IllegalAccessException,
         InvocationTargetException;
 
+    /**
+     * Installs a bundle remotly.
+     *
+     * @param bundleUrl url of the bundle to be installed. The url must be accessible from the remote OSGi container.
+     *
+     * @return bundle id of the installed bundle
+     *
+     * @throws RemoteException - Remote communication related exception (mandatory by RMI)
+     * @throws BundleException - Re-thrown from installing the bundle
+     */
     long installBundle( String bundleUrl )
         throws RemoteException, BundleException;
 
+    /**
+     * Installs a bundle remotly given the bundle content.
+     *
+     * @param bundleLocation bundle location
+     * @param bundle         bundle content as a byte array
+     *
+     * @return bundle id of the installed bundle
+     *
+     * @throws RemoteException - Remote communication related exception (mandatory by RMI)
+     * @throws BundleException - Re-thrown from installing the bundle
+     */
     long installBundle( String bundleLocation, byte[] bundle )
         throws RemoteException, BundleException;
 
+    /**
+     * Starts a bundle.
+     *
+     * @param bundleId id of the bundle to be started
+     *
+     * @throws RemoteException - Remote communication related exception (mandatory by RMI)
+     * @throws BundleException - Re-thrown from starting the bundle
+     */
     void startBundle( long bundleId )
         throws RemoteException, BundleException;
 
+    /**
+     * Stops a bundle.
+     *
+     * @param bundleId id of the bundle to be stopped
+     *
+     * @throws RemoteException - Remote communication related exception (mandatory by RMI)
+     * @throws BundleException - Re-thrown from stopping the bundle
+     */
     void stopBundle( long bundleId )
         throws RemoteException, BundleException;
 

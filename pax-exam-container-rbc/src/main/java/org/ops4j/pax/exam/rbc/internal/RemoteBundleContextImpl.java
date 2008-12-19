@@ -29,10 +29,14 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
+import static org.ops4j.lang.NullArgumentException.*;
 
 /**
+ * {@link RemoteBundleContext} implementaton.
+ *
  * @author Toni Menzel (tonit)
- * @since Jun 10, 2008
+ * @author Alin Dreghiciu (adreghiciu@gmail.com)
+ * @since 0.1.0, June 10, 2008
  */
 public class RemoteBundleContextImpl
     implements RemoteBundleContext, Serializable
@@ -42,16 +46,21 @@ public class RemoteBundleContextImpl
      * JCL Logger.
      */
     private static final Log LOG = LogFactory.getLog( RemoteBundleContextImpl.class );
-
-    private transient BundleContext m_bundleContext;
+    /**
+     * Bundle context (cannot be null).
+     */
+    private final transient BundleContext m_bundleContext;
 
     /**
      * Constructor.
      *
-     * @param bundleContext bundle context
+     * @param bundleContext bundle context (cannot be null)
+     *
+     * @throws IllegalArgumentException - If bundle context is null
      */
     public RemoteBundleContextImpl( final BundleContext bundleContext )
     {
+        validateNotNull( bundleContext, "Bundle context" );
         m_bundleContext = bundleContext;
     }
 
@@ -153,19 +162,13 @@ public class RemoteBundleContextImpl
         }
     }
 
-    // TODO obsolete?
-    private void startAllBundles()
-        throws BundleException
-    {
-        // first make sure all installed bundles are up
-        Bundle[] bundles = m_bundleContext.getBundles();
-        for( Bundle bundle : bundles )
-        {
-            startBundle( bundle );
-        }
-    }
-
-    // TODO Add JavaDoc
+    /**
+     * Starts a bundle.
+     *
+     * @param bundle bundle to be started
+     *
+     * @throws BundleException - If bundle cannot be started
+     */
     private void startBundle( final Bundle bundle )
         throws BundleException
     {
@@ -198,7 +201,14 @@ public class RemoteBundleContextImpl
         }
     }
 
-    private String bundleStateToString( int bundleState )
+    /**
+     * Coverts a bundle state to its string form.
+     *
+     * @param bundleState bundle state
+     *
+     * @return bundle state as string
+     */
+    private static String bundleStateToString( int bundleState )
     {
         switch( bundleState )
         {

@@ -18,10 +18,10 @@
 package org.ops4j.pax.exam.rbc.internal;
 
 /**
- * TODO Add JavaDoc.
+ * Thrown when a particular sercice cannot be found.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
- * @since 12 15, 2008
+ * @since 0.3.0, December 15, 2008
  */
 public class NoSuchServiceException
     extends Exception

@@ -32,7 +32,7 @@ import org.ops4j.pax.exam.spi.container.TestContainer;
 import org.ops4j.pax.exam.spi.container.TestContainerException;
 
 /**
- * TODO Add JavaDoc.
+ * A {@link RemoteBundleContext} client, that takes away RMI handling.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, December 15, 2008
@@ -49,6 +49,9 @@ public class RemoteBundleContextClient
      * Timeout for looking up the remote bundle context via RMI.
      */
     private final Integer m_rmiLookupTimeout;
+    /**
+     * Remote bundle context instance.
+     */
     private RemoteBundleContext m_remoteBundleContext;
 
     /**
@@ -74,6 +77,7 @@ public class RemoteBundleContextClient
 
     /**
      * {@inheritDoc}
+     * Returns a dynamic proxy in place of the actual service, forwarding the calls via the remote bundle context.
      */
     @SuppressWarnings( "unchecked" )
     public <T> T getService( final Class<T> serviceType,
@@ -199,6 +203,11 @@ public class RemoteBundleContextClient
         }
     }
 
+    /**
+     * Looks up the {@link RemoteBundleContext} via RMI. The lookup will timeout in the specified number of millis.
+     *
+     * @return remote bundle context
+     */
     private RemoteBundleContext getRemoteBundleContext()
     {
         if( m_remoteBundleContext == null )
