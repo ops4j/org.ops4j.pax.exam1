@@ -153,6 +153,8 @@ public class CoreOptions
     {
         return new DefaultCompositeOption(
             knopflerfish().version( "2.0.0" ),
+            knopflerfish().version( "2.0.1" ),
+            knopflerfish().version( "2.0.2" ),
             knopflerfish().version( "2.0.3" ),
             knopflerfish().version( "2.0.4" ),
             knopflerfish().version( "2.0.5" ),
