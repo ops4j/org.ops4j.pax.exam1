@@ -153,8 +153,12 @@ public class RemoteBundleContextImpl
         final ServiceReference ref = m_bundleContext.getServiceReference( serviceType.getName() );
         if( ref != null )
         {
-            // TODO shall we check also that the service cannot be found by the calls bellow?
-            return m_bundleContext.getService( ref );
+            final Object service = m_bundleContext.getService( ref );
+            if( service == null )
+            {
+                throw new NoSuchServiceException( serviceType );
+            }
+            return service;
         }
         else
         {
