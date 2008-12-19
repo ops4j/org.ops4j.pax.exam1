@@ -18,7 +18,6 @@
  */
 package org.ops4j.pax.exam.junit.extender.impl.internal;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.concurrent.Callable;
@@ -105,27 +104,12 @@ class CallableTestMethodImpl
                                          final Method testMethod )
         throws IllegalAccessException, InvocationTargetException
     {
-        try
+        final Class<?>[] paramTypes = testMethod.getParameterTypes();
+        // if there is only one param and is of type BundleContext we inject it, otherwise just call
+        // this means that if there are actual params the call will fail, but that is okay as it will be reported back
+        if( paramTypes.length == 1
+            && paramTypes[ 0 ].isAssignableFrom( BundleContext.class ) )
         {
-            final Field field = testInstance.getClass().getField( "bundleContext" );
-            if( field != null )
-            {
-                field.setAccessible( true );
-                field.set( testInstance, m_bundleContext );
-            }
-        }
-        catch( NoSuchFieldException e )
-        {
-            // skip that
-        }
-        catch( IllegalAccessException e )
-        {
-            // TODO print a warning message about bundle context field not being accessible
-            //e.printStackTrace();
-        }
-        if( testMethod.getParameterTypes().length == 1 )
-        {
-            // TODO add additional validation
             testMethod.invoke( testInstance, m_bundleContext );
         }
         else
