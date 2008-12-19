@@ -26,6 +26,7 @@ import static org.ops4j.pax.exam.OptionUtils.*;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
+import org.ops4j.pax.exam.container.def.options.RepositoryOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
@@ -307,6 +308,11 @@ class ArgumentsBuilder
         return option.toString();
     }
 
+    /**
+     * 
+     * @param repositoriesOptions repository options to be converted
+     * @return converted pax runner argument
+     */
     private static String extractArguments( RepositoryOptionImpl[] repositoriesOptions )
     {
         final StringBuilder options = new StringBuilder();

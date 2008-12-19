@@ -21,6 +21,7 @@ import static org.ops4j.lang.NullArgumentException.*;
 
 /**
  * The option specifiying pax runners repository option.
+ * This is the implementation that bridges nice api with actual string representation in pax runner.
  *
  * @author Toni Menzel (tonit)
  * @since Dec 18, 2008
@@ -46,12 +47,18 @@ public class RepositoryOptionImpl implements RepositoryOption
         m_repository = repositoryOption;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public RepositoryOptionImpl allowSnapshots()
     {
         allowSnapshots = true;
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public RepositoryOptionImpl disableReleases()
     {
         allowReleases = false;
