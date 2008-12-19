@@ -1,5 +1,6 @@
 /*
  * Copyright 2008 Toni Menzel.
+ * Copyright 2008 Alin Dreghiciu.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,31 +21,43 @@ package org.ops4j.pax.exam.container.def.options;
 import static org.ops4j.lang.NullArgumentException.*;
 
 /**
- * The option specifiying pax runners repository option.
+ * {@link RepositoryOption} implementations.
  * This is the implementation that bridges nice api with actual string representation in pax runner.
  *
  * @author Toni Menzel (tonit)
- * @since Dec 18, 2008
+ * @author Alin Dreghiciu (adreghiciu@gmail.com)
+ * @since 0.3.0, December 19, 2008
  */
 public class RepositoryOptionImpl implements RepositoryOption
 {
 
     /**
-     * \@snapshots flag of repositories entry
+     * Repository url (cannot be null or empty).
      */
-    private boolean allowSnapshots = false;
+    private final String m_repositoryUrl;
+    /**
+     * Marks repository as allowing snapshots.
+     */
+    private boolean m_allowSnapshots;
+    /**
+     * MArks repository as allowing releases.
+     */
+    private boolean m_allowReleases;
 
     /**
-     * \@noreleases flag of repositories entry
+     * Constructor.
+     *
+     * @param repositoryUrl repository url (cannot be null or empty)
+     *
+     * @throws IllegalArgumentException - If repository url is null or empty
      */
-    private boolean allowReleases = true;
-
-    private String m_repository;
-
-    public RepositoryOptionImpl( String repositoryOption )
+    public RepositoryOptionImpl( final String repositoryUrl )
     {
-        validateNotEmpty( repositoryOption, "repository" );
-        m_repository = repositoryOption;
+        validateNotEmpty( repositoryUrl, "Repository URL" );
+
+        m_repositoryUrl = repositoryUrl;
+        m_allowSnapshots = false;
+        m_allowReleases = true;
     }
 
     /**
@@ -52,7 +65,7 @@ public class RepositoryOptionImpl implements RepositoryOption
      */
     public RepositoryOptionImpl allowSnapshots()
     {
-        allowSnapshots = true;
+        m_allowSnapshots = true;
         return this;
     }
 
@@ -61,34 +74,34 @@ public class RepositoryOptionImpl implements RepositoryOption
      */
     public RepositoryOptionImpl disableReleases()
     {
-        allowReleases = false;
+        m_allowReleases = false;
         return this;
     }
 
     /**
-     * @return the full repository as given plus eventual snapshot/release tags.
+     * Returns the full repository url.
+     *
+     * @return the full repository as given plus eventual snapshot/release tags (cannot be null or empty)
+     *
+     * @throws IllegalStateException - if both snapshots and releases are not allowed
      */
-    public String getRepositoryAsOption()
+    public String getRepository()
     {
-
-        if( !allowReleases && !allowSnapshots )
+        if( !m_allowReleases && !m_allowSnapshots )
         {
-            throw new IllegalArgumentException( "Does not make sense to disallow both releases and snapshots." );
+            throw new IllegalStateException( "Does not make sense to disallow both releases and snapshots." );
         }
-
-        String option = m_repository;
-
-        if( allowSnapshots )
+        final StringBuilder repositoryUrl = new StringBuilder();
+        repositoryUrl.append( m_repositoryUrl );
+        if( m_allowSnapshots )
         {
-            option += "@snapshots";
+            repositoryUrl.append( "@snapshots" );
         }
-
-        if( !allowReleases )
+        if( !m_allowReleases )
         {
-            option += "@noreleases";
+            repositoryUrl.append( "@noreleases" );
         }
-
-        return option;
+        return repositoryUrl.toString();
     }
 
     /**
@@ -98,10 +111,8 @@ public class RepositoryOptionImpl implements RepositoryOption
     public String toString()
     {
         final StringBuilder sb = new StringBuilder();
-        sb.append( "RepositoryOptionImpl {" );
-
-        sb.append( getRepositoryAsOption() );
-
+        sb.append( "RepositoryOptionImpl" );
+        sb.append( "{url=" ).append( getRepository() );
         sb.append( '}' );
         return sb.toString();
     }

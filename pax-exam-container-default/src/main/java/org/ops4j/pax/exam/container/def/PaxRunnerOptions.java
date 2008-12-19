@@ -25,10 +25,10 @@ import org.ops4j.pax.exam.container.def.options.BundleScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.DirScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.FileScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
+import org.ops4j.pax.exam.container.def.options.RepositoryOption;
+import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
-import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
-import org.ops4j.pax.exam.container.def.options.RepositoryOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 
@@ -147,9 +147,48 @@ public class PaxRunnerOptions
         return new VMOption( vmOption );
     }
 
-     public static RepositoryOption repository( final String repositoryOption )
+    /**
+     * Creates a composite option of {@link RepositoryOption}s.
+     *
+     * @param repositoryUrls virtual machine options (cannot be null or containing null entries)
+     *
+     * @return composite option of virtual machine options
+     *
+     * @throws IllegalArgumentException - If urls array is null or contains null entries
+     */
+    public static Option repositories( final String... repositoryUrls )
     {
-        return new RepositoryOptionImpl( repositoryOption );
+        validateNotEmptyContent( repositoryUrls, true, "Repository URLs" );
+        final List<RepositoryOption> options = new ArrayList<RepositoryOption>();
+        for( String repositoryUrl : repositoryUrls )
+        {
+            options.add( repository( repositoryUrl ) );
+        }
+        return repositories( options.toArray( new RepositoryOption[options.size()] ) );
+    }
+
+    /**
+     * Creates a composite option of {@link RepositoryOption}s.
+     *
+     * @param repositoryOptions repository options
+     *
+     * @return composite option of repository options
+     */
+    public static Option repositories( final RepositoryOption... repositoryOptions )
+    {
+        return new DefaultCompositeOption( repositoryOptions );
+    }
+
+    /**
+     * Creates a {@link RepositoryOption}.
+     *
+     * @param repositoryUrl repository url
+     *
+     * @return repository option
+     */
+    public static RepositoryOption repository( final String repositoryUrl )
+    {
+        return new RepositoryOptionImpl( repositoryUrl );
     }
 
     /**

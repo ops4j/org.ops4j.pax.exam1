@@ -24,9 +24,8 @@ import java.util.List;
 import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.OptionUtils.*;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
-import org.ops4j.pax.exam.container.def.options.VMOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
-import org.ops4j.pax.exam.container.def.options.RepositoryOption;
+import org.ops4j.pax.exam.container.def.options.VMOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
@@ -115,12 +114,12 @@ class ArgumentsBuilder
      */
     private static Collection<String> defaultArguments()
     {
-        final List<String> options = new ArrayList<String>();
-        options.add( "--noConsole" );
-        options.add( "--noDownloadFeedback" );
-        options.add( "--noArgs" );
-        options.add( "--workingDirectory=" + createWorkingDirectory().getAbsolutePath() );
-        return options;
+        final List<String> arguments = new ArrayList<String>();
+        arguments.add( "--noConsole" );
+        arguments.add( "--noDownloadFeedback" );
+        arguments.add( "--noArgs" );
+        arguments.add( "--workingDirectory=" + createWorkingDirectory().getAbsolutePath() );
+        return arguments;
     }
 
     /**
@@ -134,21 +133,21 @@ class ArgumentsBuilder
      */
     private static Collection<String> extractArguments( final FrameworkOption[] frameworks )
     {
-        final List<String> options = new ArrayList<String>();
+        final List<String> arguments = new ArrayList<String>();
         if( frameworks.length > 1 )
         {
             throw new IllegalArgumentException( "Configuration cannot contain more then one platform" );
         }
         if( frameworks.length > 0 )
         {
-            options.add( "--platform=" + frameworks[ 0 ].getName() );
+            arguments.add( "--platform=" + frameworks[ 0 ].getName() );
             final String version = frameworks[ 0 ].getVersion();
             if( version != null && version.trim().length() > 0 )
             {
-                options.add( "--version=" + version );
+                arguments.add( "--version=" + version );
             }
         }
-        return options;
+        return arguments;
     }
 
     /**
@@ -160,12 +159,12 @@ class ArgumentsBuilder
      */
     private static Collection<String> extractArguments( final ProvisionOption[] bundles )
     {
-        final List<String> options = new ArrayList<String>();
+        final List<String> arguments = new ArrayList<String>();
         for( ProvisionOption bundle : bundles )
         {
-            options.add( bundle.getURL() );
+            arguments.add( bundle.getURL() );
         }
-        return options;
+        return arguments;
     }
 
     /**
@@ -177,26 +176,26 @@ class ArgumentsBuilder
      */
     private static String extractArguments( final ProfileOption[] profiles )
     {
-        final StringBuilder option = new StringBuilder();
+        final StringBuilder argument = new StringBuilder();
         if( profiles != null && profiles.length > 0 )
         {
             for( ProfileOption profile : profiles )
             {
                 if( profile != null && profile.getName() != null && profile.getName().length() > 0 )
                 {
-                    if( option.length() == 0 )
+                    if( argument.length() == 0 )
                     {
-                        option.append( "--profiles=" );
+                        argument.append( "--profiles=" );
                     }
                     else
                     {
-                        option.append( "," );
+                        argument.append( "," );
                     }
-                    option.append( profile.getName() );
+                    argument.append( profile.getName() );
                 }
             }
         }
-        return option.toString();
+        return argument.toString();
     }
 
     /**
@@ -208,26 +207,26 @@ class ArgumentsBuilder
      */
     private static String extractArguments( final BootDelegationOption[] packages )
     {
-        final StringBuilder option = new StringBuilder();
+        final StringBuilder argument = new StringBuilder();
         if( packages != null && packages.length > 0 )
         {
             for( BootDelegationOption pkg : packages )
             {
                 if( pkg != null && pkg.getPackage() != null && pkg.getPackage().length() > 0 )
                 {
-                    if( option.length() == 0 )
+                    if( argument.length() == 0 )
                     {
-                        option.append( "--bootDelegation=" );
+                        argument.append( "--bootDelegation=" );
                     }
                     else
                     {
-                        option.append( "," );
+                        argument.append( "," );
                     }
-                    option.append( pkg.getPackage() );
+                    argument.append( pkg.getPackage() );
                 }
             }
         }
-        return option.toString();
+        return argument.toString();
     }
 
     /**
@@ -239,26 +238,26 @@ class ArgumentsBuilder
      */
     private static String extractArguments( final SystemPackageOption[] packages )
     {
-        final StringBuilder option = new StringBuilder();
+        final StringBuilder argument = new StringBuilder();
         if( packages != null && packages.length > 0 )
         {
             for( SystemPackageOption pkg : packages )
             {
                 if( pkg != null && pkg.getPackage() != null && pkg.getPackage().length() > 0 )
                 {
-                    if( option.length() == 0 )
+                    if( argument.length() == 0 )
                     {
-                        option.append( "--systemPackages=" );
+                        argument.append( "--systemPackages=" );
                     }
                     else
                     {
-                        option.append( "," );
+                        argument.append( "," );
                     }
-                    option.append( pkg.getPackage() );
+                    argument.append( pkg.getPackage() );
                 }
             }
         }
-        return option.toString();
+        return argument.toString();
     }
 
     /**
@@ -272,18 +271,18 @@ class ArgumentsBuilder
     private static String extractArguments( final SystemPropertyOption[] systemProperties,
                                             final VMOption[] vmOptions )
     {
-        final StringBuilder option = new StringBuilder();
+        final StringBuilder argument = new StringBuilder();
         if( systemProperties != null && systemProperties.length > 0 )
         {
             for( SystemPropertyOption property : systemProperties )
             {
                 if( property != null && property.getKey() != null && property.getKey().trim().length() > 0 )
                 {
-                    if( option.length() > 0 )
+                    if( argument.length() > 0 )
                     {
-                        option.append( " " );
+                        argument.append( " " );
                     }
-                    option.append( "-D" ).append( property.getKey() ).append( "=" ).append( property.getValue() );
+                    argument.append( "-D" ).append( property.getKey() ).append( "=" ).append( property.getValue() );
                 }
             }
         }
@@ -293,44 +292,45 @@ class ArgumentsBuilder
             {
                 if( vmOption != null && vmOption.getOption() != null && vmOption.getOption().trim().length() > 0 )
                 {
-                    if( option.length() > 0 )
+                    if( argument.length() > 0 )
                     {
-                        option.append( " " );
+                        argument.append( " " );
                     }
-                    option.append( vmOption.getOption() );
+                    argument.append( vmOption.getOption() );
                 }
             }
         }
-        if( option.length() > 0 )
+        if( argument.length() > 0 )
         {
-            option.insert( 0, "--vmOptions=" );
+            argument.insert( 0, "--vmOptions=" );
         }
-        return option.toString();
+        return argument.toString();
     }
 
     /**
-     * 
+     * Converts repository options into corresponding arguments (--repositories).
+     *
      * @param repositoriesOptions repository options to be converted
-     * @return converted pax runner argument
+     *
+     * @return converted Pax Runner argument
      */
     private static String extractArguments( RepositoryOptionImpl[] repositoriesOptions )
     {
-        final StringBuilder options = new StringBuilder();
-                
+        final StringBuilder argument = new StringBuilder();
+
         if( repositoriesOptions.length > 0 )
         {
-            options.append( "--repositories=" );
+            argument.append( "--repositories=" );
             for( int i = 0; i < repositoriesOptions.length; i++ )
             {
-                options.append( repositoriesOptions[ i ].getRepositoryAsOption() );
+                argument.append( repositoriesOptions[ i ].getRepository() );
                 if( i + 1 < repositoriesOptions.length )
                 {
-                    options.append( "," );
+                    argument.append( "," );
                 }
             }
-
         }
-        return options.toString();
+        return argument.toString();
     }
 
     /**

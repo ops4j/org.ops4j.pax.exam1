@@ -20,23 +20,24 @@ package org.ops4j.pax.exam.container.def.options;
 import org.ops4j.pax.exam.Option;
 
 /**
- * The option specifiying pax runners repository option.
+ * Option specifiying a Pax Runner repository.
  *
  * @author Toni Menzel (tonit)
- * @since Dec 19, 2008
+ * @since 0.3.0, December 19, 2008
  */
-public interface RepositoryOption extends Option
+public interface RepositoryOption
+    extends Option
 {
 
     /**
-     * \@snapshots flag of repositories entry
+     * Mark repository as allowing snapshots.
      *
      * @return this for fluent api
      */
     public RepositoryOption allowSnapshots();
 
     /**
-     * \@noreleases flag of repositories entry
+     * Mark repository as not allowing releases.
      *
      * @return this for fluent api
      */
