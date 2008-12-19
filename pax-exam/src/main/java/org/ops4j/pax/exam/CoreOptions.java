@@ -157,7 +157,8 @@ public class CoreOptions
             knopflerfish().version( "2.0.4" ),
             knopflerfish().version( "2.0.5" ),
             knopflerfish().version( "2.1.0" ),
-            knopflerfish().version( "2.1.1" )
+            knopflerfish().version( "2.1.1" ),
+            knopflerfish().version( "2.2.0" )
         );
     }
 
