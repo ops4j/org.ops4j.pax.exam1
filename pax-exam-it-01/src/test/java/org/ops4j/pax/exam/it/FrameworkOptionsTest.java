@@ -138,7 +138,6 @@ public class FrameworkOptionsTest
      * @param bundleContext injected bundle context
      */
     @Test
-    @Ignore
     public void knopflerfishIsUpAndRunning( final BundleContext bundleContext )
     {
         assertThat( "Bundle context", bundleContext, is( notNullValue() ) );

@@ -20,14 +20,12 @@ package org.ops4j.pax.exam.it;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
-import org.ops4j.pax.exam.junit.AppliesTo;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
@@ -51,68 +49,19 @@ public class MultiFrameworkOptionsTest
     public static Option[] configure()
     {
         return options(
-            logProfile()
+            logProfile(),
+            allFrameworksVersions()
         );
     }
 
     /**
-     * Pax Exam test options that specified more Felix versions as test framework.
-     * Valid for test methods that starts with "felix".
-     *
-     * @return test options
-     */
-    @Configuration
-    @AppliesTo( "felix.*" )
-    public static Option[] configureFelix()
-    {
-        return options(
-            frameworks(
-                felix().version( "1.0.0" ),
-                felix().version( "1.0.3" ),
-                felix().version( "1.0.4" ),
-                felix()
-            )
-        );
-    }
-
-    /**
-     * Pax Exam test options that specified all frameworks as test framework.
-     * Valid for test methods that starts with "all".
-     *
-     * @return test options
-     */
-    @Configuration
-    @AppliesTo( "multiple.*" )
-    public static Option[] configureAllFrameworks()
-    {
-        return options(
-            frameworks(
-                equinox(),
-                felix(),
-                knopflerfish()
-            )
-        );
-    }
-
-    /**
-     * Test that the started framewrok is Felix.
+     * Tests that the bundle context is valid on all platforms.
+     * This means that the whole infrastructure works.
      *
      * @param bundleContext injected bundle context
      */
     @Test
-    public void felixIsUpAndRunning( final BundleContext bundleContext )
-    {
-        assertThat( "Bundle context", bundleContext, is( notNullValue() ) );
-        assertThat(
-            "Framework vendor",
-            bundleContext.getProperty( Constants.FRAMEWORK_VENDOR ),
-            is( equalTo( "Apache Software Foundation" ) )
-        );
-    }
-
-    @Test
-    @Ignore
-    public void multipleIsUpAndRunning( final BundleContext bundleContext )
+    public void allVersionsAreUpAndRunning( final BundleContext bundleContext )
     {
         assertThat( "Bundle context", bundleContext, is( notNullValue() ) );
         assertThat(

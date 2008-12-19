@@ -21,6 +21,8 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.rmi.ConnectException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -216,7 +218,11 @@ public class RemoteBundleContextClient
                         m_remoteBundleContext =
                             (RemoteBundleContext) registry.lookup( RemoteBundleContext.class.getName() );
                     }
-                    catch( Exception e )
+                    catch( ConnectException e )
+                    {
+                        reason = e;
+                    }
+                    catch( NotBoundException e )
                     {
                         reason = e;
                     }

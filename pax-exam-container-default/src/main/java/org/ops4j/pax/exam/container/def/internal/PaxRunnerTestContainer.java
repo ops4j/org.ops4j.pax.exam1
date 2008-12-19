@@ -163,7 +163,9 @@ class PaxRunnerTestContainer
                 .update( Info.isPaxExamSnapshotVersion() ),
             // rmi communication port
             CoreOptions.systemProperty( Constants.RMI_PORT_PROPERTY )
-                .value( m_remoteBundleContextClient.getRmiPort().toString() )
+                .value( m_remoteBundleContextClient.getRmiPort().toString() ),
+            // boot delegation for sun.*. This seems only necessary in Knopflerfish version > 2.0.0
+            CoreOptions.bootDelegationPackage( "sun.*" )
         };
     }
 
