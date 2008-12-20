@@ -65,7 +65,7 @@ public class Activator
     {
         //!! Absolutely necessary for RMIClassLoading to work
         ContextClassLoaderUtils.doWithClassLoader(
-            getClass().getClassLoader(),
+            null, // getClass().getClassLoader()
             new Callable<Object>()
             {
                 public Object call()
