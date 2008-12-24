@@ -62,7 +62,19 @@ public class PaxRunnerOptions
     }
 
     /**
-     * Creates a web {@link ProfileOption}.
+     * Creates a {@link ProfileOption} by profile name.
+     *
+     * @param name profile name
+     *
+     * @return profile option
+     */
+    public static ProfileOption profile( final String name )
+    {
+        return new ProfileOption( name );
+    }
+
+    /**
+     * Creates a Http Service {@link ProfileOption} (--profiles=web).
      *
      * @return web profile option
      */
@@ -72,7 +84,7 @@ public class PaxRunnerOptions
     }
 
     /**
-     * Creates a log {@link ProfileOption}.
+     * Creates a Log Service {@link ProfileOption} (--profiles=log).
      *
      * @return log profile option
      */
@@ -82,13 +94,23 @@ public class PaxRunnerOptions
     }
 
     /**
-     * Creates a config {@link ProfileOption}.
+     * Creates a Configuration Admin Service {@link ProfileOption} (--profiles=config).
      *
      * @return config profile option
      */
     public static ProfileOption configProfile()
     {
         return new ProfileOption( "config" );
+    }
+
+    /**
+     * Creates a Declarative Service {@link ProfileOption} (--profiles=ds).
+     *
+     * @return ds profile option
+     */
+    public static ProfileOption dsProfile()
+    {
+        return new ProfileOption( "ds" );
     }
 
     /**
