@@ -32,6 +32,7 @@ import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
+import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
 
 /**
  * Factory methods for core options.
@@ -66,6 +67,18 @@ public class CoreOptions
     }
 
     /**
+     * Convenience method (more to be used for a nice fluent api) for creating a composite option.
+     *
+     * @param options options
+     *
+     * @return provided options
+     */
+    public static Option composite( final Option... options )
+    {
+        return new DefaultCompositeOption( options );
+    }
+
+    /**
      * Creates a composite option of {@link FrameworkOption}s.
      *
      * @param frameworks framework options
@@ -74,7 +87,7 @@ public class CoreOptions
      */
     public static Option frameworks( final FrameworkOption... frameworks )
     {
-        return new DefaultCompositeOption( frameworks );
+        return composite( frameworks );
     }
 
     /**
@@ -94,7 +107,7 @@ public class CoreOptions
      */
     public static Option allFelixVersions()
     {
-        return new DefaultCompositeOption(
+        return composite(
             felix().version( "1.0.0" ),
             felix().version( "1.0.1" ),
             felix().version( "1.0.3" ),
@@ -123,7 +136,7 @@ public class CoreOptions
      */
     public static Option allEquinoxVersions()
     {
-        return new DefaultCompositeOption(
+        return composite(
             equinox().version( "3.2.1" ),
             equinox().version( "3.3.0" ),
             equinox().version( "3.3.1" ),
@@ -151,7 +164,7 @@ public class CoreOptions
      */
     public static Option allKnopflerfishVersions()
     {
-        return new DefaultCompositeOption(
+        return composite(
             knopflerfish().version( "2.0.0" ),
             knopflerfish().version( "2.0.1" ),
             knopflerfish().version( "2.0.2" ),
@@ -171,7 +184,7 @@ public class CoreOptions
      */
     public static Option allFrameworks()
     {
-        return new DefaultCompositeOption(
+        return composite(
             felix(),
             equinox(),
             knopflerfish()
@@ -185,7 +198,7 @@ public class CoreOptions
      */
     public static Option allFrameworksVersions()
     {
-        return new DefaultCompositeOption(
+        return composite(
             allFelixVersions(),
             allEquinoxVersions(),
             allKnopflerfishVersions()
@@ -221,7 +234,7 @@ public class CoreOptions
      */
     public static Option provision( final ProvisionOption... urls )
     {
-        return new DefaultCompositeOption( urls );
+        return composite( urls );
     }
 
     /**
@@ -244,6 +257,30 @@ public class CoreOptions
     public static MavenUrlProvisionOption mavenBundle()
     {
         return new MavenUrlProvisionOption();
+    }
+
+    /**
+     * Creates a {@link WrappedUrlProvisionOption}.
+     *
+     * @param url wrapped bundle url
+     *
+     * @return wrap specific provisioning option
+     */
+    public static WrappedUrlProvisionOption wrappedBundle( final String url )
+    {
+        return new WrappedUrlProvisionOption( url );
+    }
+
+    /**
+     * Creates a {@link WrappedUrlProvisionOption}.
+     *
+     * @param wrapped wrapped bundle
+     *
+     * @return wrap specific provisioning option
+     */
+    public static WrappedUrlProvisionOption wrappedBundle( final ProvisionOption wrapped )
+    {
+        return new WrappedUrlProvisionOption( wrapped );
     }
 
     /**
@@ -275,7 +312,7 @@ public class CoreOptions
      */
     public static Option bootDelegationPackages( final BootDelegationOption... packages )
     {
-        return new DefaultCompositeOption( packages );
+        return composite( packages );
     }
 
     /**
@@ -319,7 +356,7 @@ public class CoreOptions
      */
     public static Option systemPackages( final SystemPackageOption... packages )
     {
-        return new DefaultCompositeOption( packages );
+        return composite( packages );
     }
 
     /**
@@ -343,7 +380,7 @@ public class CoreOptions
      */
     public static Option systemProperties( final SystemPropertyOption... systemProperties )
     {
-        return new DefaultCompositeOption( systemProperties );
+        return composite( systemProperties );
     }
 
     /**
