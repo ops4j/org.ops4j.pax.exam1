@@ -26,6 +26,7 @@ import org.ops4j.net.FreePort;
 import org.ops4j.pax.exam.CoreOptions;
 import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Option;
+import static org.ops4j.pax.exam.CoreOptions.*;
 import static org.ops4j.pax.exam.OptionUtils.*;
 import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import static org.ops4j.pax.exam.container.def.internal.ArgumentsBuilder.*;
@@ -79,11 +80,16 @@ class PaxRunnerTestContainer
                             final Option... options )
     {
         LOG.info( "Starting up the test container (Pax Runner " + Info.getPaxRunnerVersion() + " )" );
+        long startedAt = System.currentTimeMillis();
         m_remoteBundleContextClient = new RemoteBundleContextClient(
             findFreeCommunicationPort(),
             getRMILookupTimeout( options )
         );
         start( javaRunner, buildArguments( wrap( expand( combine( options, localOptions() ) ) ) ) );
+        LOG.info(
+            "Test container (Pax Runner " + Info.getPaxRunnerVersion() + " ) started in "
+            + ( System.currentTimeMillis() - startedAt ) + " millis"
+        );
     }
 
     /**
@@ -156,16 +162,16 @@ class PaxRunnerTestContainer
     {
         return new Option[]{
             // remote bundle context bundle
-            CoreOptions.mavenBundle()
+            mavenBundle()
                 .group( "org.ops4j.pax.exam" )
                 .artifact( "pax-exam-container-rbc" )
                 .version( Info.getPaxExamVersion() )
                 .update( Info.isPaxExamSnapshotVersion() ),
             // rmi communication port
-            CoreOptions.systemProperty( Constants.RMI_PORT_PROPERTY )
+            systemProperty( Constants.RMI_PORT_PROPERTY )
                 .value( m_remoteBundleContextClient.getRmiPort().toString() ),
             // boot delegation for sun.*. This seems only necessary in Knopflerfish version > 2.0.0
-            CoreOptions.bootDelegationPackage( "sun.*" )
+            bootDelegationPackage( "sun.*" )
         };
     }
 

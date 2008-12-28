@@ -26,6 +26,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.osgi.framework.BundleException;
 import org.ops4j.pax.exam.rbc.internal.RemoteBundleContext;
 import org.ops4j.pax.exam.spi.container.TestContainer;
@@ -40,6 +42,11 @@ import org.ops4j.pax.exam.spi.container.TestContainerException;
 public class RemoteBundleContextClient
     implements TestContainer
 {
+
+    /**
+     * JCL logger.
+     */
+    private static final Log LOG = LogFactory.getLog( RemoteBundleContextClient.class );
 
     /**
      * RMI communication port.
@@ -236,7 +243,9 @@ public class RemoteBundleContextClient
                         reason = e;
                     }
                 }
-                while( m_rmiLookupTimeout == 0 || System.currentTimeMillis() < startedTrying + m_rmiLookupTimeout );
+                while( m_remoteBundleContext == null
+                       && ( m_rmiLookupTimeout == 0
+                            || System.currentTimeMillis() < startedTrying + m_rmiLookupTimeout ) );
             }
             catch( RemoteException e )
             {
@@ -246,6 +255,9 @@ public class RemoteBundleContextClient
             {
                 throw new TestContainerException( "Cannot get the remote bundle context", reason );
             }
+            LOG.info(
+                "Remote bundle context found after " + ( System.currentTimeMillis() - startedTrying ) + " millis"
+            );
         }
         return m_remoteBundleContext;
     }
