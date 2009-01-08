@@ -286,23 +286,23 @@ public class JUnit4TestRunner
         // always add the junit extender
         final DefaultCompositeOption option = new DefaultCompositeOption(
             mavenBundle()
-                .group( "org.ops4j.pax.exam" )
-                .artifact( "pax-exam" )
+                .groupId( "org.ops4j.pax.exam" )
+                .artifactId( "pax-exam" )
                 .version( Info.getPaxExamVersion() )
                 .update( Info.isPaxExamSnapshotVersion() ),
             mavenBundle()
-                .group( "org.ops4j.pax.exam" )
-                .artifact( "pax-exam-junit-extender" )
+                .groupId( "org.ops4j.pax.exam" )
+                .artifactId( "pax-exam-junit-extender" )
                 .version( Info.getPaxExamVersion() )
                 .update( Info.isPaxExamSnapshotVersion() ),
             mavenBundle()
-                .group( "org.ops4j.pax.exam" )
-                .artifact( "pax-exam-junit-extender-impl" )
+                .groupId( "org.ops4j.pax.exam" )
+                .artifactId( "pax-exam-junit-extender-impl" )
                 .version( Info.getPaxExamVersion() )
                 .update( Info.isPaxExamSnapshotVersion() ),
             mavenBundle()
-                .group( "org.ops4j.pax.url" )
-                .artifact( "pax-url-dir" )
+                .groupId( "org.ops4j.pax.url" )
+                .artifactId( "pax-url-dir" )
                 .version( Info.getPaxUrlVersion() )
                 .update( Info.isPaxUrlSnapshotVersion() )
         );
