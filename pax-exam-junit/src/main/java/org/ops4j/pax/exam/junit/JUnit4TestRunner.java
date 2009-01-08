@@ -92,6 +92,7 @@ public class JUnit4TestRunner
         final List<JUnit4ConfigMethod> configMethods = new ArrayList<JUnit4ConfigMethod>();
         for( Method configMethod : m_testClass.getAnnotatedMethods( Configuration.class ) )
         {
+            System.out.println( "---- " + configMethod.getName() );
             if( !Modifier.isStatic( configMethod.getModifiers() ) )
             {
                 System.err.println(
@@ -114,7 +115,7 @@ public class JUnit4TestRunner
         final List<Method> testMethods = m_testClass.getAnnotatedMethods( Test.class );
         for( Method testMethod : testMethods )
         {
-            final Option configOptions = getOptions( testMethod.getName(), configMethods );
+            final Option configOptions = getOptions( testMethod, configMethods );
             final FrameworkOption[] frameworkOptions = OptionUtils.filter( FrameworkOption.class, configOptions );
             final Option[] filteredOptions = OptionUtils.remove( FrameworkOption.class, configOptions );
             if( frameworkOptions.length == 0 )
@@ -279,7 +280,7 @@ public class JUnit4TestRunner
         return m_testClass;
     }
 
-    private static Option getOptions( final String methodName,
+    private static Option getOptions( final Method methodName,
                                       final Collection<JUnit4ConfigMethod> configMethods )
         throws IllegalAccessException, InvocationTargetException, InstantiationException
     {
