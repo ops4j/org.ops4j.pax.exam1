@@ -122,8 +122,6 @@ public class JUnit4ConfigMethod
                 {
                     if( v.equals( context ) )
                     {
-
-                        System.out.println( v + " equals" + context + " in method " + method.getName() );
                         return true;
                     }
                 }
