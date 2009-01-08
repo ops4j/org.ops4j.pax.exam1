@@ -112,7 +112,7 @@ public class PaxRunnerOptionsTest
         return options(
             scanBundle( "file:/foo/bar.jar" ).noStart().update().startLevel( 10 ),
             scanBundle( bundle( "file:bar/foo.jar" ) ).noStart().update().startLevel( 10 ),
-            scanBundle( mavenBundle().group( "foo" ).artifact( "bar" ) ).noStart().update().startLevel( 10 )
+            scanBundle( mavenBundle().groupId( "foo" ).artifactId( "bar" ) ).noStart().update().startLevel( 10 )
         );
     }
 

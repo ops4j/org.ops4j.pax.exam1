@@ -23,7 +23,6 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.net.FreePort;
-import org.ops4j.pax.exam.CoreOptions;
 import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.CoreOptions.*;
@@ -163,8 +162,8 @@ class PaxRunnerTestContainer
         return new Option[]{
             // remote bundle context bundle
             mavenBundle()
-                .group( "org.ops4j.pax.exam" )
-                .artifact( "pax-exam-container-rbc" )
+                .groupId( "org.ops4j.pax.exam" )
+                .artifactId( "pax-exam-container-rbc" )
                 .version( Info.getPaxExamVersion() )
                 .update( Info.isPaxExamSnapshotVersion() ),
             // rmi communication port

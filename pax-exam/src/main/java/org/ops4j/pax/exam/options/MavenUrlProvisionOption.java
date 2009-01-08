@@ -59,7 +59,7 @@ public class MavenUrlProvisionOption
      *
      * @throws IllegalArgumentException - If group id is null or empty
      */
-    public MavenUrlProvisionOption group( final String groupId )
+    public MavenUrlProvisionOption groupId( final String groupId )
     {
         validateNotEmpty( groupId, true, "Group" );
         m_groupId = groupId;
@@ -76,7 +76,7 @@ public class MavenUrlProvisionOption
      *
      * @throws IllegalArgumentException - If artifact id is null or empty
      */
-    public MavenUrlProvisionOption artifact( final String artifactId )
+    public MavenUrlProvisionOption artifactId( final String artifactId )
     {
         validateNotEmpty( artifactId, true, "Artifact" );
         m_artifactId = artifactId;

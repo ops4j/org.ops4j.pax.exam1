@@ -79,7 +79,7 @@ public class ProvisionOptionsTest
     {
         return options(
             provision(
-                mavenBundle().group( "org.ops4j.pax.url" ).artifact( "pax-url-mvn" ).version( "0.3.2" )
+                mavenBundle().groupId( "org.ops4j.pax.url" ).artifactId( "pax-url-mvn" ).version( "0.3.2" )
             ),
             logProfile()
         );

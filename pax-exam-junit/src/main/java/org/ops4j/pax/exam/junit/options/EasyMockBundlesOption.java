@@ -38,8 +38,8 @@ public class EasyMockBundlesOption
     {
         super(
             new MavenUrlProvisionOption()
-                .group( "org.easymock" )
-                .artifact( "com.springsource.org.easymock" )
+                .groupId( "org.easymock" )
+                .artifactId( "com.springsource.org.easymock" )
                 .version( "2.3.0" )
                 .noUpdate()
         );

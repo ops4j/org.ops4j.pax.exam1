@@ -37,8 +37,8 @@ public class JUnitBundlesOption
     public JUnitBundlesOption()
     {
         super( new MavenUrlProvisionOption()
-            .group( "org.junit" )
-            .artifact( "com.springsource.org.junit" )
+            .groupId( "org.junit" )
+            .artifactId( "com.springsource.org.junit" )
             .version( "4.4.0" )
             .noUpdate()
         );
