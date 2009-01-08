@@ -21,7 +21,7 @@ import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.Option;
 
 /**
- * Option specifying the timeout (in milliseconds) while looking up the server access.
+ * Option specifying the timeout (in milliseconds) while looking up the container process.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0 December 10, 2008

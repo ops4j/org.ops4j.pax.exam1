@@ -127,8 +127,11 @@ public class PaxRunnerOptionsTest
 
 
     /**
-     * Pax Exam test options that adds provisioning via a bundle scanner.
-     * Valid for test methods that starts with "bundle".
+     * Pax Exam test options that sets a custom maven repository.
+     * Repositories itself can be configured.
+     * For example it is possible to allow snapshot versions as well.
+     *
+     * Valid for test methods that starts with "repository".
      *
      * @return test options
      */
@@ -147,5 +150,6 @@ public class PaxRunnerOptionsTest
     @Test
     public void repositoryTest()
     {
+        
     }
 }
