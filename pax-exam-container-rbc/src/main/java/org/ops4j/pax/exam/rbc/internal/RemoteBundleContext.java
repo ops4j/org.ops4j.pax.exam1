@@ -23,7 +23,7 @@ import java.rmi.RemoteException;
 import org.osgi.framework.BundleException;
 
 /**
- * Remote bundle acontext access.
+ * Remote BundleContext like access.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, December 10, 2008
