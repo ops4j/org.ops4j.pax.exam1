@@ -131,7 +131,7 @@ class CallableTestMethodImpl
         throws IllegalAccessException
     {
 
-        for( Field field : testInstance.getClass().getFields() )
+        for( Field field : testInstance.getClass().getDeclaredFields() )
         {
             setIfMatching( testInstance, field, m_bundleContext );
         }

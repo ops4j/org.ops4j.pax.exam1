@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Alin Dreghiciu
+ * Copyright 2009 Toni Menzel
  *
  * Licensed  under the  Apache License,  Version 2.0  (the "License");
  * you may not use  this file  except in  compliance with the License.
@@ -35,12 +35,12 @@ public class InjectionTest
 {
 
     @Inject
-    public BundleContext bundleContext;
+    private BundleContext bundleContext;
 
     @Inject
-    public String shouldBeNull;
+    private String shouldBeNull;
 
-    public BundleContext shouldBeNullAsWell;
+    private BundleContext shouldBeNullAsWell;
 
     /**
      * Tests if bundleContext is being injected correctly.
@@ -51,7 +51,7 @@ public class InjectionTest
         assertNotNull( bundleContext );
         assertNull( shouldBeNull );
         assertNull( shouldBeNullAsWell );
-
+        
     }
 
 }
