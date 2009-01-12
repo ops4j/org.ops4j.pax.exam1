@@ -34,24 +34,48 @@ import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 public class InjectionTest
 {
 
-    @Inject
-    private BundleContext bundleContext;
+    /**
+     * The value should be injected by Pax Exam.
+     */
+    @Inject private BundleContext bundleContext;
 
-    @Inject
-    private String shouldBeNull;
+    /**
+     * The value will not be injected by Pax Exam even if annotated because is on an unsupported type.
+     */
+    @Inject private String unknownType;
 
-    private BundleContext shouldBeNullAsWell;
+    /**
+     * The value will not be injected by Pax Exam even if annotated because is not marked with @Inject.
+     */
+    private BundleContext notMarkedAsInjectable;
 
     /**
      * Tests if bundleContext is being injected correctly.
      */
     @Test
-    public void injectTest()
+    public void injectBundleContext()
     {
         assertNotNull( bundleContext );
-        assertNull( shouldBeNull );
-        assertNull( shouldBeNullAsWell );
-        
+        assertNull( unknownType );
+        assertNull( notMarkedAsInjectable );
+    }
+
+    /**
+     * Tests that there is no value injected, as even if annotated is not of an supported type.
+     */
+    @Test
+    public void injectUnknownType()
+    {
+        assertNull( unknownType );
+    }
+
+    /**
+     * Tests that there is no value injected, because the field is not marked with @Inject.
+     */
+    @Test
+    public void injectBundleContextNotMarked()
+    {
+        assertNull( notMarkedAsInjectable );
     }
 
 }
