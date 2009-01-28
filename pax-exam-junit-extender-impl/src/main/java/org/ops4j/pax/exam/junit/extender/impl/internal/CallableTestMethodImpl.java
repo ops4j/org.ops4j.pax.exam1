@@ -18,15 +18,19 @@
  */
 package org.ops4j.pax.exam.junit.extender.impl.internal;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Field;
-import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
+import org.junit.After;
+import org.junit.Before;
 import org.osgi.framework.BundleContext;
 import static org.ops4j.lang.NullArgumentException.*;
-import org.ops4j.pax.exam.junit.extender.CallableTestMethod;
 import org.ops4j.pax.exam.Inject;
+import org.ops4j.pax.exam.junit.extender.CallableTestMethod;
 
 /**
  * {@link Callable} implementation.
@@ -109,28 +113,87 @@ class CallableTestMethodImpl
     {
         final Class<?>[] paramTypes = testMethod.getParameterTypes();
         injectFieldInstances( testInstance );
-        // if there is only one param and is of type BundleContext we inject it, otherwise just call
-        // this means that if there are actual params the call will fail, but that is okay as it will be reported back
-        if( paramTypes.length == 1
-            && paramTypes[ 0 ].isAssignableFrom( BundleContext.class ) )
+        try
         {
-            testMethod.invoke( testInstance, m_bundleContext );
+            runBefores( testInstance );
+            // if there is only one param and is of type BundleContext we inject it, otherwise just call
+            // this means that if there are actual params the call will fail, but that is okay as it will be reported back
+            if( paramTypes.length == 1
+                && paramTypes[ 0 ].isAssignableFrom( BundleContext.class ) )
+            {
+                testMethod.invoke( testInstance, m_bundleContext );
+            }
+            else
+            {
+                testMethod.invoke( testInstance );
+            }
         }
-        else
+        finally
         {
-            testMethod.invoke( testInstance );
+            runAfters( testInstance );
+        }
+    }
+
+    /**
+     * Run all methods annotated with {@link Before}.
+     *
+     * @param testInstance an instance of the test class (cannot be null)
+     *
+     * @throws IllegalAccessException    - Re-thrown from reflection invokation
+     * @throws InvocationTargetException - Re-thrown from reflection invokation
+     */
+    private void runBefores( final Object testInstance )
+        throws IllegalAccessException, InvocationTargetException
+    {
+        for( final Method beforeMethod : getAnnotatedMethods( testInstance.getClass(), Before.class ) )
+        {
+            final Class<?>[] paramTypes = beforeMethod.getParameterTypes();
+            if( paramTypes.length == 1
+                && paramTypes[ 0 ].isAssignableFrom( BundleContext.class ) )
+            {
+                beforeMethod.invoke( testInstance, m_bundleContext );
+            }
+            else
+            {
+                beforeMethod.invoke( testInstance );
+            }
+        }
+    }
+
+    /**
+     * Run all methods annotated with {@link After}.
+     *
+     * @param testInstance an instance of the test class (cannot be null)
+     *
+     * @throws IllegalAccessException    - Re-thrown from reflection invokation
+     * @throws InvocationTargetException - Re-thrown from reflection invokation
+     */
+    private void runAfters( final Object testInstance )
+        throws IllegalAccessException, InvocationTargetException
+    {
+        for( final Method afterMethod : getAnnotatedMethods( testInstance.getClass(), After.class ) )
+        {
+            final Class<?>[] paramTypes = afterMethod.getParameterTypes();
+            if( paramTypes.length == 1
+                && paramTypes[ 0 ].isAssignableFrom( BundleContext.class ) )
+            {
+                afterMethod.invoke( testInstance, m_bundleContext );
+            }
+            else
+            {
+                afterMethod.invoke( testInstance );
+            }
         }
     }
 
     /**
      * Injects instances into fields found in testInstance
+     *
      * @param testInstance
-     * @throws IllegalAccessException
      */
     private void injectFieldInstances( Object testInstance )
         throws IllegalAccessException
     {
-
         for( Field field : testInstance.getClass().getDeclaredFields() )
         {
             setIfMatching( testInstance, field, m_bundleContext );
@@ -138,11 +201,9 @@ class CallableTestMethodImpl
     }
 
     /**
-     *
      * @param testInstance object instance where you found field
-     * @param field field that is going to be set
-     * @param o target value of field
-     * @throws IllegalAccessException
+     * @param field        field that is going to be set
+     * @param o            target value of field
      */
     private void setIfMatching( Object testInstance, Field field, Object o )
         throws IllegalAccessException
@@ -156,10 +217,9 @@ class CallableTestMethodImpl
 
     /**
      * Just checks if type of field is a assignable from clazz.
-     * 
+     *
      * @param field
      * @param clazz
-     * @return
      */
     private boolean isMatchingType( Field field, Class clazz )
     {
@@ -169,8 +229,9 @@ class CallableTestMethodImpl
     /**
      * Tests if the given field has the {@link @Inject} annotation.
      * Due to some osgi quirks, currently direct getAnnotation( Inject.class ) does not work..:(
-     * 
+     *
      * @param field field to be tested
+     *
      * @return trze if it has the Inject annotation. Otherwise false.
      */
     public boolean isInjectionField( Field field )
@@ -195,4 +256,51 @@ class CallableTestMethodImpl
 
         return false;
     }
+
+    /**
+     * Find all methods marked with a specific annotation.
+     *
+     * @param testClass       class to be inspected
+     * @param annotationClass annotation class to be found
+     *
+     * @return list of annotated methods (cannot be null)
+     */
+    public List<Method> getAnnotatedMethods( final Class testClass,
+                                             final Class<? extends Annotation> annotationClass )
+    {
+        final List<Method> results = new ArrayList<Method>();
+        for( final Class<?> clazz : getSuperClasses( testClass ) )
+        {
+            final Method[] methods = clazz.getDeclaredMethods();
+            for( final Method method : methods )
+            {
+                final Annotation annotation = method.getAnnotation( annotationClass );
+                if( annotation != null )
+                {
+                    results.add( method );
+                }
+            }
+        }
+        return results;
+    }
+
+    /**
+     * Finds all superclasses of a certain class including itself.
+     *
+     * @param testClass class whom superclasses should be found
+     *
+     * @return list of superclasses (cannot be null)
+     */
+    private List<Class<?>> getSuperClasses( final Class<?> testClass )
+    {
+        final ArrayList<Class<?>> results = new ArrayList<Class<?>>();
+        Class<?> current = testClass;
+        while( current != null )
+        {
+            results.add( current );
+            current = current.getSuperclass();
+        }
+        return results;
+    }
+
 }

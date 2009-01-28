@@ -30,7 +30,6 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.internal.runners.ClassRoadie;
 import org.junit.internal.runners.InitializationError;
-import org.junit.internal.runners.MethodRoadie;
 import org.junit.internal.runners.MethodValidator;
 import org.junit.internal.runners.TestClass;
 import org.junit.internal.runners.TestMethod;
@@ -48,6 +47,7 @@ import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.OptionUtils;
 import static org.ops4j.pax.exam.junit.JUnitOptions.*;
 import org.ops4j.pax.exam.junit.internal.JUnit4ConfigMethod;
+import org.ops4j.pax.exam.junit.internal.JUnit4MethodRoadie;
 import org.ops4j.pax.exam.junit.internal.JUnit4TestMethod;
 import org.ops4j.pax.exam.junit.options.JUnitBundlesOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
@@ -209,7 +209,7 @@ public class JUnit4TestRunner
             notifier.testAborted( description, e );
             return;
         }
-        new MethodRoadie( test, method, notifier, description ).run();
+        new JUnit4MethodRoadie( test, method, notifier, description ).run();
     }
 
     protected TestMethod wrapMethod( Method method )
