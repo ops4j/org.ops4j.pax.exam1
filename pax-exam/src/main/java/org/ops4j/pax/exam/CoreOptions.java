@@ -165,7 +165,9 @@ public class CoreOptions
     public static Option allKnopflerfishVersions()
     {
         return composite(
-            knopflerfish().version( "2.0.0" ),
+            //exclude version 2.0.0 as it looks like it has an internal problem of NPE in BundlePackages.java:266 while
+            //looking for annotations from CallableTestMethodImpl.getAnnotatedMethods
+            //knopflerfish().version( "2.0.0" ),
             knopflerfish().version( "2.0.1" ),
             knopflerfish().version( "2.0.2" ),
             knopflerfish().version( "2.0.3" ),
