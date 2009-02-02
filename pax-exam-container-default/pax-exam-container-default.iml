@@ -26,7 +26,7 @@
     <orderEntry type="library" exported="" name="Maven: javax.servlet:servlet-api:2.3" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-net:0.5.3" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-monitors:0.5.3" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.17.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.17.1" level="project" />
   </component>
 </module>
 
