@@ -20,7 +20,6 @@ package org.ops4j.pax.exam.junit;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -46,7 +45,6 @@ import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.OptionUtils;
 import static org.ops4j.pax.exam.junit.JUnitOptions.*;
-import org.ops4j.pax.exam.junit.internal.JUnit4ConfigMethod;
 import org.ops4j.pax.exam.junit.internal.JUnit4MethodRoadie;
 import org.ops4j.pax.exam.junit.internal.JUnit4TestMethod;
 import org.ops4j.pax.exam.junit.options.JUnitBundlesOption;
@@ -87,32 +85,11 @@ public class JUnit4TestRunner
     }
 
     protected List<JUnit4TestMethod> getTestMethods()
-        throws IllegalAccessException, InvocationTargetException, InstantiationException
+        throws Exception
     {
-        final List<JUnit4ConfigMethod> configMethods = new ArrayList<JUnit4ConfigMethod>();
-        for( Method configMethod : m_testClass.getAnnotatedMethods( Configuration.class ) )
-        {
-            System.out.println( "---- " + configMethod.getName() );
-            if( !Modifier.isStatic( configMethod.getModifiers() ) )
-            {
-                System.err.println(
-                    "!WARNING: Configuration method [" + configMethod.getName() + "] in [" + m_testClass.getName()
-                    + "] must be static"
-                );
-                continue;
-            }
-            if( Modifier.isAbstract( configMethod.getModifiers() ) )
-            {
-                System.err.println(
-                    "!WARNING: Configuration method [" + configMethod.getName() + "] in [" + m_testClass.getName()
-                    + "] cannot be abstract"
-                );
-                continue;
-            }
-            configMethods.add( new JUnit4ConfigMethod( configMethod ) );
-        }
+        final Collection<JUnit4ConfigMethod> configMethods = getConfigurationMethods();
         final List<JUnit4TestMethod> methods = new ArrayList<JUnit4TestMethod>();
-        final List<Method> testMethods = m_testClass.getAnnotatedMethods( Test.class );
+        final Collection<Method> testMethods = m_testClass.getAnnotatedMethods( Test.class );
         for( Method testMethod : testMethods )
         {
             final Option configOptions = getOptions( testMethod, configMethods );
@@ -131,6 +108,38 @@ public class JUnit4TestRunner
             }
         }
         return methods;
+    }
+
+    /**
+     * Finds the configuration methods based on the configured {@link ConfigurationStrategy}.
+     *
+     * @return collection of configuration methods (cannot be null but can be empty)
+     *
+     * @throws Exception - If test instance cannot be created
+     *                   - Re-thrown while finding the configuration methods
+     */
+    private Collection<JUnit4ConfigMethod> getConfigurationMethods()
+        throws Exception
+    {
+        final Object testInstance = m_testClass.getJavaClass().newInstance();
+
+        ConfigurationStrategy configStrategy = m_testClass.getJavaClass().getAnnotation( ConfigurationStrategy.class );
+        if( configStrategy == null )
+        {
+            configStrategy = DefaultConfigurationStrategy.class.getAnnotation( ConfigurationStrategy.class );
+        }
+        final Class<? extends JUnit4ConfigMethods>[] configMethodsClasses = configStrategy.value();
+        final List<JUnit4ConfigMethod> configMethods = new ArrayList<JUnit4ConfigMethod>();
+        for( final Class<? extends JUnit4ConfigMethods> configMethodsClass : configMethodsClasses )
+        {
+            final Collection<? extends JUnit4ConfigMethod> methods =
+                configMethodsClass.newInstance().getConfigMethods( m_testClass, testInstance );
+            if( methods != null )
+            {
+                configMethods.addAll( methods );
+            }
+        }
+        return configMethods;
     }
 
     protected void validate()
@@ -282,7 +291,7 @@ public class JUnit4TestRunner
 
     private static Option getOptions( final Method methodName,
                                       final Collection<JUnit4ConfigMethod> configMethods )
-        throws IllegalAccessException, InvocationTargetException, InstantiationException
+        throws Exception
     {
         // always add the junit extender
         final DefaultCompositeOption option = new DefaultCompositeOption(
@@ -321,6 +330,12 @@ public class JUnit4TestRunner
             option.add( junitBundles() );
         }
         return option;
+    }
+
+    @ConfigurationStrategy
+    private class DefaultConfigurationStrategy
+    {
+
     }
 
 }

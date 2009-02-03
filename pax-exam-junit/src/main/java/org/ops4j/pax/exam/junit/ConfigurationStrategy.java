@@ -18,20 +18,23 @@
 package org.ops4j.pax.exam.junit;
 
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation marking Pax Exam configuration method.
+ * Allows a pluggable configuration strategy for Pax Exam JUnit tests.
  *
- * @author Toni Menzel (tonit)
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
- * @since 0.3.0, October 14, 2008
+ * @since 0.3.0, February 02, 2009
  */
 @Retention( RetentionPolicy.RUNTIME )
-@Target( ElementType.METHOD )
-public @interface Configuration
+@Target( ElementType.TYPE )
+@Inherited
+public @interface ConfigurationStrategy
 {
+
+    Class<? extends JUnit4ConfigMethods>[] value() default { AnnotatedWithConfiguration.class };
 
 }
