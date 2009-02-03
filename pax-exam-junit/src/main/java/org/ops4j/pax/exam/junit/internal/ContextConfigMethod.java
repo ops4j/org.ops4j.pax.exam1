@@ -23,10 +23,10 @@ import java.lang.reflect.Method;
 import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
-import org.ops4j.pax.exam.junit.SetConfiguration;
+import org.ops4j.pax.exam.junit.RequiresConfiguration;
 
 /**
- * Models a configuration method (those marked with {@link Configuration} and {@link org.ops4j.pax.exam.junit.SetConfiguration} annotations).
+ * Models a configuration method (those marked with {@link Configuration} and {@link org.ops4j.pax.exam.junit.RequiresConfiguration} annotations).
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @author Toni Menzel (toni@okidokiteam.com)
@@ -77,7 +77,7 @@ public class ContextConfigMethod
     public boolean matches(final Method method) {
         validateNotNull(method, "Method");
 
-        final SetConfiguration methodRequiresConfigurationAnn = method.getAnnotation(SetConfiguration.class);
+        final RequiresConfiguration methodRequiresConfigurationAnn = method.getAnnotation(RequiresConfiguration.class);
         final String[] methodContexts;
         if (methodRequiresConfigurationAnn != null) {
             methodContexts = methodRequiresConfigurationAnn.value();
