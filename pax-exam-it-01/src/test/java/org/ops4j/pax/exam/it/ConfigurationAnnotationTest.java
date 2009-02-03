@@ -13,11 +13,33 @@ import org.ops4j.pax.exam.options.SystemPropertyOption;
 import static org.ops4j.pax.exam.CoreOptions.*;
 
 /**
+ * Currently Recommended Configuration Pattern for more complex setups (more than hello world stuff):
+ * <p/>
+ * First you put the very basic config somewhere and annotate it with @AppliesTo ( ".*")
+ * <p/>
+ * Then you write other configs with just @Configuration
+ * <p/>
+ * So, now, when you write your Tests you get the basic config from appliesTo.
+ * But you can "request" additional configuration by using @RequiresConfiguration.
+ * <p/>
+ * This lets you mix and match configs as wanted.
+ * <p/>
+ * The named-AppliesTo usescase dictates a nameing schema to the tests.
+ * If it is needed, it is possible.
+ *
  * @author Toni Menzel (tonit)
  * @since Jan 8, 2009
  */
 @RunWith(JUnit4TestRunner.class)
 public class ConfigurationAnnotationTest {
+
+    @Configuration
+    @AppliesTo({".*"})
+    public static Option[] rootConfig() {
+        return options(
+                systemProperties(new SystemPropertyOption("rootConfig").value("true"))
+        );
+    }
 
     @Configuration
     public static Option[] standardConfig() {
@@ -43,6 +65,7 @@ public class ConfigurationAnnotationTest {
 
     @Test
     public void test1(final BundleContext bundleContext) {
+        assertEquals("true", bundleContext.getProperty("rootConfig"));
         assertEquals("true", bundleContext.getProperty("standardConfig"));
         assertEquals("true", bundleContext.getProperty("extraConfig"));
         assertNull(bundleContext.getProperty("loggingConfig"));
@@ -51,6 +74,7 @@ public class ConfigurationAnnotationTest {
     @Test
     @RequiresConfiguration(".*extraConfig.*")
     public void test2(final BundleContext bundleContext) {
+        assertEquals("true", bundleContext.getProperty("rootConfig"));
         assertEquals("true", bundleContext.getProperty("extraConfig"));
         assertNull(bundleContext.getProperty("loggingConfig"));
         assertNull(bundleContext.getProperty("standardConfig"));
@@ -58,6 +82,7 @@ public class ConfigurationAnnotationTest {
 
     @Test
     public void test4(final BundleContext bundleContext) {
+        assertEquals("true", bundleContext.getProperty("rootConfig"));
         assertEquals("true", bundleContext.getProperty("standardConfig"));
         assertEquals("true", bundleContext.getProperty("extraConfig"));
         assertEquals("true", bundleContext.getProperty("loggingConfig"));
@@ -72,6 +97,7 @@ public class ConfigurationAnnotationTest {
     @Test
     @RequiresConfiguration(".*standardConfig.*")
     public void test3(final BundleContext bundleContext) {
+        assertEquals("true", bundleContext.getProperty("rootConfig"));
         assertEquals("true", bundleContext.getProperty("standardConfig"));
         assertNull(bundleContext.getProperty("extraConfig"));
         assertEquals("true", bundleContext.getProperty("loggingConfig"));
