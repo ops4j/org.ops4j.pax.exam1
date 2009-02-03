@@ -66,14 +66,14 @@ public class ConfigurationAnnotationTest {
     /*
     * @Note Toni, Feb, 03, 2009
     * What we have here currently is a merge:
-    * It gets extraConfig because of RequiresConfiguration and Logging because of AppliesTo.
+    * It gets standardConfig because of RequiresConfiguration and loggingConfig because of AppliesTo.
     */
 
     @Test
-    @RequiresConfiguration(".*extraConfig.*")
+    @RequiresConfiguration(".*standardConfig.*")
     public void test3(final BundleContext bundleContext) {
-        assertNull(bundleContext.getProperty("standardConfig"));
-        assertEquals("true", bundleContext.getProperty("extraConfig"));
+        assertEquals("true", bundleContext.getProperty("standardConfig"));
+        assertNull(bundleContext.getProperty("extraConfig"));
         assertEquals("true", bundleContext.getProperty("loggingConfig"));
     }
 
