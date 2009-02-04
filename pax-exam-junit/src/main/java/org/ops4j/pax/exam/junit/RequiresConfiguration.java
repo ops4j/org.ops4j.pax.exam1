@@ -17,10 +17,10 @@
  */
 package org.ops4j.pax.exam.junit;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import java.lang.annotation.ElementType;
 
 /**
  * Annotation that marks methods belonging into a certain context (those methods marked with {@link org.junit.Test}).

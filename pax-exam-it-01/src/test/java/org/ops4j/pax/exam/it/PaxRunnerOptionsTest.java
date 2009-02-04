@@ -17,8 +17,8 @@
  */
 package org.ops4j.pax.exam.it;
 
-import org.junit.Test;
 import org.junit.Ignore;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Option;
@@ -125,7 +125,6 @@ public class PaxRunnerOptionsTest
     {
     }
 
-
     /**
      * Pax Exam test options that sets a custom maven repository.
      * Repositories itself can be configured.
@@ -150,6 +149,6 @@ public class PaxRunnerOptionsTest
     @Test
     public void repositoryTest()
     {
-        
+
     }
 }

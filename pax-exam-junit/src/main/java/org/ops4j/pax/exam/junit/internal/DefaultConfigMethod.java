@@ -116,7 +116,7 @@ public class DefaultConfigMethod
     {
         if( m_options == null )
         {
-            m_options = ( Option[] ) m_method.invoke( m_configInstance );
+            m_options = (Option[]) m_method.invoke( m_configInstance );
 
         }
         return m_options;
