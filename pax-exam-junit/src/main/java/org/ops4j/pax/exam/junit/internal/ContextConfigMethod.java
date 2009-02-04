@@ -19,10 +19,10 @@ package org.ops4j.pax.exam.junit.internal;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
 import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
+import org.ops4j.pax.exam.junit.JUnit4ConfigMethod;
 import org.ops4j.pax.exam.junit.RequiresConfiguration;
 
 /**
@@ -33,7 +33,8 @@ import org.ops4j.pax.exam.junit.RequiresConfiguration;
  * @since 0.3.0, December 16, 2008
  */
 public class ContextConfigMethod
-        implements org.ops4j.pax.exam.junit.JUnit4ConfigMethod {
+    implements JUnit4ConfigMethod
+{
 
     /**
      * Configuration method. Must be a accessible method (cannot be null).
@@ -55,43 +56,48 @@ public class ContextConfigMethod
      * @param configMethod   configuration method (cannot be null)
      * @param configInstance instance of the class containing the test method.
      *                       If null then the method is supposed to be static.
+     *
      * @throws IllegalArgumentException - If method is null
      */
-    public ContextConfigMethod(final Method configMethod,
-                               final Object configInstance) {
-        validateNotNull(configMethod, "Configuration method");
+    public ContextConfigMethod( final Method configMethod,
+                                final Object configInstance )
+    {
+        validateNotNull( configMethod, "Configuration method" );
 
         m_method = configMethod;
         m_configInstance = configInstance;
-
-
     }
 
     /**
      * Matches a test method name against this configuration method.
      *
      * @param method test method name (cannot be null or empty)
+     *
      * @return true if the test method name matches the configuration method, false otherwise
+     *
      * @throws IllegalArgumentException - If method name is null or empty
      */
-    public boolean matches(final Method method) {
-        validateNotNull(method, "Method");
+    public boolean matches( final Method method )
+    {
+        validateNotNull( method, "Method" );
 
-        final RequiresConfiguration methodRequiresConfigurationAnn = method.getAnnotation(RequiresConfiguration.class);
-        final String[] methodContexts;
-        if (methodRequiresConfigurationAnn != null) {
-            methodContexts = methodRequiresConfigurationAnn.value();
-        } else {
-            methodContexts = new String[]{".*"};
+        final RequiresConfiguration requiresConfigAnnotation = method.getAnnotation( RequiresConfiguration.class );
+        final String[] requiredConfigs;
+        if( requiresConfigAnnotation != null )
+        {
+            requiredConfigs = requiresConfigAnnotation.value();
         }
-        for (String methodContext : methodContexts) {
-            System.out.println("Matching out " + methodContext + " and " + m_method.getName());
-            if (m_method.getName().matches(methodContext) ) {
-                System.out.println("true...");
+        else
+        {
+            requiredConfigs = new String[]{ ".*" };
+        }
+        for( String requiredConfig : requiredConfigs )
+        {
+            if( m_method.getName().matches( requiredConfig ) )
+            {
                 return true;
             }
         }
-        System.out.println("false..");
         return false;
     }
 
@@ -99,15 +105,18 @@ public class ContextConfigMethod
      * Returns the configuration options for this configuration method.
      *
      * @return array of configuration options
+     *
      * @throws IllegalAccessException - Re-thrown, from invoking the configuration method via reflection
      * @throws java.lang.reflect.InvocationTargetException
      *                                - Re-thrown, from invoking the configuration method via reflection
      * @throws InstantiationException - Re-thrown, from invoking the configuration method via reflection
      */
     public Option[] getOptions()
-            throws IllegalAccessException, InvocationTargetException, InstantiationException {
-        if (m_options == null) {
-            m_options = (Option[]) m_method.invoke(m_configInstance);
+        throws IllegalAccessException, InvocationTargetException, InstantiationException
+    {
+        if( m_options == null )
+        {
+            m_options = ( Option[] ) m_method.invoke( m_configInstance );
 
         }
         return m_options;
