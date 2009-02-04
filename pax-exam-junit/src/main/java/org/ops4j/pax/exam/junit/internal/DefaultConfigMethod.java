@@ -32,7 +32,7 @@ import org.ops4j.pax.exam.junit.RequiresConfiguration;
  * @author Toni Menzel (toni@okidokiteam.com)
  * @since 0.3.0, December 16, 2008
  */
-public class ContextConfigMethod
+public class DefaultConfigMethod
     implements JUnit4ConfigMethod
 {
 
@@ -59,7 +59,7 @@ public class ContextConfigMethod
      *
      * @throws IllegalArgumentException - If method is null
      */
-    public ContextConfigMethod( final Method configMethod,
+    public DefaultConfigMethod( final Method configMethod,
                                 final Object configInstance )
     {
         validateNotNull( configMethod, "Configuration method" );

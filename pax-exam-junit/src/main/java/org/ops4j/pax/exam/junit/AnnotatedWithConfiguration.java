@@ -25,7 +25,7 @@ import java.util.List;
 import org.junit.internal.runners.TestClass;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.internal.AppliesToConfigMethod;
-import org.ops4j.pax.exam.junit.internal.ContextConfigMethod;
+import org.ops4j.pax.exam.junit.internal.DefaultConfigMethod;
 
 /**
  * Configuration sytrategy that will consider as configuration any static/non static methods that are marked with
@@ -66,7 +66,7 @@ public class AnnotatedWithConfiguration
                 else
                 {
                     configMethods.add(
-                        new ContextConfigMethod(
+                        new DefaultConfigMethod(
                             configMethod, Modifier.isStatic( configMethod.getModifiers() ) ? null : testInstance
                         )
                     );
