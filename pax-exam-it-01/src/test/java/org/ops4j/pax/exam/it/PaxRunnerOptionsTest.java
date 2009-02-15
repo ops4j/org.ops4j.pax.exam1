@@ -139,7 +139,8 @@ public class PaxRunnerOptionsTest
     public static Option[] configureRepositories()
     {
         return options(
-            repository( "http://repository.ops4j.org/mvn-snapshots" ).disableReleases().allowSnapshots()
+            repository( "http://repository.ops4j.org/mvn-snapshots" ).disableReleases().allowSnapshots(),
+            repository( "http://repo1.maven.org/maven2/" )
         );
     }
 

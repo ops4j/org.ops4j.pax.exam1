@@ -198,7 +198,7 @@ public class RemoteBundleContextClient
     {
         try
         {
-            getRemoteBundleContext().startBundle( 0 );
+            getRemoteBundleContext().stopBundle( 0 );
         }
         catch( RemoteException e )
         {
