@@ -94,22 +94,32 @@ public class JUnit4TestMethod
     {
         Info.showLogo();
         final TestContainerFactory containerFactory = PaxExamRuntime.getTestContainerFactory();
-        final TestContainer container = containerFactory.newInstance( m_options );
-        container.startBundle( container.installBundle( m_testBundleUrl ) );
-        final CallableTestMethod callable = container.getService( CallableTestMethod.class );
+        TestContainer container = null;
         try
         {
-            callable.call();
+            container = containerFactory.newInstance( m_options );
+            container.startBundle( container.installBundle( m_testBundleUrl ) );
+            final CallableTestMethod callable = container.getService( CallableTestMethod.class );
+            try
+            {
+                callable.call();
+            }
+            catch( InstantiationException e )
+            {
+                throw new InvocationTargetException( e );
+            }
+            catch( ClassNotFoundException e )
+            {
+                throw new InvocationTargetException( e );
+            }
         }
-        catch( InstantiationException e )
+        finally
         {
-            throw new InvocationTargetException( e );
+            if( container != null )
+            {
+                container.stop();
+            }
         }
-        catch( ClassNotFoundException e )
-        {
-            throw new InvocationTargetException( e );
-        }
-        container.stop();
     }
 
     /**
