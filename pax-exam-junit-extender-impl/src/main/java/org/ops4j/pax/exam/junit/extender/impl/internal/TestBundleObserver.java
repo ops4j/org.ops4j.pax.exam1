@@ -107,7 +107,9 @@ class TestBundleObserver
         final Registration registration = m_registrations.remove( bundle );
         if( registration != null )
         {
-            registration.serviceRegistration.unregister();
+            // Do not unregister as bellow, because the services are automatically unregistered as soon as the bundle
+            // for which the services are reigistred gets stopped
+            // registration.serviceRegistration.unregister();
             LOG.info( "Unregistered testcase [" + registration.testCase + "." + registration.testMethod + "]" );
         }
     }
