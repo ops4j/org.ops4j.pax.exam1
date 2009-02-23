@@ -38,7 +38,7 @@ import org.ops4j.pax.exam.rbc.client.RemoteBundleContextClient;
 import org.ops4j.pax.exam.spi.container.TestContainer;
 import org.ops4j.pax.exam.spi.container.TestContainerException;
 import static org.ops4j.pax.runner.Run.*;
-import org.ops4j.pax.runner.platform.StoppableJavaRunner;
+import org.ops4j.pax.runner.platform.DefaultJavaRunner;
 
 /**
  * {@link TestContainer} implementation using Pax Runner.
@@ -58,7 +58,7 @@ class PaxRunnerTestContainer
     /**
      * Number of ports to check for a free rmi communication port.
      */
-    private static final int AMOUNT_OF_PORTS_TO_CHECK = 100;
+    private static final int AMOUNT_OF_PORTS_TO_CHECK = 0;
     /**
      * Default timeout in millis that will be taken while searching for remote bundle context via RMI.
      */
@@ -68,25 +68,30 @@ class PaxRunnerTestContainer
      * Remote bundle context client.
      */
     private final RemoteBundleContextClient m_remoteBundleContextClient;
+    /**
+     * Java runner to be used to start up Pax Runner.
+     */
+    private final DefaultJavaRunner m_javaRunner;
 
     /**
      * Constructor.
      *
-     * @param javaRunner java runner to be used to start up Pax Runner.
+     * @param javaRunner java runner to be used to start up Pax Runner
      * @param options    user startup options
      */
-    PaxRunnerTestContainer( final StoppableJavaRunner javaRunner,
+    PaxRunnerTestContainer( final DefaultJavaRunner javaRunner,
                             final Option... options )
     {
         LOG.info( "Starting up the test container (Pax Runner " + Info.getPaxRunnerVersion() + " )" );
         long startedAt = System.currentTimeMillis();
+        m_javaRunner = javaRunner;
         m_remoteBundleContextClient = new RemoteBundleContextClient(
             findFreeCommunicationPort(),
             getRMILookupTimeout( options )
         );
         start( javaRunner, buildArguments( wrap( expand( combine( options, localOptions() ) ) ) ) );
         LOG.info(
-            "Test container (Pax Runner " + Info.getPaxRunnerVersion() + " ) started in "
+            "Test container (Pax Runner " + Info.getPaxRunnerVersion() + ") started in "
             + ( System.currentTimeMillis() - startedAt ) + " millis"
         );
     }
@@ -149,7 +154,7 @@ class PaxRunnerTestContainer
     {
         LOG.info( "Shutting down the test container (Pax Runner)" );
         m_remoteBundleContextClient.stop();
-        //m_javaRunner.shutdown();
+        m_javaRunner.waitForExit();
     }
 
     /**

@@ -104,6 +104,8 @@ public class Activator
         throws Exception
     {
         LOG.debug( "Unbinding " + RemoteBundleContext.class.getSimpleName() );
+        m_registry.unbind( RemoteBundleContext.class.getName() );
+        UnicastRemoteObject.unexportObject( m_remoteBundleContext, true );
         UnicastRemoteObject.unexportObject( m_registry, true );
         m_registry = null;
         m_remoteBundleContext = null;
