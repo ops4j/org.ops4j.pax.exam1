@@ -58,7 +58,7 @@ class PaxRunnerTestContainer
     /**
      * Number of ports to check for a free rmi communication port.
      */
-    private static final int AMOUNT_OF_PORTS_TO_CHECK = 0;
+    private static final int AMOUNT_OF_PORTS_TO_CHECK = 100;
     /**
      * Default timeout in millis that will be taken while searching for remote bundle context via RMI.
      */
