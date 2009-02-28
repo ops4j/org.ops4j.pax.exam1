@@ -200,7 +200,7 @@
       <name>Apache License, Version 2.0</name>
       <url>http://www.apache.org/licenses/LICENSE-2.0</url>
       <comments>
-        Copyright 2008 Toni Menzel, Stuart McCulloch, Alin Dreghiciu.
+        Copyright 2008,2009 Toni Menzel, Stuart McCulloch, Alin Dreghiciu.
 
         Licensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
@@ -235,7 +235,7 @@
     <developer>
       <id>tonit</id>
       <name>Toni Menzel</name>
-      <email>tonimenzel@gmx.de</email>
+      <email>toni@okidokiteam.com</email>
       <organization>independent software developer</organization>
       <roles>
         <role>Developer</role>
@@ -265,5 +265,5 @@
       <timezone>UTC+2</timezone>
     </developer>
   </developers>
-
+    
 </project>
