@@ -107,6 +107,15 @@
           <option name="LABEL_INDENT_SIZE" value="0" />
           <option name="LABEL_INDENT_ABSOLUTE" value="false" />
         </ADDITIONAL_INDENT_OPTIONS>
+        <ADDITIONAL_INDENT_OPTIONS fileType="jsp">
+          <option name="INDENT_SIZE" value="4" />
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
+          <option name="TAB_SIZE" value="4" />
+          <option name="USE_TAB_CHARACTER" value="false" />
+          <option name="SMART_TABS" value="false" />
+          <option name="LABEL_INDENT_SIZE" value="0" />
+          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
+        </ADDITIONAL_INDENT_OPTIONS>
         <ADDITIONAL_INDENT_OPTIONS fileType="txt">
           <option name="INDENT_SIZE" value="2" />
           <option name="CONTINUATION_INDENT_SIZE" value="8" />
@@ -409,6 +418,9 @@
     <option name="projectName" value="exam" />
   </component>
   <component name="ProjectFileVersion" converted="true" />
+  <component name="ProjectKey">
+    <option name="state" value="https://scm.ops4j.org/repos/ops4j/projects/pax/exam/exam.ipr" />
+  </component>
   <component name="ProjectLevelVcsManager">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
@@ -665,15 +677,15 @@
         <root url="jar://$M2_REPO$/commons-discovery/commons-discovery/0.4/commons-discovery-0.4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.17.2-SNAPSHOT">
+    <library name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.17.2">
       <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.17.2-SNAPSHOT/pax-runner-no-jcl-0.17.2-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.17.2/pax-runner-no-jcl-0.17.2.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.17.2-SNAPSHOT/pax-runner-no-jcl-0.17.2-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.17.2/pax-runner-no-jcl-0.17.2-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.17.2-SNAPSHOT/pax-runner-no-jcl-0.17.2-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.17.2/pax-runner-no-jcl-0.17.2-sources.jar!/" />
       </SOURCES>
     </library>
   </component>
