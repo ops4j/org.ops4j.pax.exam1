@@ -143,7 +143,8 @@ public class CoreOptions
             equinox().version( "3.3.1" ),
             equinox().version( "3.3.2" ),
             equinox().version( "3.4.0" ),
-            equinox().version( "3.4.1" )
+            equinox().version( "3.4.1" ),
+            equinox().version( "3.4.2" )
         );
     }
 
