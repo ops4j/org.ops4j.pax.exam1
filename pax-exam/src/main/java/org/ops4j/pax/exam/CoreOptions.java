@@ -115,7 +115,8 @@ public class CoreOptions
             felix().version( "1.2.0" ),
             felix().version( "1.2.1" ),
             felix().version( "1.2.2" ),
-            felix().version( "1.4.0" )
+            felix().version( "1.4.0" ),
+            felix().version( "1.4.1" )
         );
     }
 
