@@ -50,8 +50,7 @@ public class T03_HelloFromEquinox
     public static Option[] configure()
     {
         return options(
-            equinox(),
-            logProfile()
+            equinox()
         );
     }
 
@@ -62,7 +61,6 @@ public class T03_HelloFromEquinox
     @Test
     public void helloFromEquinox()
     {
-        System.out.println( "This is running inside Equinox. See loaded bundles below: " );
         for( Bundle b : bundleContext.getBundles() )
         {
             System.out.println( "Bundle " + b.getBundleId() + " : " + b.getSymbolicName() );
