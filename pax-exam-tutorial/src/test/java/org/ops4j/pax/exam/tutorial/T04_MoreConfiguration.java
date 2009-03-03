@@ -41,7 +41,7 @@ public class T04_MoreConfiguration
         return options(
             // install log service using pax runners profile abstraction (there are more profiles, like DS)
             logProfile(),
-          
+            systemProperty( "org.ops4j.pax.logging.DefaultServiceLog.level" ).value( "TRACE" ),
             // a maven dependency. This must be a bundle already.
             mavenBundle().groupId( "org.ops4j.pax.url" ).artifactId( "pax-url-mvn" ).version( "0.4.0" ),
 
