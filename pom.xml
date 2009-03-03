@@ -51,6 +51,7 @@
     <profile>
       <id>it</id>
       <modules>
+        <module>pax-exam-tutorial</module>
         <module>pax-exam-it-01</module>
       </modules>
     </profile>
