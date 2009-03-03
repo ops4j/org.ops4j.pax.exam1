@@ -18,6 +18,15 @@
   <packaging>jar</packaging>
 
   <name>OPS4J Pax Exam - Integration Tests Set 02</name>
+  <description>
+    Where IT-01 is about testing pax exam features,
+    this is about listing a set of tests to be run in
+    order to track down environmental problems.
+    Doing so, it is more ment to be run by developers inside an ide
+    and report log output in the Jira after that.
+
+    So log output is quite much in this project.
+  </description>
 
   <dependencies>
     <dependency>
