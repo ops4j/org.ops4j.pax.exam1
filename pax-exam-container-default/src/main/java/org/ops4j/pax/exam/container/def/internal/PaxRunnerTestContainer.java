@@ -123,8 +123,10 @@ class PaxRunnerTestContainer
      */
     public long installBundle( final String bundleUrl )
     {
-        LOG.debug( "Install bundle [" + bundleUrl + "]" );
-        return m_remoteBundleContextClient.installBundle( bundleUrl );
+        LOG.debug( "Installing bundle [" + bundleUrl + "] .." );
+        long id = m_remoteBundleContextClient.installBundle( bundleUrl );
+        LOG.debug( "Installed bundle " + bundleUrl + " as ID: " + id );
+        return id;
     }
 
     /**
