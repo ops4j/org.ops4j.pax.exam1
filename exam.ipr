@@ -475,6 +475,7 @@
       <module fileurl="file://$PROJECT_DIR$/pax-exam-container-rbc/pax-exam-container-rbc.iml" filepath="$PROJECT_DIR$/pax-exam-container-rbc/pax-exam-container-rbc.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-container-rbc-client/pax-exam-container-rbc-client.iml" filepath="$PROJECT_DIR$/pax-exam-container-rbc-client/pax-exam-container-rbc-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-it-01/pax-exam-it-01.iml" filepath="$PROJECT_DIR$/pax-exam-it-01/pax-exam-it-01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pax-exam-it-02/pax-exam-it-02.iml" filepath="$PROJECT_DIR$/pax-exam-it-02/pax-exam-it-02.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-junit/pax-exam-junit.iml" filepath="$PROJECT_DIR$/pax-exam-junit/pax-exam-junit.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-junit-extender/pax-exam-junit-extender.iml" filepath="$PROJECT_DIR$/pax-exam-junit-extender/pax-exam-junit-extender.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-junit-extender-impl/pax-exam-junit-extender-impl.iml" filepath="$PROJECT_DIR$/pax-exam-junit-extender-impl/pax-exam-junit-extender-impl.iml" />

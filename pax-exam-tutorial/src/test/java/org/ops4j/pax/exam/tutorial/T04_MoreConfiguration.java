@@ -75,16 +75,10 @@ public class T04_MoreConfiguration
     @Test
     public void helloAgain()
     {
-        logger.trace( "******** This a trace from OSGi" );
-        logger.debug( "******** This a debug from OSGi" );
-        logger.info( "******** This a info from OSGi" );
-        logger.warn( "******** This a warn from OSGi" );
-        logger.error( "******** This a errory from OSGi" );
-
-        System.out.println( "This is running inside Felix. With all configuration set up like you specified. " );
+        logger.info( "This is running inside Felix. With all configuration set up like you specified. " );
         for( Bundle b : bundleContext.getBundles() )
         {
-            System.out.println( "Bundle " + b.getBundleId() + " : " + b.getSymbolicName() );
+            logger.info( "Bundle " + b.getBundleId() + " : " + b.getSymbolicName() );
         }
 
     }
