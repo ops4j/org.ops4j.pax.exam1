@@ -33,7 +33,7 @@ public class T04_MoreConfiguration
      * Here's a typical example:
      * - add a log service to your runtime
      * - add custom bundles via the mvn handler
-     * 
+     * - add additional, non bundlized dependencies. (wrapping on the fly)
      */
     @Configuration
     public static Option[] configure()

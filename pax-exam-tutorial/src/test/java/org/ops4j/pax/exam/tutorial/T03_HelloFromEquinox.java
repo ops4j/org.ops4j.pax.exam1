@@ -24,6 +24,7 @@ import org.osgi.framework.BundleContext;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.Option;
+import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
@@ -49,7 +50,8 @@ public class T03_HelloFromEquinox
     public static Option[] configure()
     {
         return options(
-            equinox()
+            equinox(),
+            logProfile()
         );
     }
 
