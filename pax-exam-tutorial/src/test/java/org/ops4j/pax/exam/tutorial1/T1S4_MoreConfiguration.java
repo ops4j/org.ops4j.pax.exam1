@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.exam.tutorial;
+package org.ops4j.pax.exam.tutorial1;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Bundle;
@@ -35,14 +35,14 @@ import org.ops4j.pax.exam.junit.JUnit4TestRunner;
  * @since Mar 3, 2009
  */
 @RunWith( JUnit4TestRunner.class )
-public class T04_MoreConfiguration
+public class T1S4_MoreConfiguration
 {
 
     @Inject
     BundleContext bundleContext = null;
 
     // you get that because you "installed" a log profile in configuration.
-    public Log logger = LogFactory.getLog( T04_MoreConfiguration.class );
+    public Log logger = LogFactory.getLog( T1S4_MoreConfiguration.class );
 
     /*
      * You can configure all kinds of stuff.

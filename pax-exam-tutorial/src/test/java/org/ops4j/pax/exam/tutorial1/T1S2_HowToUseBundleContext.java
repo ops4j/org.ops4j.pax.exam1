@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.exam.tutorial;
+package org.ops4j.pax.exam.tutorial1;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,7 +29,7 @@ import org.ops4j.pax.exam.junit.JUnit4TestRunner;
  * @since Mar 3, 2009
  */
 @RunWith( JUnit4TestRunner.class )
-public class T02_HowToUseBundleContext
+public class T1S2_HowToUseBundleContext
 {
 
     @Inject
