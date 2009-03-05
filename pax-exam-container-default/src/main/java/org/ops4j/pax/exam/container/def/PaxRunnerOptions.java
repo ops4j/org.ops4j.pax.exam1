@@ -29,6 +29,7 @@ import org.ops4j.pax.exam.container.def.options.RepositoryOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
+import org.ops4j.pax.exam.container.def.options.AutoWrapOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 
@@ -247,6 +248,16 @@ public class PaxRunnerOptions
     public static FileScannerProvisionOption scanFile( final ProvisionOption provision )
     {
         return new FileScannerProvisionOption( provision );
+    }
+
+    /**
+     * Creates a {@link AutoWrapOption}.
+     *
+     * @return AutoWrapOption
+     */
+    public static AutoWrapOption autoWrap()
+    {
+        return new AutoWrapOption();
     }
 
     /**
