@@ -69,6 +69,17 @@ public class FrameworkOption
     }
 
     /**
+     * Sets the framework version to LATEST.
+     *
+     * @return itself, for fluent api usage
+     */
+    public FrameworkOption latestVersion()
+    {
+        m_version = "latest";
+        return this;
+    }
+
+    /**
      * Getter.
      *
      * @return framework name (cannot be null or empty)
