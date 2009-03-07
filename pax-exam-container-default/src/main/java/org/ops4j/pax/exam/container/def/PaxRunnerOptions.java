@@ -230,13 +230,23 @@ public class PaxRunnerOptions
     /**
      * Creates a {@link PomScannerProvisionOption}.
      *
-     * @param pom directory to be scanned
+     * @param url to pom
      *
      * @return pom scanner option
      */
-    public static PomScannerProvisionOption scanPom( final String pathToPom )
+    public static PomScannerProvisionOption scanPom( final String url )
     {
-        return new PomScannerProvisionOption( pathToPom );
+        return new PomScannerProvisionOption( url );
+    }
+
+     /**
+     * Creates a {@link PomScannerProvisionOption}.
+     *
+     * @return pom scanner option
+     */
+    public static PomScannerProvisionOption scanPom( )
+    {
+        return new PomScannerProvisionOption( );
     }
 
     /**

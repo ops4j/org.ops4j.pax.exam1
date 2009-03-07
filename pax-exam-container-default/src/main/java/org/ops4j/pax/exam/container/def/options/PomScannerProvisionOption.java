@@ -14,21 +14,45 @@ public class PomScannerProvisionOption extends AbstractProvisionOption<PomScanne
 {
 
     /**
-     * Directory path (cannot be null or empty).
+     * url. can be null. then parts (groupid,artefactid) must be filled.
+     * If url is not null, this will be used. (url has priority over artefact/group)
      */
-    private final String m_path;
+    private String m_url;
+
+    /**
+     * artifactId part of maven style provisioning (will be part of mvn url being constructed)
+     */
+    private String m_artifact;
+
+    /**
+     * groupId part of maven style provisioning (will be part of mvn url being constructed)
+     */
+    private String m_groupId;
+
+    /**
+     * version part of maven style provisioning (will be part of mvn url being constructed)
+     */
+    private String m_version = "";
 
     /**
      * Constructor.
      *
-     * @param path directory to be scanned path (cannot be null or empty)
+     * @param url directory to be scanned path (cannot be null or empty)
      *
      * @throws IllegalArgumentException - If url is null or empty
      */
-    public PomScannerProvisionOption( final String path )
+    public PomScannerProvisionOption( final String url )
     {
-        validateNotEmpty( path, true, "Directory path" );
-        m_path = path;
+        validateNotEmpty( url, true, "url" );
+        m_url = url;
+    }
+
+    /**
+     * Constructor.
+     */
+    public PomScannerProvisionOption()
+    {
+
     }
 
     /**
@@ -36,9 +60,31 @@ public class PomScannerProvisionOption extends AbstractProvisionOption<PomScanne
      */
     public String getURL()
     {
-        final StringBuilder url = new StringBuilder().append( SCHEMA ).append( SEPARATOR_SCHEME ).append( m_path );
+        if( m_url == null )
+        {
+            m_url = "mvn:" + m_groupId + "/" + m_artifact + "/" + m_version + "/pom";
+        }
+        final StringBuilder url = new StringBuilder().append( SCHEMA ).append( SEPARATOR_SCHEME ).append( m_url );
         url.append( getOptions( this ) );
         return url.toString();
+    }
+
+    public PomScannerProvisionOption artifactId( String s )
+    {
+        m_artifact = s;
+        return this;
+    }
+
+    public PomScannerProvisionOption groupId( String s )
+    {
+        m_groupId = s;
+        return this;
+    }
+
+    public PomScannerProvisionOption version( String s )
+    {
+        m_version = s;
+        return this;
     }
 
     /**
@@ -61,5 +107,4 @@ public class PomScannerProvisionOption extends AbstractProvisionOption<PomScanne
     {
         return this;
     }
-
 }
