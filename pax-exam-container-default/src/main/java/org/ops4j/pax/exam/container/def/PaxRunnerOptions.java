@@ -30,6 +30,7 @@ import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
 import org.ops4j.pax.exam.container.def.options.AutoWrapOption;
+import org.ops4j.pax.exam.container.def.options.PomScannerProvisionOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 
@@ -224,6 +225,18 @@ public class PaxRunnerOptions
     public static DirScannerProvisionOption scanDir( final String directory )
     {
         return new DirScannerProvisionOption( directory );
+    }
+
+    /**
+     * Creates a {@link PomScannerProvisionOption}.
+     *
+     * @param pom directory to be scanned
+     *
+     * @return pom scanner option
+     */
+    public static PomScannerProvisionOption scanPom( final String pathToPom )
+    {
+        return new PomScannerProvisionOption( pathToPom );
     }
 
     /**
