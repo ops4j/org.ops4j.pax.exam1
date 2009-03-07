@@ -28,15 +28,15 @@ public abstract class AbstractProvisionOption<T extends AbstractProvisionOption>
 {
 
     /**
-     * If the scanned bundles should be updated. If null default Pax Runner behavior will be used.
+     * If the scanned bundles should be updated. Default behaviour is depending on used Test Container implementation.
      */
     private Boolean m_shouldUpdate;
     /**
-     * If the scanned bundles should be started. If null default Pax Runner behavior will be used.
+     * If the scanned bundles should be started. Default behaviour is depending on used Test Container implementation.
      */
     private Boolean m_shouldStart;
     /**
-     * Start level of scanned bundles. If null default Pax Runner behavior will be used.
+     * Start level of scanned bundles. Default behaviour is depending on used Test Container implementation.
      */
     private Integer m_startLevel;
 
