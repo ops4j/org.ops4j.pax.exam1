@@ -27,6 +27,7 @@ import org.ops4j.pax.exam.container.def.options.ProfileOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.VMOption;
 import org.ops4j.pax.exam.container.def.options.AutoWrapOption;
+import org.ops4j.pax.exam.container.def.options.CleanCachesOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
@@ -69,6 +70,7 @@ class ArgumentsBuilder
         add( arguments, extractArguments( filter( ProvisionOption.class, options ) ) );
         add( arguments, extractArguments( filter( RepositoryOptionImpl.class, options ) ) );
         add( arguments, extractArguments( filter( AutoWrapOption.class, options ) ) );
+        add( arguments, extractArguments( filter( CleanCachesOption.class, options ) ) );
 
         add( arguments,
              extractArguments(
@@ -340,6 +342,15 @@ class ArgumentsBuilder
     {
         if (autoWrapOptions.length > 0) {
             return "--autoWrap";
+        }else {
+            return null;
+        }
+    }
+
+    private static String extractArguments( CleanCachesOption[] cleanCachesOption )
+    {
+        if (cleanCachesOption.length > 0) {
+            return "--clean";
         }else {
             return null;
         }

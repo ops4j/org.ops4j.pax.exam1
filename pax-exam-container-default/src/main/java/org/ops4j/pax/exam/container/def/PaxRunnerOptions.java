@@ -31,6 +31,7 @@ import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
 import org.ops4j.pax.exam.container.def.options.AutoWrapOption;
 import org.ops4j.pax.exam.container.def.options.PomScannerProvisionOption;
+import org.ops4j.pax.exam.container.def.options.CleanCachesOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 
@@ -114,6 +115,19 @@ public class PaxRunnerOptions
     {
         return new ProfileOption( "ds" );
     }
+
+    /**
+        * Creates a {@link TimeoutOption}.
+        *
+        * @param timeout timeout in millis
+        *
+        * @return timeout option
+        */
+       public static CleanCachesOption cleanCaches( )
+       {
+           return new CleanCachesOption( );
+       }
+
 
     /**
      * Creates a {@link TimeoutOption}.
@@ -248,7 +262,7 @@ public class PaxRunnerOptions
     {
         return new PomScannerProvisionOption( );
     }
-
+    
     /**
      * Creates a {@link FileScannerProvisionOption}.
      *
