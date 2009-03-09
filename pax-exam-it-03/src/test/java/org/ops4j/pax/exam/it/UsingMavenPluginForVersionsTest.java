@@ -29,7 +29,7 @@ import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
 /**
- * How to use the maven plaugin for determining maven artifact version integration tests.
+ * How to use the maven plugin for determining maven artifact version integration tests.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, November 18, 2008
