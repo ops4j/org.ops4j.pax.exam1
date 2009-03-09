@@ -122,6 +122,21 @@ public class MavenUrlProvisionOption
     }
 
     /**
+     * Determines the artifact version using an {@link VersionResolver}.
+     *
+     * @param resolver a {@link VersionResolver} (cannot be null)
+     *
+     * @return itself, for fluent api usage
+     *
+     * @throws IllegalArgumentException - If version is null
+     */
+    public MavenUrlProvisionOption version( final VersionResolver resolver )
+    {
+        validateNotNull( resolver, "Version resolver" );
+        return version( resolver.getVersion( m_groupId, m_artifactId ) );
+    }
+
+    /**
      * {@inheritDoc}
      *
      * @throws IllegalArgumentException - If group id is null or empty
@@ -174,6 +189,19 @@ public class MavenUrlProvisionOption
     protected MavenUrlProvisionOption itself()
     {
         return this;
+    }
+
+    /**
+     * Resolves versions based on maven artifact groupId / atifactid.
+     *
+     * @author Alin Dreghiciu (adreghiciu@gmail.com)
+     * @since 0.3.1, March 09, 2009
+     */
+    public static interface VersionResolver
+    {
+
+        String getVersion( String groupId, String artifactId );
+
     }
 
 }
