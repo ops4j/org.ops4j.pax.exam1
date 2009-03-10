@@ -682,6 +682,17 @@
         <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.18.0-SNAPSHOT/pax-runner-no-jcl-0.18.0-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: org.ops4j.pax.url:pax-url-mvn:0.3.2">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/url/pax-url-mvn/0.3.2/pax-url-mvn-0.3.2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/url/pax-url-mvn/0.3.2/pax-url-mvn-0.3.2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/ops4j/pax/url/pax-url-mvn/0.3.2/pax-url-mvn-0.3.2-sources.jar!/" />
+      </SOURCES>
+    </library>
   </component>
   <UsedPathMacros>
     <macro name="M2_REPO" />
