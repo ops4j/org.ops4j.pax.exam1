@@ -5,6 +5,12 @@ import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
 
 /**
+ * Option specifying Mockito bundles (osgi-fyed mockito).
+ * See: http://code.google.com/p/mockito/
+ * By default uses the mockito-all delivery wrapped up on the fly as a bundle.
+ *
+ * Version: 1.7. Can be changed.
+ *
  * @author Toni Menzel (tonit)
  * @since Mar 14, 2009
  */
@@ -17,15 +23,19 @@ public class MockitoBundlesOption extends AbstractProvisionWrapperOption<Mockito
     public MockitoBundlesOption()
     {
         super(
-            new WrappedUrlProvisionOption(
-                "mvn:org.mockito/mockito-all/1.7"
-        ));
+            new WrappedUrlProvisionOption( new MavenUrlProvisionOption()
+                .groupId( "org.mockito" )
+                .artifactId( "mockito-all" )
+                .version( "1.7" )
+                .noUpdate()
+            )
+        );
     }
 
     /**
-     * Sets the easymock version.
+     * Sets the Mockito version.
      *
-     * @param version easymock version.
+     * @param version Mockito version.
      *
      * @return itself, for fluent api usage
      */

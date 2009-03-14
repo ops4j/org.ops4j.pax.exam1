@@ -28,6 +28,8 @@ import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.CoreOptions.*;
 
 /**
+ * This tests the mockitoBundles option (since PAXEXAM-25)
+ * 
  * @author Toni Menzel (tonit)
  * @since Mar 14, 2009
  */
