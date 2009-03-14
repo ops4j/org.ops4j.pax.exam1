@@ -30,7 +30,7 @@ import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
  * Utility methods related to Apache Maven.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
- * @since 0.3.1, March 09, 2008
+ * @since 0.3.1, March 09, 2009
  */
 public class MavenUtils
 {

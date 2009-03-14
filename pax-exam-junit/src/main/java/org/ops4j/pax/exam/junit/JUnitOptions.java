@@ -19,6 +19,7 @@ package org.ops4j.pax.exam.junit;
 
 import org.ops4j.pax.exam.junit.options.EasyMockBundlesOption;
 import org.ops4j.pax.exam.junit.options.JUnitBundlesOption;
+import org.ops4j.pax.exam.junit.options.MockitoBundlesOption;
 
 /**
  * Factory methods for JUnit specific options.
@@ -45,6 +46,16 @@ public class JUnitOptions
     public static EasyMockBundlesOption easyMockBundles()
     {
         return new EasyMockBundlesOption();
+    }
+
+     /**
+     * Creates a {@link MockitoBundlesOption}.
+     *
+     * @return MockitoBundlesOption bundles option
+     */
+    public static MockitoBundlesOption mockitoBundles()
+    {
+        return new MockitoBundlesOption();
     }
 
     /**
