@@ -191,7 +191,10 @@ public class JUnit4TestMethod
             .append( "&" )
             .append( org.osgi.framework.Constants.BUNDLE_SYMBOLICNAME )
             .append( "=" )
-            .append( Constants.PROBE_SYMBOLICNAME );
+            .append( Constants.PROBE_SYMBOLICNAME )
+            .append( "&" )
+            .append( org.osgi.framework.Constants.DYNAMICIMPORT_PACKAGE )
+            .append( "=*" );
         return url.toString();
     }
 
