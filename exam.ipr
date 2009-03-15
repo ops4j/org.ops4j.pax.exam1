@@ -715,6 +715,28 @@
         <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: org.jmock:jmock:2.5.1">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/jmock/jmock/2.5.1/jmock-2.5.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/jmock/jmock/2.5.1/jmock-2.5.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/jmock/jmock/2.5.1/jmock-2.5.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.hamcrest:hamcrest-library:1.1">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/hamcrest/hamcrest-library/1.1/hamcrest-library-1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/hamcrest/hamcrest-library/1.1/hamcrest-library-1.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/hamcrest/hamcrest-library/1.1/hamcrest-library-1.1-sources.jar!/" />
+      </SOURCES>
+    </library>
   </component>
   <UsedPathMacros>
     <macro name="M2_REPO" />
