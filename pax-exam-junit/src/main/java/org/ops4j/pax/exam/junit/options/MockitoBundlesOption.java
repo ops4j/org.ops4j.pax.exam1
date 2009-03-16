@@ -41,7 +41,7 @@ public class MockitoBundlesOption extends AbstractProvisionWrapperOption<Mockito
      */
     public MockitoBundlesOption version( final String version )
     {
-        ( (MavenUrlProvisionOption) getDelegate() ).version( version );
+        ( (MavenUrlProvisionOption) ( (WrappedUrlProvisionOption) getDelegate() ).getDelegate() ).version( version );
         return this;
     }
 

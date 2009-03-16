@@ -18,42 +18,39 @@
 package org.ops4j.pax.exam.it;
 
 import java.util.List;
-import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.mockito.Mockito.*;
+import org.junit.Test;
+import static org.easymock.EasyMock.*;
+import static org.ops4j.pax.exam.CoreOptions.*;
+import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import static org.ops4j.pax.exam.junit.JUnitOptions.*;
-import org.ops4j.pax.exam.Option;
-import static org.ops4j.pax.exam.CoreOptions.*;
 
 /**
- * This tests the mockitoBundles option (since PAXEXAM-25)
- *
  * @author Toni Menzel (tonit)
  * @since Mar 14, 2009
  */
 @RunWith( JUnit4TestRunner.class )
-public class MockitoOptionsTest
+public class EasyMockOptionsTest
 {
 
     @Configuration
     public static Option[] rootConfig()
     {
         return options(
-            mockitoBundles().version( "1.7" )
+            easyMockBundles()
         );
     }
 
     @Test
     public void usage()
     {
-        List<String> mockedList = mock( List.class );
-        mockedList.add( "ONE" );
+        List<String> mockedList = createMock( List.class );
         mockedList.clear();
+        replay( mockedList );
 
-        verify( mockedList ).add( "ONE" );
-        verify( mockedList ).clear();
-
+        mockedList.clear();
+        verify( mockedList );
     }
 }

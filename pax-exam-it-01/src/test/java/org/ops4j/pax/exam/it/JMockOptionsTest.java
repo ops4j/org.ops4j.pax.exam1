@@ -24,7 +24,7 @@ public class JMockOptionsTest
     public static Option[] rootConfig()
     {
         return options(
-            jmockBundles()
+            jmockBundles().version( "2.5.1" )
         );
     }
 

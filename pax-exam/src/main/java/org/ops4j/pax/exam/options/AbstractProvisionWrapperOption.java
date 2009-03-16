@@ -147,7 +147,7 @@ public abstract class AbstractProvisionWrapperOption<T extends AbstractProvision
      *
      * @return wrapped provision option (cannot be null)
      */
-    protected ProvisionOption getDelegate()
+    public ProvisionOption getDelegate()
     {
         return m_delegate;
     }
