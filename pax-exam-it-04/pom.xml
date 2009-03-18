@@ -67,6 +67,7 @@
           <settings>
             <framework.type>equinox</framework.type>
             <framework.version>latest</framework.version>
+            <profiles>web,url</profiles>
           </settings>
 
         </configuration>
