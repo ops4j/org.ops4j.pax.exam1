@@ -20,7 +20,7 @@ public class MavenConfiguredJUnit4TestRunner extends AbstractJUnit4TestRunner
     protected Option[] getTestOptions()
     {
         return new Option[] {
-            configureWithMaven()
+            //mavenConfiguration()
         };
     }
 }

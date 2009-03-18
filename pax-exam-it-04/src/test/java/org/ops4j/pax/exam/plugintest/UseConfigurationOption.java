@@ -6,6 +6,7 @@ import org.junit.Ignore;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.Option;
+import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import static org.ops4j.pax.exam.CoreOptions.*;
 
 /**
@@ -20,7 +21,7 @@ public class UseConfigurationOption
     public Option[] configure()
     {
         return options(
-            configureWithMaven()
+            mavenConfiguration()
         );
     }
 

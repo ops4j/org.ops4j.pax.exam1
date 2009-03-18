@@ -34,6 +34,7 @@ import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.VMOption;
 import org.ops4j.pax.exam.container.def.options.AutoWrapOption;
 import org.ops4j.pax.exam.container.def.options.CleanCachesOption;
+import org.ops4j.pax.exam.container.def.options.ArgsOption;
 import org.ops4j.pax.exam.container.def.PaxRunnerOptionResolver;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
@@ -53,6 +54,13 @@ class ArgumentsBuilder
 {
 
     /**
+     * Controls if one of the options set a Args Option manually.
+     * Otherwise, defaultArguments will include a --noArgs flag to prevent
+     * unintentional runner.args files being picked up by paxrunner.
+     */
+    private static boolean argsSetManually = false;
+
+    /**
      * Utility class. Ment to be used via the static methods.
      */
     private ArgumentsBuilder()
@@ -70,7 +78,8 @@ class ArgumentsBuilder
     static String[] buildArguments( final Option... options )
     {
         final List<String> arguments = new ArrayList<String>();
-
+        
+        add( arguments, extractArguments( filter( ArgsOption.class, options ) ) );
         add( arguments, defaultArguments() );
         add( arguments, extractArguments( filter( FrameworkOption.class, options ) ) );
         add( arguments, extractArguments( filter( ProfileOption.class, options ) ) );
@@ -132,7 +141,9 @@ class ArgumentsBuilder
         final List<String> arguments = new ArrayList<String>();
         arguments.add( "--noConsole" );
         arguments.add( "--noDownloadFeedback" );
-        arguments.add( "--noArgs" );
+        if ( !argsSetManually ) {
+            arguments.add( "--noArgs" );
+        }
         arguments.add( "--workingDirectory=" + createWorkingDirectory().getAbsolutePath() );
         return arguments;
     }
@@ -194,6 +205,23 @@ class ArgumentsBuilder
 
         }
 
+        return arguments;
+    }
+
+    /**
+     * @param activation of mavenConfigurationOptions options of type MavenConfigurationOption. Just one element required to "activate" the option.
+     *
+     * @return all arguments that have been recognized by OptionResolvers as PaxRunner arguments
+     */
+    private static Collection<String> extractArguments( ArgsOption[] argsOption )
+    {
+        final List<String> arguments = new ArrayList<String>();
+        for( ArgsOption arg : argsOption )
+        {
+            URL url = arg.getURL();
+            arguments.add( "--args=" + url.toExternalForm() );
+        }
+        argsSetManually = true;
         return arguments;
     }
 

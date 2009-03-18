@@ -65,8 +65,8 @@
         <configuration>
 
           <settings>
-            <framework.type>equinox</framework.type>
-            <framework.version>latest</framework.version>
+            <plaftorm>equinox</plaftorm>
+            <version>latest</version>
             <profiles>web,url</profiles>
           </settings>
 
