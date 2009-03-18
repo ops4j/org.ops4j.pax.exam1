@@ -22,9 +22,12 @@
   <!-- we can use full maven properties incl. inheritance ! -->
   <properties>
     <target-framework>equinox</target-framework>
+    <dependency.pax.web.version>0.5.2</dependency.pax.web.version>
+
   </properties>
 
   <dependencies>
+    <!-- normal dependencies required at compile time -->
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam</artifactId>
@@ -41,15 +44,12 @@
       <version>${pom.version}</version>
     </dependency>
 
+    <!-- Here's the stuff we want to provision our osgi runtime with -->
     <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.1</version>
-      <scope>test</scope>
+      <groupId>org.ops4j.pax.web</groupId>
+      <artifactId>pax-web-service</artifactId>
+      <version>${dependency.pax.web.version}</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
@@ -72,7 +72,7 @@
           <settings>
             <plaftorm>${target-framework}</plaftorm>
             <version>latest</version>
-            <profiles>web,url</profiles>
+            <profiles>log,url</profiles>
           </settings>
 
         </configuration>
