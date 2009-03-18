@@ -18,21 +18,30 @@
 package org.ops4j.pax.exam.container.def.internal;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Properties;
+import java.util.Arrays;
+import java.net.URL;
 import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.CoreOptionsResolver;
+import org.ops4j.pax.exam.OptionResolver;
 import static org.ops4j.pax.exam.OptionUtils.*;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.VMOption;
 import org.ops4j.pax.exam.container.def.options.AutoWrapOption;
 import org.ops4j.pax.exam.container.def.options.CleanCachesOption;
+import org.ops4j.pax.exam.container.def.PaxRunnerOptionResolver;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
+import org.ops4j.pax.exam.options.MavenConfigurationOption;
+import org.ops4j.lang.NullArgumentException;
 
 /**
  * Utility methods for converting configuration options to Pax Runner arguments.
@@ -71,6 +80,7 @@ class ArgumentsBuilder
         add( arguments, extractArguments( filter( RepositoryOptionImpl.class, options ) ) );
         add( arguments, extractArguments( filter( AutoWrapOption.class, options ) ) );
         add( arguments, extractArguments( filter( CleanCachesOption.class, options ) ) );
+        add( arguments, extractArguments( filter( MavenConfigurationOption.class, options ) ) );
 
         add( arguments,
              extractArguments(
@@ -152,6 +162,38 @@ class ArgumentsBuilder
                 arguments.add( "--version=" + version );
             }
         }
+        return arguments;
+    }
+
+    /**
+     * @param activation of mavenConfigurationOptions options of type MavenConfigurationOption. Just one element required to "activate" the option.
+     *
+     * @return all arguments that have been recognized by OptionResolvers as PaxRunner arguments
+     */
+    private static Collection<String> extractArguments( MavenConfigurationOption[] mavenConfigurationOptions )
+    {
+        final List<String> arguments = new ArrayList<String>();
+        if( mavenConfigurationOptions.length > 0 )
+        {
+            URL url = mavenConfigurationOptions[ 0 ].getURL();
+            Properties p = new Properties();
+            NullArgumentException.validateNotNull( url, "Url of Pax Exam Configuration" );
+            try
+            {
+                p.load( url.openStream() );
+            }
+            catch( IOException e )
+            {
+                e.printStackTrace();
+            }
+            // feed them through resolvers:
+            for( OptionResolver resolver : getOptionResolvers() )
+            {
+                arguments.addAll( Arrays.asList( buildArguments( resolver.getOptionsFromProperties( p ) ) ) );
+            }
+
+        }
+
         return arguments;
     }
 
@@ -340,18 +382,24 @@ class ArgumentsBuilder
 
     private static String extractArguments( AutoWrapOption[] autoWrapOptions )
     {
-        if (autoWrapOptions.length > 0) {
+        if( autoWrapOptions.length > 0 )
+        {
             return "--autoWrap";
-        }else {
+        }
+        else
+        {
             return null;
         }
     }
 
     private static String extractArguments( CleanCachesOption[] cleanCachesOption )
     {
-        if (cleanCachesOption.length > 0) {
+        if( cleanCachesOption.length > 0 )
+        {
             return "--clean";
-        }else {
+        }
+        else
+        {
             return null;
         }
     }
@@ -376,4 +424,11 @@ class ArgumentsBuilder
         return workDir;
     }
 
+    private static OptionResolver[] getOptionResolvers()
+    {
+        return new OptionResolver[]{
+            new CoreOptionsResolver(),
+            new PaxRunnerOptionResolver()
+        };
+    }
 }

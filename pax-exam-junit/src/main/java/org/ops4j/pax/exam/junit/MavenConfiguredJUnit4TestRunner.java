@@ -2,6 +2,7 @@ package org.ops4j.pax.exam.junit;
 
 import org.junit.internal.runners.InitializationError;
 import org.ops4j.pax.exam.Option;
+import static org.ops4j.pax.exam.CoreOptions.*;
 
 /**
  * @author Toni Menzel (tonit)
@@ -19,7 +20,7 @@ public class MavenConfiguredJUnit4TestRunner extends AbstractJUnit4TestRunner
     protected Option[] getTestOptions()
     {
         return new Option[] {
-            // TODO: useMavenConfiguration() Option
+            configureWithMaven()
         };
     }
 }

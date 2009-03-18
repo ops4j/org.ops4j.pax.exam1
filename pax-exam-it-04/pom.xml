@@ -60,8 +60,26 @@
             <goals>
               <goal>generate-paxexam-config</goal>
             </goals>
+            <configuration>
+
+            </configuration>
+
           </execution>
         </executions>
+        <configuration>
+          <!--
+          <framework>
+            <type>felix</type>
+            <version>latest</version>
+          </framework>
+          <provision>
+            <target-scope>provided</target-scope>
+          </provision>
+          <paxrunner>
+            <options></options>
+        </paxrunner>
+        -->
+        </configuration>
       </plugin>
     </plugins>
   </build>

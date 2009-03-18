@@ -33,6 +33,7 @@ import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
+import org.ops4j.pax.exam.options.MavenConfigurationOption;
 
 /**
  * Factory methods for core options.
@@ -98,6 +99,16 @@ public class CoreOptions
     public static FelixFrameworkOption felix()
     {
         return new FelixFrameworkOption();
+    }
+
+     /**
+     * Creates a {@link MavenConfigurationOption}.
+     *
+     * @return MavenConfigurationOption option
+     */
+    public static MavenConfigurationOption configureWithMaven()
+    {
+        return new MavenConfigurationOption();
     }
 
     /**
