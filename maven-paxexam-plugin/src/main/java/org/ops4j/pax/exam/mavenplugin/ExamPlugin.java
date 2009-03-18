@@ -54,7 +54,7 @@ public class ExamPlugin extends AbstractMojo
     /**
      * The file to generate
      *
-     * @parameter default-value="${project.build.directory}/classes/META-INF/maven/paxexam.properties"
+     * @parameter default-value="${project.build.directory}/classes/META-INF/maven/paxexam-config.properties"
      */
 
     private File outputFile;
