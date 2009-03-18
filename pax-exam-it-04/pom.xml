@@ -19,6 +19,11 @@
 
   <name>OPS4J Pax Exam - Integration Tests Set 04</name>
 
+  <!-- we can use full maven properties incl. inheritance ! -->
+  <properties>
+    <target-framework>equinox</target-framework>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
@@ -65,7 +70,7 @@
         <configuration>
 
           <settings>
-            <plaftorm>equinox</plaftorm>
+            <plaftorm>${target-framework}</plaftorm>
             <version>latest</version>
             <profiles>web,url</profiles>
           </settings>
