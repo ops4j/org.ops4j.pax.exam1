@@ -34,6 +34,7 @@ import org.ops4j.pax.exam.options.SystemPropertyOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
 import org.ops4j.pax.exam.options.MavenConfigurationOption;
+import org.ops4j.pax.exam.options.ArgsOption;
 
 /**
  * Factory methods for core options.
@@ -43,6 +44,8 @@ import org.ops4j.pax.exam.options.MavenConfigurationOption;
  */
 public class CoreOptions
 {
+
+    private static final String DEFAULT_CONFIGURATION = "META-INF/maven/paxexam-config.args";
 
     /**
      * Utility class. Ment to be used via the static factory methods.
@@ -101,7 +104,7 @@ public class CoreOptions
         return new FelixFrameworkOption();
     }
 
-     /**
+    /**
      * Creates a {@link MavenConfigurationOption}.
      *
      * @return MavenConfigurationOption option
@@ -410,4 +413,13 @@ public class CoreOptions
         return new SystemPropertyOption( key );
     }
 
+    /**
+     * Creates a {@link org.ops4j.pax.exam.options.ArgsOption}.
+     *
+     * @return Args option with file written from paxexam plugin
+     */
+    public static ArgsOption mavenConfiguration()
+    {
+        return new ArgsOption( CoreOptions.class.getClassLoader().getResource( DEFAULT_CONFIGURATION ) );
+    }
 }

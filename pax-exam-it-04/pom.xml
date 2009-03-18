@@ -70,7 +70,7 @@
         <configuration>
 
           <settings>
-            <plaftorm>${target-framework}</plaftorm>
+            <platform>${target-framework}</platform>
             <version>latest</version>
             <profiles>log,url</profiles>
           </settings>

@@ -19,8 +19,6 @@ package org.ops4j.pax.exam.container.def;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.net.URL;
-import java.net.MalformedURLException;
 import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.container.def.options.BundleScannerProvisionOption;
@@ -34,10 +32,9 @@ import org.ops4j.pax.exam.container.def.options.VMOption;
 import org.ops4j.pax.exam.container.def.options.AutoWrapOption;
 import org.ops4j.pax.exam.container.def.options.PomScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.CleanCachesOption;
-import org.ops4j.pax.exam.container.def.options.ArgsOption;
+import org.ops4j.pax.exam.options.ArgsOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
-import org.ops4j.pax.exam.options.MavenConfigurationOption;
 
 /**
  * Factory methods for Pax Runner options.
@@ -47,8 +44,6 @@ import org.ops4j.pax.exam.options.MavenConfigurationOption;
  */
 public class PaxRunnerOptions
 {
-
-    private static final String DEFAULT_CONFIGURATION = "META-INF/maven/paxexam-config.args";
 
     /**
      * Utility class. Ment to be used via the static factory methods.
@@ -324,16 +319,6 @@ public class PaxRunnerOptions
     public static BundleScannerProvisionOption scanBundle( final ProvisionOption provision )
     {
         return new BundleScannerProvisionOption( provision );
-    }
-
-    /**
-     * Creates a {@link org.ops4j.pax.exam.options.ArgsOption}.
-     *
-     * @return Args option with file written from paxexam plugin
-     */
-    public static ArgsOption mavenConfiguration()
-    {
-        return new ArgsOption( PaxRunnerOptions.class.getClassLoader().getResource( DEFAULT_CONFIGURATION ) );
     }
 
 }

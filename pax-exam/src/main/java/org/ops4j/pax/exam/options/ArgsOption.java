@@ -1,4 +1,4 @@
-package org.ops4j.pax.exam.container.def.options;
+package org.ops4j.pax.exam.options;
 
 import java.net.URL;
 import org.ops4j.pax.exam.Option;
