@@ -118,7 +118,7 @@ public class JUnit4TestRunner
      * @throws Exception - If test instance cannot be created
      *                   - Re-thrown while finding the configuration methods
      */
-    private Collection<JUnit4ConfigMethod> getConfigurationMethods()
+    protected Collection<JUnit4ConfigMethod> getConfigurationMethods()
         throws Exception
     {
         final Object testInstance = m_testClass.getJavaClass().newInstance();
