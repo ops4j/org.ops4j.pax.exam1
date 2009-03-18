@@ -14,7 +14,6 @@ public class UseDedicatedRunWith
 {
 
     @Test
-   // @Ignore
     public void use()
     {
         System.out.println( "Hello World" );

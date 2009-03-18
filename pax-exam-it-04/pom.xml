@@ -60,25 +60,15 @@
             <goals>
               <goal>generate-paxexam-config</goal>
             </goals>
-            <configuration>
-
-            </configuration>
-
           </execution>
         </executions>
         <configuration>
-          <!--
-          <framework>
-            <type>felix</type>
-            <version>latest</version>
-          </framework>
-          <provision>
-            <target-scope>provided</target-scope>
-          </provision>
-          <paxrunner>
-            <options></options>
-        </paxrunner>
-        -->
+
+          <settings>
+            <framework.type>equinox</framework.type>
+            <framework.version>latest</framework.version>
+          </settings>
+
         </configuration>
       </plugin>
     </plugins>

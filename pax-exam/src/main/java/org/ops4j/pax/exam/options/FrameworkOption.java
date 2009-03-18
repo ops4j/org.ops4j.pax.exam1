@@ -46,7 +46,7 @@ public class FrameworkOption
      *
      * @throws IllegalArgumentException - If name is null or empty
      */
-    FrameworkOption( final String name )
+    public FrameworkOption( final String name )
     {
         validateNotEmpty( name, true, "Name" );
         m_name = name;

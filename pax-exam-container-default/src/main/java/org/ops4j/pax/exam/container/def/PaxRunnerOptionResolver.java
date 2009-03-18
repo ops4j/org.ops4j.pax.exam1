@@ -15,6 +15,7 @@ public class PaxRunnerOptionResolver implements OptionResolver
 
     public Option[] getOptionsFromProperties( Properties properties )
     {
+        System.out.println( "Got props: " + properties.keySet().size() );
         return new Option[0]; 
     }
 }
