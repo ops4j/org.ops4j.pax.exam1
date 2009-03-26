@@ -60,6 +60,7 @@
         <module>pax-exam-it-02</module>
         <module>pax-exam-it-03</module>
         <module>pax-exam-it-04</module>
+        <module>pax-exam-it-05</module>
 		<module>pax-exam-testng-it-01</module>
 	  </modules>
     </profile>

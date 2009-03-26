@@ -14,16 +14,21 @@ import java.util.List;
 import java.util.Set;
 import java.util.Map;
 import org.apache.maven.artifact.Artifact;
+import org.apache.maven.artifact.versioning.VersionRange;
+import org.apache.maven.artifact.repository.ArtifactRepository;
 import org.apache.maven.artifact.factory.ArtifactFactory;
 import org.apache.maven.artifact.metadata.ArtifactMetadataSource;
 import org.apache.maven.artifact.resolver.ArtifactCollector;
 import org.apache.maven.artifact.resolver.ArtifactResolver;
 import org.apache.maven.artifact.resolver.DefaultArtifactCollector;
+import org.apache.maven.artifact.resolver.ArtifactResolutionException;
+import org.apache.maven.artifact.resolver.ArtifactNotFoundException;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
+import org.apache.maven.execution.MavenSession;
 
 /**
  * @author Toni Menzel (tonit)
@@ -45,7 +50,6 @@ public class ExamPlugin extends AbstractMojo
      */
     protected MavenProject project;
 
-
     /**
      * The file to generate
      *
@@ -60,7 +64,7 @@ public class ExamPlugin extends AbstractMojo
      * @parameter
      */
 
-    private Map settings;
+    private Map<String, String> settings;
 
     /**
      * @component
@@ -78,6 +82,20 @@ public class ExamPlugin extends AbstractMojo
      * @component
      */
     protected ArtifactFactory factory;
+
+    /**
+     * @parameter expression="${project.remoteArtifactRepositories}"
+     */
+    private List<ArtifactRepository> remoteRepositories;
+
+    /**
+     * The Maven Session Object
+     *
+     * @parameter expression="${session}"
+     * @required
+     * @readonly
+     */
+    private MavenSession session;
 
     public void execute()
         throws MojoExecutionException, MojoFailureException
@@ -135,10 +153,10 @@ public class ExamPlugin extends AbstractMojo
         out.println();
     }
 
-    private void writeSettings( PrintStream out, Map settings )
+    private void writeSettings( PrintStream out, Map<String, String> settings )
     {
         out.println( "# Settings parsed from pom.xml in settings of plugin" );
-        for( Object key : settings.keySet() )
+        for( String key : settings.keySet() )
         {
             out.println( "--" + key + "=" + settings.get( key ) );
         }
@@ -153,7 +171,7 @@ public class ExamPlugin extends AbstractMojo
     private List<Dependency> getProvisionableDependencies()
     {
         List<Dependency> dependencies = new ArrayList<Dependency>();
-        for( Dependency d : (List<Dependency>) project.getDependencies() )
+        for( Dependency d : getDependencies() )
         {
             if( d.getScope() != null && d.getScope().equalsIgnoreCase( "provided" ) )
             {
@@ -206,20 +224,29 @@ public class ExamPlugin extends AbstractMojo
         return dependencies;
     }
 
-    protected void writeProvisioning( PrintStream out, List<Dependency> dependencies )
+    @SuppressWarnings( "unchecked" )
+    private List<Dependency> getDependencies()
     {
+        return (List<Dependency>) project.getDependencies();
+    }
 
+    protected void writeProvisioning( PrintStream out, List<Dependency> dependencies )
+        throws
+        ArtifactResolutionException,
+        ArtifactNotFoundException
+    {
         out.println( "# provisioning" );
         out.println();
 
-        Iterator iterator = dependencies.iterator();
-        int i = 0;
-        while( iterator.hasNext() )
+        for( Dependency dependency : dependencies )
         {
-            Dependency dependency = (Dependency) iterator.next();
-            String url = "mvn:" + dependency.getGroupId() + SEPARATOR + dependency.getArtifactId() + SEPARATOR
-                         + dependency.getVersion();
-            out.println( url );
+            Artifact artifact = factory.createDependencyArtifact(
+                dependency.getGroupId(), dependency.getArtifactId(),
+                VersionRange.createFromVersion( dependency.getVersion() ),
+                dependency.getType(), dependency.getClassifier(), dependency.getScope()
+            );
+            resolver.resolve( artifact, remoteRepositories, session.getLocalRepository() );
+            out.println( artifact.getFile().toURI().normalize().toString() );
 
             getLog().debug( "Dependency: " + dependency + " classifier: " + dependency.getClassifier() + " type: "
                             + dependency.getType()
