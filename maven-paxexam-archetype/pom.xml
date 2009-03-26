@@ -22,7 +22,7 @@
   <parent>
     <groupId>org.ops4j.pax</groupId>
     <artifactId>exam</artifactId>
-    <version>0.3.1-SNAPSHOT</version>
+    <version>0.4.0-SNAPSHOT</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
@@ -66,17 +66,17 @@
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-project</artifactId>
-      <version>2.0.7</version>
+      <version>2.0.10</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-model</artifactId>
-      <version>2.0.7</version>
+      <version>2.0.10</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
-      <version>2.0.7</version>
+      <version>2.0.10</version>
     </dependency>
 
     <!-- Necessary to stop intelliJ from complaining for template code -->
