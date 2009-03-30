@@ -19,6 +19,7 @@ package org.ops4j.pax.exam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.net.URL;
 import static org.ops4j.lang.NullArgumentException.*;
 import static org.ops4j.pax.exam.OptionUtils.*;
 import org.ops4j.pax.exam.options.BootDelegationOption;
@@ -420,6 +421,12 @@ public class CoreOptions
      */
     public static ArgsOption mavenConfiguration()
     {
-        return new ArgsOption( CoreOptions.class.getClassLoader().getResource( DEFAULT_CONFIGURATION ) );
+        URL url = CoreOptions.class.getClassLoader().getResource( DEFAULT_CONFIGURATION );
+        if (url != null ) {
+            return new ArgsOption( url );
+        }else {
+            throw new IllegalArgumentException("Maven PaxExam Plugin does not look like being configured or run properly. "
+                                               + "File (usually produced by the plugin upfront) " +  DEFAULT_CONFIGURATION + " has not been found.");
+        }
     }
 }

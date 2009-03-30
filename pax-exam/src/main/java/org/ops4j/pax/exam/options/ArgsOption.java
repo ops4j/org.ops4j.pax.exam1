@@ -2,6 +2,7 @@ package org.ops4j.pax.exam.options;
 
 import java.net.URL;
 import org.ops4j.pax.exam.Option;
+import static org.ops4j.lang.NullArgumentException.*;
 
 /**
  * @author Toni Menzel (tonit)
@@ -9,11 +10,13 @@ import org.ops4j.pax.exam.Option;
  */
 public class ArgsOption implements Option
 {
+
     private URL m_url;
 
     public ArgsOption( URL url )
 
     {
+        validateNotNull( url, "url" );
         m_url = url;
     }
 
