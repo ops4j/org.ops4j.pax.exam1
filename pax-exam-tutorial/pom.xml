@@ -47,4 +47,38 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <!-- use pax exam maven plugin -->
+
+      <!--
+      Note: settings and dependencies for the final osgi runtime (TESTS) are just used in TestCases
+      that annotated with this:
+      @RunWith( MavenConfiguredJUnit4TestRunner.class )
+
+      All other testcases will use their own settings/provisioning inside @Configure Methods.
+      -->
+      <plugin>
+        <groupId>org.ops4j.pax.exam</groupId>
+        <artifactId>maven-paxexam-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>generate-paxexam-config</id>
+            <goals>
+              <goal>generate-paxexam-config</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+
+          <settings>
+            <platform>equinox</platform>
+            <profiles>log</profiles>
+          </settings>
+
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
