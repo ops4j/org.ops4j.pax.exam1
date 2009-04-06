@@ -38,7 +38,7 @@
       </activation>
       <modules>
         <module>pax-exam</module>
-     	<module>pax-exam-spi</module>
+        <module>pax-exam-spi</module>
         <module>pax-exam-runtime</module>
         <module>pax-exam-container-rbc</module>
         <module>pax-exam-container-rbc-client</module>
@@ -46,9 +46,9 @@
         <module>pax-exam-junit</module>
         <module>pax-exam-junit-extender</module>
         <module>pax-exam-junit-extender-impl</module>
-	    <module>pax-exam-testng</module>
-		<module>maven-paxexam-plugin</module>
-		<module>maven-paxexam-archetype</module>	
+        <module>pax-exam-testng</module>
+        <module>maven-paxexam-plugin</module>
+        <module>paxexam-junit-archetype</module>
       </modules>
     </profile>
 
@@ -61,8 +61,8 @@
         <module>pax-exam-it-03</module>
         <module>pax-exam-it-04</module>
         <module>pax-exam-it-05</module>
-		<module>pax-exam-testng-it-01</module>
-	  </modules>
+        <module>pax-exam-testng-it-01</module>
+      </modules>
     </profile>
 
   </profiles>

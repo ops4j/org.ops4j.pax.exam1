@@ -1,5 +1,5 @@
 <archetype>
-  <id>maven-paxexam-archetype</id>
+  <id>paxexam-junit-archetype</id>
   <testSources>
     <source>src/test/java/SampleTest.java</source>
   </testSources>
