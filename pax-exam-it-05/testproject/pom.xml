@@ -44,10 +44,10 @@
 
     <!-- Here's the stuff we want to provision our osgi runtime with -->
     <dependency>
-   	 <groupId>org.ops4j.pax.exam</groupId>
-	  <artifactId>pax-exam-it-05-adependencybundle</artifactId>
-	  <version>0.4.0-SNAPSHOT</version>
-       <scope>provided</scope>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-it-05-adependencybundle</artifactId>
+      <version>0.4.0-SNAPSHOT</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
@@ -66,7 +66,7 @@
           </execution>
         </executions>
         <configuration>
-
+          <dependencyScope>provided</dependencyScope>
           <settings>
             <platform>${target-framework}</platform>
           </settings>
