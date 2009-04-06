@@ -9,26 +9,24 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import java.util.Map;
 import org.apache.maven.artifact.Artifact;
-import org.apache.maven.artifact.versioning.VersionRange;
-import org.apache.maven.artifact.repository.ArtifactRepository;
 import org.apache.maven.artifact.factory.ArtifactFactory;
 import org.apache.maven.artifact.metadata.ArtifactMetadataSource;
+import org.apache.maven.artifact.repository.ArtifactRepository;
 import org.apache.maven.artifact.resolver.ArtifactCollector;
+import org.apache.maven.artifact.resolver.ArtifactNotFoundException;
+import org.apache.maven.artifact.resolver.ArtifactResolutionException;
 import org.apache.maven.artifact.resolver.ArtifactResolver;
 import org.apache.maven.artifact.resolver.DefaultArtifactCollector;
-import org.apache.maven.artifact.resolver.ArtifactResolutionException;
-import org.apache.maven.artifact.resolver.ArtifactNotFoundException;
+import org.apache.maven.artifact.versioning.VersionRange;
+import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
-import org.apache.maven.execution.MavenSession;
 
 /**
  * @author Toni Menzel (tonit)
@@ -58,6 +56,10 @@ public class ExamPlugin extends AbstractMojo
 
     private File outputFile;
 
+    /**
+     * @parameter default-value="provided"
+     */
+    private String dependencyScope;
     /**
      * pax runner arguments defined in <settings> tag in configuration of plugin.
      *
@@ -171,9 +173,10 @@ public class ExamPlugin extends AbstractMojo
     private List<Dependency> getProvisionableDependencies()
     {
         List<Dependency> dependencies = new ArrayList<Dependency>();
+        getLog().info( "Adding dependencies in scope " + dependencyScope );
         for( Dependency d : getDependencies() )
         {
-            if( d.getScope() != null && d.getScope().equalsIgnoreCase( "provided" ) )
+            if( d.getScope() != null && d.getScope().equalsIgnoreCase( dependencyScope ) )
             {
                 dependencies.add( d );
             }
