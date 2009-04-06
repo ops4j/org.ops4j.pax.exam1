@@ -50,6 +50,15 @@ public class DefaultCompositeOption
     }
 
     /**
+     * Constructor.
+     *
+     */
+    public DefaultCompositeOption()
+    {
+        this( new Option[0] );
+    }
+
+    /**
      * {@inheritDoc}
      */
     public Option[] getOptions()

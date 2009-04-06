@@ -19,8 +19,11 @@ package org.ops4j.pax.exam.junit.internal;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
+import java.util.ArrayList;
 import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.options.CompositeOption;
 import org.ops4j.pax.exam.junit.AppliesTo;
 import org.ops4j.pax.exam.junit.Configuration;
 
@@ -38,7 +41,7 @@ public class AppliesToConfigMethod
     /**
      * Configuration method. Must be a static, accessible method (cannot be null).
      */
-    private final Method m_configMethod;
+    private final Method m_method;
     /**
      * Instance of the class containing the configuration method. If null then the method is supposed to be static.
      */
@@ -65,7 +68,7 @@ public class AppliesToConfigMethod
                                   final Object configInstance )
     {
         validateNotNull( configMethod, "Configuration method" );
-        m_configMethod = configMethod;
+        m_method = configMethod;
         m_configInstance = configInstance;
 
         final AppliesTo appliesToAnnotation = configMethod.getAnnotation( AppliesTo.class );
@@ -120,9 +123,24 @@ public class AppliesToConfigMethod
     {
         if( m_options == null )
         {
-            m_options = (Option[]) m_configMethod.invoke( m_configInstance );
+            List<Option> options = new ArrayList<Option>();
 
+            Configuration config = m_method.getAnnotation( Configuration.class );
+            for( Class<? extends CompositeOption> option : config.extend() )
+            {
+                for( Option o : option.newInstance().getOptions() )
+                {
+                    options.add( o );
+                }
+            }
+
+            for( Option o : (Option[]) m_method.invoke( m_configInstance ) )
+            {
+                options.add( o );
+            }
+            m_options = options.toArray( new Option[options.size()] );
         }
+
         return m_options;
     }
 

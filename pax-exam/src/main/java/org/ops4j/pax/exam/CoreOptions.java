@@ -140,7 +140,7 @@ public class CoreOptions
      *
      * @return equinox framework option
      */
-    public static EquinoxFrameworkOption equinox()
+    public static final EquinoxFrameworkOption equinox()
     {
         return new EquinoxFrameworkOption();
     }

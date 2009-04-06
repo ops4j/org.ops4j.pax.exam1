@@ -19,8 +19,11 @@ package org.ops4j.pax.exam.junit.internal;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
+import java.util.ArrayList;
 import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.options.CompositeOption;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4ConfigMethod;
 import org.ops4j.pax.exam.junit.RequiresConfiguration;
@@ -116,9 +119,24 @@ public class DefaultConfigMethod
     {
         if( m_options == null )
         {
-            m_options = (Option[]) m_method.invoke( m_configInstance );
+            List<Option> options = new ArrayList<Option>();
 
+            Configuration config = m_method.getAnnotation( Configuration.class );
+            for( Class<? extends CompositeOption> option : config.extend() )
+            {
+                for( Option o : option.newInstance().getOptions() )
+                {
+                    options.add( o );
+                }
+            }
+
+            for( Option o : (Option[]) m_method.invoke( m_configInstance ) )
+            {
+                options.add( o );
+            }
+            m_options = options.toArray( new Option[options.size()] );
         }
+
         return m_options;
     }
 

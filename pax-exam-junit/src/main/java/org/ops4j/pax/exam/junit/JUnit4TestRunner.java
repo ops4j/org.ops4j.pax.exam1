@@ -50,6 +50,7 @@ import org.ops4j.pax.exam.junit.internal.JUnit4TestMethod;
 import org.ops4j.pax.exam.junit.options.JUnitBundlesOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
+import org.ops4j.pax.exam.options.CompositeOption;
 
 /**
  * JUnit4 Runner to be used with the {@link org.junit.runner.RunWith} annotation to run with Pax Exam.
@@ -137,6 +138,29 @@ public class JUnit4TestRunner
             if( methods != null )
             {
                 configMethods.addAll( methods );
+            }
+        }
+        Configuration profileConfiguration = m_testClass.getJavaClass().getAnnotation( Configuration.class );
+        if( profileConfiguration != null )
+        {
+            for( final Class<? extends CompositeOption> options : profileConfiguration.extend() )
+            {
+                configMethods.add( new JUnit4ConfigMethod()
+                {
+
+                    public boolean matches( Method testMethod )
+                    {
+                        // match all
+                        return true;
+                    }
+
+                    public Option[] getOptions()
+                        throws Exception
+                    {
+                        return options.newInstance().getOptions();
+                    }
+                }
+                );
             }
         }
         return configMethods;
