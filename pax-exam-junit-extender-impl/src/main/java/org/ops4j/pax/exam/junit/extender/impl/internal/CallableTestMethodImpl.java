@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Toni Menzel
+ * Copyright 2008,2009 Toni Menzel
  * Copyright 2008 Alin Dreghiciu
  *
  * Licensed  under the  Apache License,  Version 2.0  (the "License");
@@ -35,7 +35,6 @@ import org.ops4j.pax.exam.junit.extender.CallableTestMethod;
 /**
  * {@link Callable} implementation.
  *
- * TODO implement calls to @Before and @After
  *
  * @author Toni Menzel (tonit)
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
@@ -112,7 +111,7 @@ class CallableTestMethodImpl
         throws IllegalAccessException, InvocationTargetException
     {
         final Class<?>[] paramTypes = testMethod.getParameterTypes();
-        injectFieldInstances( testInstance );
+        injectFieldInstances( testInstance.getClass(), testInstance );
         try
         {
             runBefores( testInstance );
@@ -187,16 +186,20 @@ class CallableTestMethodImpl
     }
 
     /**
-     * Injects instances into fields found in testInstance
+     * Injects instances into fields found in testInstance and its superclases.
      *
      * @param testInstance
      */
-    private void injectFieldInstances( Object testInstance )
+    private void injectFieldInstances( Class clazz, Object inst )
         throws IllegalAccessException
     {
-        for( Field field : testInstance.getClass().getDeclaredFields() )
+        if( clazz.getSuperclass() != null )
         {
-            setIfMatching( testInstance, field, m_bundleContext );
+            injectFieldInstances( clazz.getSuperclass(), inst );
+        }
+        for( Field field : clazz.getDeclaredFields() )
+        {
+            setIfMatching( inst, field, m_bundleContext );
         }
     }
 
