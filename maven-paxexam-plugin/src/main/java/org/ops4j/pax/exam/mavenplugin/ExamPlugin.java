@@ -230,6 +230,7 @@ public class ExamPlugin extends AbstractMojo
     @SuppressWarnings( "unchecked" )
     private List<Dependency> getDependencies()
     {
+
         return (List<Dependency>) project.getDependencies();
     }
 
@@ -248,7 +249,28 @@ public class ExamPlugin extends AbstractMojo
                 VersionRange.createFromVersion( dependency.getVersion() ),
                 dependency.getType(), dependency.getClassifier(), dependency.getScope()
             );
-            resolver.resolve( artifact, remoteRepositories, session.getLocalRepository() );
+
+            // try to find
+            boolean found = false;
+            for( MavenProject project : (List<MavenProject>) session.getSortedProjects() )
+            {
+                
+                Artifact projectArtifact = project.getArtifact();
+                if( projectArtifact.getArtifactId().equals( artifact.getArtifactId() ) && (
+                    projectArtifact.getGroupId().equals( artifact.getGroupId() ) && projectArtifact.getVersion()
+                        .equals( artifact.getVersion() ) ) )
+                {
+                    artifact = projectArtifact;
+                    found = true;
+                    break;
+                }
+
+            }
+
+            if( !found )
+            {
+                resolver.resolve( artifact, remoteRepositories, session.getLocalRepository() );
+            }
             out.println( artifact.getFile().toURI().normalize().toString() );
 
             getLog().debug( "Dependency: " + dependency + " classifier: " + dependency.getClassifier() + " type: "
