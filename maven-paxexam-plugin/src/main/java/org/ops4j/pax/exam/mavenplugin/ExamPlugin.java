@@ -254,7 +254,7 @@ public class ExamPlugin extends AbstractMojo
             boolean found = false;
             for( MavenProject project : (List<MavenProject>) session.getSortedProjects() )
             {
-                
+
                 Artifact projectArtifact = project.getArtifact();
                 if( projectArtifact.getArtifactId().equals( artifact.getArtifactId() ) && (
                     projectArtifact.getGroupId().equals( artifact.getGroupId() ) && projectArtifact.getVersion()

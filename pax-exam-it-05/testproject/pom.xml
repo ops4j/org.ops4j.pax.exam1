@@ -48,12 +48,12 @@
       <artifactId>pax-exam-it-05-adependencybundle</artifactId>
       <version>0.4.0-SNAPSHOT</version>
       <scope>provided</scope>
+      <type>bundle</type>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
-      <!-- use pax exam maven plugin -->
       <plugin>
         <groupId>org.ops4j.pax.exam</groupId>
         <artifactId>maven-paxexam-plugin</artifactId>
