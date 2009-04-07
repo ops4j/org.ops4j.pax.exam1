@@ -382,7 +382,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/exam.iml" filepath="$PROJECT_DIR$/exam.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-it-05/exam-it-05.iml" filepath="$PROJECT_DIR$/pax-exam-it-05/exam-it-05.iml" />
-      <module fileurl="file://$PROJECT_DIR$/maven-paxexam-archetype/maven-paxexam-archetype.iml" filepath="$PROJECT_DIR$/maven-paxexam-archetype/maven-paxexam-archetype.iml" />
       <module fileurl="file://$PROJECT_DIR$/maven-paxexam-plugin/maven-paxexam-plugin.iml" filepath="$PROJECT_DIR$/maven-paxexam-plugin/maven-paxexam-plugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam/pax-exam.iml" filepath="$PROJECT_DIR$/pax-exam/pax-exam.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-container-default/pax-exam-container-default.iml" filepath="$PROJECT_DIR$/pax-exam-container-default/pax-exam-container-default.iml" />
@@ -402,6 +401,7 @@
       <module fileurl="file://$PROJECT_DIR$/pax-exam-testng/pax-exam-testng.iml" filepath="$PROJECT_DIR$/pax-exam-testng/pax-exam-testng.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-testng-it-01/pax-exam-testng-it-01.iml" filepath="$PROJECT_DIR$/pax-exam-testng-it-01/pax-exam-testng-it-01.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-tutorial/pax-exam-tutorial.iml" filepath="$PROJECT_DIR$/pax-exam-tutorial/pax-exam-tutorial.iml" />
+      <module fileurl="file://$PROJECT_DIR$/paxexam-junit-archetype/paxexam-junit-archetype.iml" filepath="$PROJECT_DIR$/paxexam-junit-archetype/paxexam-junit-archetype.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.5" project-jdk-type="JavaSDK">
@@ -438,7 +438,6 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="svn" />
-    <mapping directory="$PROJECT_DIR$/pax-exam-it-05" vcs="svn" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <component name="libraryTable">
