@@ -75,7 +75,7 @@ public class FrameworkOption
      */
     public FrameworkOption latestVersion()
     {
-        m_version = "latest";
+        m_version = "snapshot";
         return this;
     }
 
