@@ -5,12 +5,12 @@
   <parent>
     <groupId>org.ops4j.pax</groupId>
     <artifactId>exam</artifactId>
-    <version>0.4.0</version>
+    <version>0.4.1-SNAPSHOT</version>
   </parent>
 
   <groupId>org.ops4j.pax.exam</groupId>
   <artifactId>pax-exam-container-rbc</artifactId>
-  <version>0.4.0</version>
+  <version>0.4.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>OPS4J Pax Exam - Remote Bundle Context</name>
