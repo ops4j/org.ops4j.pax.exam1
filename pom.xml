@@ -64,6 +64,13 @@
       </modules>
     </profile>
 
+   <profile>
+      <id>opt</id>
+      <modules>
+        <module>tinybundles</module>
+      </modules>
+    </profile>
+
   </profiles>
 
   <build>
