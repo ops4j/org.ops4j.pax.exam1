@@ -21,18 +21,18 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.container.def.options.AutoWrapOption;
 import org.ops4j.pax.exam.container.def.options.BundleScannerProvisionOption;
+import org.ops4j.pax.exam.container.def.options.CleanCachesOption;
 import org.ops4j.pax.exam.container.def.options.DirScannerProvisionOption;
+import org.ops4j.pax.exam.container.def.options.ExcludeDefaultRepositoriesOption;
 import org.ops4j.pax.exam.container.def.options.FileScannerProvisionOption;
+import org.ops4j.pax.exam.container.def.options.PomScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
-import org.ops4j.pax.exam.container.def.options.AutoWrapOption;
-import org.ops4j.pax.exam.container.def.options.PomScannerProvisionOption;
-import org.ops4j.pax.exam.container.def.options.CleanCachesOption;
-import org.ops4j.pax.exam.options.ArgsOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 
@@ -227,6 +227,16 @@ public class PaxRunnerOptions
     public static RepositoryOption repository( final String repositoryUrl )
     {
         return new RepositoryOptionImpl( repositoryUrl );
+    }
+
+    /**
+     * Creates a {@link ExcludeDefaultRepositoriesOption}.
+     *
+     * @return option
+     */
+    public static ExcludeDefaultRepositoriesOption excludeDefaultRepositoriesOption()
+    {
+        return new ExcludeDefaultRepositoriesOption();
     }
 
     /**
