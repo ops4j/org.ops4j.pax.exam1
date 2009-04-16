@@ -19,30 +19,31 @@ package org.ops4j.pax.exam.container.def.internal;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
-import java.util.Arrays;
-import java.net.URL;
-import org.ops4j.pax.exam.Option;
+import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.CoreOptionsResolver;
+import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.OptionResolver;
 import static org.ops4j.pax.exam.OptionUtils.*;
+import org.ops4j.pax.exam.container.def.PaxRunnerOptionResolver;
+import org.ops4j.pax.exam.container.def.options.AutoWrapOption;
+import org.ops4j.pax.exam.container.def.options.CleanCachesOption;
+import org.ops4j.pax.exam.container.def.options.ExcludeDefaultRepositoriesOption;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.VMOption;
-import org.ops4j.pax.exam.container.def.options.AutoWrapOption;
-import org.ops4j.pax.exam.container.def.options.CleanCachesOption;
 import org.ops4j.pax.exam.options.ArgsOption;
-import org.ops4j.pax.exam.container.def.PaxRunnerOptionResolver;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
+import org.ops4j.pax.exam.options.MavenConfigurationOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
-import org.ops4j.pax.exam.options.MavenConfigurationOption;
-import org.ops4j.lang.NullArgumentException;
 
 /**
  * Utility methods for converting configuration options to Pax Runner arguments.
@@ -78,7 +79,7 @@ class ArgumentsBuilder
     static String[] buildArguments( final Option... options )
     {
         final List<String> arguments = new ArrayList<String>();
-        
+
         add( arguments, extractArguments( filter( ArgsOption.class, options ) ) );
         add( arguments, defaultArguments() );
         add( arguments, extractArguments( filter( FrameworkOption.class, options ) ) );
@@ -86,7 +87,12 @@ class ArgumentsBuilder
         add( arguments, extractArguments( filter( BootDelegationOption.class, options ) ) );
         add( arguments, extractArguments( filter( SystemPackageOption.class, options ) ) );
         add( arguments, extractArguments( filter( ProvisionOption.class, options ) ) );
-        add( arguments, extractArguments( filter( RepositoryOptionImpl.class, options ) ) );
+        add( arguments,
+             extractArguments(
+                 filter( RepositoryOptionImpl.class, options ),
+                 filter( ExcludeDefaultRepositoriesOption.class, options )
+             )
+        );
         add( arguments, extractArguments( filter( AutoWrapOption.class, options ) ) );
         add( arguments, extractArguments( filter( CleanCachesOption.class, options ) ) );
         add( arguments, extractArguments( filter( MavenConfigurationOption.class, options ) ) );
@@ -141,7 +147,8 @@ class ArgumentsBuilder
         final List<String> arguments = new ArrayList<String>();
         arguments.add( "--noConsole" );
         arguments.add( "--noDownloadFeedback" );
-        if ( !argsSetManually ) {
+        if( !argsSetManually )
+        {
             arguments.add( "--noArgs" );
         }
         arguments.add( "--workingDirectory=" + createWorkingDirectory().getAbsolutePath() );
@@ -386,16 +393,24 @@ class ArgumentsBuilder
      * Converts repository options into corresponding arguments (--repositories).
      *
      * @param repositoriesOptions repository options to be converted
+     * @param excludeDefaultRepositoriesOptions
+     *                            if array not empty the default list of maven repos should be excluded
      *
      * @return converted Pax Runner argument
      */
-    private static String extractArguments( RepositoryOptionImpl[] repositoriesOptions )
+    private static String extractArguments( RepositoryOptionImpl[] repositoriesOptions,
+                                            ExcludeDefaultRepositoriesOption[] excludeDefaultRepositoriesOptions )
     {
         final StringBuilder argument = new StringBuilder();
+        final boolean excludeDefaultRepositories = excludeDefaultRepositoriesOptions.length > 0;
 
-        if( repositoriesOptions.length > 0 )
+        if( repositoriesOptions.length > 0 || excludeDefaultRepositories )
         {
             argument.append( "--repositories=" );
+            if( !excludeDefaultRepositories )
+            {
+                argument.append( "+" );
+            }
             for( int i = 0; i < repositoriesOptions.length; i++ )
             {
                 argument.append( repositoriesOptions[ i ].getRepository() );
