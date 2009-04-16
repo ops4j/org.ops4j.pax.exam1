@@ -39,6 +39,7 @@ import org.ops4j.pax.exam.spi.container.TestContainer;
 import org.ops4j.pax.exam.spi.container.TestContainerException;
 import static org.ops4j.pax.runner.Run.*;
 import org.ops4j.pax.runner.platform.DefaultJavaRunner;
+import org.ops4j.pax.runner.handler.internal.URLUtils;
 
 /**
  * {@link TestContainer} implementation using Pax Runner.
@@ -89,6 +90,7 @@ class PaxRunnerTestContainer
             findFreeCommunicationPort(),
             getRMILookupTimeout( options )
         );
+        URLUtils.resetURLStreamHandlerFactory();
         start( javaRunner, buildArguments( wrap( expand( combine( options, localOptions() ) ) ) ) );
         LOG.info(
             "Test container (Pax Runner " + Info.getPaxRunnerVersion() + ") started in "
