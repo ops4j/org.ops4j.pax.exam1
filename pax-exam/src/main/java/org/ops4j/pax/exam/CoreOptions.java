@@ -36,6 +36,7 @@ import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
 import org.ops4j.pax.exam.options.MavenConfigurationOption;
 import org.ops4j.pax.exam.options.ArgsOption;
+import static org.ops4j.pax.exam.MavenUtils.asInProject;
 
 /**
  * Factory methods for core options.
@@ -278,6 +279,23 @@ public class CoreOptions
     public static MavenUrlProvisionOption mavenBundle()
     {
         return new MavenUrlProvisionOption();
+    }
+
+    /**
+     * Adds a maven bundle for the given groupId and artifactId while deducing the version to use
+     * from the <code>target/classes/META-INF/maven/dependencies.properties</code> file that is
+     * generated via the
+     * <a href="http://wiki.ops4j.org/display/paxexam/Pax+Exam+-+Tutorial+1">depends-maven-plugin
+     * from ServiceMix</a>
+     */
+    public static MavenUrlProvisionOption mavenBundleAsInProject(String groupId, String artifactId)
+    {
+        return mavenBundle().groupId(groupId).artifactId(artifactId).version(asInProject());
+    }
+
+    public static MavenUrlProvisionOption mavenBundleWithVersion(String groupId, String artifactId, String versionId)
+    {
+        return mavenBundle().groupId(groupId).artifactId(artifactId).version(versionId);
     }
 
     /**
