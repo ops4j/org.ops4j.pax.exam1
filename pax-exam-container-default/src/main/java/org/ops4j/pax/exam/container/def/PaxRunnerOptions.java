@@ -33,6 +33,7 @@ import org.ops4j.pax.exam.container.def.options.RepositoryOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
+import org.ops4j.pax.exam.container.def.options.RawScannerProvisionOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 
@@ -237,6 +238,18 @@ public class PaxRunnerOptions
     public static ExcludeDefaultRepositoriesOption excludeDefaultRepositoriesOption()
     {
         return new ExcludeDefaultRepositoriesOption();
+    }
+
+    /**
+     * Creates a {@link RawScannerProvisionOption}.
+     *
+     * @param provisionSpec raw provisioning spec
+     *
+     * @return raw scanner option
+     */
+    public static RawScannerProvisionOption scan( final String provisionSpec )
+    {
+        return new RawScannerProvisionOption( provisionSpec );
     }
 
     /**

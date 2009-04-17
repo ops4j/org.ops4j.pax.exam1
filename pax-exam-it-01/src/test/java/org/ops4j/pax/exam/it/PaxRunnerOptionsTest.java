@@ -52,6 +52,31 @@ public class PaxRunnerOptionsTest
     }
 
     /**
+     * Pax Exam test options that adds provisioning via a raw scanner.
+     * Valid for test methods that starts with "raw".
+     *
+     * @return test options
+     */
+    @Configuration
+    @AppliesTo( "raw.*" )
+    public static Option[] configureRawScanner()
+    {
+        return options(
+            scan( "scan-dir:foo/bar" ).noStart().update().startLevel( 10 )
+        );
+    }
+
+    /**
+     * TODO what we can test here?
+     */
+    @Test
+    @Ignore
+    public void rawScanner()
+    {
+    }
+
+
+    /**
      * Pax Exam test options that adds provisioning via a directory scanner.
      * Valid for test methods that starts with "dir".
      *
