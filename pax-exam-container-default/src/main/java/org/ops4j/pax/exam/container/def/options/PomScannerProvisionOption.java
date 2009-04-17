@@ -1,16 +1,18 @@
 package org.ops4j.pax.exam.container.def.options;
 
-import org.ops4j.pax.exam.options.AbstractProvisionOption;
+import static org.ops4j.lang.NullArgumentException.*;
 import static org.ops4j.pax.exam.container.def.options.ScannerUtils.*;
+import org.ops4j.pax.exam.options.AbstractProvisionOption;
 import static org.ops4j.pax.runner.provision.ServiceConstants.*;
 import static org.ops4j.pax.runner.scanner.pom.ServiceConstants.*;
-import static org.ops4j.lang.NullArgumentException.*;
 
 /**
  * @author Toni Menzel (tonit)
  * @since Mar 7, 2009
  */
-public class PomScannerProvisionOption extends AbstractProvisionOption<PomScannerProvisionOption> implements ScannerProvisionOption<PomScannerProvisionOption>
+public class PomScannerProvisionOption
+    extends AbstractProvisionOption<PomScannerProvisionOption>
+    implements ScannerProvisionOption<PomScannerProvisionOption>
 {
 
     /**
