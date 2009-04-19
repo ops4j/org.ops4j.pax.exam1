@@ -21,7 +21,6 @@ import java.io.InputStream;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
-import org.ops4j.pax.tinybundles.core.BundleAsStream;
 
 /**
  * NOT IMPLEMENTED YET
@@ -39,11 +38,11 @@ public class OSGi
         m_context = context;
     }
 
-    public OSGi installAndStart( final BundleAsStream b )
+    public OSGi installAndStart( final InputStream b )
     {
         try
         {
-            Bundle bundle = m_context.installBundle( null, (InputStream) b.asStream() );
+            Bundle bundle = m_context.installBundle( null, b );
             bundle.start();
             return this;
         }
