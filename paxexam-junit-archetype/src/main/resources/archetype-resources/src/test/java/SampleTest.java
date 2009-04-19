@@ -1,8 +1,9 @@
 package $packageName;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.osgi.framework.BundleContext;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
