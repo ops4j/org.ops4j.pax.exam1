@@ -125,6 +125,30 @@ public class PaxRunnerOptionsTest
     }
 
     /**
+     * Pax Exam test options that adds provisioning via a features scanner.
+     * Valid for test methods that starts with "features".
+     *
+     * @return test options
+     */
+    @Configuration
+    @AppliesTo( "features.*" )
+    public static Option[] configureFeaturesScanner()
+    {
+        return options(
+            scanFeatures( "file:foo-features.xml", "f1", "f2/1.0.0" ).noStart().update().startLevel( 10 )
+        );
+    }
+
+    /**
+     * TODO what we can test here?
+     */
+    @Test
+    @Ignore
+    public void featuresScanner()
+    {
+    }
+
+    /**
      * Pax Exam test options that adds provisioning via a bundle scanner.
      * Valid for test methods that starts with "bundle".
      *

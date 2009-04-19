@@ -26,14 +26,15 @@ import org.ops4j.pax.exam.container.def.options.BundleScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.CleanCachesOption;
 import org.ops4j.pax.exam.container.def.options.DirScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.ExcludeDefaultRepositoriesOption;
+import org.ops4j.pax.exam.container.def.options.FeaturesScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.FileScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.PomScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
+import org.ops4j.pax.exam.container.def.options.RawScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
-import org.ops4j.pax.exam.container.def.options.RawScannerProvisionOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 
@@ -308,6 +309,34 @@ public class PaxRunnerOptions
     public static FileScannerProvisionOption scanFile( final ProvisionOption provision )
     {
         return new FileScannerProvisionOption( provision );
+    }
+
+    /**
+     * Creates a {@link FeaturesScannerProvisionOption}.
+     *
+     * @param repositoryUrl url of features respository to be scanned
+     * @param features      features to be scanned
+     *
+     * @return file scanner option
+     */
+    public static FeaturesScannerProvisionOption scanFeatures( final String repositoryUrl,
+                                                               final String... features )
+    {
+        return new FeaturesScannerProvisionOption( repositoryUrl, features );
+    }
+
+    /**
+     * Creates a {@link FileScannerProvisionOption}.
+     *
+     * @param repositoryUrl url of features respository to be scanned
+     * @param features      features to be scanned
+     *
+     * @return file scanner option
+     */
+    public static FeaturesScannerProvisionOption scanFeatures( final ProvisionOption repositoryUrl,
+                                                               final String... features )
+    {
+        return new FeaturesScannerProvisionOption( repositoryUrl, features );
     }
 
     /**
