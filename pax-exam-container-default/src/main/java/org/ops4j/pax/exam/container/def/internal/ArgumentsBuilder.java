@@ -184,8 +184,6 @@ class ArgumentsBuilder
     }
 
     /**
-     * @param activation of mavenConfigurationOptions options of type MavenConfigurationOption. Just one element required to "activate" the option.
-     *
      * @return all arguments that have been recognized by OptionResolvers as PaxRunner arguments
      */
     private static Collection<String> extractArguments( MavenConfigurationOption[] mavenConfigurationOptions )
@@ -216,8 +214,6 @@ class ArgumentsBuilder
     }
 
     /**
-     * @param activation of mavenConfigurationOptions options of type MavenConfigurationOption. Just one element required to "activate" the option.
-     *
      * @return all arguments that have been recognized by OptionResolvers as PaxRunner arguments
      */
     private static Collection<String> extractArguments( ArgsOption[] argsOption )
