@@ -382,7 +382,6 @@
       <module fileurl="file://$PROJECT_DIR$/pax-exam-it-02/pax-exam-it-02.iml" filepath="$PROJECT_DIR$/pax-exam-it-02/pax-exam-it-02.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-it-03/pax-exam-it-03.iml" filepath="$PROJECT_DIR$/pax-exam-it-03/pax-exam-it-03.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-it-04/pax-exam-it-04.iml" filepath="$PROJECT_DIR$/pax-exam-it-04/pax-exam-it-04.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pax-exam-it-05/pax-exam-it-05.iml" filepath="$PROJECT_DIR$/pax-exam-it-05/pax-exam-it-05.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-junit/pax-exam-junit.iml" filepath="$PROJECT_DIR$/pax-exam-junit/pax-exam-junit.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-junit-extender/pax-exam-junit-extender.iml" filepath="$PROJECT_DIR$/pax-exam-junit-extender/pax-exam-junit-extender.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-junit-extender-impl/pax-exam-junit-extender-impl.iml" filepath="$PROJECT_DIR$/pax-exam-junit-extender-impl/pax-exam-junit-extender-impl.iml" />
@@ -818,17 +817,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$M2_REPO$/org/apache/maven/maven-plugin-api/2.0.7/maven-plugin-api-2.0.7-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.web:pax-web-service:0.5.2">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/web/pax-web-service/0.5.2/pax-web-service-0.5.2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/web/pax-web-service/0.5.2/pax-web-service-0.5.2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/web/pax-web-service/0.5.2/pax-web-service-0.5.2-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.apache.maven:maven-core:2.0.7">
