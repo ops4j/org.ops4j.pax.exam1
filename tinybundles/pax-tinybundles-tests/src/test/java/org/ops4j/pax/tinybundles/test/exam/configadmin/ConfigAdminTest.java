@@ -28,6 +28,7 @@ import org.osgi.framework.BundleException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.cm.ConfigurationAdmin;
 import static org.ops4j.pax.exam.CoreOptions.*;
+import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
@@ -54,8 +55,7 @@ public class ConfigAdminTest
                 mavenBundle()
                     .groupId( "org.ops4j.pax.tinybundles" )
                     .artifactId( "pax-tinybundles-core" )
-                    .version( "0.4.0-SNAPSHOT"
-                )
+                    .version( Info.getPaxExamVersion() )
             ),
             profile( "felix.config" ), logProfile()
             ,

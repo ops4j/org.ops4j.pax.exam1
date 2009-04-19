@@ -9,6 +9,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
 import static org.ops4j.pax.exam.CoreOptions.*;
+import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
@@ -34,8 +35,7 @@ public class BuildWhileRunningTest
                 mavenBundle()
                     .groupId( "org.ops4j.pax.tinybundles" )
                     .artifactId( "pax-tinybundles-core" )
-                    .version( "0.4.0-SNAPSHOT"
-                )
+                    .version( Info.getPaxExamVersion() )
             )
 
         );
