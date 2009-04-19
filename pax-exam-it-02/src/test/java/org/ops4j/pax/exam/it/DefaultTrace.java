@@ -17,11 +17,9 @@
  */
 package org.ops4j.pax.exam.it;
 
-import java.util.Properties;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
-import org.junit.Before;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.ops4j.pax.exam.Inject;
@@ -56,7 +54,7 @@ public abstract class DefaultTrace
         logger.info( "This is running inside Felix. With all configuration set up like you specified. " );
         for( Bundle b : bundleContext.getBundles() )
         {
-            System.out.println( "--> Bundle " + b.getBundleId() + " : " + b.getSymbolicName()  + " : " + b.getState() );
+            System.out.println( "--> Bundle " + b.getBundleId() + " : " + b.getSymbolicName() + " : " + b.getState() );
         }
 
     }
