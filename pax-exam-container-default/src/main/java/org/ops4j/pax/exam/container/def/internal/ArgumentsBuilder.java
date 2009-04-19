@@ -263,7 +263,7 @@ class ArgumentsBuilder
         {
             for( ProfileOption profile : profiles )
             {
-                if( profile != null && profile.getName() != null && profile.getName().length() > 0 )
+                if( profile != null && profile.getProfile() != null && profile.getProfile().length() > 0 )
                 {
                     if( argument.length() == 0 )
                     {
@@ -273,7 +273,7 @@ class ArgumentsBuilder
                     {
                         argument.append( "," );
                     }
-                    argument.append( profile.getName() );
+                    argument.append( profile.getProfile() );
                 }
             }
         }

@@ -36,6 +36,11 @@ public class ProfileOption
     private final String m_name;
 
     /**
+     * Profile version. Cannot be empty.
+     */
+    private String m_version;
+
+    /**
      * Constructor.
      *
      * @param name profile name (cannot be null or empty)
@@ -44,30 +49,72 @@ public class ProfileOption
      */
     public ProfileOption( final String name )
     {
+        this( name, null );
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param name    profile name (cannot be null or empty)
+     * @param version profile version (cannot be empty)
+     *
+     * @throws IllegalArgumentException - If name is null or empty
+     */
+    public ProfileOption( final String name,
+                          final String version )
+    {
         validateNotEmpty( name, true, "Profile name" );
+        if( version != null )
+        {
+            validateNotEmpty( version, true, "Profile version" );
+        }
         m_name = name;
+        m_version = version;
     }
 
     /**
      * Getter.
      *
-     * @return profile name (cannot be null or empty)
+     * @return profile (cannot be null or empty)
      */
-    public String getName()
+    public String getProfile()
     {
-        return m_name;
+        return m_name + ( m_version == null ? "" : "/" + m_version );
+    }
+
+    /**
+     * Sets the profile version or version range. Do not set (use this method) if the latest version should be
+     * discovered and used)
+     *
+     * @param version artifact version / version range (cannot be empty)
+     *
+     * @return itself, for fluent api usage
+     *
+     * @throws IllegalArgumentException - If version is empty
+     */
+    public ProfileOption version( final String version )
+    {
+        if( version != null )
+        {
+            validateNotEmpty( version, true, "Version" );
+        }
+        m_version = version;
+        return this;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String
-    toString()
+    public String toString()
     {
         final StringBuilder sb = new StringBuilder();
         sb.append( "ProfileOption" );
         sb.append( "{name='" ).append( m_name ).append( '\'' );
+        if( m_version != null )
+        {
+            sb.append( ",version='" ).append( m_version ).append( '\'' );
+        }
         sb.append( '}' );
         return sb.toString();
     }
