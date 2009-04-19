@@ -1,13 +1,13 @@
 package org.ops4j.pax.exam.plugintest;
 
-import org.junit.runner.RunWith;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.osgi.framework.BundleContext;
-import org.ops4j.pax.exam.junit.JUnit4TestRunner;
-import org.ops4j.pax.exam.junit.Configuration;
-import org.ops4j.pax.exam.Option;
-import org.ops4j.pax.exam.Inject;
 import static org.ops4j.pax.exam.CoreOptions.*;
+import org.ops4j.pax.exam.Inject;
+import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.junit.Configuration;
+import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
 /**
  * @author Toni Menzel (tonit)
