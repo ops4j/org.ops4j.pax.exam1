@@ -17,8 +17,8 @@
  */
 package org.ops4j.pax.exam.tutorial1;
 
-import org.junit.runner.RunWith;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
 /**

@@ -1,13 +1,12 @@
 package org.ops4j.pax.exam.tutorial1;
 
-import org.junit.runner.RunWith;
-import org.junit.Test;
 import static org.junit.Assert.*;
-import org.osgi.framework.BundleContext;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.osgi.framework.Bundle;
-import org.ops4j.pax.exam.junit.JUnit4TestRunner;
-import org.ops4j.pax.exam.junit.MavenConfiguredJUnit4TestRunner;
+import org.osgi.framework.BundleContext;
 import org.ops4j.pax.exam.Inject;
+import org.ops4j.pax.exam.junit.MavenConfiguredJUnit4TestRunner;
 
 /**
  * @author Toni Menzel (tonit)
@@ -24,7 +23,7 @@ public class T1S6_MavenConfigured
     public void testMe()
     {
         assertNotNull( context );
-         System.out.println( "printing bundle states.." );
+        System.out.println( "printing bundle states.." );
         for( Bundle b : context.getBundles() )
         {
 
