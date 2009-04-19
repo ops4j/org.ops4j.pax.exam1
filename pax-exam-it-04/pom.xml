@@ -18,6 +18,9 @@
   <packaging>jar</packaging>
 
   <name>OPS4J Pax Exam - Integration Tests Set 04</name>
+  <description>
+    Integration tests related to usage of PAx Exam Maven Plugin.
+  </description>
 
   <!-- we can use full maven properties incl. inheritance ! -->
   <properties>

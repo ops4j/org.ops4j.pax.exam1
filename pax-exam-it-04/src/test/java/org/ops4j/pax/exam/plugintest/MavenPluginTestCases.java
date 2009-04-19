@@ -1,4 +1,5 @@
 /*
+ * Copyright 2009 Toni Menzel.
  * Copyright 2009 Alin Dreghiciu.
  *
  * Licensed  under the  Apache License,  Version 2.0  (the "License");
