@@ -17,8 +17,8 @@
  */
 package org.ops4j.pax.exam.it.extendedannotations;
 
-import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.CoreOptions.*;
+import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.options.CompositeOption;
 
 /**

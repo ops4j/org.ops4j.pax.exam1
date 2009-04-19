@@ -12,7 +12,7 @@ import static org.ops4j.pax.exam.junit.JUnitOptions.*;
 
 /**
  * Simpliest usecase for jmock bundles support.
- * 
+ *
  * @author Toni Menzel (tonit)
  * @since Mar 15, 2009
  */

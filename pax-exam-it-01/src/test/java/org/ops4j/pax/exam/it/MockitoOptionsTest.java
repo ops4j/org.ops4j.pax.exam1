@@ -21,11 +21,11 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.*;
+import static org.ops4j.pax.exam.CoreOptions.*;
+import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import static org.ops4j.pax.exam.junit.JUnitOptions.*;
-import org.ops4j.pax.exam.Option;
-import static org.ops4j.pax.exam.CoreOptions.*;
 
 /**
  * This tests the mockitoBundles option (since PAXEXAM-25)

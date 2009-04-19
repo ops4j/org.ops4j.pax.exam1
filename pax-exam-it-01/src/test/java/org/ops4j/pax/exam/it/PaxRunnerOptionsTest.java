@@ -75,7 +75,6 @@ public class PaxRunnerOptionsTest
     {
     }
 
-
     /**
      * Pax Exam test options that adds provisioning via a directory scanner.
      * Valid for test methods that starts with "dir".

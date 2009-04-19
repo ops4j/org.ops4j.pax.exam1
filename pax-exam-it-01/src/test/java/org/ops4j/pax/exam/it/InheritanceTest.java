@@ -35,7 +35,6 @@ public class InheritanceTest extends InheritanceTestSuper
     @Inject
     private BundleContext context2;
 
-
     @Test
     public void useContext()
     {

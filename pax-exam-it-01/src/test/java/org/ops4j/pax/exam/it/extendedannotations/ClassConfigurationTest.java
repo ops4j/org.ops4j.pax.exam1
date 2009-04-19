@@ -42,6 +42,6 @@ public class ClassConfigurationTest
     @Test
     public void use()
     {
-        
+
     }
 }

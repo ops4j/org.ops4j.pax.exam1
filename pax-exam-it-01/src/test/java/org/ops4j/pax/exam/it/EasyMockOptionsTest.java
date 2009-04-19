@@ -18,9 +18,9 @@
 package org.ops4j.pax.exam.it;
 
 import java.util.List;
-import org.junit.runner.RunWith;
-import org.junit.Test;
 import static org.easymock.EasyMock.*;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
