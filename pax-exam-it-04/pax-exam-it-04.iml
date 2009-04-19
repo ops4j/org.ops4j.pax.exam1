@@ -13,7 +13,7 @@
     <orderEntry type="library" name="Maven: org.easymock:easymock:2.4" level="project" />
     <orderEntry type="module" module-name="pax-exam" exported="" />
     <orderEntry type="library" name="Maven: org.ops4j.base:ops4j-base-lang:0.5.3" level="project" />
-    <orderEntry type="module" module-name="pax-exam-junit" exported="" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam-junit:0.4.1-SNAPSHOT" level="project" />
     <orderEntry type="module" module-name="pax-exam-runtime" exported="" />
     <orderEntry type="module" module-name="pax-exam-spi" exported="" />
     <orderEntry type="library" exported="" name="Maven: commons-discovery:commons-discovery:0.4" level="project" />
