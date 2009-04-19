@@ -14,7 +14,7 @@
   <artifactId>pax-tinybundles</artifactId>
   <name>OPS4J Pax TinyBundles (Build POM)</name>
   <packaging>pom</packaging>
-  <version>0.4.0-SNAPSHOT</version>
+  <version>0.5.0-SNAPSHOT</version>
   <description>
     Tiny Bundles is a library to create adhoc bundles using Java API.
     Purpose is to have a simple way to create on-demand bundles for testing OSGi framework/service behaviour.
@@ -28,7 +28,6 @@
   </modules>
 
   <properties>
-    <dependency.exam.version>0.4.0</dependency.exam.version>
     <dependency.swissbox.version>0.2.0</dependency.swissbox.version>
     <dependency.base.version>0.5.3</dependency.base.version>
     <dependency.url.version>0.5.0</dependency.url.version>
