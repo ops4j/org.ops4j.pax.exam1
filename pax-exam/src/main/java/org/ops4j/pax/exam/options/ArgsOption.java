@@ -1,8 +1,8 @@
 package org.ops4j.pax.exam.options;
 
 import java.net.URL;
-import org.ops4j.pax.exam.Option;
 import static org.ops4j.lang.NullArgumentException.*;
+import org.ops4j.pax.exam.Option;
 
 /**
  * @author Toni Menzel (tonit)

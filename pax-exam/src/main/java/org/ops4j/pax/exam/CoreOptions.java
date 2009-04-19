@@ -17,26 +17,26 @@
  */
 package org.ops4j.pax.exam;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.net.URL;
 import static org.ops4j.lang.NullArgumentException.*;
+import static org.ops4j.pax.exam.MavenUtils.*;
 import static org.ops4j.pax.exam.OptionUtils.*;
+import org.ops4j.pax.exam.options.ArgsOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.EquinoxFrameworkOption;
 import org.ops4j.pax.exam.options.FelixFrameworkOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.options.KnopflerfishFrameworkOption;
+import org.ops4j.pax.exam.options.MavenConfigurationOption;
 import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
-import org.ops4j.pax.exam.options.MavenConfigurationOption;
-import org.ops4j.pax.exam.options.ArgsOption;
-import static org.ops4j.pax.exam.MavenUtils.asInProject;
 
 /**
  * Factory methods for core options.
@@ -288,14 +288,14 @@ public class CoreOptions
      * <a href="http://wiki.ops4j.org/display/paxexam/Pax+Exam+-+Tutorial+1">depends-maven-plugin
      * from ServiceMix</a>
      */
-    public static MavenUrlProvisionOption mavenBundleAsInProject(String groupId, String artifactId)
+    public static MavenUrlProvisionOption mavenBundleAsInProject( String groupId, String artifactId )
     {
-        return mavenBundle().groupId(groupId).artifactId(artifactId).version(asInProject());
+        return mavenBundle().groupId( groupId ).artifactId( artifactId ).version( asInProject() );
     }
 
-    public static MavenUrlProvisionOption mavenBundleWithVersion(String groupId, String artifactId, String versionId)
+    public static MavenUrlProvisionOption mavenBundleWithVersion( String groupId, String artifactId, String versionId )
     {
-        return mavenBundle().groupId(groupId).artifactId(artifactId).version(versionId);
+        return mavenBundle().groupId( groupId ).artifactId( artifactId ).version( versionId );
     }
 
     /**
@@ -442,11 +442,16 @@ public class CoreOptions
     public static ArgsOption mavenConfiguration()
     {
         URL url = CoreOptions.class.getClassLoader().getResource( DEFAULT_CONFIGURATION );
-        if (url != null ) {
+        if( url != null )
+        {
             return new ArgsOption( url );
-        }else {
-            throw new IllegalArgumentException("Maven PaxExam Plugin does not look like being configured or run properly. "
-                                               + "File (usually produced by the plugin upfront) " +  DEFAULT_CONFIGURATION + " has not been found.");
+        }
+        else
+        {
+            throw new IllegalArgumentException(
+                "Maven PaxExam Plugin does not look like being configured or run properly. "
+                + "File (usually produced by the plugin upfront) " + DEFAULT_CONFIGURATION + " has not been found."
+            );
         }
     }
 }

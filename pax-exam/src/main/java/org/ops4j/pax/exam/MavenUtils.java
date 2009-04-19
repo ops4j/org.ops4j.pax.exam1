@@ -73,8 +73,9 @@ public class MavenUtils
 
     /**
      * Locates the paxexam properties file and runs resolver with properties loaded.
-     * 
+     *
      * @param resolver implementation that can recognize parts from properties defined in config file.
+     *
      * @return Fully resolved properties.
      */
     public static Option[] parseOptionsFromProperties( final OptionResolver resolver )

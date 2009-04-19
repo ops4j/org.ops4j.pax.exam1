@@ -25,5 +25,7 @@ import java.util.Properties;
  */
 public interface OptionResolver
 {
+
     Option[] getOptionsFromProperties( Properties properties );
+
 }

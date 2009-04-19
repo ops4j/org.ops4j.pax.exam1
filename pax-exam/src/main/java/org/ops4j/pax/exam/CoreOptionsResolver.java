@@ -1,8 +1,8 @@
 package org.ops4j.pax.exam;
 
-import java.util.Properties;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 
