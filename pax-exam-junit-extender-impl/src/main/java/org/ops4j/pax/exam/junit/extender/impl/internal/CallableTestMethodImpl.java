@@ -35,7 +35,6 @@ import org.ops4j.pax.exam.junit.extender.CallableTestMethod;
 /**
  * {@link Callable} implementation.
  *
- *
  * @author Toni Menzel (tonit)
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since May 29, 2008
