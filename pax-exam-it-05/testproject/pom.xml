@@ -44,9 +44,9 @@
 
     <!-- Here's the stuff we want to provision our osgi runtime with -->
     <dependency>
-      <groupId>org.ops4j.pax.exam</groupId>
-      <artifactId>pax-exam-it-05-adependencybundle</artifactId>
-      <version>0.4.1-SNAPSHOT</version>
+      <groupId>org.ops4j.base</groupId>
+      <artifactId>ops4j-base-lang</artifactId>
+      <version>0.5.3</version>
       <scope>provided</scope>
       <type>bundle</type>
     </dependency>
@@ -70,7 +70,6 @@
           <settings>
             <platform>${target-framework}</platform>
           </settings>
-
         </configuration>
       </plugin>
     </plugins>

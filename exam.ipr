@@ -383,8 +383,6 @@
       <module fileurl="file://$PROJECT_DIR$/pax-exam-it-03/pax-exam-it-03.iml" filepath="$PROJECT_DIR$/pax-exam-it-03/pax-exam-it-03.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-it-04/pax-exam-it-04.iml" filepath="$PROJECT_DIR$/pax-exam-it-04/pax-exam-it-04.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-it-05/pax-exam-it-05.iml" filepath="$PROJECT_DIR$/pax-exam-it-05/pax-exam-it-05.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pax-exam-it-05/adependencybundle/pax-exam-it-05-adependencybundle.iml" filepath="$PROJECT_DIR$/pax-exam-it-05/adependencybundle/pax-exam-it-05-adependencybundle.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pax-exam-it-05/testproject/pax-exam-it-05-testproject.iml" filepath="$PROJECT_DIR$/pax-exam-it-05/testproject/pax-exam-it-05-testproject.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-junit/pax-exam-junit.iml" filepath="$PROJECT_DIR$/pax-exam-junit/pax-exam-junit.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-junit-extender/pax-exam-junit-extender.iml" filepath="$PROJECT_DIR$/pax-exam-junit-extender/pax-exam-junit-extender.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-junit-extender-impl/pax-exam-junit-extender-impl.iml" filepath="$PROJECT_DIR$/pax-exam-junit-extender-impl/pax-exam-junit-extender-impl.iml" />

@@ -1,4 +1,4 @@
-package org.ops4j.pax.exam.testproject;
+package org.ops4j.pax.exam.it;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -8,6 +8,7 @@ import org.osgi.framework.BundleContext;
 import org.ops4j.pax.exam.Inject;
 
 /**
+ * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @author Toni Menzel (tonit)
  * @since Mar 26, 2009
  */
@@ -27,7 +28,7 @@ public class DependencyTest
         boolean foundAndActive = false;
         for( Bundle b : context.getBundles() )
         {
-            if( b.getSymbolicName().equals( "Test Bundle Dependency" ) )
+            if( b.getSymbolicName().equals( "org.ops4j.base.lang" ) )
             {
                 if( b.getState() == Bundle.ACTIVE )
                 {
@@ -35,6 +36,9 @@ public class DependencyTest
                 }
             }
         }
-        assertTrue( foundAndActive );
+        if( !foundAndActive )
+        {
+            fail( "maven dependent bundle was not found or is not active" );
+        }
     }
 }
