@@ -120,11 +120,9 @@ public class PaxRunnerOptions
     }
 
     /**
-     * Creates a {@link TimeoutOption}.
+     * Creates a {@link CleanCachesOption}.
      *
-     * @param timeout timeout in millis
-     *
-     * @return timeout option
+     * @return clean caches option
      */
     public static CleanCachesOption cleanCaches()
     {
