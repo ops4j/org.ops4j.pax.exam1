@@ -234,7 +234,7 @@ public class PaxRunnerOptions
      *
      * @return option
      */
-    public static ExcludeDefaultRepositoriesOption excludeDefaultRepositoriesOption()
+    public static ExcludeDefaultRepositoriesOption excludeDefaultRepositories()
     {
         return new ExcludeDefaultRepositoriesOption();
     }
