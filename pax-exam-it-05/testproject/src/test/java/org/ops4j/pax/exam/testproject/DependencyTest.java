@@ -1,11 +1,10 @@
 package org.ops4j.pax.exam.testproject;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
-import org.ops4j.pax.exam.junit.MavenConfiguredJUnit4TestRunner;
 import org.ops4j.pax.exam.Inject;
 
 /**
