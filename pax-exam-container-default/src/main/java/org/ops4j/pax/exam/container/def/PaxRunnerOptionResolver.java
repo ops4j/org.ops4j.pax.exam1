@@ -1,10 +1,10 @@
 package org.ops4j.pax.exam.container.def;
 
-import java.util.Properties;
-import java.util.List;
 import java.util.ArrayList;
-import org.ops4j.pax.exam.OptionResolver;
+import java.util.List;
+import java.util.Properties;
 import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.OptionResolver;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
 
 /**

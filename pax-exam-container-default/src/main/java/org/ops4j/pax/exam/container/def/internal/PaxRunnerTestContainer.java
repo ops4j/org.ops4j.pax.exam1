@@ -38,8 +38,8 @@ import org.ops4j.pax.exam.rbc.client.RemoteBundleContextClient;
 import org.ops4j.pax.exam.spi.container.TestContainer;
 import org.ops4j.pax.exam.spi.container.TestContainerException;
 import static org.ops4j.pax.runner.Run.*;
-import org.ops4j.pax.runner.platform.DefaultJavaRunner;
 import org.ops4j.pax.runner.handler.internal.URLUtils;
+import org.ops4j.pax.runner.platform.DefaultJavaRunner;
 
 /**
  * {@link TestContainer} implementation using Pax Runner.
