@@ -13,7 +13,7 @@
   <version>0.4.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <name>OPS4J Pax Exam - IT-05 dependency bundle</name>
+  <name>OPS4J Pax Exam - Integration Tests Set 05 - Bundle</name>
 
   <properties>
     <bundle.symbolicName>Test Bundle Dependency</bundle.symbolicName>

@@ -17,7 +17,7 @@
   <version>0.4.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>OPS4J Pax Exam - Integration Tests Set 05</name>
+  <name>OPS4J Pax Exam - Integration Tests Set 05 (Build POM)</name>
 
   <modules>
     <module>adependencybundle</module>
