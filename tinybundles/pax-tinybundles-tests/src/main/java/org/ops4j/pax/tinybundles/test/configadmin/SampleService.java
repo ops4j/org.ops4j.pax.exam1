@@ -6,5 +6,6 @@ package org.ops4j.pax.tinybundles.test.configadmin;
  */
 public interface SampleService
 {
-    public String hello(String name);
+
+    public String hello( String name );
 }

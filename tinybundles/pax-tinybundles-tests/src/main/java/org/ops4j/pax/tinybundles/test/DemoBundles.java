@@ -1,8 +1,8 @@
 package org.ops4j.pax.tinybundles.test;
 
 import org.osgi.framework.Constants;
-import static org.ops4j.pax.tinybundles.core.TinyBundles.*;
 import org.ops4j.pax.tinybundles.core.TinyBundle;
+import static org.ops4j.pax.tinybundles.core.TinyBundles.*;
 import org.ops4j.pax.tinybundles.test.configadmin.SampleService;
 import org.ops4j.pax.tinybundles.test.configadmin.internal.ConfigAdminSampleActivator;
 import org.ops4j.pax.tinybundles.test.configadmin.internal.ManagedServiceSample;

@@ -2,12 +2,11 @@ package org.ops4j.pax.tinybundles.test.configadmin.internal;
 
 import java.util.Dictionary;
 import java.util.Enumeration;
-import java.util.Properties;
 import java.util.Hashtable;
-import org.osgi.service.cm.ManagedService;
-import org.osgi.service.cm.ConfigurationException;
-import org.apache.commons.logging.LogFactory;
 import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.osgi.service.cm.ConfigurationException;
+import org.osgi.service.cm.ManagedService;
 import org.ops4j.pax.tinybundles.test.configadmin.SampleService;
 
 /**

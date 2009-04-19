@@ -8,15 +8,15 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
-import org.ops4j.pax.tinybundles.demo.HelloWorld;
-import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
-import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import static org.ops4j.pax.tinybundles.core.TinyBundles.*;
+import org.ops4j.pax.tinybundles.demo.HelloWorld;
+import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
+import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;
 
 /**
  * This is example will use TinyBundles in the configuration part only.

@@ -1,16 +1,12 @@
 package org.ops4j.pax.tinybundles.core.intern;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.jar.Manifest;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ops4j.pax.tinybundles.core.TinyBundle;
 import org.ops4j.pax.tinybundles.core.BundleAs;
+import org.ops4j.pax.tinybundles.core.TinyBundle;
 
 /**
  * @author Toni Menzel (tonit)

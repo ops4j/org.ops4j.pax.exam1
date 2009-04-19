@@ -29,9 +29,9 @@ import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
-import org.ops4j.pax.tinybundles.test.simpliest.HelloWorldService;
-import org.ops4j.pax.tinybundles.test.DemoBundles;
 import static org.ops4j.pax.tinybundles.core.TinyBundles.*;
+import org.ops4j.pax.tinybundles.test.DemoBundles;
+import org.ops4j.pax.tinybundles.test.simpliest.HelloWorldService;
 
 /**
  * @author Toni Menzel (tonit)
@@ -54,7 +54,7 @@ public class SimpliestTest
                 )
             ),
             // install extra tiny bundles that are created on demand:
-           provision( DemoBundles.simpliest( "foo" ).build( asURL() ).toExternalForm() )
+            provision( DemoBundles.simpliest( "foo" ).build( asURL() ).toExternalForm() )
 
             //,cleanCaches()
         );

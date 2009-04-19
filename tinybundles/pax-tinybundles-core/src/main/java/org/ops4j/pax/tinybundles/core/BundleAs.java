@@ -1,9 +1,7 @@
 package org.ops4j.pax.tinybundles.core;
 
-import java.util.List;
-import java.util.Map;
-import java.util.jar.Manifest;
 import java.net.URL;
+import java.util.Map;
 
 /**
  * @author Toni Menzel (tonit)
@@ -11,5 +9,7 @@ import java.net.URL;
  */
 public interface BundleAs<T>
 {
+
     T make( Map<String, URL> resources, Map<String, String> headers );
+    
 }

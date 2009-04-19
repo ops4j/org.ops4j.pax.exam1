@@ -1,10 +1,6 @@
 package org.ops4j.pax.tinybundles.core;
 
 import java.net.URL;
-import java.util.Map;
-import java.util.List;
-import java.util.Set;
-import java.util.jar.Manifest;
 
 /**
  * @author Toni Menzel (tonit)

@@ -8,7 +8,8 @@ import org.ops4j.pax.tinybundles.test.simpliest.HelloWorldService;
  */
 public class HelloWorldImpl implements HelloWorldService
 {
- public String hello( String name )
+
+    public String hello( String name )
     {
         return "Hello, " + name;
     }

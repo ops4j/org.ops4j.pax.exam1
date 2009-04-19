@@ -4,11 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.net.URLStreamHandler;
-import java.net.URLConnection;
-import java.util.List;
 import java.util.Map;
-import java.util.jar.Manifest;
 import org.ops4j.io.StreamUtils;
 import org.ops4j.pax.tinybundles.core.BundleAs;
 
@@ -24,7 +20,7 @@ public class BundleAsURLImpl implements BundleAs<URL>
         try
         {
             // TODO use url handler instead
-           
+
             File fout = File.createTempFile( "tinybundle_", ".jar" );
             fout.deleteOnExit();
             StreamUtils.copyStream( new BundleAsStreamImpl().make( resources, headers ),

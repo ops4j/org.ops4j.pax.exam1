@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.net.URL;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.jar.JarEntry;
@@ -48,7 +47,7 @@ public class BundleAsStreamImpl implements BundleAs<InputStream>
                         jarOut.putNextEntry( entry );
                         getManifest( headers.entrySet() ).write( jarOut );
                         jarOut.closeEntry();
-                     
+
                         for( Map.Entry<String, URL> entryset : resources.entrySet() )
                         {
                             entry = new JarEntry( entryset.getKey() );

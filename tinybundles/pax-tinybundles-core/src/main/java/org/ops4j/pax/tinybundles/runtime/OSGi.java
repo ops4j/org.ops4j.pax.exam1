@@ -18,9 +18,9 @@
 package org.ops4j.pax.tinybundles.runtime;
 
 import java.io.InputStream;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
-import org.osgi.framework.Bundle;
 import org.ops4j.pax.tinybundles.core.BundleAsStream;
 
 /**
