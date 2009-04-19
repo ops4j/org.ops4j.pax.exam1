@@ -23,6 +23,8 @@ import org.ops4j.pax.exam.Option;
 /**
  * Flag option
  *
+ * TODO Is this class still useful? Isn't replaced by ArgsOption stuff?
+ *
  * @author Toni Menzel (tonit)
  * @since Mar 18, 2009
  */
@@ -55,4 +57,5 @@ public class MavenConfigurationOption implements Option
     {
         return m_url;
     }
+
 }
