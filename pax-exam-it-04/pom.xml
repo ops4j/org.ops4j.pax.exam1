@@ -22,8 +22,6 @@
   <!-- we can use full maven properties incl. inheritance ! -->
   <properties>
     <target-framework>equinox</target-framework>
-    <dependency.pax.web.version>0.5.2</dependency.pax.web.version>
-
   </properties>
 
   <dependencies>
@@ -46,9 +44,9 @@
 
     <!-- Here's the stuff we want to provision our osgi runtime with -->
     <dependency>
-      <groupId>org.ops4j.pax.web</groupId>
-      <artifactId>pax-web-service</artifactId>
-      <version>${dependency.pax.web.version}</version>
+      <groupId>org.ops4j.base</groupId>
+      <artifactId>ops4j-base-lang</artifactId>
+      <version>0.5.3</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -68,13 +66,11 @@
           </execution>
         </executions>
         <configuration>
-
           <settings>
             <platform>${target-framework}</platform>
-            <version>latest</version>
-            <profiles>log,url</profiles>
+            <version>3.4.1</version>
+            <profiles>log,felix.config/1.0.0</profiles>
           </settings>
-
         </configuration>
       </plugin>
     </plugins>

@@ -1,10 +1,7 @@
 package org.ops4j.pax.exam.plugintest;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.osgi.framework.BundleContext;
 import static org.ops4j.pax.exam.CoreOptions.*;
-import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
@@ -14,11 +11,9 @@ import org.ops4j.pax.exam.junit.JUnit4TestRunner;
  * @since Mar 18, 2009
  */
 @RunWith( JUnit4TestRunner.class )
-public class UseConfigurationOption
+public class UseConfigurationOptionTest
+    extends MavenPluginTestCases
 {
-
-    @Inject
-    BundleContext context;
 
     @Configuration
     public Option[] configure()
@@ -28,10 +23,5 @@ public class UseConfigurationOption
         );
     }
 
-    @Test
-    public void use()
-    {
-        System.out.println( "Hello World from " + context.getBundle().getSymbolicName() );
-    }
 }
 
