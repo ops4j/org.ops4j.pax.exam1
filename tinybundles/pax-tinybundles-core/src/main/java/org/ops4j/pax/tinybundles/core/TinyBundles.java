@@ -18,10 +18,12 @@
 package org.ops4j.pax.tinybundles.core;
 
 import java.io.InputStream;
+import java.io.File;
 import java.net.URL;
 import org.ops4j.pax.tinybundles.core.intern.TinyBundleImpl;
 import org.ops4j.pax.tinybundles.core.targets.BundleAsStreamImpl;
 import org.ops4j.pax.tinybundles.core.targets.BundleAsURLImpl;
+import org.ops4j.pax.tinybundles.core.targets.BundleAsFile;
 
 /**
  * @author Toni Menzel (tonit)
@@ -45,5 +47,9 @@ public class TinyBundles
         return new BundleAsStreamImpl();
     }
 
+    public static BundleAs<File> asFile( File f )
+    {
+        return new BundleAsFile( f );
+    }
 
 }

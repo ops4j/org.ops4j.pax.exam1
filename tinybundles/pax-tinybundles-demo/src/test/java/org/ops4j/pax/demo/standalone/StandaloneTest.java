@@ -47,7 +47,7 @@ public class StandaloneTest
         throws IOException
     {
 
-        toDisk( newBundle()
+         newBundle()
             .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
             .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
             .set( Constants.IMPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo,org.osgi.framework" )
@@ -55,36 +55,7 @@ public class StandaloneTest
             .addClass( MyFirstActivator.class )
             .addClass( HelloWorld.class )
             .addClass( HelloWorldImpl.class )
-            .build( asStream() ), new File( "MyFirstBundle.jar" )
-        );
-
-    }
-
-    private void toDisk( InputStream inputStream, File file )
-        throws IOException
-    {
-        FileOutputStream fout = new FileOutputStream( file );
-        try
-        {
-            StreamUtils.copyStream( inputStream, fout, false );
-        }
-        catch( Exception e )
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
-                // inputStream.close();
-                fout.close();
-
-            }
-            catch( IOException e )
-            {
-                e.printStackTrace();
-            }
-        }
+            .build( asFile(new File( "MyFirstBundle.jar" )) );
 
     }
 }
