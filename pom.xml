@@ -47,7 +47,7 @@
         <module>pax-exam-junit-extender-impl</module>
         <module>pax-exam-testng</module>
         <module>maven-paxexam-plugin</module>
-        <module>paxexam-junit-archetype</module>
+        <module>maven-archetype-paxexam-junit</module>
       </modules>
     </profile>
 
