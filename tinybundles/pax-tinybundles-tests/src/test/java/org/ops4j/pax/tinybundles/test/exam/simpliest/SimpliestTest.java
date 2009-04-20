@@ -54,7 +54,7 @@ public class SimpliestTest
                     .version( Info.getPaxExamVersion() )
             ),
             // install extra tiny bundles that are created on demand:
-            provision( DemoBundles.simpliest( "foo" ).build( asURL() ).toExternalForm() )
+            provision( DemoBundles.simpliest( "foo" ).prepare( asURL() ).toExternalForm() )
 
             //,cleanCaches()
         );

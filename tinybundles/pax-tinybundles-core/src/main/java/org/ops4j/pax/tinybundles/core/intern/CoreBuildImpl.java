@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.tinybundles.core.targets;
+package org.ops4j.pax.tinybundles.core.intern;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,19 +33,23 @@ import org.ops4j.io.StreamUtils;
 import org.ops4j.pax.tinybundles.core.BundleAs;
 
 /**
+ * This builds to JarOutputStream.
+ * It is also the mother of all builders at its output can be stacked.
+ *
  * @author Toni Menzel (tonit)
  * @since Apr 9, 2009
  */
-public class BundleAsStreamImpl implements BundleAs<InputStream>
+public class CoreBuildImpl implements BundleAs<InputStream>
+
 {
 
-    private static Log LOG = LogFactory.getLog( BundleAsStreamImpl.class );
+    private static Log LOG = LogFactory.getLog( CoreBuildImpl.class );
     private static final String ENTRY_MANIFEST = "META-INF/MANIFEST.MF";
 
     public InputStream make( final Map<String, URL> resources,
                              final Map<String, String> headers )
     {
-        LOG.debug( "make()" );
+        LOG.debug( "setResources()" );
         final PipedInputStream pin = new PipedInputStream();
         try
         {
@@ -120,5 +124,10 @@ public class BundleAsStreamImpl implements BundleAs<InputStream>
             man.getMainAttributes().putValue( entry.getKey(), entry.getValue() );
         }
         return man;
+    }
+
+    public InputStream make( InputStream inp )
+    {
+        return inp;
     }
 }

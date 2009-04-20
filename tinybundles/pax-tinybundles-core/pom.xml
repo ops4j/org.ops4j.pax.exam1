@@ -50,6 +50,10 @@
       <artifactId>org.osgi.core</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.ops4j.pax.url</groupId>
+      <artifactId>pax-url-bnd</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.ops4j.pax.swissbox</groupId>
       <artifactId>pax-swissbox-optional-jcl</artifactId>
       <scope>compile</scope>

@@ -18,12 +18,13 @@
 package org.ops4j.pax.demo.standalone;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.jar.JarInputStream;
+import java.util.jar.Manifest;
 import org.junit.Test;
+import static org.junit.Assert.*;
 import org.osgi.framework.Constants;
-import org.ops4j.io.StreamUtils;
 import static org.ops4j.pax.tinybundles.core.TinyBundles.*;
 import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
@@ -47,15 +48,27 @@ public class StandaloneTest
         throws IOException
     {
 
-         newBundle()
-            .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
-            .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
-            .set( Constants.IMPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo,org.osgi.framework" )
-            .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
+        InputStream inp = newBundle()
             .addClass( MyFirstActivator.class )
             .addClass( HelloWorld.class )
             .addClass( HelloWorldImpl.class )
-            .build( asFile(new File( "MyFirstBundle.jar" )) );
+            .prepare(
+                with()
+                    .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
+                    .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
+                    .set( Constants.IMPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
+                    .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
+            ).build( asStream() );
+
+        // test output
+        JarInputStream jout = new JarInputStream( inp );
+        Manifest man = jout.getManifest();
+        assertEquals( "org.ops4j.pax.tinybundles.demo",
+                      man.getMainAttributes().getValue( Constants.IMPORT_PACKAGE )
+        );
+        assertEquals( "org.ops4j.pax.tinybundles.demo", man.getMainAttributes().getValue( Constants.EXPORT_PACKAGE ) );
+
+        jout.close();
 
     }
 }

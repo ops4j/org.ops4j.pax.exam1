@@ -22,8 +22,9 @@ import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ops4j.pax.tinybundles.core.BundleAs;
+import org.ops4j.pax.tinybundles.core.BuildableBundle;
 import org.ops4j.pax.tinybundles.core.TinyBundle;
+import org.ops4j.pax.tinybundles.core.metadata.RawBuilder;
 
 /**
  * @author Toni Menzel (tonit)
@@ -35,8 +36,6 @@ public class TinyBundleImpl implements TinyBundle
     private static Log LOG = LogFactory.getLog( TinyBundleImpl.class );
 
     private Map<String, URL> m_resources = new HashMap<String, URL>();
-
-    private Map<String, String> m_headers = new HashMap<String, String>();
 
     public TinyBundle addClass( Class clazz )
     {
@@ -52,14 +51,14 @@ public class TinyBundleImpl implements TinyBundle
         return this;
     }
 
-    public TinyBundle set( String key, String value )
+    public BuildableBundle prepare( BuildableBundle builder )
     {
-        m_headers.put( key, value );
-        return this;
+        return builder.setResources( m_resources );
     }
 
-    public <T> T build( BundleAs<T> type )
+    public BuildableBundle prepare()
     {
-        return type.make( m_resources, m_headers );
+        return new RawBuilder().setResources( m_resources );
     }
+
 }

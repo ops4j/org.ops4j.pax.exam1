@@ -21,9 +21,11 @@ import java.io.InputStream;
 import java.io.File;
 import java.net.URL;
 import org.ops4j.pax.tinybundles.core.intern.TinyBundleImpl;
-import org.ops4j.pax.tinybundles.core.targets.BundleAsStreamImpl;
+import org.ops4j.pax.tinybundles.core.intern.CoreBuildImpl;
 import org.ops4j.pax.tinybundles.core.targets.BundleAsURLImpl;
 import org.ops4j.pax.tinybundles.core.targets.BundleAsFile;
+import org.ops4j.pax.tinybundles.core.metadata.BndBuilder;
+import org.ops4j.pax.tinybundles.core.metadata.RawBuilder;
 
 /**
  * @author Toni Menzel (tonit)
@@ -37,19 +39,29 @@ public class TinyBundles
         return new TinyBundleImpl();
     }
 
+    public static BundleAs<InputStream> asStream()
+    {
+        return new CoreBuildImpl();
+    }
+
     public static BundleAs<URL> asURL()
     {
         return new BundleAsURLImpl();
     }
 
-    public static BundleAs<InputStream> asStream()
-    {
-        return new BundleAsStreamImpl();
-    }
-
     public static BundleAs<File> asFile( File f )
     {
         return new BundleAsFile( f );
+    }
+
+    public static BuildableBundle withBnd()
+    {
+        return new BndBuilder();
+    }
+
+    public static BuildableBundle with()
+    {
+        return new RawBuilder();
     }
 
 }

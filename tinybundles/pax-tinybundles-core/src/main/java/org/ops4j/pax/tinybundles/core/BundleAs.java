@@ -19,6 +19,7 @@ package org.ops4j.pax.tinybundles.core;
 
 import java.net.URL;
 import java.util.Map;
+import java.io.InputStream;
 
 /**
  * @author Toni Menzel (tonit)
@@ -27,6 +28,6 @@ import java.util.Map;
 public interface BundleAs<T>
 {
 
-    T make( Map<String, URL> resources, Map<String, String> headers );
+    T make( InputStream inp);
     
 }

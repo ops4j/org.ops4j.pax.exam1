@@ -98,7 +98,7 @@ public class ThousandBundlesTest
         int i = 0;
         for( TinyBundle b : constructManyBundles( 1000, "Toni" ) )
         {
-            Bundle bundle = context.installBundle( "file:/dev/null" + ( i++ ), b.build( asStream() ) );
+            Bundle bundle = context.installBundle( "file:/dev/null" + ( i++ ), b.prepare( asStream() ) );
             LOG.info( "Installed bundle: " + bundle.getBundleId() );
             bundle.start();
         }

@@ -14,7 +14,9 @@ Import-Package:\
 
 Private-Package:\
   ${bundle.namespace}.core.intern; version="${pom.version}",\
-  ${bundle.namespace}.core.targets; version="${pom.version}"
+  ${bundle.namespace}.core.targets; version="${pom.version}",\
+  ${bundle.namespace}.core.metadata; version="${pom.version}"
+
 
 Export-Package:\
   ${bundle.namespace}.core; version="${pom.version}",\

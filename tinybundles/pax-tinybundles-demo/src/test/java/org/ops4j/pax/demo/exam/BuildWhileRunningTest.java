@@ -65,10 +65,8 @@ public class BuildWhileRunningTest
     public void runMyService()
         throws BundleException, IOException
     {
-        // first build and install a tinybundle:
-        Bundle b = context.installBundle( "file:/dev/null/foo", newBundle()
-            .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" ).build( asStream() )
-        );
+        // first prepare and install a tinybundle:
+        Bundle b = context.installBundle( "file:/dev/null/foo", newBundle().prepare( with().set(Constants.BUNDLE_SYMBOLICNAME,"MyFirstTinyBundle" )).build( asStream() ) );
 
         b.start();
         boolean found = false;

@@ -24,10 +24,10 @@ public class BundleAsFile implements BundleAs<File>
         m_file = f;
     }
 
-    public File make( Map<String, URL> resources, Map<String, String> headers )
+    public File make( InputStream inp )
 
     {
-        return toDisk( new BundleAsStreamImpl().make( resources, headers ), m_file );
+        return toDisk( inp, m_file );
     }
 
     private File toDisk( InputStream inputStream, File file )

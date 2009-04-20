@@ -18,6 +18,7 @@
 package org.ops4j.pax.demo.exam;
 
 import java.io.IOException;
+import java.io.File;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,13 +56,14 @@ public class BuildAtConfigurationTime
             // install extra tiny bundles that are created on demand:
             provision(
                 newBundle()
-                    .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
-                    .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
-                    .set( Constants.IMPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo,org.osgi.framework" )
-                    .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
                     .addClass( MyFirstActivator.class )
                     .addClass( HelloWorld.class )
                     .addClass( HelloWorldImpl.class )
+                    .prepare()
+                    .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
+                    .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
+                    .set( Constants.IMPORT_PACKAGE, "org.osgi.framework" )
+                    .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
                     .build( asURL() ).toExternalForm()
             )
         );

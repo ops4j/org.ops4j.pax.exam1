@@ -22,6 +22,8 @@
     <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-lang:0.5.3" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-io:0.5.3" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-monitors:0.5.3" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.url:pax-url-bnd:0.5.2-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: biz.aQute:bndlib:0.0.313" level="project" />
     <orderEntry type="module" module-name="pax-exam" exported="" />
     <orderEntry type="module" module-name="pax-exam-junit" exported="" />
     <orderEntry type="module" module-name="pax-exam-runtime" exported="" />

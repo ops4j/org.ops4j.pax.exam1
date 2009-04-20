@@ -25,12 +25,12 @@ import java.net.URL;
  */
 public interface TinyBundle
 {
-
     TinyBundle addResource( String name, URL url );
-
-    TinyBundle set( String key, String value );
 
     TinyBundle addClass( Class clazz );
 
-    <T> T build( BundleAs<T> type );
+    BuildableBundle prepare( BuildableBundle builder );
+
+    BuildableBundle prepare();
+
 }

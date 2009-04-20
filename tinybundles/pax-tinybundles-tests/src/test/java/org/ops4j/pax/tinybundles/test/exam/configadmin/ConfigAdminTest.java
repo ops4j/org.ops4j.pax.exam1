@@ -60,7 +60,7 @@ public class ConfigAdminTest
             profile( "felix.config" ), logProfile()
             ,
             // install extra tiny bundles that are created on demand:
-            provision( DemoBundles.configadmin( "configadmin" ).build( asURL() ).toExternalForm() )
+            provision( DemoBundles.configadmin( "configadmin" ).prepare( asURL() ).toExternalForm() )
 
             //,cleanCaches()
         );

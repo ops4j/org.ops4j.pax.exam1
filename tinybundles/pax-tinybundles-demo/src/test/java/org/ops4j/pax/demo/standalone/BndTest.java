@@ -1,16 +1,19 @@
 package org.ops4j.pax.demo.standalone;
 
 import java.io.File;
-import java.io.InputStream;
 import java.io.IOException;
-import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.jar.JarOutputStream;
+import java.util.jar.JarInputStream;
+import java.util.jar.Manifest;
 import org.junit.Test;
+import org.junit.Ignore;
+import static org.junit.Assert.*;
 import org.osgi.framework.Constants;
-import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;
-import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
-import org.ops4j.pax.tinybundles.demo.HelloWorld;
 import static org.ops4j.pax.tinybundles.core.TinyBundles.*;
-import org.ops4j.io.StreamUtils;
+import org.ops4j.pax.tinybundles.demo.HelloWorld;
+import org.ops4j.pax.tinybundles.demo.intern.HelloWorldImpl;
+import org.ops4j.pax.tinybundles.demo.intern.MyFirstActivator;
 
 /**
  * @author Toni Menzel (tonit)
@@ -20,18 +23,30 @@ public class BndTest
 {
 
     @Test
-    public void use()
+    public void tryBnd()
         throws IOException
     {
-        newBundle()
-            .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
-            .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
-            .set( Constants.IMPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo,org.osgi.framework" )
-            .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
+        InputStream inp = newBundle()
             .addClass( MyFirstActivator.class )
             .addClass( HelloWorld.class )
             .addClass( HelloWorldImpl.class )
-            .build( asFile( new File( "MyFirstBundle.jar" ) ) );
+            .prepare(
+                withBnd()
+                    .set( Constants.BUNDLE_SYMBOLICNAME, "MyFirstTinyBundle" )
+                    .set( Constants.EXPORT_PACKAGE, "org.ops4j.pax.tinybundles.demo" )
+                    .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
+            ).build( asStream() );
 
+        // test output
+        JarInputStream jout = new JarInputStream( inp );
+        Manifest man = jout.getManifest();
+        assertEquals( "org.ops4j.pax.tinybundles.demo;resolution:=optional,org.osgi.framework;resolution:=optional",
+                      man.getMainAttributes().getValue( Constants.IMPORT_PACKAGE )
+        );
+        assertEquals( "org.ops4j.pax.tinybundles.demo", man.getMainAttributes().getValue( Constants.EXPORT_PACKAGE ) );
+
+        jout.close();
     }
+
+
 }
