@@ -32,12 +32,12 @@ import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.options.KnopflerfishFrameworkOption;
 import org.ops4j.pax.exam.options.MavenConfigurationOption;
 import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
+import org.ops4j.pax.exam.options.OptionalCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
-import org.ops4j.pax.exam.options.OptionalCompositeOption;
 
 /**
  * Factory methods for core options.
@@ -456,7 +456,26 @@ public class CoreOptions
         }
     }
 
-    public static OptionalCompositeOption when( boolean condition )
+    /**
+     * Creates a {@link OptionalCompositeOption}.
+     *
+     * @param condition boolean condition to evaluate
+     *
+     * @return optional composite option
+     */
+    public static OptionalCompositeOption when( final boolean condition )
+    {
+        return new OptionalCompositeOption( condition );
+    }
+
+    /**
+     * Creates a {@link OptionalCompositeOption}.
+     *
+     * @param condition condition to evaluate
+     *
+     * @return optional composite option
+     */
+    public static OptionalCompositeOption when( final OptionalCompositeOption.Condition condition )
     {
         return new OptionalCompositeOption( condition );
     }
