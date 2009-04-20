@@ -37,6 +37,7 @@ import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
+import org.ops4j.pax.exam.options.OptionalCompositeOption;
 
 /**
  * Factory methods for core options.
@@ -453,6 +454,11 @@ public class CoreOptions
                 + "File (usually produced by the plugin upfront) " + DEFAULT_CONFIGURATION + " has not been found."
             );
         }
+    }
+
+    public static OptionalCompositeOption when( boolean condition )
+    {
+        return new OptionalCompositeOption( condition );
     }
 
 }
