@@ -373,6 +373,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/exam.iml" filepath="$PROJECT_DIR$/exam.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven-archetype-paxexam-junit/maven-archetype-paxexam-junit.iml" filepath="$PROJECT_DIR$/maven-archetype-paxexam-junit/maven-archetype-paxexam-junit.iml" />
       <module fileurl="file://$PROJECT_DIR$/maven-paxexam-plugin/maven-paxexam-plugin.iml" filepath="$PROJECT_DIR$/maven-paxexam-plugin/maven-paxexam-plugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam/pax-exam.iml" filepath="$PROJECT_DIR$/pax-exam/pax-exam.iml" />
       <module fileurl="file://$PROJECT_DIR$/pax-exam-container-default/pax-exam-container-default.iml" filepath="$PROJECT_DIR$/pax-exam-container-default/pax-exam-container-default.iml" />
@@ -1201,116 +1202,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/0.5.3/ops4j-base-io-0.5.3-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam:0.4.0-SNAPSHOT">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam/0.4.0-SNAPSHOT/pax-exam-0.4.0-SNAPSHOT.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam/0.4.0-SNAPSHOT/pax-exam-0.4.0-SNAPSHOT-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam/0.4.0-SNAPSHOT/pax-exam-0.4.0-SNAPSHOT-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-junit:0.4.0-SNAPSHOT">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit/0.4.0-SNAPSHOT/pax-exam-junit-0.4.0-SNAPSHOT.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit/0.4.0-SNAPSHOT/pax-exam-junit-0.4.0-SNAPSHOT-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit/0.4.0-SNAPSHOT/pax-exam-junit-0.4.0-SNAPSHOT-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-runtime:0.4.0-SNAPSHOT">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-runtime/0.4.0-SNAPSHOT/pax-exam-runtime-0.4.0-SNAPSHOT.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-runtime/0.4.0-SNAPSHOT/pax-exam-runtime-0.4.0-SNAPSHOT-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-runtime/0.4.0-SNAPSHOT/pax-exam-runtime-0.4.0-SNAPSHOT-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-spi:0.4.0-SNAPSHOT">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-spi/0.4.0-SNAPSHOT/pax-exam-spi-0.4.0-SNAPSHOT.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-spi/0.4.0-SNAPSHOT/pax-exam-spi-0.4.0-SNAPSHOT-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-spi/0.4.0-SNAPSHOT/pax-exam-spi-0.4.0-SNAPSHOT-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-junit-extender:0.4.0-SNAPSHOT">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit-extender/0.4.0-SNAPSHOT/pax-exam-junit-extender-0.4.0-SNAPSHOT.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit-extender/0.4.0-SNAPSHOT/pax-exam-junit-extender-0.4.0-SNAPSHOT-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit-extender/0.4.0-SNAPSHOT/pax-exam-junit-extender-0.4.0-SNAPSHOT-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-container-default:0.4.0-SNAPSHOT">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-default/0.4.0-SNAPSHOT/pax-exam-container-default-0.4.0-SNAPSHOT.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-default/0.4.0-SNAPSHOT/pax-exam-container-default-0.4.0-SNAPSHOT-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-default/0.4.0-SNAPSHOT/pax-exam-container-default-0.4.0-SNAPSHOT-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-container-rbc-client:0.4.0-SNAPSHOT">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc-client/0.4.0-SNAPSHOT/pax-exam-container-rbc-client-0.4.0-SNAPSHOT.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc-client/0.4.0-SNAPSHOT/pax-exam-container-rbc-client-0.4.0-SNAPSHOT-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc-client/0.4.0-SNAPSHOT/pax-exam-container-rbc-client-0.4.0-SNAPSHOT-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-container-rbc:0.4.0-SNAPSHOT">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc/0.4.0-SNAPSHOT/pax-exam-container-rbc-0.4.0-SNAPSHOT.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc/0.4.0-SNAPSHOT/pax-exam-container-rbc-0.4.0-SNAPSHOT-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc/0.4.0-SNAPSHOT/pax-exam-container-rbc-0.4.0-SNAPSHOT-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-container-rbc-client:0.4.1-SNAPSHOT">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc-client/0.4.1-SNAPSHOT/pax-exam-container-rbc-client-0.4.1-SNAPSHOT.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc-client/0.4.1-SNAPSHOT/pax-exam-container-rbc-client-0.4.1-SNAPSHOT-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-container-rbc-client/0.4.1-SNAPSHOT/pax-exam-container-rbc-client-0.4.1-SNAPSHOT-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.exam:pax-exam-junit:0.4.1-SNAPSHOT">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit/0.4.1-SNAPSHOT/pax-exam-junit-0.4.1-SNAPSHOT.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit/0.4.1-SNAPSHOT/pax-exam-junit-0.4.1-SNAPSHOT-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/exam/pax-exam-junit/0.4.1-SNAPSHOT/pax-exam-junit-0.4.1-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
   </component>
