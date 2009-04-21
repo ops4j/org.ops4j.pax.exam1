@@ -30,7 +30,7 @@ import org.apache.maven.project.MavenProject;
 
 /**
  * @author Toni Menzel (tonit)
- * @goal generate-paxexam-config
+ * @goal generate-config
  * @phase generate-resources
  * @since Mar 17, 2009
  */
@@ -61,12 +61,12 @@ public class ExamPlugin extends AbstractMojo
      */
     private String dependencyScope;
     /**
-     * pax runner arguments defined in <settings> tag in configuration of plugin.
+     * pax runner arguments defined in <options> tag in configuration of plugin.
      *
      * @parameter
      */
 
-    private Map<String, String> settings;
+    private Map<String, String> options;
 
     /**
      * @component
@@ -114,7 +114,7 @@ public class ExamPlugin extends AbstractMojo
 
             writeHeader( printer );
             writeProvisioning( printer, dependencies );
-            writeSettings( printer, settings );
+            writeSettings( printer, options );
 
             getLog().info( "PAX EXAM PLUGIN Created: " + outputFile );
         }
