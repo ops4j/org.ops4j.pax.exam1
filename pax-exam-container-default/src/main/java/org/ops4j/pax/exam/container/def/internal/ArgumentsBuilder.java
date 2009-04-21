@@ -466,7 +466,14 @@ class ArgumentsBuilder
         {
             for( int i = 0; i < paxrunnerOptions.length; i++ )
             {
-                args.add( "--" + paxrunnerOptions[ i ].getKey().trim() + "=" + paxrunnerOptions[ i ].getValue().trim());
+                String prefix = "--";
+                if( paxrunnerOptions[ i ].getKey().startsWith( "--" ) )
+                {
+                    prefix = "";
+                }
+                args.add(
+                    prefix + paxrunnerOptions[ i ].getKey().trim() + "=" + paxrunnerOptions[ i ].getValue().trim()
+                );
             }
         }
         return args;
