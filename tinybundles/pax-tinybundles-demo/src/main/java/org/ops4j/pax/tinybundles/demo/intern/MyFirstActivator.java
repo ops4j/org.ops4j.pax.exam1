@@ -22,6 +22,10 @@ public class MyFirstActivator implements BundleActivator
         Dictionary dict = new Properties();
 
         ref = bundleContext.registerService( HelloWorld.class.getName(), new HelloWorldImpl(), dict );
+        System.out.println( "waiting for 10seks.." );
+        Thread.sleep( 10000 );
+        System.out.println( "DONE" );
+
     }
 
     public void stop( BundleContext bundleContext )

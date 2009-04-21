@@ -107,6 +107,15 @@
           <option name="LABEL_INDENT_SIZE" value="0" />
           <option name="LABEL_INDENT_ABSOLUTE" value="false" />
         </ADDITIONAL_INDENT_OPTIONS>
+        <ADDITIONAL_INDENT_OPTIONS fileType="jsp">
+          <option name="INDENT_SIZE" value="4" />
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
+          <option name="TAB_SIZE" value="4" />
+          <option name="USE_TAB_CHARACTER" value="false" />
+          <option name="SMART_TABS" value="false" />
+          <option name="LABEL_INDENT_SIZE" value="0" />
+          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
+        </ADDITIONAL_INDENT_OPTIONS>
         <ADDITIONAL_INDENT_OPTIONS fileType="txt">
           <option name="INDENT_SIZE" value="2" />
           <option name="CONTINUATION_INDENT_SIZE" value="8" />
@@ -394,7 +403,6 @@
       <module fileurl="file://$PROJECT_DIR$/tinybundles/pax-tinybundles.iml" filepath="$PROJECT_DIR$/tinybundles/pax-tinybundles.iml" />
       <module fileurl="file://$PROJECT_DIR$/tinybundles/pax-tinybundles-core/pax-tinybundles-core.iml" filepath="$PROJECT_DIR$/tinybundles/pax-tinybundles-core/pax-tinybundles-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/tinybundles/pax-tinybundles-demo/pax-tinybundles-demo.iml" filepath="$PROJECT_DIR$/tinybundles/pax-tinybundles-demo/pax-tinybundles-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tinybundles/pax-tinybundles-tests/pax-tinybundles-tests.iml" filepath="$PROJECT_DIR$/tinybundles/pax-tinybundles-tests/pax-tinybundles-tests.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.5" project-jdk-type="JavaSDK">
@@ -1213,6 +1221,39 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.18.1-SNAPSHOT/pax-runner-no-jcl-0.18.1-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: biz.aQute:bndlib:0.0.313">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: com.springsource.bundlor:com.springsource.bundlor:1.0.0.M2">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/com/springsource/bundlor/com.springsource.bundlor/1.0.0.M2/com.springsource.bundlor-1.0.0.M2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/com/springsource/bundlor/com.springsource.bundlor/1.0.0.M2/com.springsource.bundlor-1.0.0.M2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/com/springsource/bundlor/com.springsource.bundlor/1.0.0.M2/com.springsource.bundlor-1.0.0.M2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: com.springsource.util:com.springsource.util.osgi:1.5.0.CI-R110-B36">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/com/springsource/util/com.springsource.util.osgi/1.5.0.CI-R110-B36/com.springsource.util.osgi-1.5.0.CI-R110-B36.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/com/springsource/util/com.springsource.util.osgi/1.5.0.CI-R110-B36/com.springsource.util.osgi-1.5.0.CI-R110-B36-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/com/springsource/util/com.springsource.util.osgi/1.5.0.CI-R110-B36/com.springsource.util.osgi-1.5.0.CI-R110-B36-sources.jar!/" />
       </SOURCES>
     </library>
   </component>

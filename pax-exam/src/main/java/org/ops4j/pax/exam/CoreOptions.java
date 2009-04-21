@@ -30,7 +30,6 @@ import org.ops4j.pax.exam.options.EquinoxFrameworkOption;
 import org.ops4j.pax.exam.options.FelixFrameworkOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.options.KnopflerfishFrameworkOption;
-import org.ops4j.pax.exam.options.MavenConfigurationOption;
 import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
 import org.ops4j.pax.exam.options.OptionalCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
@@ -105,16 +104,6 @@ public class CoreOptions
     public static FelixFrameworkOption felix()
     {
         return new FelixFrameworkOption();
-    }
-
-    /**
-     * Creates a {@link MavenConfigurationOption}.
-     *
-     * @return MavenConfigurationOption option
-     */
-    public static MavenConfigurationOption configureWithMaven()
-    {
-        return new MavenConfigurationOption();
     }
 
     /**

@@ -26,11 +26,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 import org.ops4j.lang.NullArgumentException;
-import org.ops4j.pax.exam.CoreOptionsResolver;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.OptionResolver;
 import static org.ops4j.pax.exam.OptionUtils.*;
-import org.ops4j.pax.exam.container.def.PaxRunnerOptionResolver;
 import org.ops4j.pax.exam.container.def.options.AutoWrapOption;
 import org.ops4j.pax.exam.container.def.options.CleanCachesOption;
 import org.ops4j.pax.exam.container.def.options.ExcludeDefaultRepositoriesOption;
@@ -42,7 +40,6 @@ import org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption;
 import org.ops4j.pax.exam.options.ArgsOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
-import org.ops4j.pax.exam.options.MavenConfigurationOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
@@ -97,7 +94,6 @@ class ArgumentsBuilder
         );
         add( arguments, extractArguments( filter( AutoWrapOption.class, options ) ) );
         add( arguments, extractArguments( filter( CleanCachesOption.class, options ) ) );
-        add( arguments, extractArguments( filter( MavenConfigurationOption.class, options ) ) );
         add( arguments, extractArguments( filter( LocalRepositoryOption.class, options ) ) );
         add( arguments, extractArguments( filter( RawPaxRunnerOptionOption.class, options ) ) );
         add( arguments,
@@ -183,36 +179,6 @@ class ArgumentsBuilder
                 arguments.add( "--version=" + version );
             }
         }
-        return arguments;
-    }
-
-    /**
-     * @return all arguments that have been recognized by OptionResolvers as PaxRunner arguments
-     */
-    private static Collection<String> extractArguments( MavenConfigurationOption[] mavenConfigurationOptions )
-    {
-        final List<String> arguments = new ArrayList<String>();
-        if( mavenConfigurationOptions.length > 0 )
-        {
-            URL url = mavenConfigurationOptions[ 0 ].getURL();
-            Properties p = new Properties();
-            NullArgumentException.validateNotNull( url, "Url of Pax Exam Configuration" );
-            try
-            {
-                p.load( url.openStream() );
-            }
-            catch( IOException e )
-            {
-                e.printStackTrace();
-            }
-            // feed them through resolvers:
-            for( OptionResolver resolver : getOptionResolvers() )
-            {
-                arguments.addAll( Arrays.asList( buildArguments( resolver.getOptionsFromProperties( p ) ) ) );
-            }
-
-        }
-
         return arguments;
     }
 
@@ -491,13 +457,5 @@ class ArgumentsBuilder
             workDir.mkdirs();
         }
         return workDir;
-    }
-
-    private static OptionResolver[] getOptionResolvers()
-    {
-        return new OptionResolver[]{
-            new CoreOptionsResolver(),
-            new PaxRunnerOptionResolver()
-        };
     }
 }

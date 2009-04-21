@@ -12,6 +12,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="Maven: biz.aQute:bndlib:0.0.313" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.springsource.bundlor:com.springsource.bundlor:1.0.0.M2" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.4" level="project" />
     <orderEntry type="library" name="Maven: org.easymock:easymock:2.4" level="project" />
     <orderEntry type="library" exported="" name="Maven: commons-logging:commons-logging:1.1" level="project" />
@@ -24,6 +25,9 @@
     <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-io:0.5.3" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-monitors:0.5.3" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.url:pax-url-bnd:0.5.2-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: biz.aQute:bndlib:0.0.313" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.springsource.bundlor:com.springsource.bundlor:1.0.0.M2" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.springsource.util:com.springsource.util.osgi:1.5.0.CI-R110-B36" level="project" />
     <orderEntry type="module" module-name="pax-exam" exported="" />
     <orderEntry type="module" module-name="pax-exam-junit" exported="" />
     <orderEntry type="module" module-name="pax-exam-runtime" exported="" />
