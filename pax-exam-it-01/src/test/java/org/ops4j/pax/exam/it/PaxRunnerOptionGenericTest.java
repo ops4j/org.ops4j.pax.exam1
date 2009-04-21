@@ -22,8 +22,9 @@ public class PaxRunnerOptionGenericTest
 
         return options(
             // get from env:
-            paxrunner( "platform", "equinox" ),
-            paxrunner( "profiles", "web" )
+            rawPaxRunnerOption( "platform=equinox" ),
+            rawPaxRunnerOption( "--profiles=web" ),
+            rawPaxRunnerOption( "--foo" )
 
         );
     }
