@@ -37,6 +37,8 @@ import org.ops4j.pax.exam.container.def.options.ExcludeDefaultRepositoriesOption
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.VMOption;
+import org.ops4j.pax.exam.container.def.options.LocalRepositoryOption;
+import org.ops4j.pax.exam.container.def.options.PaxRunnerOption;
 import org.ops4j.pax.exam.options.ArgsOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
@@ -96,7 +98,8 @@ class ArgumentsBuilder
         add( arguments, extractArguments( filter( AutoWrapOption.class, options ) ) );
         add( arguments, extractArguments( filter( CleanCachesOption.class, options ) ) );
         add( arguments, extractArguments( filter( MavenConfigurationOption.class, options ) ) );
-
+        add( arguments, extractArguments( filter( LocalRepositoryOption.class, options ) ) );
+        add( arguments, extractArguments( filter( PaxRunnerOption.class, options ) ) );
         add( arguments,
              extractArguments(
                  filter( SystemPropertyOption.class, options ),
@@ -441,6 +444,32 @@ class ArgumentsBuilder
         {
             return null;
         }
+    }
+
+    private static String extractArguments( LocalRepositoryOption[] localRepositoryOptions )
+    {
+        if( localRepositoryOptions != null && localRepositoryOptions.length > 0 )
+        {
+            LocalRepositoryOption local = localRepositoryOptions[ 0 ];
+            return "--localRepository=" + local.getLocalRepositoryPath();
+
+        }
+        return null;
+    }
+
+    private static List<String> extractArguments( PaxRunnerOption[] paxrunnerOptions )
+    {
+        List<String> args = new ArrayList<String>();
+        final boolean excludeDefaultRepositories = paxrunnerOptions.length > 0;
+
+        if( paxrunnerOptions.length > 0 || excludeDefaultRepositories )
+        {
+            for( int i = 0; i < paxrunnerOptions.length; i++ )
+            {
+                args.add( "--" + paxrunnerOptions[ i ].getKey().trim() + "=" + paxrunnerOptions[ i ].getValue().trim());
+            }
+        }
+        return args;
     }
 
     /**

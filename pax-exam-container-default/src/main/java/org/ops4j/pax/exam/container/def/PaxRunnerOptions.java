@@ -35,6 +35,8 @@ import org.ops4j.pax.exam.container.def.options.RepositoryOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
+import org.ops4j.pax.exam.container.def.options.LocalRepositoryOption;
+import org.ops4j.pax.exam.container.def.options.PaxRunnerOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 
@@ -186,6 +188,18 @@ public class PaxRunnerOptions
     }
 
     /**
+     * Creates a {@link PaxRunnerOption}.
+     *
+     * @param Key and value of valid Pax Runner Options
+     *
+     * @return a PaxRunner Option instance.
+     */
+    public static PaxRunnerOption paxrunner( String key, String value )
+    {
+        return new PaxRunnerOption( key,value );
+    }
+
+    /**
      * Creates a composite option of {@link RepositoryOption}s.
      *
      * @param repositoryUrls virtual machine options (cannot be null or containing null entries)
@@ -215,6 +229,18 @@ public class PaxRunnerOptions
     public static Option repositories( final RepositoryOption... repositoryOptions )
     {
         return new DefaultCompositeOption( repositoryOptions );
+    }
+
+    /**
+     * Creates a {@link LocalRepositoryOption}.
+     *
+     * @param localRepository path
+     *
+     * @return localRepository option
+     */
+    public static LocalRepositoryOption localRepository( final String path )
+    {
+        return new LocalRepositoryOption( path );
     }
 
     /**
