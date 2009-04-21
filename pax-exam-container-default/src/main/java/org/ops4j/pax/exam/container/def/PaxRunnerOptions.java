@@ -36,7 +36,7 @@ import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
 import org.ops4j.pax.exam.container.def.options.LocalRepositoryOption;
-import org.ops4j.pax.exam.container.def.options.PaxRunnerOption;
+import org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 
@@ -188,15 +188,27 @@ public class PaxRunnerOptions
     }
 
     /**
-     * Creates a {@link PaxRunnerOption}.
+     * Creates a {@link org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption}.
      *
      * @param Key and value of valid Pax Runner Options
      *
      * @return a PaxRunner Option instance.
      */
-    public static PaxRunnerOption paxrunner( String key, String value )
+    public static RawPaxRunnerOptionOption rawPaxRunnerOption( String key, String value )
     {
-        return new PaxRunnerOption( key,value );
+        return new RawPaxRunnerOptionOption( key,value );
+    }
+
+     /**
+     * Creates a {@link org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption}.
+     *
+     * @param full option of paxrunner
+     *
+     * @return a PaxRunner Option instance.
+     */
+    public static RawPaxRunnerOptionOption rawPaxRunnerOption( String option )
+    {
+        return new RawPaxRunnerOptionOption( option );
     }
 
     /**

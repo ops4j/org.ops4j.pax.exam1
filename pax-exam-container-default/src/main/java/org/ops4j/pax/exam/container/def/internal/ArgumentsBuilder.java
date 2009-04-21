@@ -38,7 +38,7 @@ import org.ops4j.pax.exam.container.def.options.ProfileOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.VMOption;
 import org.ops4j.pax.exam.container.def.options.LocalRepositoryOption;
-import org.ops4j.pax.exam.container.def.options.PaxRunnerOption;
+import org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption;
 import org.ops4j.pax.exam.options.ArgsOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
@@ -99,7 +99,7 @@ class ArgumentsBuilder
         add( arguments, extractArguments( filter( CleanCachesOption.class, options ) ) );
         add( arguments, extractArguments( filter( MavenConfigurationOption.class, options ) ) );
         add( arguments, extractArguments( filter( LocalRepositoryOption.class, options ) ) );
-        add( arguments, extractArguments( filter( PaxRunnerOption.class, options ) ) );
+        add( arguments, extractArguments( filter( RawPaxRunnerOptionOption.class, options ) ) );
         add( arguments,
              extractArguments(
                  filter( SystemPropertyOption.class, options ),
@@ -457,7 +457,7 @@ class ArgumentsBuilder
         return null;
     }
 
-    private static List<String> extractArguments( PaxRunnerOption[] paxrunnerOptions )
+    private static List<String> extractArguments( RawPaxRunnerOptionOption[] paxrunnerOptions )
     {
         List<String> args = new ArrayList<String>();
         final boolean excludeDefaultRepositories = paxrunnerOptions.length > 0;
@@ -466,14 +466,8 @@ class ArgumentsBuilder
         {
             for( int i = 0; i < paxrunnerOptions.length; i++ )
             {
-                String prefix = "--";
-                if( paxrunnerOptions[ i ].getKey().startsWith( "--" ) )
-                {
-                    prefix = "";
-                }
-                args.add(
-                    prefix + paxrunnerOptions[ i ].getKey().trim() + "=" + paxrunnerOptions[ i ].getValue().trim()
-                );
+
+                args.add( paxrunnerOptions[ i ].getOption().trim() );
             }
         }
         return args;
