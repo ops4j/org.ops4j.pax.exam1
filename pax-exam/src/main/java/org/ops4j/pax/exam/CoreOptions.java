@@ -271,7 +271,7 @@ public class CoreOptions
     }
 
     /**
-     * Convenience method for adding a maven bundle based on groupId/artifactId.
+     * Convenience method (shorter) for adding a maven bundle based on groupId/artifactId.
      *
      * @param groupId    artifact group id
      * @param artifactId artifact id
@@ -285,7 +285,7 @@ public class CoreOptions
     }
 
     /**
-     * Convenience method(shorter) for adding a maven bundle based on groupId/artifactId/version.
+     * Convenience method (shorter) for adding a maven bundle based on groupId/artifactId/version.
      *
      * @param groupId    artifact group id
      * @param artifactId artifact id
