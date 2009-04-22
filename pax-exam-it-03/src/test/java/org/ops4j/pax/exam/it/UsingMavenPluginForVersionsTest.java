@@ -39,7 +39,7 @@ public class UsingMavenPluginForVersionsTest
 {
 
     /**
-     * Pax Exam test options that provisions the Pax URL mvn: url handler bundle.
+     * Pax Exam test options that provisions the Pax URL handlers bundle suing the version determined from project.
      *
      * @return integration tests options
      */
