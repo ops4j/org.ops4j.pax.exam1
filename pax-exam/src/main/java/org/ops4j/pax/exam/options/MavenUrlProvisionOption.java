@@ -18,6 +18,7 @@
 package org.ops4j.pax.exam.options;
 
 import static org.ops4j.lang.NullArgumentException.*;
+import org.ops4j.pax.exam.MavenUtils;
 
 /**
  * Option specifying provisioning from an maven url (Pax URL mvn: handler).
@@ -203,5 +204,16 @@ public class MavenUrlProvisionOption
         String getVersion( String groupId, String artifactId );
 
     }
+
+    /**
+     * VErsion will be discovered from the Maven project that includes the test.
+     *
+     * @return itself, for fluent api usage
+     */
+    public MavenUrlProvisionOption versionAsInProject()
+    {
+        return version( MavenUtils.asInProject() );
+    }
+
 
 }

@@ -11,7 +11,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: junit:junit:4.4" level="project" />
     <orderEntry type="library" name="Maven: org.easymock:easymock:2.4" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.url:pax-url-mvn:0.3.2" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.url:pax-url-mvn:0.4.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.url:pax-url-war:0.4.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.url:pax-url-link:0.5.0" level="project" />
     <orderEntry type="module" module-name="pax-exam" exported="" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-lang:0.5.3" level="project" />
     <orderEntry type="module" module-name="pax-exam-junit" exported="" />

@@ -48,7 +48,9 @@ public class UsingMavenPluginForVersionsTest
     {
         return options(
             provision(
-                mavenBundle().groupId( "org.ops4j.pax.url" ).artifactId( "pax-url-mvn" ).version( asInProject() )
+                mavenBundle().groupId( "org.ops4j.pax.url" ).artifactId( "pax-url-mvn" ).version( asInProject() ),
+                mavenBundle( "org.ops4j.pax.url", "pax-url-war" ).version( asInProject() ),
+                mavenBundle( "org.ops4j.pax.url", "pax-url-link" ).versionAsInProject()
             ),
             logProfile()
         );
@@ -61,10 +63,36 @@ public class UsingMavenPluginForVersionsTest
      * @throws MalformedURLException - Not expected
      */
     @Test
-    public void validURL()
+    public void validMvnURL()
         throws MalformedURLException
     {
         new URL( "mvn:org.ops4j.pax.swissbox/pax-swissbox-core" );
+    }
+
+    /**
+     * Tests that the Pax URL war: url handler has been provisioned by creating a war: url. If the url creation fails,
+     * it means that the bundle was not provisioned.
+     *
+     * @throws MalformedURLException - Not expected
+     */
+    @Test
+    public void validWarURL()
+        throws MalformedURLException
+    {
+        new URL( "war:file:foo.war" );
+    }
+
+    /**
+     * Tests that the Pax URL link: url handler has been provisioned by creating a link: url. If the url creation fails,
+     * it means that the bundle was not provisioned.
+     *
+     * @throws MalformedURLException - Not expected
+     */
+    @Test
+    public void validLinkURL()
+        throws MalformedURLException
+    {
+        new URL( "link:file:foo.link" );
     }
 
 }

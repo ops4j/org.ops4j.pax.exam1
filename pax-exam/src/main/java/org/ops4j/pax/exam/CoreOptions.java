@@ -21,7 +21,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import static org.ops4j.lang.NullArgumentException.*;
-import static org.ops4j.pax.exam.MavenUtils.*;
 import static org.ops4j.pax.exam.OptionUtils.*;
 import org.ops4j.pax.exam.options.ArgsOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
@@ -272,19 +271,17 @@ public class CoreOptions
     }
 
     /**
-     * Convenience method for adding a maven bundle based on groupId/artifactId and version as specified in the project.
+     * Convenience method for adding a maven bundle based on groupId/artifactId.
      *
      * @param groupId    artifact group id
      * @param artifactId artifact id
      *
      * @return maven specific provisioning option
-     *
-     * @see MavenUtils#asInProject()
      */
-    public static MavenUrlProvisionOption mavenBundleAsInProject( final String groupId,
-                                                                  final String artifactId )
+    public static MavenUrlProvisionOption mavenBundle( final String groupId,
+                                                       final String artifactId )
     {
-        return mavenBundle().groupId( groupId ).artifactId( artifactId ).version( asInProject() );
+        return mavenBundle().groupId( groupId ).artifactId( artifactId );
     }
 
     /**
@@ -296,9 +293,9 @@ public class CoreOptions
      *
      * @return maven specific provisioning option
      */
-    public static MavenUrlProvisionOption mavenBundleWithVersion( final String groupId,
-                                                                  final String artifactId,
-                                                                  final String version )
+    public static MavenUrlProvisionOption mavenBundle( final String groupId,
+                                                       final String artifactId,
+                                                       final String version )
     {
         return mavenBundle().groupId( groupId ).artifactId( artifactId ).version( version );
     }
