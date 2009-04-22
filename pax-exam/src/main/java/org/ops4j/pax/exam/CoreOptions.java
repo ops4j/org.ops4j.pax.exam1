@@ -27,6 +27,7 @@ import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.EquinoxFrameworkOption;
 import org.ops4j.pax.exam.options.FelixFrameworkOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
+import org.ops4j.pax.exam.options.FrameworkStartLevelOption;
 import org.ops4j.pax.exam.options.KnopflerfishFrameworkOption;
 import org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption;
 import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
@@ -479,6 +480,18 @@ public class CoreOptions
     public static OptionalCompositeOption when( final OptionalCompositeOption.Condition condition )
     {
         return new OptionalCompositeOption( condition );
+    }
+
+    /**
+     * Creates an {@link FrameworkStartLevelOption}.
+     *
+     * @param startLevel framework start level (must be bigger then zero)
+     *
+     * @return framework start level option
+     */
+    public static FrameworkStartLevelOption frameworkStartLevel( final int startLevel )
+    {
+        return new FrameworkStartLevelOption( startLevel );
     }
 
 }
