@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Alin Dreghiciu.
+ * Copyright 2009 Alin Dreghiciu.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import org.ops4j.pax.exam.Option;
  * Option specifying framework start level.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
- * @since 0.5.0, April 23, 2008
+ * @since 0.5.0, April 23, 2009
  */
 public class FrameworkStartLevelOption
     implements Option
@@ -37,7 +37,7 @@ public class FrameworkStartLevelOption
     /**
      * Constructor.
      *
-     * @param startLevel system package (cannot be null or empty)
+     * @param startLevel framework start level (must be bigger then zero)
      *
      * @throws IllegalArgumentException - If start level is <= 0
      */
