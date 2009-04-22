@@ -32,7 +32,7 @@
 
   <name>OPS4J Pax Exam - Maven Plugin</name>
   <description>
-    Goal: generate-paxexam-config: Converts configuration done inside pom to be readable by the PaxExamPluginOption option.
+    Goal: generate-config: Converts configuration done inside pom to be readable by the PaxExamPluginOption option.
   </description>
 
   <build>

@@ -60,20 +60,21 @@
       <plugin>
         <groupId>org.ops4j.pax.exam</groupId>
         <artifactId>maven-paxexam-plugin</artifactId>
+        <version>${pom.version}</version>
         <executions>
           <execution>
-            <id>generate-paxexam-config</id>
+            <id>generate-config</id>
             <goals>
-              <goal>generate-paxexam-config</goal>
+              <goal>generate-config</goal>
             </goals>
           </execution>
         </executions>
         <configuration>
-          <settings>
+          <options>
             <platform>${target-framework}</platform>
             <version>3.4.1</version>
             <profiles>log,felix.config/1.0.0</profiles>
-          </settings>
+          </options>
         </configuration>
       </plugin>
     </plugins>
