@@ -17,6 +17,8 @@
  */
 package org.ops4j.pax.exam.junit.options;
 
+import static org.ops4j.pax.exam.Constants.*;
+import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.options.AbstractProvisionWrapperOption;
 import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
 
@@ -36,11 +38,13 @@ public class JUnitBundlesOption
      */
     public JUnitBundlesOption()
     {
-        super( new MavenUrlProvisionOption()
-            .groupId( "org.junit" )
-            .artifactId( "com.springsource.org.junit" )
-            .version( "4.4.0" )
-            .noUpdate()
+        super(
+            mavenBundle()
+                .groupId( "org.junit" )
+                .artifactId( "com.springsource.org.junit" )
+                .version( "4.4.0" )
+                .noUpdate()
+                .startLevel( START_LEVEL_SYSTEM_BUNDLES )
         );
     }
 

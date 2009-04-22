@@ -17,6 +17,8 @@
  */
 package org.ops4j.pax.exam.junit.options;
 
+import static org.ops4j.pax.exam.Constants.*;
+import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.options.AbstractProvisionWrapperOption;
 import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
 
@@ -37,11 +39,12 @@ public class EasyMockBundlesOption
     public EasyMockBundlesOption()
     {
         super(
-            new MavenUrlProvisionOption()
+            mavenBundle()
                 .groupId( "org.easymock" )
                 .artifactId( "com.springsource.org.easymock" )
                 .version( "2.3.0" )
                 .noUpdate()
+                .startLevel( START_LEVEL_SYSTEM_BUNDLES )
         );
     }
 

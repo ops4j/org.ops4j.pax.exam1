@@ -40,6 +40,7 @@ import org.junit.runner.manipulation.NoTestsRemainException;
 import org.junit.runner.manipulation.Sortable;
 import org.junit.runner.manipulation.Sorter;
 import org.junit.runner.notification.RunNotifier;
+import static org.ops4j.pax.exam.Constants.*;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Option;
@@ -48,9 +49,9 @@ import static org.ops4j.pax.exam.junit.JUnitOptions.*;
 import org.ops4j.pax.exam.junit.internal.JUnit4MethodRoadie;
 import org.ops4j.pax.exam.junit.internal.JUnit4TestMethod;
 import org.ops4j.pax.exam.junit.options.JUnitBundlesOption;
+import org.ops4j.pax.exam.options.CompositeOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
-import org.ops4j.pax.exam.options.CompositeOption;
 
 /**
  * JUnit4 Runner to be used with the {@link org.junit.runner.RunWith} annotation to run with Pax Exam.
@@ -323,22 +324,26 @@ public class JUnit4TestRunner
                 .groupId( "org.ops4j.pax.exam" )
                 .artifactId( "pax-exam" )
                 .version( Info.getPaxExamVersion() )
-                .update( Info.isPaxExamSnapshotVersion() ),
+                .update( Info.isPaxExamSnapshotVersion() )
+                .startLevel( START_LEVEL_SYSTEM_BUNDLES ),
             mavenBundle()
                 .groupId( "org.ops4j.pax.exam" )
                 .artifactId( "pax-exam-junit-extender" )
                 .version( Info.getPaxExamVersion() )
-                .update( Info.isPaxExamSnapshotVersion() ),
+                .update( Info.isPaxExamSnapshotVersion() )
+                .startLevel( START_LEVEL_SYSTEM_BUNDLES ),
             mavenBundle()
                 .groupId( "org.ops4j.pax.exam" )
                 .artifactId( "pax-exam-junit-extender-impl" )
                 .version( Info.getPaxExamVersion() )
-                .update( Info.isPaxExamSnapshotVersion() ),
+                .update( Info.isPaxExamSnapshotVersion() )
+                .startLevel( START_LEVEL_SYSTEM_BUNDLES ),
             mavenBundle()
                 .groupId( "org.ops4j.pax.url" )
                 .artifactId( "pax-url-dir" )
                 .version( Info.getPaxUrlVersion() )
                 .update( Info.isPaxUrlSnapshotVersion() )
+                .startLevel( START_LEVEL_SYSTEM_BUNDLES )
         );
         // add options based on available configuration options from the test itself
         for( JUnit4ConfigMethod configMethod : configMethods )

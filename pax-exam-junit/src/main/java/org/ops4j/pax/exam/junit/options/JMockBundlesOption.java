@@ -1,5 +1,7 @@
 package org.ops4j.pax.exam.junit.options;
 
+import static org.ops4j.pax.exam.Constants.*;
+import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.options.AbstractProvisionWrapperOption;
 import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
@@ -20,11 +22,13 @@ public class JMockBundlesOption extends AbstractProvisionWrapperOption<JMockBund
     public JMockBundlesOption()
     {
         super(
-            new WrappedUrlProvisionOption( new MavenUrlProvisionOption()
-                .groupId( "org.jmock" )
-                .artifactId( "jmock" )
-                .version( "2.5.1" )
-                .noUpdate()
+            wrappedBundle(
+                mavenBundle()
+                    .groupId( "org.jmock" )
+                    .artifactId( "jmock" )
+                    .version( "2.5.1" )
+                    .noUpdate()
+                    .startLevel( START_LEVEL_SYSTEM_BUNDLES )
             )
         );
     }

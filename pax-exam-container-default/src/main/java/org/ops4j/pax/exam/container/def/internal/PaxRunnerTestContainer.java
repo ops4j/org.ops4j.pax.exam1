@@ -23,6 +23,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ops4j.net.FreePort;
+import static org.ops4j.pax.exam.Constants.*;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Option;
@@ -179,7 +180,8 @@ class PaxRunnerTestContainer
                 .groupId( "org.ops4j.pax.exam" )
                 .artifactId( "pax-exam-container-rbc" )
                 .version( Info.getPaxExamVersion() )
-                .update( Info.isPaxExamSnapshotVersion() ),
+                .update( Info.isPaxExamSnapshotVersion() )
+                .startLevel( START_LEVEL_SYSTEM_BUNDLES ),
             // rmi communication port
             systemProperty( Constants.RMI_PORT_PROPERTY )
                 .value( m_remoteBundleContextClient.getRmiPort().toString() ),

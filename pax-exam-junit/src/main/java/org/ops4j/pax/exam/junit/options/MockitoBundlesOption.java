@@ -1,5 +1,7 @@
 package org.ops4j.pax.exam.junit.options;
 
+import static org.ops4j.pax.exam.Constants.*;
+import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.options.AbstractProvisionWrapperOption;
 import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
@@ -23,11 +25,13 @@ public class MockitoBundlesOption extends AbstractProvisionWrapperOption<Mockito
     public MockitoBundlesOption()
     {
         super(
-            new WrappedUrlProvisionOption( new MavenUrlProvisionOption()
-                .groupId( "org.mockito" )
-                .artifactId( "mockito-all" )
-                .version( "1.7" )
-                .noUpdate()
+            wrappedBundle(
+                mavenBundle()
+                    .groupId( "org.mockito" )
+                    .artifactId( "mockito-all" )
+                    .version( "1.7" )
+                    .noUpdate()
+                    .startLevel( START_LEVEL_SYSTEM_BUNDLES )
             )
         );
     }
