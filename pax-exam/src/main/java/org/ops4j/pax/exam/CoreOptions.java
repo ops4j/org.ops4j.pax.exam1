@@ -37,6 +37,7 @@ import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
+import org.ops4j.pax.exam.options.BundleStartLevelOption;
 
 /**
  * Factory methods for core options.
@@ -492,6 +493,18 @@ public class CoreOptions
     public static FrameworkStartLevelOption frameworkStartLevel( final int startLevel )
     {
         return new FrameworkStartLevelOption( startLevel );
+    }
+
+    /**
+     * Creates an {@link BundleStartLevelOption}.
+     *
+     * @param startLevel initial bundle start level (must be bigger then zero)
+     *
+     * @return bundle start level option
+     */
+    public static BundleStartLevelOption bundleStartLevel( final int startLevel )
+    {
+        return new BundleStartLevelOption( startLevel );
     }
 
 }
