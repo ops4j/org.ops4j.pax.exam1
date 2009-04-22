@@ -32,9 +32,9 @@ import org.ops4j.pax.exam.container.def.options.ProfileOption;
 import org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.VMOption;
-import org.ops4j.pax.exam.options.ArgsOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
+import org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
@@ -74,7 +74,7 @@ class ArgumentsBuilder
     {
         final List<String> arguments = new ArrayList<String>();
 
-        add( arguments, extractArguments( filter( ArgsOption.class, options ) ) );
+        add( arguments, extractArguments( filter( MavenPluginGeneratedConfigOption.class, options ) ) );
         add( arguments, defaultArguments() );
         add( arguments, extractArguments( filter( FrameworkOption.class, options ) ) );
         add( arguments, extractArguments( filter( ProfileOption.class, options ) ) );
@@ -180,10 +180,11 @@ class ArgumentsBuilder
     /**
      * @return all arguments that have been recognized by OptionResolvers as PaxRunner arguments
      */
-    private static Collection<String> extractArguments( ArgsOption[] argsOption )
+    private static Collection<String> extractArguments(
+        MavenPluginGeneratedConfigOption[] mavenPluginGeneratedConfigOption )
     {
         final List<String> arguments = new ArrayList<String>();
-        for( ArgsOption arg : argsOption )
+        for( MavenPluginGeneratedConfigOption arg : mavenPluginGeneratedConfigOption )
         {
             URL url = arg.getURL();
             arguments.add( "--args=" + url.toExternalForm() );

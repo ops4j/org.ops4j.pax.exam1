@@ -22,13 +22,13 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.ops4j.lang.NullArgumentException.*;
 import static org.ops4j.pax.exam.OptionUtils.*;
-import org.ops4j.pax.exam.options.ArgsOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.EquinoxFrameworkOption;
 import org.ops4j.pax.exam.options.FelixFrameworkOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.options.KnopflerfishFrameworkOption;
+import org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption;
 import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
 import org.ops4j.pax.exam.options.OptionalCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
@@ -437,16 +437,16 @@ public class CoreOptions
     }
 
     /**
-     * Creates a {@link org.ops4j.pax.exam.options.ArgsOption}.
+     * Creates a {@link org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption}.
      *
      * @return Args option with file written from paxexam plugin
      */
-    public static ArgsOption mavenConfiguration()
+    public static MavenPluginGeneratedConfigOption mavenConfiguration()
     {
         URL url = CoreOptions.class.getClassLoader().getResource( DEFAULT_CONFIGURATION );
         if( url != null )
         {
-            return new ArgsOption( url );
+            return new MavenPluginGeneratedConfigOption( url );
         }
         else
         {
