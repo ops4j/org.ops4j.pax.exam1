@@ -34,6 +34,7 @@ import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.VMOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
+import org.ops4j.pax.exam.options.FrameworkStartLevelOption;
 import org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.SystemPackageOption;
@@ -90,6 +91,7 @@ class ArgumentsBuilder
         add( arguments, extractArguments( filter( AutoWrapOption.class, options ) ) );
         add( arguments, extractArguments( filter( CleanCachesOption.class, options ) ) );
         add( arguments, extractArguments( filter( LocalRepositoryOption.class, options ) ) );
+        add( arguments, extractArguments( filter( FrameworkStartLevelOption.class, options ) ) );
         add( arguments, extractArguments( filter( RawPaxRunnerOptionOption.class, options ) ) );
         add( arguments,
              extractArguments(
@@ -433,6 +435,29 @@ class ArgumentsBuilder
             }
         }
         return args;
+    }
+
+    /**
+     * Converts framework start level option into coresponding argument (--startLevel).
+     *
+     * @param startLevels framework start levels options
+     *
+     * @return converted Pax Runner collection of arguments
+     *
+     * @throws IllegalArgumentException - If there is more then one framework start level option
+     */
+    private static Collection<String> extractArguments( final FrameworkStartLevelOption[] startLevels )
+    {
+        final List<String> arguments = new ArrayList<String>();
+        if( startLevels.length > 1 )
+        {
+            throw new IllegalArgumentException( "Configuration cannot contain more then one framework start level" );
+        }
+        if( startLevels.length > 0 )
+        {
+            arguments.add( "--startLevel=" + startLevels[ 0 ].getStartLevel() );
+        }
+        return arguments;
     }
 
     /**
