@@ -116,6 +116,7 @@ public class JUnit4TestMethod
             try
             {
                 callable.call();
+
             }
             catch( InstantiationException e )
             {
@@ -125,6 +126,7 @@ public class JUnit4TestMethod
             {
                 throw new InvocationTargetException( e );
             }
+            LOG.info( "Test " + m_name + "(" + m_testMethod.getDeclaringClass().getName() + ") executed" );
         }
         finally
         {
