@@ -39,6 +39,7 @@ import org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
+import org.ops4j.pax.exam.options.BundleStartLevelOption;
 
 /**
  * Utility methods for converting configuration options to Pax Runner arguments.
@@ -92,6 +93,7 @@ class ArgumentsBuilder
         add( arguments, extractArguments( filter( CleanCachesOption.class, options ) ) );
         add( arguments, extractArguments( filter( LocalRepositoryOption.class, options ) ) );
         add( arguments, extractArguments( filter( FrameworkStartLevelOption.class, options ) ) );
+        add( arguments, extractArguments( filter( BundleStartLevelOption.class, options ) ) );
         add( arguments, extractArguments( filter( RawPaxRunnerOptionOption.class, options ) ) );
         add( arguments,
              extractArguments(
@@ -456,6 +458,29 @@ class ArgumentsBuilder
         if( startLevels.length > 0 )
         {
             arguments.add( "--startLevel=" + startLevels[ 0 ].getStartLevel() );
+        }
+        return arguments;
+    }
+
+    /**
+     * Converts initial bundle start level option into coresponding argument (--bundleStartLevel).
+     *
+     * @param startLevels initial bundle start levels options
+     *
+     * @return converted Pax Runner collection of arguments
+     *
+     * @throws IllegalArgumentException - If there is more then one initial bundle start level option
+     */
+    private static Collection<String> extractArguments( final BundleStartLevelOption[] startLevels )
+    {
+        final List<String> arguments = new ArrayList<String>();
+        if( startLevels.length > 1 )
+        {
+            throw new IllegalArgumentException( "Configuration cannot contain more then one bundle start level" );
+        }
+        if( startLevels.length > 0 )
+        {
+            arguments.add( "--bundleStartLevel=" + startLevels[ 0 ].getStartLevel() );
         }
         return arguments;
     }
