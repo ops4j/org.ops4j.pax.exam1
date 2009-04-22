@@ -101,7 +101,8 @@ public class JUnit4TestMethod
     {
         Info.showLogo();
 
-        LOG.info( "Starting test " + m_name + "(" + m_testMethod.getDeclaringClass().getName() + ")" );
+        final String fullTestName = m_name + "(" + m_testMethod.getDeclaringClass().getName() + ")";
+        LOG.info( "Starting test " + fullTestName );
 
         final TestContainerFactory containerFactory = PaxExamRuntime.getTestContainerFactory();
         TestContainer container = null;
@@ -115,8 +116,9 @@ public class JUnit4TestMethod
             final CallableTestMethod callable = container.getService( CallableTestMethod.class );
             try
             {
+                LOG.info( "Starting test " + fullTestName );
                 callable.call();
-
+                LOG.info( "Test " + fullTestName + " ended succesfully" );
             }
             catch( InstantiationException e )
             {
@@ -126,7 +128,6 @@ public class JUnit4TestMethod
             {
                 throw new InvocationTargetException( e );
             }
-            LOG.info( "Test " + m_name + "(" + m_testMethod.getDeclaringClass().getName() + ") executed" );
         }
         finally
         {
