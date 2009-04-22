@@ -111,7 +111,7 @@ public class JUnit4TestMethod
             container = containerFactory.newInstance( m_options );
             LOG.trace( "Install and start test bundle" );
             container.startBundle( container.installBundle( m_testBundleUrl ) );
-            LOG.trace( "Execute test [" + test + "]" );
+            LOG.trace( "Execute test [" + m_name + "]" );
             final CallableTestMethod callable = container.getService( CallableTestMethod.class );
             try
             {
