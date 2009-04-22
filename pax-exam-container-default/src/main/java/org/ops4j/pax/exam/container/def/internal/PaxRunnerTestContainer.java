@@ -138,7 +138,10 @@ class PaxRunnerTestContainer
     public long installBundle( final String bundleLocation,
                                final byte[] bundle )
     {
-        return m_remoteBundleContextClient.installBundle( bundleLocation, bundle );
+        LOG.debug( "Installing bundle [" + bundleLocation + "] .." );
+        final long id = m_remoteBundleContextClient.installBundle( bundleLocation, bundle );
+        LOG.debug( "Installed bundle " + bundleLocation + " as ID: " + id );
+        return id;
     }
 
     /**
@@ -148,7 +151,9 @@ class PaxRunnerTestContainer
     public void startBundle( long bundleId )
         throws TestContainerException
     {
+        LOG.debug( "Starting test bundle with ID " + bundleId );
         m_remoteBundleContextClient.startBundle( bundleId );
+        LOG.debug( "Started test bundle with ID " + bundleId );
     }
 
     /**

@@ -20,6 +20,8 @@ package org.ops4j.pax.exam.junit.internal;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.internal.runners.TestClass;
 import org.junit.internal.runners.TestMethod;
 import static org.ops4j.lang.NullArgumentException.*;
@@ -42,6 +44,11 @@ import org.ops4j.pax.exam.spi.container.TestContainerFactory;
 public class JUnit4TestMethod
     extends TestMethod
 {
+
+    /**
+     * JCL logger.
+     */
+    private static final Log LOG = LogFactory.getLog( JUnit4TestMethod.class );
 
     /**
      * Test method. Cannot reuse the one from super class as it is not public.
@@ -93,12 +100,18 @@ public class JUnit4TestMethod
         throws IllegalArgumentException, IllegalAccessException, InvocationTargetException
     {
         Info.showLogo();
+
+        LOG.info( "Starting test " + m_name + "(" + m_testMethod.getDeclaringClass().getName() + ")" );
+
         final TestContainerFactory containerFactory = PaxExamRuntime.getTestContainerFactory();
         TestContainer container = null;
         try
         {
+            LOG.trace( "Start test container" );
             container = containerFactory.newInstance( m_options );
+            LOG.trace( "Install and start test bundle" );
             container.startBundle( container.installBundle( m_testBundleUrl ) );
+            LOG.trace( "Execute test [" + test + "]" );
             final CallableTestMethod callable = container.getService( CallableTestMethod.class );
             try
             {
