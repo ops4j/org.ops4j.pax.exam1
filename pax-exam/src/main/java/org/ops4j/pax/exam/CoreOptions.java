@@ -295,8 +295,6 @@ public class CoreOptions
      * @param version    artifact version
      *
      * @return maven specific provisioning option
-     *
-     * @see MavenUtils#asInProject()
      */
     public static MavenUrlProvisionOption mavenBundleWithVersion( final String groupId,
                                                                   final String artifactId,
