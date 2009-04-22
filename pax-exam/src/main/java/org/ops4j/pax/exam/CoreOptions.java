@@ -133,7 +133,7 @@ public class CoreOptions
      *
      * @return equinox framework option
      */
-    public static final EquinoxFrameworkOption equinox()
+    public static EquinoxFrameworkOption equinox()
     {
         return new EquinoxFrameworkOption();
     }
@@ -272,20 +272,37 @@ public class CoreOptions
     }
 
     /**
-     * Adds a maven bundle for the given groupId and artifactId while deducing the version to use
-     * from the <code>target/classes/META-INF/maven/dependencies.properties</code> file that is
-     * generated via the
-     * <a href="http://wiki.ops4j.org/display/paxexam/Pax+Exam+-+Tutorial+1">depends-maven-plugin
-     * from ServiceMix</a>
+     * Convenience method for adding a maven bundle based on groupId/artifactId and version as specified in the project.
+     *
+     * @param groupId    artifact group id
+     * @param artifactId artifact id
+     *
+     * @return maven specific provisioning option
+     *
+     * @see MavenUtils#asInProject()
      */
-    public static MavenUrlProvisionOption mavenBundleAsInProject( String groupId, String artifactId )
+    public static MavenUrlProvisionOption mavenBundleAsInProject( final String groupId,
+                                                                  final String artifactId )
     {
         return mavenBundle().groupId( groupId ).artifactId( artifactId ).version( asInProject() );
     }
 
-    public static MavenUrlProvisionOption mavenBundleWithVersion( String groupId, String artifactId, String versionId )
+    /**
+     * Convenience method(shorter) for adding a maven bundle based on groupId/artifactId/version.
+     *
+     * @param groupId    artifact group id
+     * @param artifactId artifact id
+     * @param version    artifact version
+     *
+     * @return maven specific provisioning option
+     *
+     * @see MavenUtils#asInProject()
+     */
+    public static MavenUrlProvisionOption mavenBundleWithVersion( final String groupId,
+                                                                  final String artifactId,
+                                                                  final String version )
     {
-        return mavenBundle().groupId( groupId ).artifactId( artifactId ).version( versionId );
+        return mavenBundle().groupId( groupId ).artifactId( artifactId ).version( version );
     }
 
     /**
