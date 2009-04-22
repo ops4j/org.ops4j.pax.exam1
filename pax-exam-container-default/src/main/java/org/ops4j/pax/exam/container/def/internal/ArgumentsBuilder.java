@@ -18,25 +18,20 @@
 package org.ops4j.pax.exam.container.def.internal;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Properties;
-import org.ops4j.lang.NullArgumentException;
 import org.ops4j.pax.exam.Option;
-import org.ops4j.pax.exam.OptionResolver;
 import static org.ops4j.pax.exam.OptionUtils.*;
 import org.ops4j.pax.exam.container.def.options.AutoWrapOption;
 import org.ops4j.pax.exam.container.def.options.CleanCachesOption;
 import org.ops4j.pax.exam.container.def.options.ExcludeDefaultRepositoriesOption;
+import org.ops4j.pax.exam.container.def.options.LocalRepositoryOption;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
+import org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.VMOption;
-import org.ops4j.pax.exam.container.def.options.LocalRepositoryOption;
-import org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption;
 import org.ops4j.pax.exam.options.ArgsOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.FrameworkOption;

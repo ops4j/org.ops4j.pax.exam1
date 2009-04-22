@@ -71,33 +71,6 @@ public class MavenUtils
         }
     }
 
-    /**
-     * Locates the paxexam properties file and runs resolver with properties loaded.
-     *
-     * @param resolver implementation that can recognize parts from properties defined in config file.
-     *
-     * @return Fully resolved properties.
-     */
-    public static Option[] parseOptionsFromProperties( final OptionResolver resolver )
-    {
-        final Properties properties = new Properties();
-        try
-        {
-            properties.load(
-                new FileInputStream( getFileFromClasspath( "META-INF/maven/paxexam-config.properties" ) )
-            );
-
-            return resolver.getOptionsFromProperties( properties );
-        }
-        catch( IOException e )
-        {
-            throw new RuntimeException(
-                "Could not read properties file. Did you configured the plugin in your maven project?"
-                + "Or maybe you did not run the maven build and you are using an IDE?"
-            );
-        }
-    }
-
     public static MavenUrlProvisionOption.VersionResolver asInProject()
     {
         return new MavenUrlProvisionOption.VersionResolver()
