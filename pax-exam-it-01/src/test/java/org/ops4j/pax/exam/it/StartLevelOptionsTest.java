@@ -48,12 +48,14 @@ public class StartLevelOptionsTest
     public static Option[] configure()
     {
         return options(
-            frameworkStartLevel( 88 )
+            //allFrameworks(),
+            frameworkStartLevel( 88 ),
+            bundleStartLevel( 77 )
         );
     }
 
     /**
-     * Tests that framework start level was set.
+     * Tests that framework start level was set to 88.
      */
     @Test
     public void frameworkStartlevel()
@@ -62,6 +64,18 @@ public class StartLevelOptionsTest
 
         assertThat( "Start level service", startLevelService, is( notNullValue() ) );
         assertThat( "Start level", startLevelService.getStartLevel(), is( equalTo( 88 ) ) );
+    }
+
+    /**
+     * Tests that initial bundle start level was set to 77.
+     */
+    @Test
+    public void bundleStartlevel()
+    {
+        final StartLevel startLevelService = getServiceObject( StartLevel.class );
+
+        assertThat( "Start level service", startLevelService, is( notNullValue() ) );
+        assertThat( "Start level", startLevelService.getInitialBundleStartLevel(), is( equalTo( 77 ) ) );
     }
 
 }
