@@ -17,8 +17,7 @@
  */
 package org.ops4j.pax.exam.container.def.options;
 
-import static org.ops4j.lang.NullArgumentException.*;
-import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.options.TimeoutOption;
 
 /**
  * Option specifying the timeout (in milliseconds) while looking up the container process.
@@ -27,48 +26,19 @@ import org.ops4j.pax.exam.Option;
  * @since 0.3.0 December 10, 2008
  */
 public class RBCLookupTimeoutOption
-    implements Option
+    extends TimeoutOption
 {
-
-    /**
-     * Timeout in milliseconds (cannot be null).
-     */
-    private final Integer m_timeout;
 
     /**
      * Constructor.
      *
-     * @param timeout timeout (in millis) to look up the server part
+     * @param timeoutInMillis timeout (in millis) to look up the server part
      *
      * @throws IllegalArgumentException - If timeout is null
      */
-    public RBCLookupTimeoutOption( final Integer timeout )
+    public RBCLookupTimeoutOption( final long timeoutInMillis )
     {
-        validateNotNull( timeout, "Timeout" );
-        m_timeout = timeout;
-    }
-
-    /**
-     * Getter.
-     *
-     * @return timeout in millis (cannot be null)
-     */
-    public Integer getTimeout()
-    {
-        return m_timeout;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString()
-    {
-        final StringBuilder sb = new StringBuilder();
-        sb.append( "TimeoutOption" );
-        sb.append( "{timeout=" ).append( m_timeout );
-        sb.append( '}' );
-        return sb.toString();
+        super( timeoutInMillis );
     }
 
 }

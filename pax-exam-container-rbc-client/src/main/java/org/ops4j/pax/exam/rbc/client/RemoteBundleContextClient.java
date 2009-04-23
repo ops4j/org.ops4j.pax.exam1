@@ -57,7 +57,7 @@ public class RemoteBundleContextClient
     /**
      * Timeout for looking up the remote bundle context via RMI.
      */
-    private final Integer m_rmiLookupTimeout;
+    private final long m_rmiLookupTimeout;
     /**
      * Remote bundle context instance.
      */
@@ -70,7 +70,7 @@ public class RemoteBundleContextClient
      * @param rmiLookupTimeout timeout for looking up the remote bundle context via RMI (cannot be null)
      */
     public RemoteBundleContextClient( final Integer rmiPort,
-                                      final Integer rmiLookupTimeout )
+                                      final long rmiLookupTimeout )
     {
         m_rmiPort = rmiPort;
         m_rmiLookupTimeout = rmiLookupTimeout;

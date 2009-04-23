@@ -300,7 +300,7 @@ class PaxRunnerTestContainer
      *
      * @return rmi lookup timeout
      */
-    private static Integer getRMITimeout( final Option... options )
+    private static long getRMITimeout( final Option... options )
     {
         final RBCLookupTimeoutOption[] timeoutOptions = filter( RBCLookupTimeoutOption.class, options );
         if( timeoutOptions.length > 0 )
