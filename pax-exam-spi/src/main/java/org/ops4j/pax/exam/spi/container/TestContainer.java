@@ -43,6 +43,14 @@ public interface TestContainer
     void startBundle( long bundleId )
         throws TestContainerException;
 
+    /**
+     * Sets the start level for a bundle.
+     *
+     * @param bundleId   bundle id
+     * @param startLevel start level
+     *
+     * @throws TestContainerException if startlevel cannot be set
+     */
     void setBundleStartLevel( long bundleId, int startLevel )
         throws TestContainerException;
 
