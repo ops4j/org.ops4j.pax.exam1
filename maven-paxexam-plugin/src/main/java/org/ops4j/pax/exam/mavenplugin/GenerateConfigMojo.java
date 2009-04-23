@@ -34,7 +34,7 @@ import org.apache.maven.project.MavenProject;
  * @phase generate-resources
  * @since Mar 17, 2009
  */
-public class ExamPlugin extends AbstractMojo
+public class GenerateConfigMojo extends AbstractMojo
 {
 
     protected static final String SEPARATOR = "/";
