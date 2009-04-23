@@ -134,13 +134,13 @@ public class PaxRunnerOptions
     /**
      * Creates a {@link org.ops4j.pax.exam.container.def.options.RBCLookupTimeoutOption}.
      *
-     * @param timeout timeout in millis
+     * @param timeoutInMillis timeout in millis
      *
      * @return timeout option
      */
-    public static RBCLookupTimeoutOption timeout( final Integer timeout )
+    public static RBCLookupTimeoutOption waitForRBCFor( final Integer timeoutInMillis )
     {
-        return new RBCLookupTimeoutOption( timeout );
+        return new RBCLookupTimeoutOption( timeoutInMillis );
     }
 
     /**
