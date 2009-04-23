@@ -72,7 +72,7 @@ public class RemoteBundleContextImpl
     public Object remoteCall( final Class<?> serviceType,
                               final String methodName,
                               final Class<?>[] methodParams,
-                              final int timeoutInMillis,
+                              final long timeoutInMillis,
                               final Object... actualParams )
         throws NoSuchServiceException, NoSuchMethodException, IllegalAccessException, InvocationTargetException
     {
@@ -157,7 +157,9 @@ public class RemoteBundleContextImpl
     /**
      * {@inheritDoc}
      */
-    public void waitForState( long bundleId, int state, int timeoutInMillis )
+    public void waitForState( final long bundleId,
+                              final int state,
+                              final long timeoutInMillis )
         throws TimeoutException
     {
         final Bundle bundle = m_bundleContext.getBundle( bundleId );
@@ -196,7 +198,7 @@ public class RemoteBundleContextImpl
      * @throws NoSuchServiceException - If service cannot be found in the service registry
      */
     private <T> T getService( final Class<T> serviceType,
-                              final int timeoutInMillis )
+                              final long timeoutInMillis )
         throws NoSuchServiceException
     {
         LOG.info( "Look up service [" + serviceType.getName() + "], timeout in " + timeoutInMillis + " millis" );

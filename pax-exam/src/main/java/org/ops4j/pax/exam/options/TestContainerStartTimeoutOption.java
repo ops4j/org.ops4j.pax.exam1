@@ -15,33 +15,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.exam;
+package org.ops4j.pax.exam.options;
 
 /**
- * Pax Exam related constants.
+ * Timeout while waiting for test container to start.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
- * @since 0.5.0, April 22, 2009
+ * @since 0.5.0, April 23, 2009
  */
-public interface Constants
+public class TestContainerStartTimeoutOption
+    extends TimeoutOption
 {
 
     /**
-     * The start level at which Pax Exam system bundles are to be started.
+     * Constructor.
+     *
+     * @param timeoutInMillis timeout (in millis)
      */
-    static final int START_LEVEL_SYSTEM_BUNDLES = 1;
+    public TestContainerStartTimeoutOption( final long timeoutInMillis )
+    {
+        super( timeoutInMillis );
+    }
 
-    /**
-     * The start level at which Pax Exam test bundle is to be started.
-     */
-    static final int START_LEVEL_TEST_BUNDLE = 2;
-
-    /**
-     * Timeout specifing that there should be no waiting.
-     */
-    long NO_WAIT = 0;
-    /**
-     * Timeout specifing that it should wait forever.
-     */
-    long WAIT_FOREVER = Long.MAX_VALUE;
 }

@@ -35,11 +35,11 @@ public interface RemoteBundleContext
     /**
      * Timeout specifing that there should be no waiting.
      */
-    final int NO_WAIT = 0;
+    final long NO_WAIT = 0;
     /**
      * Timeout specifing that it should wait forever.
      */
-    final int WAIT_FOREVER = -1;
+    final long WAIT_FOREVER = Long.MAX_VALUE;
 
     /**
      * Makes a remote call on a service.
@@ -50,15 +50,18 @@ public interface RemoteBundleContext
      * @param timeoutInMillis  timeout for looking up the service
      * @param actualParams     actual parameters (must match the given method params)
      *
+     * @return remote call rsult
+     *
      * @throws NoSuchServiceException    - If a service of the specified type cannot be located
      * @throws NoSuchMethodException     - If the given method cannot be found
      * @throws IllegalAccessException    - Specified method cannot be accessed
      * @throws InvocationTargetException - Wraps an eventual exception occured during method invocation
+     * @throws RemoteException           - Remote communication related exception (mandatory by RMI)
      */
     Object remoteCall( Class<?> serviceType,
                        String methodName,
                        Class<?>[] methodParamTypes,
-                       int timeoutInMillis,
+                       long timeoutInMillis,
                        Object... actualParams )
         throws
         RemoteException,
@@ -139,7 +142,7 @@ public interface RemoteBundleContext
      * @throws BundleException  - If bundle cannot be found
      * @throws TimeoutException - if timeout occured and expected state has not being reached
      */
-    void waitForState( long bundleId, int state, int timeoutInMillis )
+    void waitForState( long bundleId, int state, long timeoutInMillis )
         throws RemoteException, BundleException, TimeoutException;
 
 }

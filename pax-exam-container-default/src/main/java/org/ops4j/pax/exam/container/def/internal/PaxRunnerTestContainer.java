@@ -25,6 +25,7 @@ import org.apache.commons.logging.LogFactory;
 import org.osgi.framework.Bundle;
 import org.ops4j.net.FreePort;
 import static org.ops4j.pax.exam.Constants.*;
+import org.ops4j.pax.exam.CoreOptions;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Option;
@@ -35,6 +36,7 @@ import org.ops4j.pax.exam.container.def.options.BundleScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.ScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
+import org.ops4j.pax.exam.options.TestContainerStartTimeoutOption;
 import org.ops4j.pax.exam.rbc.Constants;
 import org.ops4j.pax.exam.rbc.client.RemoteBundleContextClient;
 import org.ops4j.pax.exam.spi.container.TestContainer;
@@ -85,9 +87,9 @@ class PaxRunnerTestContainer
      */
     private final String[] m_arguments;
     /**
-     * Start & rmi lookup timeout.
+     * test container start timeout.
      */
-    private final Integer m_timeout;
+    private final long m_startTimeout;
 
     /**
      * Constructor.
@@ -99,8 +101,10 @@ class PaxRunnerTestContainer
                             final Option... options )
     {
         m_javaRunner = javaRunner;
-        m_timeout = getTimeout( options );
-        m_remoteBundleContextClient = new RemoteBundleContextClient( findFreeCommunicationPort(), m_timeout );
+        m_startTimeout = getTestContainerStartTimeout( options );
+        m_remoteBundleContextClient = new RemoteBundleContextClient(
+            findFreeCommunicationPort(), getRMITimeout( options )
+        );
         m_arguments = buildArguments( wrap( expand( combine( options, localOptions() ) ) ) );
     }
 
@@ -119,7 +123,7 @@ class PaxRunnerTestContainer
      * Delegates to {@link RemoteBundleContextClient}.
      */
     public <T> T getService( final Class<T> serviceType,
-                             final int timeoutInMillis )
+                             final long timeoutInMillis )
     {
         LOG.debug( "Lookup a [" + serviceType.getName() + "]" );
         return m_remoteBundleContextClient.getService( serviceType, timeoutInMillis );
@@ -188,16 +192,16 @@ class PaxRunnerTestContainer
         );
         LOG.info(
             "Wait for test container to finish its initialization "
-            + ( m_timeout == WAIT_FOREVER ? "without timing out" : "for " + m_timeout + " millis" )
+            + ( m_startTimeout == WAIT_FOREVER ? "without timing out" : "for " + m_startTimeout + " millis" )
         );
         try
         {
-            waitForState( SYSTEM_BUNDLE, Bundle.ACTIVE, m_timeout );
+            waitForState( SYSTEM_BUNDLE, Bundle.ACTIVE, m_startTimeout );
         }
         catch( TimeoutException e )
         {
             throw new TimeoutException(
-                "Test container did not initialize in the expected time of " + m_timeout + " millis"
+                "Test container did not initialize in the expected time of " + m_startTimeout + " millis"
             );
         }
     }
@@ -215,7 +219,9 @@ class PaxRunnerTestContainer
     /**
      * {@inheritDoc}
      */
-    public void waitForState( long bundleId, int state, int timeoutInMillis )
+    public void waitForState( final long bundleId,
+                              final int state,
+                              final long timeoutInMillis )
         throws TimeoutException
     {
         m_remoteBundleContextClient.waitForState( bundleId, state, timeoutInMillis );
@@ -294,7 +300,7 @@ class PaxRunnerTestContainer
      *
      * @return rmi lookup timeout
      */
-    private static Integer getTimeout( final Option... options )
+    private static Integer getRMITimeout( final Option... options )
     {
         final TimeoutOption[] timeoutOptions = filter( TimeoutOption.class, options );
         if( timeoutOptions.length > 0 )
@@ -302,6 +308,27 @@ class PaxRunnerTestContainer
             return timeoutOptions[ 0 ].getTimeout();
         }
         return DEFAULT_TIMEOUT;
+    }
+
+    /**
+     * Determine the timeout while starting the osgi framework.<br/>
+     * Timeout is dermined by first looking for a {@link TestContainerStartTimeoutOption} in the user options. If not specified a default
+     * {@link #DEFAULT_TIMEOUT} is used.
+     *
+     * @param options user options
+     *
+     * @return rmi lookup timeout
+     */
+    private static long getTestContainerStartTimeout( final Option... options )
+    {
+        final TestContainerStartTimeoutOption[] timeoutOptions = filter(
+            TestContainerStartTimeoutOption.class, options
+        );
+        if( timeoutOptions.length > 0 )
+        {
+            return timeoutOptions[ 0 ].getTimeout();
+        }
+        return CoreOptions.waitForFrameworkStartup().getTimeout();
     }
 
     /**

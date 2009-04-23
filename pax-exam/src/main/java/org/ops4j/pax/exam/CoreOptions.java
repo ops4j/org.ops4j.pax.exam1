@@ -23,6 +23,7 @@ import java.util.List;
 import static org.ops4j.lang.NullArgumentException.*;
 import static org.ops4j.pax.exam.OptionUtils.*;
 import org.ops4j.pax.exam.options.BootDelegationOption;
+import org.ops4j.pax.exam.options.BundleStartLevelOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.EquinoxFrameworkOption;
 import org.ops4j.pax.exam.options.FelixFrameworkOption;
@@ -35,9 +36,9 @@ import org.ops4j.pax.exam.options.OptionalCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
+import org.ops4j.pax.exam.options.TestContainerStartTimeoutOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
-import org.ops4j.pax.exam.options.BundleStartLevelOption;
 
 /**
  * Factory methods for core options.
@@ -505,6 +506,38 @@ public class CoreOptions
     public static BundleStartLevelOption bundleStartLevel( final int startLevel )
     {
         return new BundleStartLevelOption( startLevel );
+    }
+
+    /**
+     * Creates a {@link TestContainerStartTimeoutOption} for a number of millis.
+     *
+     * @param timeoutInMillis timeout in millis
+     *
+     * @return timeout option
+     */
+    public static TestContainerStartTimeoutOption waitForFrameworkStartupFor( final long timeoutInMillis )
+    {
+        return new TestContainerStartTimeoutOption( timeoutInMillis );
+    }
+
+    /**
+     * Creates a {@link TestContainerStartTimeoutOption} that will not wait for framework startup.
+     *
+     * @return timeout option
+     */
+    public static TestContainerStartTimeoutOption doNotWaitForFrameworkStartup()
+    {
+        return waitForFrameworkStartupFor( Constants.NO_WAIT );
+    }
+
+    /**
+     * Creates a {@link TestContainerStartTimeoutOption} that will wait for framework startup without timing out.
+     *
+     * @return timeout option
+     */
+    public static TestContainerStartTimeoutOption waitForFrameworkStartup()
+    {
+        return waitForFrameworkStartupFor( Constants.WAIT_FOREVER );
     }
 
 }

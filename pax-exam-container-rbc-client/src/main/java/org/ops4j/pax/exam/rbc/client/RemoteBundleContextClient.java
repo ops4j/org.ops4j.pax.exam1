@@ -29,6 +29,7 @@ import java.rmi.registry.Registry;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.osgi.framework.BundleException;
+import org.ops4j.pax.exam.Constants;
 import org.ops4j.pax.exam.rbc.internal.RemoteBundleContext;
 import org.ops4j.pax.exam.spi.container.TestContainer;
 import org.ops4j.pax.exam.spi.container.TestContainerException;
@@ -80,7 +81,7 @@ public class RemoteBundleContextClient
      */
     public <T> T getService( final Class<T> serviceType )
     {
-        return getService( serviceType, NO_WAIT );
+        return getService( serviceType, Constants.NO_WAIT );
     }
 
     /**
@@ -89,7 +90,7 @@ public class RemoteBundleContextClient
      */
     @SuppressWarnings( "unchecked" )
     public <T> T getService( final Class<T> serviceType,
-                             final int timeoutInMillis )
+                             final long timeoutInMillis )
     {
         return (T) Proxy.newProxyInstance(
             getClass().getClassLoader(),
@@ -254,7 +255,9 @@ public class RemoteBundleContextClient
     /**
      * {@inheritDoc}
      */
-    public void waitForState( long bundleId, int state, int timeoutInMillis )
+    public void waitForState( final long bundleId,
+                              final int state,
+                              final long timeoutInMillis )
         throws TimeoutException
     {
         try
@@ -309,7 +312,7 @@ public class RemoteBundleContextClient
                     }
                 }
                 while( m_remoteBundleContext == null
-                       && ( m_rmiLookupTimeout == WAIT_FOREVER
+                       && ( m_rmiLookupTimeout == Constants.WAIT_FOREVER
                             || System.currentTimeMillis() < startedTrying + m_rmiLookupTimeout ) );
             }
             catch( RemoteException e )
