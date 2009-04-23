@@ -33,8 +33,8 @@ import static org.ops4j.pax.exam.OptionUtils.*;
 import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import static org.ops4j.pax.exam.container.def.internal.ArgumentsBuilder.*;
 import org.ops4j.pax.exam.container.def.options.BundleScannerProvisionOption;
+import org.ops4j.pax.exam.container.def.options.RBCLookupTimeoutOption;
 import org.ops4j.pax.exam.container.def.options.ScannerProvisionOption;
-import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.TestContainerStartTimeoutOption;
 import org.ops4j.pax.exam.rbc.Constants;
@@ -293,8 +293,8 @@ class PaxRunnerTestContainer
 
     /**
      * Determine the rmi lookup timeout.<br/>
-     * Timeout is dermined by first looking for a {@link TimeoutOption} in the user options. If not specified a default
-     * {@link #DEFAULT_TIMEOUT} is used.
+     * Timeout is dermined by first looking for a {@link RBCLookupTimeoutOption} in the user options. If not specified
+     * a default {@link #DEFAULT_TIMEOUT} is used.
      *
      * @param options user options
      *
@@ -302,7 +302,7 @@ class PaxRunnerTestContainer
      */
     private static Integer getRMITimeout( final Option... options )
     {
-        final TimeoutOption[] timeoutOptions = filter( TimeoutOption.class, options );
+        final RBCLookupTimeoutOption[] timeoutOptions = filter( RBCLookupTimeoutOption.class, options );
         if( timeoutOptions.length > 0 )
         {
             return timeoutOptions[ 0 ].getTimeout();

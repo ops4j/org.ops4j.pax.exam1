@@ -28,15 +28,15 @@ import org.ops4j.pax.exam.container.def.options.DirScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.ExcludeDefaultRepositoriesOption;
 import org.ops4j.pax.exam.container.def.options.FeaturesScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.FileScannerProvisionOption;
+import org.ops4j.pax.exam.container.def.options.LocalRepositoryOption;
 import org.ops4j.pax.exam.container.def.options.PomScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.ProfileOption;
+import org.ops4j.pax.exam.container.def.options.RBCLookupTimeoutOption;
+import org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption;
 import org.ops4j.pax.exam.container.def.options.RawScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
-import org.ops4j.pax.exam.container.def.options.TimeoutOption;
 import org.ops4j.pax.exam.container.def.options.VMOption;
-import org.ops4j.pax.exam.container.def.options.LocalRepositoryOption;
-import org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 
@@ -132,15 +132,15 @@ public class PaxRunnerOptions
     }
 
     /**
-     * Creates a {@link TimeoutOption}.
+     * Creates a {@link org.ops4j.pax.exam.container.def.options.RBCLookupTimeoutOption}.
      *
      * @param timeout timeout in millis
      *
      * @return timeout option
      */
-    public static TimeoutOption timeout( final Integer timeout )
+    public static RBCLookupTimeoutOption timeout( final Integer timeout )
     {
-        return new TimeoutOption( timeout );
+        return new RBCLookupTimeoutOption( timeout );
     }
 
     /**
@@ -196,10 +196,10 @@ public class PaxRunnerOptions
      */
     public static RawPaxRunnerOptionOption rawPaxRunnerOption( String key, String value )
     {
-        return new RawPaxRunnerOptionOption( key,value );
+        return new RawPaxRunnerOptionOption( key, value );
     }
 
-     /**
+    /**
      * Creates a {@link org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption}.
      *
      * @param full option of paxrunner

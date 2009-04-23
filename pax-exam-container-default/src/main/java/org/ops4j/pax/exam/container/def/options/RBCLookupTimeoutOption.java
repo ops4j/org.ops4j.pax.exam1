@@ -26,7 +26,7 @@ import org.ops4j.pax.exam.Option;
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0 December 10, 2008
  */
-public class TimeoutOption
+public class RBCLookupTimeoutOption
     implements Option
 {
 
@@ -42,7 +42,7 @@ public class TimeoutOption
      *
      * @throws IllegalArgumentException - If timeout is null
      */
-    public TimeoutOption( final Integer timeout )
+    public RBCLookupTimeoutOption( final Integer timeout )
     {
         validateNotNull( timeout, "Timeout" );
         m_timeout = timeout;
