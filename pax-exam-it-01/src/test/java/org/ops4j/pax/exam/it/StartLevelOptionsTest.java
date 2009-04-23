@@ -26,6 +26,7 @@ import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
+import org.ops4j.pax.exam.junit.RequiresConfiguration;
 
 /**
  * Start levels options integration tests.
@@ -39,16 +40,31 @@ public class StartLevelOptionsTest
 {
 
     /**
-     * Pax Exam test options that sets start levels.
-     * Valid for all test methods.
+     * Pax Exam test options that sets framework start level.
      *
      * @return test options
      */
     @Configuration
-    public static Option[] configure()
+    public static Option[] configureFrameworkStartLevel()
     {
         return options(
-            //allFrameworks(),
+            allFrameworks(),
+            frameworkStartLevel( 88 )
+        );
+    }
+
+    /**
+     * Pax Exam test options that sets bundle start level.
+     *
+     * @return test options
+     */
+    @Configuration
+    public static Option[] configureBundleStartLevel()
+    {
+        return options(
+            felix(),
+            //equinox(), // start level does not work on equinox (equinox itself not using the option)
+            knopflerfish(), //start level does not work on kf if framework start level is < bundle start level
             frameworkStartLevel( 88 ),
             bundleStartLevel( 77 )
         );
@@ -58,6 +74,7 @@ public class StartLevelOptionsTest
      * Tests that framework start level was set to 88.
      */
     @Test
+    @RequiresConfiguration( "configureFrameworkStartLevel" )
     public void frameworkStartlevel()
     {
         final StartLevel startLevelService = getServiceObject( StartLevel.class );
@@ -70,6 +87,7 @@ public class StartLevelOptionsTest
      * Tests that initial bundle start level was set to 77.
      */
     @Test
+    @RequiresConfiguration( "configureBundleStartLevel" )
     public void bundleStartlevel()
     {
         final StartLevel startLevelService = getServiceObject( StartLevel.class );
