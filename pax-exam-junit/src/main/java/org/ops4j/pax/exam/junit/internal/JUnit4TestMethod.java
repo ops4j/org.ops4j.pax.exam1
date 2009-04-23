@@ -25,6 +25,7 @@ import org.apache.commons.logging.LogFactory;
 import org.junit.internal.runners.TestClass;
 import org.junit.internal.runners.TestMethod;
 import static org.ops4j.lang.NullArgumentException.*;
+import static org.ops4j.pax.exam.Constants.*;
 import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.OptionUtils;
@@ -110,8 +111,12 @@ public class JUnit4TestMethod
         {
             LOG.trace( "Start test container" );
             container = containerFactory.newInstance( m_options );
+
             LOG.trace( "Install and start test bundle" );
-            container.startBundle( container.installBundle( m_testBundleUrl ) );
+            final long bundleId = container.installBundle( m_testBundleUrl );
+            container.setBundleStartLevel( bundleId, START_LEVEL_TEST_BUNDLE );
+            container.startBundle( bundleId );
+
             LOG.trace( "Execute test [" + m_name + "]" );
             final CallableTestMethod callable = container.getService( CallableTestMethod.class );
             try

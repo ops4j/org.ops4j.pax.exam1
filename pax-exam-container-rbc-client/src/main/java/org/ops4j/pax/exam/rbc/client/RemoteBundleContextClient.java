@@ -194,6 +194,27 @@ public class RemoteBundleContextClient
     /**
      * {@inheritDoc}
      */
+    public void setBundleStartLevel( final long bundleId,
+                                     final int startLevel )
+        throws TestContainerException
+    {
+        try
+        {
+            getRemoteBundleContext().setBundleStartLevel( bundleId, startLevel );
+        }
+        catch( RemoteException e )
+        {
+            throw new TestContainerException( "Remote exception", e );
+        }
+        catch( BundleException e )
+        {
+            throw new TestContainerException( "Start level cannot be set", e );
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public void stop()
     {
         try

@@ -159,6 +159,17 @@ class PaxRunnerTestContainer
 
     /**
      * {@inheritDoc}
+     * Delegates to {@link RemoteBundleContextClient}.
+     */
+    public void setBundleStartLevel( final long bundleId,
+                                     final int startLevel )
+        throws TestContainerException
+    {
+        m_remoteBundleContextClient.setBundleStartLevel( bundleId, startLevel );
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public void stop()
     {

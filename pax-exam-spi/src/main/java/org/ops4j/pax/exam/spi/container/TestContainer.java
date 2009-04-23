@@ -43,6 +43,9 @@ public interface TestContainer
     void startBundle( long bundleId )
         throws TestContainerException;
 
+    void setBundleStartLevel( long bundleId, int startLevel )
+        throws TestContainerException;
+
     /**
      * Stops the osgi container.
      */

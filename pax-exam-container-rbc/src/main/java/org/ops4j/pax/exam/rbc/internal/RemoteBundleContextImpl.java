@@ -21,6 +21,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.rmi.RemoteException;
 import java.util.Dictionary;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -29,6 +30,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
+import org.osgi.service.startlevel.StartLevel;
 import static org.ops4j.lang.NullArgumentException.*;
 
 /**
@@ -136,17 +138,35 @@ public class RemoteBundleContextImpl
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public void setBundleStartLevel( long bundleId, int startLevel )
+        throws RemoteException, BundleException
+    {
+        try
+        {
+            final StartLevel startLevelService = getService( StartLevel.class, 0 );
+            startLevelService.setBundleStartLevel( m_bundleContext.getBundle( bundleId ), startLevel );
+        }
+        catch( NoSuchServiceException e )
+        {
+            throw new BundleException( "Cannot get the start level service to set bundle start level" );
+        }
+    }
+
+    /**
      * Lookup a service in the service registry.
      *
      * @param serviceType     service class
      * @param timeoutInMillis number of milliseconds to wait for service before failing
+     *                        TODO timeout is not used!
      *
      * @return a service published under the required service type
      *
      * @throws NoSuchServiceException - If service cannot be found in the service registry
      */
-    private Object getService( final Class<?> serviceType,
-                               final int timeoutInMillis )
+    private <T> T getService( final Class<T> serviceType,
+                              final int timeoutInMillis )
         throws NoSuchServiceException
     {
         LOG.info( "Look up service [" + serviceType.getName() + "], timeout in " + timeoutInMillis + " millis" );
@@ -158,7 +178,7 @@ public class RemoteBundleContextImpl
             {
                 throw new NoSuchServiceException( serviceType );
             }
-            return service;
+            return (T) service;
         }
         else
         {

@@ -107,4 +107,16 @@ public interface RemoteBundleContext
     void stopBundle( long bundleId )
         throws RemoteException, BundleException;
 
+    /**
+     * Sets bundle start level.
+     *
+     * @param bundleId   id of the bundle to which the start level should be set
+     * @param startLevel bundle start level
+     *
+     * @throws RemoteException - Remote communication related exception (mandatory by RMI)
+     * @throws BundleException - If bundle level cannot be set
+     */
+    void setBundleStartLevel( long bundleId, int startLevel )
+        throws RemoteException, BundleException;
+
 }
