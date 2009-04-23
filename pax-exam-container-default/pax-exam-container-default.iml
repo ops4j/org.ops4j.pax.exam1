@@ -25,5 +25,6 @@
     <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-monitors:0.5.3" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.19.0" level="project" />
   </component>
+  <component name="libraryTable" />
 </module>
 

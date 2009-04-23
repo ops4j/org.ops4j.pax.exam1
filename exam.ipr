@@ -242,6 +242,7 @@
       </list>
     </option>
   </component>
+  <component name="NewModuleRootManager" />
   <component name="Palette2">
     <group name="Swing">
       <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer" icon="/com/intellij/uiDesigner/icons/hspacer.png" removable="false" auto-create-binding="false" can-attach-label="false">
@@ -1176,6 +1177,17 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$M2_REPO$/org/ops4j/pax/url/pax-url-link/0.5.0/pax-url-link-0.5.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.servicemix.tooling:depends-maven-plugin:1.1">
+      <CLASSES>
+        <root url="jar://$M2_REPO$/org/apache/servicemix/tooling/depends-maven-plugin/1.1/depends-maven-plugin-1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$M2_REPO$/org/apache/servicemix/tooling/depends-maven-plugin/1.1/depends-maven-plugin-1.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$M2_REPO$/org/apache/servicemix/tooling/depends-maven-plugin/1.1/depends-maven-plugin-1.1-sources.jar!/" />
       </SOURCES>
     </library>
   </component>
