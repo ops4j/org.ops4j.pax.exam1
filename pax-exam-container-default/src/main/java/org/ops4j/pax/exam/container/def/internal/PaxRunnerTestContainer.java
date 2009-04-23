@@ -307,7 +307,7 @@ class PaxRunnerTestContainer
         {
             return timeoutOptions[ 0 ].getTimeout();
         }
-        return DEFAULT_TIMEOUT;
+        return getTestContainerStartTimeout( options );
     }
 
     /**
