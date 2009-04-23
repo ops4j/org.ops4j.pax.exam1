@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.osgi.framework.Bundle;
 import org.ops4j.net.FreePort;
 import static org.ops4j.pax.exam.Constants.*;
 import static org.ops4j.pax.exam.CoreOptions.*;
@@ -38,7 +39,8 @@ import org.ops4j.pax.exam.rbc.Constants;
 import org.ops4j.pax.exam.rbc.client.RemoteBundleContextClient;
 import org.ops4j.pax.exam.spi.container.TestContainer;
 import org.ops4j.pax.exam.spi.container.TestContainerException;
-import static org.ops4j.pax.runner.Run.*;
+import org.ops4j.pax.exam.spi.container.TimeoutException;
+import org.ops4j.pax.runner.Run;
 import org.ops4j.pax.runner.handler.internal.URLUtils;
 import org.ops4j.pax.runner.platform.DefaultJavaRunner;
 
@@ -64,7 +66,11 @@ class PaxRunnerTestContainer
     /**
      * Default timeout in millis that will be taken while searching for remote bundle context via RMI.
      */
-    private static final Integer DEFAULT_RMI_LOOKUP_TIMEOUT = 5000;
+    private static final Integer DEFAULT_TIMEOUT = 5000;
+    /**
+     * System bundle id.
+     */
+    private static final int SYSTEM_BUNDLE = 0;
 
     /**
      * Remote bundle context client.
@@ -74,6 +80,14 @@ class PaxRunnerTestContainer
      * Java runner to be used to start up Pax Runner.
      */
     private final DefaultJavaRunner m_javaRunner;
+    /**
+     * Pax Runner arguments, out of options.
+     */
+    private final String[] m_arguments;
+    /**
+     * Start & rmi lookup timeout.
+     */
+    private final Integer m_timeout;
 
     /**
      * Constructor.
@@ -84,19 +98,10 @@ class PaxRunnerTestContainer
     PaxRunnerTestContainer( final DefaultJavaRunner javaRunner,
                             final Option... options )
     {
-        LOG.info( "Starting up the test container (Pax Runner " + Info.getPaxRunnerVersion() + " )" );
-        long startedAt = System.currentTimeMillis();
         m_javaRunner = javaRunner;
-        m_remoteBundleContextClient = new RemoteBundleContextClient(
-            findFreeCommunicationPort(),
-            getRMILookupTimeout( options )
-        );
-        URLUtils.resetURLStreamHandlerFactory();
-        start( javaRunner, buildArguments( wrap( expand( combine( options, localOptions() ) ) ) ) );
-        LOG.info(
-            "Test container (Pax Runner " + Info.getPaxRunnerVersion() + ") started in "
-            + ( System.currentTimeMillis() - startedAt ) + " millis"
-        );
+        m_timeout = getTimeout( options );
+        m_remoteBundleContextClient = new RemoteBundleContextClient( findFreeCommunicationPort(), m_timeout );
+        m_arguments = buildArguments( wrap( expand( combine( options, localOptions() ) ) ) );
     }
 
     /**
@@ -171,11 +176,49 @@ class PaxRunnerTestContainer
     /**
      * {@inheritDoc}
      */
+    public void start()
+    {
+        LOG.info( "Starting up the test container (Pax Runner " + Info.getPaxRunnerVersion() + " )" );
+        long startedAt = System.currentTimeMillis();
+        URLUtils.resetURLStreamHandlerFactory();
+        Run.start( m_javaRunner, m_arguments );
+        LOG.info(
+            "Test container (Pax Runner " + Info.getPaxRunnerVersion() + ") started in "
+            + ( System.currentTimeMillis() - startedAt ) + " millis"
+        );
+        LOG.info(
+            "Wait for test container to finish its initialization "
+            + ( m_timeout == WAIT_FOREVER ? "without timing out" : "for " + m_timeout + " millis" )
+        );
+        try
+        {
+            waitForState( SYSTEM_BUNDLE, Bundle.ACTIVE, m_timeout );
+        }
+        catch( TimeoutException e )
+        {
+            throw new TimeoutException(
+                "Test container did not initialize in the expected time of " + m_timeout + " millis"
+            );
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public void stop()
     {
         LOG.info( "Shutting down the test container (Pax Runner)" );
         m_remoteBundleContextClient.stop();
         m_javaRunner.waitForExit();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void waitForState( long bundleId, int state, int timeoutInMillis )
+        throws TimeoutException
+    {
+        m_remoteBundleContextClient.waitForState( bundleId, state, timeoutInMillis );
     }
 
     /**
@@ -245,20 +288,20 @@ class PaxRunnerTestContainer
     /**
      * Determine the rmi lookup timeout.<br/>
      * Timeout is dermined by first looking for a {@link TimeoutOption} in the user options. If not specified a default
-     * {@link #DEFAULT_RMI_LOOKUP_TIMEOUT} is used.
+     * {@link #DEFAULT_TIMEOUT} is used.
      *
      * @param options user options
      *
      * @return rmi lookup timeout
      */
-    private static Integer getRMILookupTimeout( final Option... options )
+    private static Integer getTimeout( final Option... options )
     {
         final TimeoutOption[] timeoutOptions = filter( TimeoutOption.class, options );
         if( timeoutOptions.length > 0 )
         {
             return timeoutOptions[ 0 ].getTimeout();
         }
-        return DEFAULT_RMI_LOOKUP_TIMEOUT;
+        return DEFAULT_TIMEOUT;
     }
 
     /**

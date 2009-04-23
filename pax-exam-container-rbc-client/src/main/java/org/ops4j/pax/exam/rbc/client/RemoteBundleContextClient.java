@@ -32,6 +32,7 @@ import org.osgi.framework.BundleException;
 import org.ops4j.pax.exam.rbc.internal.RemoteBundleContext;
 import org.ops4j.pax.exam.spi.container.TestContainer;
 import org.ops4j.pax.exam.spi.container.TestContainerException;
+import org.ops4j.pax.exam.spi.container.TimeoutException;
 
 /**
  * A {@link RemoteBundleContext} client, that takes away RMI handling.
@@ -215,6 +216,25 @@ public class RemoteBundleContextClient
     /**
      * {@inheritDoc}
      */
+    public void start()
+    {
+        try
+        {
+            getRemoteBundleContext().startBundle( 0 );
+        }
+        catch( RemoteException e )
+        {
+            throw new TestContainerException( "Remote exception", e );
+        }
+        catch( BundleException e )
+        {
+            throw new TestContainerException( "System bundle cannot be started", e );
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public void stop()
     {
         try
@@ -228,6 +248,30 @@ public class RemoteBundleContextClient
         catch( BundleException e )
         {
             throw new TestContainerException( "System bundle cannot be stopped", e );
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void waitForState( long bundleId, int state, int timeoutInMillis )
+        throws TimeoutException
+    {
+        try
+        {
+            getRemoteBundleContext().waitForState( bundleId, state, timeoutInMillis );
+        }
+        catch( org.ops4j.pax.exam.rbc.internal.TimeoutException e )
+        {
+            throw new TimeoutException( e.getMessage() );
+        }
+        catch( RemoteException e )
+        {
+            throw new TestContainerException( "Remote exception", e );
+        }
+        catch( BundleException e )
+        {
+            throw new TestContainerException( "Bundle cannot be found", e );
         }
     }
 
@@ -265,7 +309,7 @@ public class RemoteBundleContextClient
                     }
                 }
                 while( m_remoteBundleContext == null
-                       && ( m_rmiLookupTimeout == 0
+                       && ( m_rmiLookupTimeout == WAIT_FOREVER
                             || System.currentTimeMillis() < startedTrying + m_rmiLookupTimeout ) );
             }
             catch( RemoteException e )

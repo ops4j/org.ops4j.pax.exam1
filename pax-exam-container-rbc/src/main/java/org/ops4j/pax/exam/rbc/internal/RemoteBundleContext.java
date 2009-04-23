@@ -33,6 +33,15 @@ public interface RemoteBundleContext
 {
 
     /**
+     * Timeout specifing that there should be no waiting.
+     */
+    final int NO_WAIT = 0;
+    /**
+     * Timeout specifing that it should wait forever.
+     */
+    final int WAIT_FOREVER = -1;
+
+    /**
      * Makes a remote call on a service.
      *
      * @param serviceType      service class of the remote service
@@ -118,5 +127,19 @@ public interface RemoteBundleContext
      */
     void setBundleStartLevel( long bundleId, int startLevel )
         throws RemoteException, BundleException;
+
+    /**
+     * Waits for a bundle to be in a certain state and returns.
+     *
+     * @param bundleId        bundle id
+     * @param state           expected state
+     * @param timeoutInMillis max time to wait for state
+     *
+     * @throws RemoteException  - Remote communication related exception (mandatory by RMI)
+     * @throws BundleException  - If bundle cannot be found
+     * @throws TimeoutException - if timeout occured and expected state has not being reached
+     */
+    void waitForState( long bundleId, int state, int timeoutInMillis )
+        throws RemoteException, BundleException, TimeoutException;
 
 }

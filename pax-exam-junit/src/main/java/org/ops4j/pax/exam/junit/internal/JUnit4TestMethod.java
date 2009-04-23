@@ -24,6 +24,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.internal.runners.TestClass;
 import org.junit.internal.runners.TestMethod;
+import org.osgi.framework.Bundle;
 import static org.ops4j.lang.NullArgumentException.*;
 import static org.ops4j.pax.exam.Constants.*;
 import org.ops4j.pax.exam.Info;
@@ -35,6 +36,7 @@ import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.runtime.PaxExamRuntime;
 import org.ops4j.pax.exam.spi.container.TestContainer;
 import org.ops4j.pax.exam.spi.container.TestContainerFactory;
+import org.ops4j.pax.exam.spi.container.TimeoutException;
 
 /**
  * A {@link TestMethod} that upon invokation starts a {@link TestContainer} and executes the test in the test container.
@@ -105,12 +107,14 @@ public class JUnit4TestMethod
         final String fullTestName = m_name + "(" + m_testMethod.getDeclaringClass().getName() + ")";
         LOG.info( "Starting test " + fullTestName );
 
+        boolean succesful = false;
         final TestContainerFactory containerFactory = PaxExamRuntime.getTestContainerFactory();
         TestContainer container = null;
         try
         {
             LOG.trace( "Start test container" );
             container = containerFactory.newInstance( m_options );
+            container.start();
 
             LOG.trace( "Install and start test bundle" );
             final long bundleId = container.installBundle( m_testBundleUrl );
@@ -133,12 +137,29 @@ public class JUnit4TestMethod
             {
                 throw new InvocationTargetException( e );
             }
+            succesful = true;
         }
         finally
         {
             if( container != null )
             {
-                container.stop();
+                try
+                {
+                    container.stop();
+                }
+                catch( RuntimeException ignore )
+                {
+                    if( succesful )
+                    {
+                        throw ignore;
+                    }
+                    else
+                    {
+                        // Do not throw an exception that could occur during stopping the container in case that an
+                        // exception was already being thrown
+                        LOG.error( "Cannot stop the test container: " + ignore.getMessage() );
+                    }
+                }
             }
         }
     }

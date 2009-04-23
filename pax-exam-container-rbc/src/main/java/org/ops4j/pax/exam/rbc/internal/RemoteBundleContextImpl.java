@@ -155,6 +155,36 @@ public class RemoteBundleContextImpl
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public void waitForState( long bundleId, int state, int timeoutInMillis )
+        throws TimeoutException
+    {
+        final Bundle bundle = m_bundleContext.getBundle( bundleId );
+        if( timeoutInMillis == NO_WAIT && bundle.getState() < state )
+        {
+            throw new TimeoutException(
+                "There is no waiting timeout set and bundle has state '" + bundleStateToString( bundle.getState() )
+                + "' not '" + bundleStateToString( state ) + "' as expected"
+            );
+        }
+        long startedTrying = System.currentTimeMillis();
+        do
+        {
+        }
+        while( bundle.getState() < state
+               && ( timeoutInMillis == WAIT_FOREVER
+                    || System.currentTimeMillis() < startedTrying + timeoutInMillis ) );
+        if( bundle.getState() < state )
+        {
+            throw new TimeoutException(
+                "Timeout passed and bundle has state '" + bundleStateToString( bundle.getState() )
+                + "' not '" + bundleStateToString( state ) + "' as expected"
+            );
+        }
+    }
+
+    /**
      * Lookup a service in the service registry.
      *
      * @param serviceType     service class

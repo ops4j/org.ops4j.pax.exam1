@@ -26,7 +26,14 @@ package org.ops4j.pax.exam.spi.container;
 public interface TestContainer
 {
 
+    /**
+     * Timeout specifing that there should be no waiting.
+     */
     final int NO_WAIT = 0;
+    /**
+     * Timeout specifing that it should wait forever.
+     */
+    final int WAIT_FOREVER = -1;
 
     <T> T getService( Class<T> serviceType )
         throws TestContainerException;
@@ -55,8 +62,25 @@ public interface TestContainer
         throws TestContainerException;
 
     /**
-     * Stops the osgi container.
+     * Starts the test container.
+     */
+    void start();
+
+    /**
+     * Stops the test container.
      */
     void stop();
+
+    /**
+     * Waits for a bundle to be in a certain state and returns.
+     *
+     * @param bundleId        bundle id
+     * @param state           expected state
+     * @param timeoutInMillis max time to wait for state
+     *
+     * @throws TimeoutException - if timeout occured and expected state has not being reached
+     */
+    void waitForState( long bundleId, int state, int timeoutInMillis )
+        throws TimeoutException;
 
 }
