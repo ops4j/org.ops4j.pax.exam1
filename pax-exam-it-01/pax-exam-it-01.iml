@@ -34,6 +34,5 @@
     <orderEntry type="library" exported="" name="Maven: org.jmock:jmock:2.5.1" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.hamcrest:hamcrest-library:1.1" level="project" />
   </component>
-  <component name="libraryTable" />
 </module>
 

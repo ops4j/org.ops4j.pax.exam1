@@ -29,6 +29,5 @@
     <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.19.0" level="project" />
     <orderEntry type="library" name="Maven: org.osgi:org.osgi.core:4.0.1" level="project" />
   </component>
-  <component name="libraryTable" />
 </module>
 
