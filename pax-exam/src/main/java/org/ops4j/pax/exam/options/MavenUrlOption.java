@@ -24,7 +24,7 @@ package org.ops4j.pax.exam.options;
  * @since 0.5.0, April 26, 2009
  */
 public interface MavenUrlOption
-    extends UrlOption
+    extends UrlReferenceOption
 {
 
     /**

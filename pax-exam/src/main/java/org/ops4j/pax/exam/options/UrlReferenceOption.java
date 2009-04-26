@@ -25,7 +25,7 @@ import org.ops4j.pax.exam.Option;
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.5.0, April 26, 2009
  */
-public interface UrlOption
+public interface UrlReferenceOption
     extends Option
 {
 
