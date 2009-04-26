@@ -38,6 +38,7 @@ import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
 import org.ops4j.pax.exam.options.TestContainerStartTimeoutOption;
+import org.ops4j.pax.exam.options.UrlOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
 
@@ -250,6 +251,18 @@ public class CoreOptions
     public static Option provision( final ProvisionOption... urls )
     {
         return composite( urls );
+    }
+
+    /**
+     * Creates a {@link UrlOption}.
+     *
+     * @param url bundle url
+     *
+     * @return url provisioning option
+     */
+    public static UrlOption url( final String url )
+    {
+        return new UrlOption( url );
     }
 
     /**

@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Alin Dreghiciu.
+ * Copyright 2009 Alin Dreghiciu.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,15 +17,22 @@
  */
 package org.ops4j.pax.exam.options;
 
+import static org.ops4j.lang.NullArgumentException.*;
+
 /**
  * Option specifying a provision url.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
- * @since 0.3.0, December 08, 2008
+ * @since 0.5.0, April 26, 2009
  */
-public class UrlProvisionOption
-    extends AbstractUrlProvisionOption<UrlProvisionOption>
+public abstract class AbstractUrlProvisionOption<T extends AbstractUrlProvisionOption>
+    extends AbstractProvisionOption<T>
 {
+
+    /**
+     * Provision url (cannot be null).
+     */
+    private final UrlReferenceOption m_urlReference;
 
     /**
      * Constructor.
@@ -34,9 +41,9 @@ public class UrlProvisionOption
      *
      * @throws IllegalArgumentException - If url is null or empty
      */
-    public UrlProvisionOption( final String url )
+    public AbstractUrlProvisionOption( final String url )
     {
-        super( url );
+        this( new UrlOption( url ) );
     }
 
     /**
@@ -46,17 +53,31 @@ public class UrlProvisionOption
      *
      * @throws IllegalArgumentException - If url is null
      */
-    public UrlProvisionOption( final UrlReferenceOption url )
+    public AbstractUrlProvisionOption( final UrlReferenceOption url )
     {
-        super( url );
+        validateNotNull( url, "URL" );
+        m_urlReference = url;
     }
 
     /**
      * {@inheritDoc}
      */
-    protected UrlProvisionOption itself()
+    public String getURL()
     {
-        return this;
+        return m_urlReference.getURL();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString()
+    {
+        final StringBuilder sb = new StringBuilder();
+        sb.append( this.getClass().getSimpleName() );
+        sb.append( "{url='" ).append( m_urlReference ).append( '\'' );
+        sb.append( '}' );
+        return sb.toString();
     }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2008 Alin Dreghiciu.
+ * Copyright 2009 Alin Dreghiciu.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,15 +17,22 @@
  */
 package org.ops4j.pax.exam.options;
 
+import static org.ops4j.lang.NullArgumentException.*;
+
 /**
- * Option specifying a provision url.
+ * Option specifying an url.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
- * @since 0.3.0, December 08, 2008
+ * @since 0.5.0, April 26, 2009
  */
-public class UrlProvisionOption
-    extends AbstractUrlProvisionOption<UrlProvisionOption>
+public class UrlOption
+    implements UrlReferenceOption
 {
+
+    /**
+     * Provision url (cannot be null or empty).
+     */
+    private final String m_url;
 
     /**
      * Constructor.
@@ -34,29 +41,31 @@ public class UrlProvisionOption
      *
      * @throws IllegalArgumentException - If url is null or empty
      */
-    public UrlProvisionOption( final String url )
+    public UrlOption( final String url )
     {
-        super( url );
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param url provision url (cannot be null)
-     *
-     * @throws IllegalArgumentException - If url is null
-     */
-    public UrlProvisionOption( final UrlReferenceOption url )
-    {
-        super( url );
+        validateNotEmpty( url, true, "URL" );
+        m_url = url;
     }
 
     /**
      * {@inheritDoc}
      */
-    protected UrlProvisionOption itself()
+    public String getURL()
     {
-        return this;
+        return m_url;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString()
+    {
+        final StringBuilder sb = new StringBuilder();
+        sb.append( this.getClass().getSimpleName() );
+        sb.append( "{url='" ).append( m_url ).append( '\'' );
+        sb.append( '}' );
+        return sb.toString();
     }
 
 }
