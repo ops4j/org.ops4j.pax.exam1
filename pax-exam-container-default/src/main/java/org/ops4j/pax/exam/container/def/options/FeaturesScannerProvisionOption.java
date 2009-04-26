@@ -18,9 +18,9 @@
 package org.ops4j.pax.exam.container.def.options;
 
 import static org.ops4j.pax.exam.container.def.options.ScannerUtils.*;
-import org.ops4j.pax.exam.options.AbstractProvisionWrapperOption;
-import org.ops4j.pax.exam.options.ProvisionOption;
+import org.ops4j.pax.exam.options.AbstractUrlProvisionOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
+import org.ops4j.pax.exam.options.UrlReference;
 import static org.ops4j.pax.runner.provision.ServiceConstants.*;
 import static org.ops4j.pax.runner.scanner.features.ServiceConstants.*;
 
@@ -31,7 +31,7 @@ import static org.ops4j.pax.runner.scanner.features.ServiceConstants.*;
  * @since 0.5.0, April 19, 2008
  */
 public class FeaturesScannerProvisionOption
-    extends AbstractProvisionWrapperOption<FeaturesScannerProvisionOption>
+    extends AbstractUrlProvisionOption<FeaturesScannerProvisionOption>
     implements ScannerProvisionOption<FeaturesScannerProvisionOption>
 {
 
@@ -60,7 +60,7 @@ public class FeaturesScannerProvisionOption
      *
      * @throws IllegalArgumentException - If url is null
      */
-    public FeaturesScannerProvisionOption( final ProvisionOption repositoryUrl,
+    public FeaturesScannerProvisionOption( final UrlReference repositoryUrl,
                                            final String... features )
     {
         super( repositoryUrl );
@@ -89,19 +89,6 @@ public class FeaturesScannerProvisionOption
         }
         url.append( getOptions( this ) );
         return url.toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString()
-    {
-        final StringBuilder sb = new StringBuilder();
-        sb.append( FeaturesScannerProvisionOption.class.getSimpleName() );
-        sb.append( "{url='" ).append( getURL() ).append( '\'' );
-        sb.append( '}' );
-        return sb.toString();
     }
 
     /**

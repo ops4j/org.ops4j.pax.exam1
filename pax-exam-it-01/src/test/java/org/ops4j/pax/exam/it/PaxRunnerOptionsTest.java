@@ -134,7 +134,9 @@ public class PaxRunnerOptionsTest
     public static Option[] configureFeaturesScanner()
     {
         return options(
-            scanFeatures( "file:foo-features.xml", "f1", "f2/1.0.0" ).noStart().update().startLevel( 10 )
+            scanFeatures( "file:foo-features.xml", "f1", "f2/1.0.0" ).noStart().update().startLevel( 10 ),
+            scanFeatures( url( "file:foo-features.xml" ), "f1", "f2/1.0.0" ).noStart().update().startLevel( 20 ),
+            scanFeatures( maven( "foo", "bar" ), "f1", "f2/1.0.0" ).noStart().update().startLevel( 30 )
         );
     }
 

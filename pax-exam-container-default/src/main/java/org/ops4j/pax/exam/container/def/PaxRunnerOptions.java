@@ -39,6 +39,7 @@ import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.VMOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
+import org.ops4j.pax.exam.options.UrlReference;
 
 /**
  * Factory methods for Pax Runner options.
@@ -369,7 +370,7 @@ public class PaxRunnerOptions
      *
      * @return file scanner option
      */
-    public static FeaturesScannerProvisionOption scanFeatures( final ProvisionOption repositoryUrl,
+    public static FeaturesScannerProvisionOption scanFeatures( final UrlReference repositoryUrl,
                                                                final String... features )
     {
         return new FeaturesScannerProvisionOption( repositoryUrl, features );
