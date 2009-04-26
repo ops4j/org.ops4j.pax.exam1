@@ -146,9 +146,9 @@ public class MavenArtifactProvisionOption
     {
         if( !m_updateUsed )
         {
-            super.update( isSnapshot() );
+            super.update( isSnapshot() != null && isSnapshot() );
         }
-        return super.shouldUpdate();    //To change body of overridden methods use File | Settings | File Templates.
+        return super.shouldUpdate();
     }
 
     /**
