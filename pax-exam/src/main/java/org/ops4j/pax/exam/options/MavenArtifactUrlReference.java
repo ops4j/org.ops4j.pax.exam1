@@ -124,9 +124,17 @@ public class MavenArtifactUrlReference
         validateNotEmpty( m_artifactId, true, "Artifact" );
         final StringBuilder url = new StringBuilder();
         url.append( "mvn:" ).append( m_groupId ).append( "/" ).append( m_artifactId );
+        if( m_version != null || m_type != null )
+        {
+            url.append( "/" );
+        }
         if( m_version != null )
         {
-            url.append( "/" ).append( m_version );
+            url.append( m_version );
+        }
+        if( m_type != null )
+        {
+            url.append( "/" ).append( m_type );
         }
         return url.toString();
     }
