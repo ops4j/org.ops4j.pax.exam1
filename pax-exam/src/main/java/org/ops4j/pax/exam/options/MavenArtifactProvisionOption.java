@@ -33,7 +33,7 @@ public class MavenArtifactProvisionOption
     /**
      * Maven artifact.
      */
-    private final MavenArtifactOption m_artifact;
+    private final MavenUrlOption m_artifact;
     /**
      * True if the user used update method.
      */
@@ -52,7 +52,7 @@ public class MavenArtifactProvisionOption
      *
      * @param artifact maven artifact (cannot be null)
      */
-    public MavenArtifactProvisionOption( final MavenArtifactOption artifact )
+    public MavenArtifactProvisionOption( final MavenUrlOption artifact )
     {
         validateNotNull( artifact, "Maven artifact" );
         m_artifact = artifact;
@@ -92,11 +92,16 @@ public class MavenArtifactProvisionOption
     public MavenArtifactProvisionOption version( final String version )
     {
         m_artifact.version( version );
+        autoUpdateIfNecessary( version );
+        return itself();
+    }
+
+    private void autoUpdateIfNecessary( String version )
+    {
         if( !m_updateUsed )
         {
             update( version.endsWith( "SNAPSHOT" ) );
         }
-        return itself();
     }
 
     /**
