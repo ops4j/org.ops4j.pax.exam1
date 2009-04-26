@@ -271,8 +271,12 @@ class PaxRunnerTestContainer
                 {
                     if( !( provisionOption instanceof Scanner ) )
                     {
-                        // if is not a scanner the wrap as scanner and force update
-                        processed.add( scanBundle( provisionOption ) );
+                        processed.add(
+                            scanBundle( provisionOption )
+                                .start( provisionOption.shouldStart() )
+                                .startLevel( provisionOption.getStartLevel() )
+                                .update( provisionOption.shouldUpdate() )
+                        );
                     }
                     else
                     {

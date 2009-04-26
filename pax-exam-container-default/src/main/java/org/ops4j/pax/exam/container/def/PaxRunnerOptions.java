@@ -38,7 +38,6 @@ import org.ops4j.pax.exam.container.def.options.RepositoryOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.VMOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
-import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.UrlReference;
 
 /**
@@ -389,25 +388,25 @@ public class PaxRunnerOptions
     /**
      * Creates a {@link BundleScannerProvisionOption}.
      *
-     * @param url url of the bundle to be scanned
+     * @param bundleUrl url of the bundle to be scanned
      *
      * @return bundle scanner option
      */
-    public static BundleScannerProvisionOption scanBundle( final String url )
+    public static BundleScannerProvisionOption scanBundle( final String bundleUrl )
     {
-        return new BundleScannerProvisionOption( url );
+        return new BundleScannerProvisionOption( bundleUrl );
     }
 
     /**
      * Creates a {@link BundleScannerProvisionOption}.
      *
-     * @param provision bundle to be scanned as a provision option
+     * @param bundleUrl url of the bundle to be scanned
      *
      * @return bundle scanner option
      */
-    public static BundleScannerProvisionOption scanBundle( final ProvisionOption provision )
+    public static BundleScannerProvisionOption scanBundle( final UrlReference bundleUrl )
     {
-        return new BundleScannerProvisionOption( provision );
+        return new BundleScannerProvisionOption( bundleUrl );
     }
 
 }

@@ -18,9 +18,9 @@
 package org.ops4j.pax.exam.container.def.options;
 
 import static org.ops4j.pax.exam.container.def.options.ScannerUtils.*;
-import org.ops4j.pax.exam.options.AbstractProvisionWrapperOption;
-import org.ops4j.pax.exam.options.ProvisionOption;
+import org.ops4j.pax.exam.options.AbstractUrlProvisionOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
+import org.ops4j.pax.exam.options.UrlReference;
 import static org.ops4j.pax.runner.provision.ServiceConstants.*;
 import static org.ops4j.pax.runner.scanner.bundle.ServiceConstants.*;
 
@@ -31,13 +31,13 @@ import static org.ops4j.pax.runner.scanner.bundle.ServiceConstants.*;
  * @since 0.3.0, December 17, 2008
  */
 public class BundleScannerProvisionOption
-    extends AbstractProvisionWrapperOption<BundleScannerProvisionOption>
+    extends AbstractUrlProvisionOption<BundleScannerProvisionOption>
 {
 
     /**
      * Constructor.
      *
-     * @param url provision url (cannot be null or empty)
+     * @param url bundle url
      *
      * @throws IllegalArgumentException - If url is null or empty
      */
@@ -49,11 +49,11 @@ public class BundleScannerProvisionOption
     /**
      * Constructor.
      *
-     * @param url provision url (cannot be null or a {@link Scanner})
+     * @param url bundle url
      *
-     * @throws IllegalArgumentException - If url is null or is an {@link Scanner}
+     * @throws IllegalArgumentException - If url is null
      */
-    public BundleScannerProvisionOption( final ProvisionOption url )
+    public BundleScannerProvisionOption( final UrlReference url )
     {
         super( url );
     }
@@ -69,19 +69,6 @@ public class BundleScannerProvisionOption
             .append( super.getURL() )
             .append( getOptions( this ) )
             .toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString()
-    {
-        final StringBuilder sb = new StringBuilder();
-        sb.append( "BundleScannerProvisionOption" );
-        sb.append( "{url='" ).append( getURL() ).append( '\'' );
-        sb.append( '}' );
-        return sb.toString();
     }
 
     /**
