@@ -59,7 +59,9 @@ public class Info
         String paxRunnerVersion = "";
         try
         {
-            final InputStream is = Info.class.getClassLoader().getResourceAsStream( "META-INF/version.properties" );
+            final InputStream is = Info.class.getClassLoader().getResourceAsStream(
+                "META-INF/pax-exam-version.properties"
+            );
             if( is != null )
             {
                 final Properties properties = new Properties();
