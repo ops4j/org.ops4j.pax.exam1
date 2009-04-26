@@ -31,7 +31,7 @@ import static org.ops4j.pax.runner.scanner.dir.ServiceConstants.*;
  */
 public class DirScannerProvisionOption
     extends AbstractProvisionOption<DirScannerProvisionOption>
-    implements ScannerProvisionOption<DirScannerProvisionOption>
+    implements Scanner
 {
 
     /**

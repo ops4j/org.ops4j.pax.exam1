@@ -32,7 +32,7 @@ import static org.ops4j.pax.runner.scanner.features.ServiceConstants.*;
  */
 public class FeaturesScannerProvisionOption
     extends AbstractUrlProvisionOption<FeaturesScannerProvisionOption>
-    implements ScannerProvisionOption<FeaturesScannerProvisionOption>
+    implements Scanner
 {
 
     private String[] m_features;

@@ -29,7 +29,7 @@ import org.ops4j.pax.exam.options.AbstractProvisionOption;
  */
 public class RawScannerProvisionOption
     extends AbstractProvisionOption<RawScannerProvisionOption>
-    implements ScannerProvisionOption<RawScannerProvisionOption>
+    implements Scanner
 {
 
     /**

@@ -17,16 +17,13 @@
  */
 package org.ops4j.pax.exam.container.def.options;
 
-import org.ops4j.pax.exam.options.ProvisionOption;
-
 /**
- * Option specifying a provisioning from a Pax Runner scanner.
+ * Marker interface for scanner provsioning options.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, December 08, 2008
  */
-public interface ScannerProvisionOption<T extends ScannerProvisionOption>
-    extends ProvisionOption<T>
+public interface Scanner
 {
 
 }

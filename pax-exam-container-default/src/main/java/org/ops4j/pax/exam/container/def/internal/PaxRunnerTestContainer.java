@@ -34,7 +34,7 @@ import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import static org.ops4j.pax.exam.container.def.internal.ArgumentsBuilder.*;
 import org.ops4j.pax.exam.container.def.options.BundleScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.RBCLookupTimeoutOption;
-import org.ops4j.pax.exam.container.def.options.ScannerProvisionOption;
+import org.ops4j.pax.exam.container.def.options.Scanner;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.TestContainerStartTimeoutOption;
 import org.ops4j.pax.exam.rbc.Constants;
@@ -269,7 +269,7 @@ class PaxRunnerTestContainer
                 final List<Option> processed = new ArrayList<Option>();
                 for( final ProvisionOption provisionOption : provisionOptions )
                 {
-                    if( !( provisionOption instanceof ScannerProvisionOption ) )
+                    if( !( provisionOption instanceof Scanner ) )
                     {
                         // if is not a scanner the wrap as scanner and force update
                         processed.add( scanBundle( provisionOption ) );

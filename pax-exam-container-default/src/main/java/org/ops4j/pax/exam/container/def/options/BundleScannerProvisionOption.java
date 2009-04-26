@@ -49,9 +49,9 @@ public class BundleScannerProvisionOption
     /**
      * Constructor.
      *
-     * @param url provision url (cannot be null or a {@link ScannerProvisionOption})
+     * @param url provision url (cannot be null or a {@link Scanner})
      *
-     * @throws IllegalArgumentException - If url is null or is an {@link ScannerProvisionOption}
+     * @throws IllegalArgumentException - If url is null or is an {@link Scanner}
      */
     public BundleScannerProvisionOption( final ProvisionOption url )
     {

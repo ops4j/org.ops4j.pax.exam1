@@ -32,7 +32,7 @@ import static org.ops4j.pax.runner.scanner.file.ServiceConstants.*;
  */
 public class FileScannerProvisionOption
     extends AbstractUrlProvisionOption<FileScannerProvisionOption>
-    implements ScannerProvisionOption<FileScannerProvisionOption>
+    implements Scanner
 {
 
     /**
