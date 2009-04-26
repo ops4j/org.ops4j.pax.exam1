@@ -92,16 +92,7 @@ public class MavenArtifactProvisionOption
     public MavenArtifactProvisionOption version( final String version )
     {
         m_artifact.version( version );
-        autoUpdateIfNecessary( version );
         return itself();
-    }
-
-    private void autoUpdateIfNecessary( String version )
-    {
-        if( !m_updateUsed )
-        {
-            update( version.endsWith( "SNAPSHOT" ) );
-        }
     }
 
     /**
@@ -125,6 +116,14 @@ public class MavenArtifactProvisionOption
     /**
      * {@inheritDoc}
      */
+    public Boolean isSnapshot()
+    {
+        return m_artifact.isSnapshot();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public String getURL()
     {
         return m_artifact.getURL();
@@ -140,6 +139,16 @@ public class MavenArtifactProvisionOption
     {
         m_updateUsed = true;
         return super.update( shouldUpdate );
+    }
+
+    @Override
+    public boolean shouldUpdate()
+    {
+        if( !m_updateUsed )
+        {
+            super.update( isSnapshot() );
+        }
+        return super.shouldUpdate();    //To change body of overridden methods use File | Settings | File Templates.
     }
 
     /**

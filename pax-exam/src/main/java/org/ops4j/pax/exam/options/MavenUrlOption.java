@@ -92,6 +92,15 @@ public interface MavenUrlOption
     MavenUrlOption versionAsInProject();
 
     /**
+     * Returns true if the specified version is a snapshot version, false if not and null if the version is not yet
+     * specified.
+     *
+     * @return true if the specified version is a snapshot version, false if not and null if the version is not yet
+     *         specified.
+     */
+    Boolean isSnapshot();
+
+    /**
      * Resolves versions based on maven artifact groupId / atifactid.
      */
     public static interface VersionResolver

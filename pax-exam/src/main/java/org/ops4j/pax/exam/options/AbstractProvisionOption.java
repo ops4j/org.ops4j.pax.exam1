@@ -40,6 +40,9 @@ public abstract class AbstractProvisionOption<T extends AbstractProvisionOption>
      */
     private Integer m_startLevel;
 
+    /**
+     * Constructor.
+     */
     public AbstractProvisionOption()
     {
         m_shouldUpdate = true;

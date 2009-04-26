@@ -106,6 +106,14 @@ public class MavenArtifactOption
 
     /**
      * {@inheritDoc}
+     */
+    public Boolean isSnapshot()
+    {
+        return m_version == null ? null : m_version.endsWith( "SNAPSHOT" );
+    }
+
+    /**
+     * {@inheritDoc}
      *
      * @throws IllegalArgumentException - If group id is null or empty
      *                                  - If artifact id is null or empty
