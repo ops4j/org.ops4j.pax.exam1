@@ -46,6 +46,10 @@ public class MavenArtifactUrlReference
      * Artifact version/version range (can be null case when latest version will be used).
      */
     private String m_version;
+    /**
+     * Artifact clasifier. Can be null.
+     */
+    private String m_classifier;
 
     /**
      * {@inheritDoc}
@@ -74,6 +78,16 @@ public class MavenArtifactUrlReference
     {
         validateNotEmpty( type, true, "Type" );
         m_type = type;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public MavenUrlReference classifier( String classifier )
+    {
+        validateNotEmpty( classifier, true, "Classifier" );
+        m_classifier = classifier;
         return this;
     }
 
@@ -124,7 +138,7 @@ public class MavenArtifactUrlReference
         validateNotEmpty( m_artifactId, true, "Artifact" );
         final StringBuilder url = new StringBuilder();
         url.append( "mvn:" ).append( m_groupId ).append( "/" ).append( m_artifactId );
-        if( m_version != null || m_type != null )
+        if( m_version != null || m_type != null || m_classifier != null )
         {
             url.append( "/" );
         }
@@ -132,9 +146,17 @@ public class MavenArtifactUrlReference
         {
             url.append( m_version );
         }
+        if( m_type != null || m_classifier != null )
+        {
+            url.append( "/" );
+        }
         if( m_type != null )
         {
-            url.append( "/" ).append( m_type );
+            url.append( m_type );
+        }
+        if( m_classifier != null )
+        {
+            url.append( "/" ).append( m_classifier );
         }
         return url.toString();
     }
@@ -154,6 +176,5 @@ public class MavenArtifactUrlReference
         sb.append( '}' );
         return sb.toString();
     }
-
 
 }

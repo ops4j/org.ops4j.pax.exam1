@@ -89,6 +89,15 @@ public class MavenArtifactProvisionOption
     /**
      * {@inheritDoc}
      */
+    public MavenArtifactProvisionOption classifier( String classifier )
+    {
+        m_artifact.classifier( classifier );
+        return itself();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public MavenArtifactProvisionOption version( final String version )
     {
         m_artifact.version( version );

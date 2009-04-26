@@ -61,6 +61,17 @@ public interface MavenUrlReference
     MavenUrlReference type( String type );
 
     /**
+     * Sets the artifact classifier.
+     *
+     * @param classifier artifact classifier (cannot be null or empty)
+     *
+     * @return itself, for fluent api usage
+     *
+     * @throws IllegalArgumentException - If classifier is null or empty
+     */
+    MavenUrlReference classifier( String classifier );
+
+    /**
      * Sets the artifact version or version range. If version is a SNAPSHOT version the bundle will be set to updatable,
      * otherwise the bundle will not be updated. This handling happens only if the user dows not use the update() by
      * itself (see {@link org.ops4j.pax.exam.options.ProvisionOption#update(boolean)}).

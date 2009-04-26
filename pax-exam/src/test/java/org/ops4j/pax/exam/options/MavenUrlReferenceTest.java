@@ -52,4 +52,52 @@ public class MavenUrlReferenceTest
         );
     }
 
+    @Test
+    public void specifyClasifier()
+    {
+        assertThat(
+            "Maven url",
+            new MavenArtifactUrlReference().groupId( "foo" ).artifactId( "bar" )
+                .classifier( "classifier" )
+                .getURL(),
+            is( equalTo( "mvn:foo/bar///classifier" ) )
+        );
+    }
+
+    @Test
+    public void specifyClasifierWithVersion()
+    {
+        assertThat(
+            "Maven url",
+            new MavenArtifactUrlReference().groupId( "foo" ).artifactId( "bar" ).version( "1.0" )
+                .classifier( "classifier" )
+                .getURL(),
+            is( equalTo( "mvn:foo/bar/1.0//classifier" ) )
+        );
+    }
+
+    @Test
+    public void specifyClasifierWithType()
+    {
+        assertThat(
+            "Maven url",
+            new MavenArtifactUrlReference().groupId( "foo" ).artifactId( "bar" ).type( "xml" )
+                .classifier( "classifier" )
+                .getURL(),
+            is( equalTo( "mvn:foo/bar//xml/classifier" ) )
+        );
+    }
+
+    @Test
+    public void specifyClasifierWithVersionAndType()
+    {
+        assertThat(
+            "Maven url",
+            new MavenArtifactUrlReference().groupId( "foo" ).artifactId( "bar" ).version( "1.0" ).type( "xml" )
+                .classifier( "classifier" )
+                .getURL(),
+            is( equalTo( "mvn:foo/bar/1.0/xml/classifier" ) )
+        );
+    }
+
 }
