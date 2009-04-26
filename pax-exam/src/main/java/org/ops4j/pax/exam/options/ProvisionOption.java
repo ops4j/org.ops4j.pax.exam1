@@ -26,15 +26,8 @@ import org.ops4j.pax.exam.Option;
  * @since 0.3.0, December 08, 2008
  */
 public interface ProvisionOption<T extends ProvisionOption>
-    extends Option
+    extends UrlOption
 {
-
-    /**
-     * Getter.
-     *
-     * @return provision url (cannot be null)
-     */
-    String getURL();
 
     /**
      * If the provisioned bundle(s) should be updated (re-downloaded).
