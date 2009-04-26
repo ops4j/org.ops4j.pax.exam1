@@ -30,8 +30,8 @@ import org.ops4j.pax.exam.options.FelixFrameworkOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.options.FrameworkStartLevelOption;
 import org.ops4j.pax.exam.options.KnopflerfishFrameworkOption;
+import org.ops4j.pax.exam.options.MavenArtifactProvisionOption;
 import org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption;
-import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
 import org.ops4j.pax.exam.options.OptionalCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.SystemPackageOption;
@@ -264,13 +264,13 @@ public class CoreOptions
     }
 
     /**
-     * Creates a {@link MavenUrlProvisionOption}.
+     * Creates a {@link org.ops4j.pax.exam.options.MavenArtifactProvisionOption}.
      *
      * @return maven specific provisioning option
      */
-    public static MavenUrlProvisionOption mavenBundle()
+    public static MavenArtifactProvisionOption mavenBundle()
     {
-        return new MavenUrlProvisionOption();
+        return new MavenArtifactProvisionOption();
     }
 
     /**
@@ -281,8 +281,8 @@ public class CoreOptions
      *
      * @return maven specific provisioning option
      */
-    public static MavenUrlProvisionOption mavenBundle( final String groupId,
-                                                       final String artifactId )
+    public static MavenArtifactProvisionOption mavenBundle( final String groupId,
+                                                            final String artifactId )
     {
         return mavenBundle().groupId( groupId ).artifactId( artifactId );
     }
@@ -296,9 +296,9 @@ public class CoreOptions
      *
      * @return maven specific provisioning option
      */
-    public static MavenUrlProvisionOption mavenBundle( final String groupId,
-                                                       final String artifactId,
-                                                       final String version )
+    public static MavenArtifactProvisionOption mavenBundle( final String groupId,
+                                                            final String artifactId,
+                                                            final String version )
     {
         return mavenBundle().groupId( groupId ).artifactId( artifactId ).version( version );
     }

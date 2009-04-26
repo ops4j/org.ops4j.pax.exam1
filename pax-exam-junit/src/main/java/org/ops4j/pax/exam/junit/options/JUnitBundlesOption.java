@@ -20,7 +20,7 @@ package org.ops4j.pax.exam.junit.options;
 import static org.ops4j.pax.exam.Constants.*;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.options.AbstractProvisionWrapperOption;
-import org.ops4j.pax.exam.options.MavenUrlProvisionOption;
+import org.ops4j.pax.exam.options.MavenArtifactProvisionOption;
 
 /**
  * Option specifying junit bundles (osgi-fyed JUnit).
@@ -57,7 +57,7 @@ public class JUnitBundlesOption
      */
     public JUnitBundlesOption version( final String version )
     {
-        ( (MavenUrlProvisionOption) getDelegate() ).version( version );
+        ( (MavenArtifactProvisionOption) getDelegate() ).version( version );
         return this;
     }
 
