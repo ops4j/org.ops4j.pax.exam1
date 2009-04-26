@@ -30,6 +30,7 @@ import org.ops4j.pax.exam.options.FelixFrameworkOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.options.FrameworkStartLevelOption;
 import org.ops4j.pax.exam.options.KnopflerfishFrameworkOption;
+import org.ops4j.pax.exam.options.MavenArtifactOption;
 import org.ops4j.pax.exam.options.MavenArtifactProvisionOption;
 import org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption;
 import org.ops4j.pax.exam.options.OptionalCompositeOption;
@@ -264,7 +265,47 @@ public class CoreOptions
     }
 
     /**
-     * Creates a {@link org.ops4j.pax.exam.options.MavenArtifactProvisionOption}.
+     * Creates a {@link MavenArtifactOption}.
+     *
+     * @return maven specific provisioning option
+     */
+    public static MavenArtifactOption maven()
+    {
+        return new MavenArtifactOption();
+    }
+
+    /**
+     * Convenience method (shorter) for referencing an maven artifact based on groupId/artifactId.
+     *
+     * @param groupId    artifact group id
+     * @param artifactId artifact id
+     *
+     * @return maven artifact option
+     */
+    public static MavenArtifactOption maven( final String groupId,
+                                             final String artifactId )
+    {
+        return maven().groupId( groupId ).artifactId( artifactId );
+    }
+
+    /**
+     * Convenience method (shorter) for referencing a maven artifact based on groupId/artifactId/version.
+     *
+     * @param groupId    artifact group id
+     * @param artifactId artifact id
+     * @param version    artifact version
+     *
+     * @return maven artifact option
+     */
+    public static MavenArtifactOption maven( final String groupId,
+                                             final String artifactId,
+                                             final String version )
+    {
+        return maven().groupId( groupId ).artifactId( artifactId ).version( version );
+    }
+
+    /**
+     * Creates a {@link MavenArtifactProvisionOption}.
      *
      * @return maven specific provisioning option
      */

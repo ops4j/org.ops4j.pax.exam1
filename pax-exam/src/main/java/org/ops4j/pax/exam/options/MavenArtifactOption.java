@@ -50,7 +50,7 @@ public class MavenArtifactOption
     /**
      * {@inheritDoc}
      */
-    public MavenUrlOption groupId( final String groupId )
+    public MavenArtifactOption groupId( final String groupId )
     {
         validateNotEmpty( groupId, true, "Group" );
         m_groupId = groupId;
@@ -60,7 +60,7 @@ public class MavenArtifactOption
     /**
      * {@inheritDoc}
      */
-    public MavenUrlOption artifactId( final String artifactId )
+    public MavenArtifactOption artifactId( final String artifactId )
     {
         validateNotEmpty( artifactId, true, "Artifact" );
         m_artifactId = artifactId;
@@ -70,7 +70,7 @@ public class MavenArtifactOption
     /**
      * {@inheritDoc}
      */
-    public MavenUrlOption type( final String type )
+    public MavenArtifactOption type( final String type )
     {
         validateNotEmpty( type, true, "Type" );
         m_type = type;
@@ -80,7 +80,7 @@ public class MavenArtifactOption
     /**
      * {@inheritDoc}
      */
-    public MavenUrlOption version( final String version )
+    public MavenArtifactOption version( final String version )
     {
         validateNotEmpty( version, true, "Version" );
         m_version = version;
@@ -90,7 +90,7 @@ public class MavenArtifactOption
     /**
      * {@inheritDoc}
      */
-    public MavenUrlOption version( final VersionResolver resolver )
+    public MavenArtifactOption version( final VersionResolver resolver )
     {
         validateNotNull( resolver, "Version resolver" );
         return version( resolver.getVersion( m_groupId, m_artifactId ) );
@@ -99,7 +99,7 @@ public class MavenArtifactOption
     /**
      * {@inheritDoc}
      */
-    public MavenUrlOption versionAsInProject()
+    public MavenArtifactOption versionAsInProject()
     {
         return version( MavenUtils.asInProject() );
     }
