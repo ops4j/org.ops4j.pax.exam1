@@ -110,7 +110,9 @@ public class PaxRunnerOptionsTest
     public static Option[] configureFileScanner()
     {
         return options(
-            scanFile( "file://foo/bar.bundles" ).noStart().update().startLevel( 10 )
+            scanFile( "file://foo/bar.bundles" ).noStart().update().startLevel( 10 ),
+            scanFile( url( "file://foo/bar.bundles" ) ).noStart().update().startLevel( 20 ),
+            scanFile( maven( "foo", "bar" ).type( "bundles" ) ).noStart().update().startLevel( 30 )
         );
     }
 

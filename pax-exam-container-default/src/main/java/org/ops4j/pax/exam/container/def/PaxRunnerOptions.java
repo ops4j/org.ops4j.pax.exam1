@@ -327,25 +327,25 @@ public class PaxRunnerOptions
     /**
      * Creates a {@link FileScannerProvisionOption}.
      *
-     * @param url url of the file to be scanned
+     * @param fileUrl url of the file to be scanned
      *
      * @return file scanner option
      */
-    public static FileScannerProvisionOption scanFile( final String url )
+    public static FileScannerProvisionOption scanFile( final String fileUrl )
     {
-        return new FileScannerProvisionOption( url );
+        return new FileScannerProvisionOption( fileUrl );
     }
 
     /**
      * Creates a {@link FileScannerProvisionOption}.
      *
-     * @param provision file to be scanned as a provision option
+     * @param fileUrl url of the file to be scanned
      *
      * @return file scanner option
      */
-    public static FileScannerProvisionOption scanFile( final ProvisionOption provision )
+    public static FileScannerProvisionOption scanFile( final UrlReference fileUrl )
     {
-        return new FileScannerProvisionOption( provision );
+        return new FileScannerProvisionOption( fileUrl );
     }
 
     /**
