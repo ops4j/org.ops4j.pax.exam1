@@ -46,7 +46,7 @@ public class UrlProvisionOption
      *
      * @throws IllegalArgumentException - If url is null
      */
-    public UrlProvisionOption( final UrlReferenceOption url )
+    public UrlProvisionOption( final UrlReference url )
     {
         super( url );
     }

@@ -30,15 +30,15 @@ import org.ops4j.pax.exam.options.FelixFrameworkOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.options.FrameworkStartLevelOption;
 import org.ops4j.pax.exam.options.KnopflerfishFrameworkOption;
-import org.ops4j.pax.exam.options.MavenArtifactOption;
 import org.ops4j.pax.exam.options.MavenArtifactProvisionOption;
+import org.ops4j.pax.exam.options.MavenArtifactUrlReference;
 import org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption;
 import org.ops4j.pax.exam.options.OptionalCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
+import org.ops4j.pax.exam.options.RawUrlReference;
 import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
 import org.ops4j.pax.exam.options.TestContainerStartTimeoutOption;
-import org.ops4j.pax.exam.options.UrlOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
 
@@ -254,15 +254,15 @@ public class CoreOptions
     }
 
     /**
-     * Creates a {@link UrlOption}.
+     * Creates a {@link RawUrlReference}.
      *
-     * @param url bundle url
+     * @param url url as a string
      *
-     * @return url provisioning option
+     * @return url reference
      */
-    public static UrlOption url( final String url )
+    public static RawUrlReference url( final String url )
     {
-        return new UrlOption( url );
+        return new RawUrlReference( url );
     }
 
     /**
@@ -278,13 +278,13 @@ public class CoreOptions
     }
 
     /**
-     * Creates a {@link MavenArtifactOption}.
+     * Creates a {@link org.ops4j.pax.exam.options.MavenArtifactUrlReference}.
      *
-     * @return maven specific provisioning option
+     * @return maven artifact url
      */
-    public static MavenArtifactOption maven()
+    public static MavenArtifactUrlReference maven()
     {
-        return new MavenArtifactOption();
+        return new MavenArtifactUrlReference();
     }
 
     /**
@@ -293,10 +293,10 @@ public class CoreOptions
      * @param groupId    artifact group id
      * @param artifactId artifact id
      *
-     * @return maven artifact option
+     * @return maven artifact url
      */
-    public static MavenArtifactOption maven( final String groupId,
-                                             final String artifactId )
+    public static MavenArtifactUrlReference maven( final String groupId,
+                                                   final String artifactId )
     {
         return maven().groupId( groupId ).artifactId( artifactId );
     }
@@ -308,11 +308,11 @@ public class CoreOptions
      * @param artifactId artifact id
      * @param version    artifact version
      *
-     * @return maven artifact option
+     * @return maven artifact url
      */
-    public static MavenArtifactOption maven( final String groupId,
-                                             final String artifactId,
-                                             final String version )
+    public static MavenArtifactUrlReference maven( final String groupId,
+                                                   final String artifactId,
+                                                   final String version )
     {
         return maven().groupId( groupId ).artifactId( artifactId ).version( version );
     }
@@ -364,7 +364,7 @@ public class CoreOptions
      *
      * @return maven specific provisioning option
      */
-    public static MavenArtifactProvisionOption mavenBundle( final MavenArtifactOption artifact )
+    public static MavenArtifactProvisionOption mavenBundle( final MavenArtifactUrlReference artifact )
     {
         return new MavenArtifactProvisionOption( artifact );
     }

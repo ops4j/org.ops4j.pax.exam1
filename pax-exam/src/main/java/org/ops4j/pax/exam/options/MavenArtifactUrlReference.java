@@ -26,8 +26,8 @@ import org.ops4j.pax.exam.MavenUtils;
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.5.0, April 25, 2008
  */
-public class MavenArtifactOption
-    implements MavenUrlOption
+public class MavenArtifactUrlReference
+    implements MavenUrlReference
 {
 
     /**
@@ -50,7 +50,7 @@ public class MavenArtifactOption
     /**
      * {@inheritDoc}
      */
-    public MavenArtifactOption groupId( final String groupId )
+    public MavenArtifactUrlReference groupId( final String groupId )
     {
         validateNotEmpty( groupId, true, "Group" );
         m_groupId = groupId;
@@ -60,7 +60,7 @@ public class MavenArtifactOption
     /**
      * {@inheritDoc}
      */
-    public MavenArtifactOption artifactId( final String artifactId )
+    public MavenArtifactUrlReference artifactId( final String artifactId )
     {
         validateNotEmpty( artifactId, true, "Artifact" );
         m_artifactId = artifactId;
@@ -70,7 +70,7 @@ public class MavenArtifactOption
     /**
      * {@inheritDoc}
      */
-    public MavenArtifactOption type( final String type )
+    public MavenArtifactUrlReference type( final String type )
     {
         validateNotEmpty( type, true, "Type" );
         m_type = type;
@@ -80,7 +80,7 @@ public class MavenArtifactOption
     /**
      * {@inheritDoc}
      */
-    public MavenArtifactOption version( final String version )
+    public MavenArtifactUrlReference version( final String version )
     {
         validateNotEmpty( version, true, "Version" );
         m_version = version;
@@ -90,7 +90,7 @@ public class MavenArtifactOption
     /**
      * {@inheritDoc}
      */
-    public MavenArtifactOption version( final VersionResolver resolver )
+    public MavenArtifactUrlReference version( final VersionResolver resolver )
     {
         validateNotNull( resolver, "Version resolver" );
         return version( resolver.getVersion( m_groupId, m_artifactId ) );
@@ -99,7 +99,7 @@ public class MavenArtifactOption
     /**
      * {@inheritDoc}
      */
-    public MavenArtifactOption versionAsInProject()
+    public MavenArtifactUrlReference versionAsInProject()
     {
         return version( MavenUtils.asInProject() );
     }

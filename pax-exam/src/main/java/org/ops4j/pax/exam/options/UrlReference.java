@@ -17,16 +17,13 @@
  */
 package org.ops4j.pax.exam.options;
 
-import org.ops4j.pax.exam.Option;
-
 /**
- * Option specifying an url.
+ * An URL Reference.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.5.0, April 26, 2009
  */
-public interface UrlReferenceOption
-    extends Option
+public interface UrlReference
 {
 
     /**

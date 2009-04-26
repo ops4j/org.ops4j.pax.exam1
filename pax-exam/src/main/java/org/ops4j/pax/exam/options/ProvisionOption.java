@@ -17,6 +17,8 @@
  */
 package org.ops4j.pax.exam.options;
 
+import org.ops4j.pax.exam.Option;
+
 /**
  * Option specifying a provision (bundle to be installed).
  *
@@ -24,7 +26,7 @@ package org.ops4j.pax.exam.options;
  * @since 0.3.0, December 08, 2008
  */
 public interface ProvisionOption<T extends ProvisionOption>
-    extends UrlReferenceOption
+    extends UrlReference, Option
 {
 
     /**

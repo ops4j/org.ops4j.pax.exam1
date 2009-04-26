@@ -27,13 +27,13 @@ import static org.ops4j.lang.NullArgumentException.*;
  */
 public class MavenArtifactProvisionOption
     extends AbstractProvisionOption<MavenArtifactProvisionOption>
-    implements MavenUrlOption
+    implements MavenUrlReference
 {
 
     /**
      * Maven artifact.
      */
-    private final MavenUrlOption m_artifact;
+    private final MavenUrlReference m_artifact;
     /**
      * True if the user used update method.
      */
@@ -44,7 +44,7 @@ public class MavenArtifactProvisionOption
      */
     public MavenArtifactProvisionOption()
     {
-        m_artifact = new MavenArtifactOption();
+        m_artifact = new MavenArtifactUrlReference();
     }
 
     /**
@@ -52,7 +52,7 @@ public class MavenArtifactProvisionOption
      *
      * @param artifact maven artifact (cannot be null)
      */
-    public MavenArtifactProvisionOption( final MavenUrlOption artifact )
+    public MavenArtifactProvisionOption( final MavenUrlReference artifact )
     {
         validateNotNull( artifact, "Maven artifact" );
         m_artifact = artifact;
@@ -98,7 +98,7 @@ public class MavenArtifactProvisionOption
     /**
      * {@inheritDoc}
      */
-    public MavenArtifactProvisionOption version( final MavenArtifactOption.VersionResolver resolver )
+    public MavenArtifactProvisionOption version( final MavenArtifactUrlReference.VersionResolver resolver )
     {
         m_artifact.version( resolver );
         return itself();

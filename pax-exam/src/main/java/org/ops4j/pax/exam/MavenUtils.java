@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Properties;
-import org.ops4j.pax.exam.options.MavenArtifactOption;
+import org.ops4j.pax.exam.options.MavenArtifactUrlReference;
 
 /**
  * Utility methods related to Apache Maven.
@@ -88,9 +88,9 @@ public class MavenUtils
      *
      * @return version resolver
      */
-    public static MavenArtifactOption.VersionResolver asInProject()
+    public static MavenArtifactUrlReference.VersionResolver asInProject()
     {
-        return new MavenArtifactOption.VersionResolver()
+        return new MavenArtifactUrlReference.VersionResolver()
         {
 
             /**

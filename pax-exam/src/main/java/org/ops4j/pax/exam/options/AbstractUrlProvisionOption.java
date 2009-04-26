@@ -32,7 +32,7 @@ public abstract class AbstractUrlProvisionOption<T extends AbstractUrlProvisionO
     /**
      * Provision url (cannot be null).
      */
-    private final UrlReferenceOption m_urlReference;
+    private final UrlReference m_urlReference;
 
     /**
      * Constructor.
@@ -43,7 +43,7 @@ public abstract class AbstractUrlProvisionOption<T extends AbstractUrlProvisionO
      */
     public AbstractUrlProvisionOption( final String url )
     {
-        this( new UrlOption( url ) );
+        this( new RawUrlReference( url ) );
     }
 
     /**
@@ -53,7 +53,7 @@ public abstract class AbstractUrlProvisionOption<T extends AbstractUrlProvisionO
      *
      * @throws IllegalArgumentException - If url is null
      */
-    public AbstractUrlProvisionOption( final UrlReferenceOption url )
+    public AbstractUrlProvisionOption( final UrlReference url )
     {
         validateNotNull( url, "URL" );
         m_urlReference = url;

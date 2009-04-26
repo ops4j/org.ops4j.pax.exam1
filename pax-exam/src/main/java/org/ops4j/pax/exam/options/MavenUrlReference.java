@@ -23,8 +23,8 @@ package org.ops4j.pax.exam.options;
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.5.0, April 26, 2009
  */
-public interface MavenUrlOption
-    extends UrlReferenceOption
+public interface MavenUrlReference
+    extends UrlReference
 {
 
     /**
@@ -36,7 +36,7 @@ public interface MavenUrlOption
      *
      * @throws IllegalArgumentException - If group id is null or empty
      */
-    MavenUrlOption groupId( String groupId );
+    MavenUrlReference groupId( String groupId );
 
     /**
      * Sets the artifact id.
@@ -47,7 +47,7 @@ public interface MavenUrlOption
      *
      * @throws IllegalArgumentException - If artifact id is null or empty
      */
-    MavenUrlOption artifactId( String artifactId );
+    MavenUrlReference artifactId( String artifactId );
 
     /**
      * Sets the artifact type. Do not set the value (use this method) if default artifact type should be used.
@@ -58,7 +58,7 @@ public interface MavenUrlOption
      *
      * @throws IllegalArgumentException - If type is null or empty
      */
-    MavenUrlOption type( String type );
+    MavenUrlReference type( String type );
 
     /**
      * Sets the artifact version or version range. If version is a SNAPSHOT version the bundle will be set to updatable,
@@ -71,25 +71,25 @@ public interface MavenUrlOption
      *
      * @throws IllegalArgumentException - If version is null or empty
      */
-    MavenUrlOption version( String version );
+    MavenUrlReference version( String version );
 
     /**
-     * Determines the artifact version using an {@link org.ops4j.pax.exam.options.MavenUrlOption.VersionResolver}.
+     * Determines the artifact version using an {@link MavenUrlReference.VersionResolver}.
      *
-     * @param resolver a {@link org.ops4j.pax.exam.options.MavenUrlOption.VersionResolver} (cannot be null)
+     * @param resolver a {@link MavenUrlReference.VersionResolver} (cannot be null)
      *
      * @return itself, for fluent api usage
      *
      * @throws IllegalArgumentException - If version is null
      */
-    MavenUrlOption version( VersionResolver resolver );
+    MavenUrlReference version( VersionResolver resolver );
 
     /**
      * Version will be discovered from the dependencies of Maven project that includes the test.
      *
      * @return itself, for fluent api usage
      */
-    MavenUrlOption versionAsInProject();
+    MavenUrlReference versionAsInProject();
 
     /**
      * Returns true if the specified version is a snapshot version, false if not and null if the version is not yet

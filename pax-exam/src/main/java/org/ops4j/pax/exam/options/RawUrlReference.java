@@ -25,8 +25,8 @@ import static org.ops4j.lang.NullArgumentException.*;
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.5.0, April 26, 2009
  */
-public class UrlOption
-    implements UrlReferenceOption
+public class RawUrlReference
+    implements UrlReference
 {
 
     /**
@@ -41,7 +41,7 @@ public class UrlOption
      *
      * @throws IllegalArgumentException - If url is null or empty
      */
-    public UrlOption( final String url )
+    public RawUrlReference( final String url )
     {
         validateNotEmpty( url, true, "URL" );
         m_url = url;
