@@ -345,6 +345,18 @@ public class CoreOptions
     }
 
     /**
+     * Convenience factory method for adding a maven bundle based on a meven artifact.
+     *
+     * @param artifact maven artifact
+     *
+     * @return maven specific provisioning option
+     */
+    public static MavenArtifactProvisionOption mavenBundle( final MavenArtifactOption artifact )
+    {
+        return new MavenArtifactProvisionOption( artifact );
+    }
+
+    /**
      * Creates a {@link WrappedUrlProvisionOption}.
      *
      * @param url wrapped bundle url

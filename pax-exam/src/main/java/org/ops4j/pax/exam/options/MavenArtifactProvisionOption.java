@@ -17,6 +17,8 @@
  */
 package org.ops4j.pax.exam.options;
 
+import static org.ops4j.lang.NullArgumentException.*;
+
 /**
  * Option specifying provisioning from an maven url (Pax URL mvn: handler).
  *
@@ -43,6 +45,17 @@ public class MavenArtifactProvisionOption
     public MavenArtifactProvisionOption()
     {
         m_artifact = new MavenArtifactOption();
+    }
+
+    /**
+     * Constructor based on a mevn artifact option.
+     *
+     * @param artifact maven artifact (cannot be null)
+     */
+    public MavenArtifactProvisionOption( final MavenArtifactOption artifact )
+    {
+        validateNotNull( artifact, "Maven artifact" );
+        m_artifact = artifact;
     }
 
     /**
