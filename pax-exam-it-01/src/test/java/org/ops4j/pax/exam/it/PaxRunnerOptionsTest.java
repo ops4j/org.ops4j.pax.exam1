@@ -100,32 +100,6 @@ public class PaxRunnerOptionsTest
     }
 
     /**
-     * Pax Exam test options that adds provisioning via a file scanner.
-     * Valid for test methods that starts with "file".
-     *
-     * @return test options
-     */
-    @Configuration
-    @AppliesTo( "file.*" )
-    public static Option[] configureFileScanner()
-    {
-        return options(
-            scanFile( "file://foo/bar.bundles" ).noStart().update().startLevel( 10 ),
-            scanFile( url( "file://foo/bar.bundles" ) ).noStart().update().startLevel( 20 ),
-            scanFile( maven( "foo", "bar" ).type( "bundles" ) ).noStart().update().startLevel( 30 )
-        );
-    }
-
-    /**
-     * TODO what we can test here?
-     */
-    @Test
-    @Ignore
-    public void fileScanner()
-    {
-    }
-
-    /**
      * Pax Exam test options that adds provisioning via a bundle scanner.
      * Valid for test methods that starts with "bundle".
      *
