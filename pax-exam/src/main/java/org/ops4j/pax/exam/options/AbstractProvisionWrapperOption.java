@@ -82,7 +82,7 @@ public abstract class AbstractProvisionWrapperOption<T extends AbstractProvision
     /**
      * {@inheritDoc}
      */
-    public T update( boolean shouldUpdate )
+    public T update( final Boolean shouldUpdate )
     {
         m_delegate.update( shouldUpdate );
         return itself();
@@ -109,7 +109,7 @@ public abstract class AbstractProvisionWrapperOption<T extends AbstractProvision
     /**
      * {@inheritDoc}
      */
-    public T start( boolean shouldStart )
+    public T start( final Boolean shouldStart )
     {
         m_delegate.start( shouldStart );
         return itself();
@@ -136,7 +136,7 @@ public abstract class AbstractProvisionWrapperOption<T extends AbstractProvision
     /**
      * {@inheritDoc}
      */
-    public T startLevel( int startLevel )
+    public T startLevel( final Integer startLevel )
     {
         m_delegate.startLevel( startLevel );
         return itself();

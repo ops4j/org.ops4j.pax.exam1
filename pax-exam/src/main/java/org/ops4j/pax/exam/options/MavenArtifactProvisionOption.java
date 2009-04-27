@@ -144,7 +144,7 @@ public class MavenArtifactProvisionOption
      * SNAPSHOT versions.
      */
     @Override
-    public MavenArtifactProvisionOption update( boolean shouldUpdate )
+    public MavenArtifactProvisionOption update( final Boolean shouldUpdate )
     {
         m_updateUsed = true;
         return super.update( shouldUpdate );

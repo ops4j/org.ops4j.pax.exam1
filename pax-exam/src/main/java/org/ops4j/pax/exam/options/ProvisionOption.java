@@ -60,7 +60,7 @@ public interface ProvisionOption<T extends ProvisionOption>
      *
      * @return itself, for fluent api usage
      */
-    T update( boolean shouldUpdate );
+    T update( Boolean shouldUpdate );
 
     /**
      * Setter. Specifyies that the provisioned bundle(s) should be updated.
@@ -83,7 +83,7 @@ public interface ProvisionOption<T extends ProvisionOption>
      *
      * @return itself, for fluent api usage
      */
-    T start( boolean shouldStart );
+    T start( Boolean shouldStart );
 
     /**
      * Setter. Specifyies that the provisioned bundle(s) should be started.
@@ -106,6 +106,6 @@ public interface ProvisionOption<T extends ProvisionOption>
      *
      * @return itself, for fluent api usage
      */
-    T startLevel( final int startLevel );
+    T startLevel( Integer startLevel );
 
 }

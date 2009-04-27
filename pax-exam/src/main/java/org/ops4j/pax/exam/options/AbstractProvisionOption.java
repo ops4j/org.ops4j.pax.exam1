@@ -60,7 +60,7 @@ public abstract class AbstractProvisionOption<T extends AbstractProvisionOption>
     /**
      * {@inheritDoc}
      */
-    public T update( boolean shouldUpdate )
+    public T update( final Boolean shouldUpdate )
     {
         m_shouldUpdate = shouldUpdate;
         return itself();
@@ -93,7 +93,7 @@ public abstract class AbstractProvisionOption<T extends AbstractProvisionOption>
     /**
      * {@inheritDoc}
      */
-    public T start( boolean shouldStart )
+    public T start( final Boolean shouldStart )
     {
         m_shouldStart = shouldStart;
         return itself();
@@ -126,7 +126,7 @@ public abstract class AbstractProvisionOption<T extends AbstractProvisionOption>
     /**
      * {@inheritDoc}
      */
-    public T startLevel( final int startLevel )
+    public T startLevel( final Integer startLevel )
     {
         m_startLevel = startLevel;
         return itself();
