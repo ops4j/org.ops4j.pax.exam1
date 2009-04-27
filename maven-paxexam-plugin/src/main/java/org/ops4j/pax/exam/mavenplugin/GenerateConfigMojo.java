@@ -28,6 +28,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.factory.ArtifactFactory;
 import org.apache.maven.artifact.metadata.ArtifactMetadataSource;
@@ -88,7 +89,7 @@ public class GenerateConfigMojo extends AbstractMojo
     /**
      * settings for this plugin in <settings> tag.
      *
-     * @parameter
+     * @parameter default-value="{}"
      */
     private Map<String, String> settings;
 
@@ -138,7 +139,7 @@ public class GenerateConfigMojo extends AbstractMojo
 
             writeHeader( printer );
             writeProvisioning( printer, dependencies );
-            writeSettings( printer, options );
+            writeSettings( printer );
 
             getLog().info( "PAX EXAM PLUGIN Created: " + outputFile );
         }
@@ -179,12 +180,12 @@ public class GenerateConfigMojo extends AbstractMojo
         out.println();
     }
 
-    private void writeSettings( PrintStream out, Map<String, String> settings )
+    private void writeSettings( PrintStream out )
     {
         out.println( "# Settings parsed from pom.xml in settings of plugin" );
-        for( String key : settings.keySet() )
+        for( String key : options.keySet() )
         {
-            out.println( "--" + key + "=" + settings.get( key ) );
+            out.println( "--" + key + "=" + options.get( key ) );
         }
         out.println();
     }
@@ -255,6 +256,7 @@ public class GenerateConfigMojo extends AbstractMojo
             }
 
             out.println(
+
                 createPaxRunnerScan( artifact,
                                      getSettingsForArtifact( settings.get( SETTINGS_DEPENDENCY_OPTIONS ),
                                                              artifact.getGroupId(), artifact.getArtifactId()
@@ -282,15 +284,18 @@ public class GenerateConfigMojo extends AbstractMojo
      */
     public String getSettingsForArtifact( String fullSettings, String groupId, String artifactId )
     {
-        for( String token : fullSettings.split( "," ) )
+        if( fullSettings != null )
         {
-            int end = ( token.indexOf( "@" ) >= 0 ) ? token.indexOf( "@" ) : token.length();
-            String ga_part[] = token.substring( 0, end ).split( ":" );
-            if( ga_part[ 0 ].equals( groupId ) && ga_part[ 1 ].equals( artifactId ) )
+            for( String token : fullSettings.split( "," ) )
             {
-                return token.substring( end );
-            }
+                int end = ( token.indexOf( "@" ) >= 0 ) ? token.indexOf( "@" ) : token.length();
+                String ga_part[] = token.substring( 0, end ).split( ":" );
+                if( ga_part[ 0 ].equals( groupId ) && ga_part[ 1 ].equals( artifactId ) )
+                {
+                    return token.substring( end );
+                }
 
+            }
         }
         return "";
     }
