@@ -120,7 +120,7 @@ public class PaxRunnerOptionsTest
      * TODO what we can test here?
      */
     @Test
-    //@Ignore
+    @Ignore
     public void fileScanner()
     {
     }
