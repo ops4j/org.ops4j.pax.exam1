@@ -82,7 +82,7 @@ public class GenerateConfigMojo extends AbstractMojo
     /**
      * pax runner arguments defined in <options> tag in configuration of plugin.
      *
-     * @parameter
+     * @parameter default-value="{}"
      */
     private Map<String, String> options;
 
