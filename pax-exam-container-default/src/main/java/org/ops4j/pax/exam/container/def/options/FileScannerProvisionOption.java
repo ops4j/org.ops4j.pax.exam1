@@ -19,7 +19,6 @@ package org.ops4j.pax.exam.container.def.options;
 
 import static org.ops4j.pax.exam.container.def.options.ScannerUtils.*;
 import org.ops4j.pax.exam.options.AbstractUrlProvisionOption;
-import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.UrlReference;
 import static org.ops4j.pax.runner.provision.ServiceConstants.*;
 import static org.ops4j.pax.runner.scanner.file.ServiceConstants.*;
@@ -44,7 +43,8 @@ public class FileScannerProvisionOption
      */
     public FileScannerProvisionOption( final String url )
     {
-        super( new UrlProvisionOption( url ) );
+        super( url );
+        update( false );
     }
 
     /**
@@ -57,6 +57,7 @@ public class FileScannerProvisionOption
     public FileScannerProvisionOption( final UrlReference url )
     {
         super( url );
+        update( false );
     }
 
     /**
