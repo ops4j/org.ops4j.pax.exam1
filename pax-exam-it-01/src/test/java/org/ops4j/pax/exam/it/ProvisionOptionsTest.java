@@ -23,7 +23,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Option;
-import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import org.ops4j.pax.exam.junit.AppliesTo;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
@@ -50,8 +49,7 @@ public class ProvisionOptionsTest
         return options(
             provision(
                 "mvn:org.ops4j.pax.url/pax-url-mvn"
-            ),
-            logProfile()
+            )
         );
     }
 
@@ -80,8 +78,7 @@ public class ProvisionOptionsTest
         return options(
             provision(
                 mavenBundle().groupId( "org.ops4j.pax.url" ).artifactId( "pax-url-mvn" ).version( "0.3.2" )
-            ),
-            logProfile()
+            )
         );
     }
 

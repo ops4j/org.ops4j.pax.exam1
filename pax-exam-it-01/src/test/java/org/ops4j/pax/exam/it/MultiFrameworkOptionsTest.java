@@ -25,7 +25,6 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Option;
-import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
@@ -40,7 +39,7 @@ public class MultiFrameworkOptionsTest
 {
 
     /**
-     * Pax Exam test options that adds a log profile.
+     * Pax Exam test options that specify to run the test on all frameworks.
      * Valid for all test methods.
      *
      * @return test options
@@ -49,7 +48,6 @@ public class MultiFrameworkOptionsTest
     public static Option[] configure()
     {
         return options(
-            logProfile(),
             allFrameworksVersions()
         );
     }

@@ -21,7 +21,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Option;
-import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import org.ops4j.pax.exam.junit.AppliesTo;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
@@ -36,20 +35,6 @@ import static org.ops4j.pax.exam.junit.JUnitOptions.*;
 @RunWith( JUnit4TestRunner.class )
 public class JUnitOptionsTest
 {
-
-    /**
-     * Pax Exam test options that adds a log profile.
-     * Valid for all test methods.
-     *
-     * @return test options
-     */
-    @Configuration
-    public static Option[] configure()
-    {
-        return options(
-            logProfile()
-        );
-    }
 
     @Configuration
     @AppliesTo( "junitBundlesSpecified" )

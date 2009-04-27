@@ -25,7 +25,6 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Option;
-import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import org.ops4j.pax.exam.junit.AppliesTo;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
@@ -39,20 +38,6 @@ import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 @RunWith( JUnit4TestRunner.class )
 public class FrameworkOptionsTest
 {
-
-    /**
-     * Pax Exam test options that adds a log profile.
-     * Valid for all test methods.
-     *
-     * @return test options
-     */
-    @Configuration
-    public static Option[] configure()
-    {
-        return options(
-            logProfile()
-        );
-    }
 
     /**
      * Pax Exam test options that specified Equinox as test framework.
