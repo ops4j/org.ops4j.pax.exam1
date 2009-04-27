@@ -24,7 +24,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.internal.runners.TestClass;
 import org.junit.internal.runners.TestMethod;
-import org.osgi.framework.Bundle;
 import static org.ops4j.lang.NullArgumentException.*;
 import static org.ops4j.pax.exam.Constants.*;
 import org.ops4j.pax.exam.Info;
@@ -36,7 +35,6 @@ import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.runtime.PaxExamRuntime;
 import org.ops4j.pax.exam.spi.container.TestContainer;
 import org.ops4j.pax.exam.spi.container.TestContainerFactory;
-import org.ops4j.pax.exam.spi.container.TimeoutException;
 
 /**
  * A {@link TestMethod} that upon invokation starts a {@link TestContainer} and executes the test in the test container.
@@ -47,6 +45,27 @@ import org.ops4j.pax.exam.spi.container.TimeoutException;
 public class JUnit4TestMethod
     extends TestMethod
 {
+
+    /**
+     * Test flow not yet started.
+     */
+    private static final int NOT_STARTED = 0;
+    /**
+     * Test container started.
+     */
+    private static final int CONTAINER_STARTED = 1;
+    /**
+     * Test bundle installed.
+     */
+    private static final int PROBE_INSTALLED = 2;
+    /**
+     * Test bundle started.
+     */
+    private static final int PROBE_STARTED = 3;
+    /**
+     * Test flow ended
+     */
+    private static final int SUCCESFUL = 4;
 
     /**
      * JCL logger.
@@ -107,7 +126,7 @@ public class JUnit4TestMethod
         final String fullTestName = m_name + "(" + m_testMethod.getDeclaringClass().getName() + ")";
         LOG.info( "Starting test " + fullTestName );
 
-        boolean succesful = false;
+        int executionState = NOT_STARTED;
         final TestContainerFactory containerFactory = PaxExamRuntime.getTestContainerFactory();
         TestContainer container = null;
         try
@@ -115,11 +134,14 @@ public class JUnit4TestMethod
             LOG.trace( "Start test container" );
             container = containerFactory.newInstance( m_options );
             container.start();
+            executionState = CONTAINER_STARTED;
 
             LOG.trace( "Install and start test bundle" );
             final long bundleId = container.installBundle( m_testBundleUrl );
+            executionState = PROBE_INSTALLED;
             container.setBundleStartLevel( bundleId, START_LEVEL_TEST_BUNDLE );
             container.startBundle( bundleId );
+            executionState = PROBE_STARTED;
 
             LOG.trace( "Execute test [" + m_name + "]" );
             final CallableTestMethod callable = container.getService( CallableTestMethod.class );
@@ -128,6 +150,7 @@ public class JUnit4TestMethod
                 LOG.info( "Starting test " + fullTestName );
                 callable.call();
                 LOG.info( "Test " + fullTestName + " ended succesfully" );
+                executionState = SUCCESFUL;
             }
             catch( InstantiationException e )
             {
@@ -137,20 +160,22 @@ public class JUnit4TestMethod
             {
                 throw new InvocationTargetException( e );
             }
-            succesful = true;
         }
         finally
         {
-            if( container != null )
+            if( container != null && executionState > CONTAINER_STARTED )
             {
+                // Do not stop the container if not succesful started
                 try
                 {
                     container.stop();
                 }
                 catch( RuntimeException ignore )
                 {
-                    if( succesful )
+                    if( executionState >= SUCCESFUL )
                     {
+                        //throw catched exception if the test already was succesfull
+                        //noinspection ThrowFromFinallyBlock
                         throw ignore;
                     }
                     else
