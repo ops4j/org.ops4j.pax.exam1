@@ -18,125 +18,14 @@
 package org.ops4j.pax.exam.options;
 
 /**
- * Abstract implementation of {@link ProvisionOption}.
+ * Convenience abstract implementation of {@link ProvisionOption}.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, December 08, 2008
  */
 public abstract class AbstractProvisionOption<T extends AbstractProvisionOption>
+    extends AbstractProvisionControl<T>
     implements ProvisionOption<T>
 {
-
-    /**
-     * If the scanned bundles should be updated. Default behaviour is depending on used Test Container implementation.
-     */
-    private Boolean m_shouldUpdate;
-    /**
-     * If the scanned bundles should be started. Default behaviour is depending on used Test Container implementation.
-     */
-    private Boolean m_shouldStart;
-    /**
-     * Start level of scanned bundles. Default behaviour is depending on used Test Container implementation.
-     */
-    private Integer m_startLevel;
-
-    /**
-     * Constructor.
-     */
-    public AbstractProvisionOption()
-    {
-        m_shouldUpdate = true;
-        m_shouldStart = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean shouldUpdate()
-    {
-        return m_shouldUpdate;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public T update( final Boolean shouldUpdate )
-    {
-        m_shouldUpdate = shouldUpdate;
-        return itself();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public T update()
-    {
-        return update( true );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public T noUpdate()
-    {
-        return update( false );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean shouldStart()
-    {
-        return m_shouldStart;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public T start( final Boolean shouldStart )
-    {
-        m_shouldStart = shouldStart;
-        return itself();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public T start()
-    {
-        return start( true );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public T noStart()
-    {
-        return start( false );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Integer getStartLevel()
-    {
-        return m_startLevel;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public T startLevel( final Integer startLevel )
-    {
-        m_startLevel = startLevel;
-        return itself();
-    }
-
-    /**
-     * Implemented by sub classes in order to return itself (this) for fluent api usage
-     *
-     * @return itself
-     */
-    protected abstract T itself();
 
 }
