@@ -1,3 +1,20 @@
+/*
+ * Copyright 2009 Toni Menzel.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.
+ *
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.ops4j.pax.exam.mavenplugin;
 
 import java.io.File;
@@ -39,6 +56,7 @@ public class GenerateConfigMojo extends AbstractMojo
 
     protected static final String SEPARATOR = "/";
 
+    private static final String SETTINGS_DEPENDENCY_OPTIONS = "dependency_options";
     /**
      * The maven project.
      *
@@ -65,8 +83,14 @@ public class GenerateConfigMojo extends AbstractMojo
      *
      * @parameter
      */
-
     private Map<String, String> options;
+
+    /**
+     * settings for this plugin in <settings> tag.
+     *
+     * @parameter
+     */
+    private Map<String, String> settings;
 
     /**
      * @component
@@ -182,48 +206,6 @@ public class GenerateConfigMojo extends AbstractMojo
             }
         }
 
-        Collections.sort( dependencies, new Comparator<Dependency>()
-        {
-            public int compare( Dependency o1, Dependency o2 )
-            {
-                int result = o1.getGroupId().compareTo( o2.getGroupId() );
-                if( result == 0 )
-                {
-                    result = o1.getArtifactId().compareTo( o2.getArtifactId() );
-                    if( result == 0 )
-                    {
-                        result = o1.getType().compareTo( o2.getType() );
-                        if( result == 0 )
-                        {
-                            if( o1.getClassifier() == null )
-                            {
-                                if( o2.getClassifier() != null )
-                                {
-                                    result = 1;
-                                }
-                            }
-                            else
-                            {
-                                if( o2.getClassifier() != null )
-                                {
-                                    result = o1.getClassifier().compareTo( o2.getClassifier() );
-                                }
-                                else
-                                {
-                                    result = -1;
-                                }
-                            }
-                            if( result == 0 )
-                            {
-                                result = o1.getVersion().compareTo( o2.getVersion() );
-                            }
-                        }
-                    }
-                }
-                return result;
-            }
-        }
-        );
         return dependencies;
     }
 
@@ -271,13 +253,60 @@ public class GenerateConfigMojo extends AbstractMojo
             {
                 resolver.resolve( artifact, remoteRepositories, session.getLocalRepository() );
             }
-            out.println( artifact.getFile().toURI().normalize().toString() );
 
-            getLog().debug( "Dependency: " + dependency + " classifier: " + dependency.getClassifier() + " type: "
-                            + dependency.getType()
+            out.println(
+                createPaxRunnerScan( artifact,
+                                     getSettingsForArtifact( settings.get( SETTINGS_DEPENDENCY_OPTIONS ),
+                                                             artifact.getGroupId(), artifact.getArtifactId()
+                                     )
+                )
+            );
+
+            getLog().debug( "Dependency: " + dependency
+                            + " classifier: " + dependency.getClassifier()
+                            + " type: " + dependency.getType()
             );
         }
         out.println();
+    }
+
+    /**
+     * Example:
+     * getSettingsForArtifact ( "foo:bar@1,chees:ham2@3@nostart","cheese","ham") --> @3@nostart
+     *
+     * @param fullSettings settings separated by comma. GA patter + @options
+     * @param groupId      GA part groupId to be matched inside fulllSettings
+     * @param artifactId   GA part artifactId to be matched inside fulllSettings
+     *
+     * @return option portion of matched part in fullSettings or empty string if no matching.
+     */
+    public String getSettingsForArtifact( String fullSettings, String groupId, String artifactId )
+    {
+        for( String token : fullSettings.split( "," ) )
+        {
+            int end = ( token.indexOf( "@" ) >= 0 ) ? token.indexOf( "@" ) : token.length();
+            String ga_part[] = token.substring( 0, end ).split( ":" );
+            if( ga_part[ 0 ].equals( groupId ) && ga_part[ 1 ].equals( artifactId ) )
+            {
+                return token.substring( end );
+            }
+
+        }
+        return "";
+    }
+
+    /**
+     * Creates scanner directives from artifact to be parsed by pax runner.
+     * Also includes options found and matched in settings part of configuration.
+     *
+     * @param artifact     to be used to create scanner directive.
+     * @param optionTokens to be used to create scanner directive.
+     *
+     * @return pax runner compatible scanner directive.
+     */
+    private String createPaxRunnerScan( Artifact artifact, String optionTokens )
+    {
+        return "scan-bundle:" + artifact.getFile().toURI().normalize().toString() + optionTokens;
     }
 
 }
