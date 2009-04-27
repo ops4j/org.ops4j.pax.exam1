@@ -19,7 +19,6 @@ package org.ops4j.pax.exam.container.def.options;
 
 import static org.ops4j.pax.exam.container.def.options.ScannerUtils.*;
 import org.ops4j.pax.exam.options.AbstractUrlProvisionOption;
-import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.UrlReference;
 import static org.ops4j.pax.runner.provision.ServiceConstants.*;
 import static org.ops4j.pax.runner.scanner.features.ServiceConstants.*;
@@ -48,8 +47,9 @@ public class FeaturesScannerProvisionOption
     public FeaturesScannerProvisionOption( final String repositoryUrl,
                                            final String... features )
     {
-        super( new UrlProvisionOption( repositoryUrl ) );
+        super( repositoryUrl );
         m_features = features;
+        update( false );
     }
 
     /**
@@ -65,6 +65,7 @@ public class FeaturesScannerProvisionOption
     {
         super( repositoryUrl );
         m_features = features;
+        update( false );
     }
 
     /**
