@@ -67,7 +67,7 @@ public class MavenUtils
             if( version == null )
             {
                 throw new RuntimeException(
-                    "Could not detrmine version. Do you have a dependency for " + groupId + "/" + artifactId
+                    "Could not resolve version. Do you have a dependency for " + groupId + "/" + artifactId
                     + " in your maven project?"
                 );
             }
@@ -77,7 +77,7 @@ public class MavenUtils
         {
             // TODO throw a better exception
             throw new RuntimeException(
-                "Could not detrmine version. Did you configured the plugin in your maven project?"
+                "Could not resolve version. Did you configured the plugin in your maven project?"
                 + "Or maybe you did not run the maven build and you are using an IDE?"
             );
         }
