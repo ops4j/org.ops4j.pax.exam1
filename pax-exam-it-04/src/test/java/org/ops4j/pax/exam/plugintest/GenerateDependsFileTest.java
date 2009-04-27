@@ -15,10 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.exam.it;
+package org.ops4j.pax.exam.plugintest;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.ops4j.pax.exam.CoreOptions.*;
@@ -35,7 +33,7 @@ import org.ops4j.pax.exam.junit.JUnit4TestRunner;
  * @since 0.3.0, November 18, 2008
  */
 @RunWith( JUnit4TestRunner.class )
-public class UsingMavenPluginForVersionsTest
+public class GenerateDependsFileTest
 {
 
     /**
@@ -48,51 +46,21 @@ public class UsingMavenPluginForVersionsTest
     {
         return options(
             provision(
-                mavenBundle().groupId( "org.ops4j.pax.url" ).artifactId( "pax-url-mvn" ).version( asInProject() ),
-                mavenBundle( "org.ops4j.pax.url", "pax-url-war" ).version( asInProject() ),
-                mavenBundle( "org.ops4j.pax.url", "pax-url-link" ).versionAsInProject()
+                mavenBundle().groupId( "org.ops4j.base" ).artifactId( "ops4j-base-lang" ).version( asInProject() ),
+                mavenBundle( "org.ops4j.base", "ops4j-base-lang" ).version( asInProject() ),
+                mavenBundle( "org.ops4j.base", "ops4j-base-lang" ).versionAsInProject()
             ),
             logProfile()
         );
     }
 
     /**
-     * Tests that the Pax URL mvn: url handler has been provisioned by creating a mvn: url. If the url creation fails,
-     * it means that the bundle was not provisioned.
-     *
-     * @throws MalformedURLException - Not expected
+     * The test does not need to do anything because it will just fail if the version above cannot be resolved.
      */
     @Test
-    public void validMvnURL()
-        throws MalformedURLException
+    public void provisioned()
     {
-        new URL( "mvn:org.ops4j.pax.swissbox/pax-swissbox-core" );
-    }
-
-    /**
-     * Tests that the Pax URL war: url handler has been provisioned by creating a war: url. If the url creation fails,
-     * it means that the bundle was not provisioned.
-     *
-     * @throws MalformedURLException - Not expected
-     */
-    @Test
-    public void validWarURL()
-        throws MalformedURLException
-    {
-        new URL( "war:file:foo.war" );
-    }
-
-    /**
-     * Tests that the Pax URL link: url handler has been provisioned by creating a link: url. If the url creation fails,
-     * it means that the bundle was not provisioned.
-     *
-     * @throws MalformedURLException - Not expected
-     */
-    @Test
-    public void validLinkURL()
-        throws MalformedURLException
-    {
-        new URL( "link:file:foo.link" );
+        //does nothing
     }
 
 }

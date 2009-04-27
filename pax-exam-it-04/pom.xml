@@ -19,7 +19,7 @@
 
   <name>OPS4J Pax Exam - Integration Tests Set 04</name>
   <description>
-    Integration tests related to usage of PAx Exam Maven Plugin.
+    Integration tests related to usage of Pax Exam Maven Plugin.
   </description>
 
   <!-- we can use full maven properties incl. inheritance ! -->
@@ -63,9 +63,10 @@
         <version>${pom.version}</version>
         <executions>
           <execution>
-            <id>generate-config</id>
+            <id>generate</id>
             <goals>
               <goal>generate-config</goal>
+              <goal>generate-depends-file</goal>
             </goals>
           </execution>
         </executions>

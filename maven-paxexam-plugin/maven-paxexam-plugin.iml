@@ -11,6 +11,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.servicemix.tooling:depends-maven-plugin:1.1" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.4" level="project" />
     <orderEntry type="library" name="Maven: org.easymock:easymock:2.4" level="project" />
     <orderEntry type="library" name="Maven: org.osgi:org.osgi.core:4.0.1" level="project" />
@@ -49,8 +50,6 @@
     <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-monitor:2.0.7" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.apache.maven.wagon:wagon-ssh:1.0-beta-2" level="project" />
     <orderEntry type="library" exported="" name="Maven: com.jcraft:jsch:0.1.27" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.apache.servicemix.tooling:depends-maven-plugin:1.1" level="project" />
   </component>
-  <component name="libraryTable" />
 </module>
 
