@@ -24,29 +24,29 @@ package org.ops4j.pax.exam.options;
  * @since 0.3.0, December 27, 2008
  */
 public class WrappedUrlProvisionOption
-    extends AbstractDelegateProvisionOption<WrappedUrlProvisionOption>
+    extends AbstractUrlProvisionOption<WrappedUrlProvisionOption>
 {
 
     /**
      * Constructor.
      *
-     * @param url provision url (cannot be null or empty)
+     * @param url wrapped jar url (cannot be null or empty)
      *
      * @throws IllegalArgumentException - If url is null or empty
      */
     public WrappedUrlProvisionOption( final String url )
     {
-        super( new UrlProvisionOption( url ) );
+        super( url );
     }
 
     /**
      * Constructor.
      *
-     * @param url provision url (cannot be null)
+     * @param url wrapped jar url (cannot be null)
      *
      * @throws IllegalArgumentException - If url is null
      */
-    public WrappedUrlProvisionOption( final ProvisionOption url )
+    public WrappedUrlProvisionOption( final UrlReference url )
     {
         super( url );
     }

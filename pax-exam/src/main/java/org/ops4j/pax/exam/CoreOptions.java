@@ -41,6 +41,7 @@ import org.ops4j.pax.exam.options.SystemPropertyOption;
 import org.ops4j.pax.exam.options.TestContainerStartTimeoutOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
+import org.ops4j.pax.exam.options.UrlReference;
 
 /**
  * Factory methods for core options.
@@ -372,25 +373,25 @@ public class CoreOptions
     /**
      * Creates a {@link WrappedUrlProvisionOption}.
      *
-     * @param url wrapped bundle url
+     * @param jarToWrapUrl url of jar to be wrapped
      *
      * @return wrap specific provisioning option
      */
-    public static WrappedUrlProvisionOption wrappedBundle( final String url )
+    public static WrappedUrlProvisionOption wrappedBundle( final String jarToWrapUrl )
     {
-        return new WrappedUrlProvisionOption( url );
+        return new WrappedUrlProvisionOption( jarToWrapUrl );
     }
 
     /**
      * Creates a {@link WrappedUrlProvisionOption}.
      *
-     * @param wrapped wrapped bundle
+     * @param jarToWrapUrl url of jar to be wrapped
      *
      * @return wrap specific provisioning option
      */
-    public static WrappedUrlProvisionOption wrappedBundle( final ProvisionOption wrapped )
+    public static WrappedUrlProvisionOption wrappedBundle( final UrlReference jarToWrapUrl )
     {
-        return new WrappedUrlProvisionOption( wrapped );
+        return new WrappedUrlProvisionOption( jarToWrapUrl );
     }
 
     /**

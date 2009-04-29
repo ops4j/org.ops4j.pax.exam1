@@ -68,6 +68,16 @@ public abstract class AbstractUrlProvisionOption<T extends AbstractUrlProvisionO
     }
 
     /**
+     * Getter.
+     *
+     * @return url reference
+     */
+    public UrlReference getUrlReference()
+    {
+        return m_urlReference;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
