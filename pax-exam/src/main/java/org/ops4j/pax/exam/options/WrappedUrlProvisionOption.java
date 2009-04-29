@@ -62,19 +62,6 @@ public class WrappedUrlProvisionOption
     /**
      * {@inheritDoc}
      */
-    @Override
-    public String toString()
-    {
-        final StringBuilder sb = new StringBuilder();
-        sb.append( "WrappedUrlProvisionOption" );
-        sb.append( "{url=" ).append( getURL() );
-        sb.append( '}' );
-        return sb.toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     protected WrappedUrlProvisionOption itself()
     {
         return this;
