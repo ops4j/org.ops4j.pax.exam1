@@ -20,12 +20,12 @@ package org.ops4j.pax.exam.options;
 import static org.ops4j.lang.NullArgumentException.*;
 
 /**
- * Abstract {@link ProvisionOption} that wraps another provision option.
+ * Abstract {@link ProvisionOption} that delegates to another provision option.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0, December 08, 2008
  */
-public abstract class AbstractProvisionWrapperOption<T extends AbstractProvisionWrapperOption>
+public abstract class AbstractDelegateProvisionOption<T extends AbstractDelegateProvisionOption>
     implements ProvisionOption<T>
 {
 
@@ -41,7 +41,7 @@ public abstract class AbstractProvisionWrapperOption<T extends AbstractProvision
      *
      * @throws IllegalArgumentException - If delegate is null
      */
-    protected AbstractProvisionWrapperOption( final ProvisionOption delegate )
+    protected AbstractDelegateProvisionOption( final ProvisionOption delegate )
     {
         validateNotNull( delegate, "Delegate" );
         m_delegate = delegate;

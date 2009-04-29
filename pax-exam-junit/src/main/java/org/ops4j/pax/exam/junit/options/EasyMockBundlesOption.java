@@ -19,7 +19,7 @@ package org.ops4j.pax.exam.junit.options;
 
 import static org.ops4j.pax.exam.Constants.*;
 import static org.ops4j.pax.exam.CoreOptions.*;
-import org.ops4j.pax.exam.options.AbstractProvisionWrapperOption;
+import org.ops4j.pax.exam.options.AbstractDelegateProvisionOption;
 import org.ops4j.pax.exam.options.MavenArtifactProvisionOption;
 
 /**
@@ -30,7 +30,7 @@ import org.ops4j.pax.exam.options.MavenArtifactProvisionOption;
  * @since 0.3.0, December 09, 2008
  */
 public class EasyMockBundlesOption
-    extends AbstractProvisionWrapperOption<EasyMockBundlesOption>
+    extends AbstractDelegateProvisionOption<EasyMockBundlesOption>
 {
 
     /**

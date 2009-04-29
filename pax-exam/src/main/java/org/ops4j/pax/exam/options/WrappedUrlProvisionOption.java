@@ -24,7 +24,7 @@ package org.ops4j.pax.exam.options;
  * @since 0.3.0, December 27, 2008
  */
 public class WrappedUrlProvisionOption
-    extends AbstractProvisionWrapperOption<WrappedUrlProvisionOption>
+    extends AbstractDelegateProvisionOption<WrappedUrlProvisionOption>
 {
 
     /**

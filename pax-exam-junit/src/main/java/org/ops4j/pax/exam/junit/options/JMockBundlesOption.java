@@ -2,7 +2,7 @@ package org.ops4j.pax.exam.junit.options;
 
 import static org.ops4j.pax.exam.Constants.*;
 import static org.ops4j.pax.exam.CoreOptions.*;
-import org.ops4j.pax.exam.options.AbstractProvisionWrapperOption;
+import org.ops4j.pax.exam.options.AbstractDelegateProvisionOption;
 import org.ops4j.pax.exam.options.MavenArtifactProvisionOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
 
@@ -13,7 +13,7 @@ import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
  * @author Toni Menzel (tonit)
  * @since Mar 15, 2009
  */
-public class JMockBundlesOption extends AbstractProvisionWrapperOption<JMockBundlesOption>
+public class JMockBundlesOption extends AbstractDelegateProvisionOption<JMockBundlesOption>
 {
 
     /**
