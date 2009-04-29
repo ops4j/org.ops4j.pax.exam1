@@ -21,7 +21,7 @@ package org.ops4j.pax.exam.junit.options;
 import static org.ops4j.pax.exam.Constants.*;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.options.AbstractDelegateProvisionOption;
-import org.ops4j.pax.exam.options.MavenArtifactProvisionOption;
+import org.ops4j.pax.exam.options.MavenArtifactUrlReference;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
 
 /**
@@ -62,7 +62,7 @@ public class JMockBundlesOption
      */
     public JMockBundlesOption version( final String version )
     {
-        ( (MavenArtifactProvisionOption) ( (WrappedUrlProvisionOption) getDelegate() ).getUrlReference() ).version(
+        ( (MavenArtifactUrlReference) ( (WrappedUrlProvisionOption) getDelegate() ).getUrlReference() ).version(
             version
         );
         return itself();
