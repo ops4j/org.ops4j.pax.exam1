@@ -43,9 +43,9 @@ public class EasyMockBundlesOption
                 .groupId( "org.easymock" )
                 .artifactId( "com.springsource.org.easymock" )
                 .version( "2.3.0" )
-                .noUpdate()
-                .startLevel( START_LEVEL_SYSTEM_BUNDLES )
         );
+        noUpdate();
+        startLevel( START_LEVEL_SYSTEM_BUNDLES );
     }
 
     /**

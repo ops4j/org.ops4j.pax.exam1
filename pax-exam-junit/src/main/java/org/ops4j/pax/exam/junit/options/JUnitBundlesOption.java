@@ -43,9 +43,9 @@ public class JUnitBundlesOption
                 .groupId( "org.junit" )
                 .artifactId( "com.springsource.org.junit" )
                 .version( "4.4.0" )
-                .noUpdate()
-                .startLevel( START_LEVEL_SYSTEM_BUNDLES )
         );
+        noUpdate();
+        startLevel( START_LEVEL_SYSTEM_BUNDLES );
     }
 
     /**

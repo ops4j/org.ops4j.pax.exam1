@@ -43,14 +43,14 @@ public class JMockBundlesOption
     {
         super(
             wrappedBundle(
-                mavenBundle()
+                maven()
                     .groupId( "org.jmock" )
                     .artifactId( "jmock" )
                     .version( "2.5.1" )
-                    .noUpdate()
-                    .startLevel( START_LEVEL_SYSTEM_BUNDLES )
             )
         );
+        noUpdate();
+        startLevel( START_LEVEL_SYSTEM_BUNDLES );
     }
 
     /**

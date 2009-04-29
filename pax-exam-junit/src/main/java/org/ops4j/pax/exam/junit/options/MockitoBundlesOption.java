@@ -46,14 +46,14 @@ public class MockitoBundlesOption
     {
         super(
             wrappedBundle(
-                mavenBundle()
+                maven()
                     .groupId( "org.mockito" )
                     .artifactId( "mockito-all" )
                     .version( "1.7" )
-                    .noUpdate()
-                    .startLevel( START_LEVEL_SYSTEM_BUNDLES )
             )
         );
+        noUpdate();
+        startLevel( START_LEVEL_SYSTEM_BUNDLES );
     }
 
     /**
