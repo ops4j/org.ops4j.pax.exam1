@@ -32,14 +32,15 @@ import org.ops4j.pax.exam.container.def.options.ProfileOption;
 import org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.VMOption;
+import org.ops4j.pax.exam.options.BootClasspathLibraryOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
+import org.ops4j.pax.exam.options.BundleStartLevelOption;
 import org.ops4j.pax.exam.options.FrameworkOption;
 import org.ops4j.pax.exam.options.FrameworkStartLevelOption;
 import org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
-import org.ops4j.pax.exam.options.BundleStartLevelOption;
 
 /**
  * Utility methods for converting configuration options to Pax Runner arguments.
@@ -101,6 +102,7 @@ class ArgumentsBuilder
                  filter( VMOption.class, options )
              )
         );
+        add( arguments, extractArguments( filter( BootClasspathLibraryOption.class, options ) ) );
 
         return arguments.toArray( new String[arguments.size()] );
     }
@@ -481,6 +483,30 @@ class ArgumentsBuilder
         if( startLevels.length > 0 )
         {
             arguments.add( "--bundleStartLevel=" + startLevels[ 0 ].getStartLevel() );
+        }
+        return arguments;
+    }
+
+    /**
+     * Converts boot classpath library options into corresponding arguments (--bcp/a, --bcp/p).
+     *
+     * @param libraries boot classpath libraries
+     *
+     * @return converted Pax Runner collection of arguments
+     */
+    private static Collection<String> extractArguments( final BootClasspathLibraryOption[] libraries )
+    {
+        final List<String> arguments = new ArrayList<String>();
+        for( BootClasspathLibraryOption library : libraries )
+        {
+            if( library.isBeforeFramework() )
+            {
+                arguments.add( "--bcp/p=" + library.getLibraryUrl().getURL() );
+            }
+            else
+            {
+                arguments.add( "--bcp/a=" + library.getLibraryUrl().getURL() );
+            }
         }
         return arguments;
     }

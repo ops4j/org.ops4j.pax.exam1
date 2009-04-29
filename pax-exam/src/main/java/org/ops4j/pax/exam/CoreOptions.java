@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.ops4j.lang.NullArgumentException.*;
 import static org.ops4j.pax.exam.OptionUtils.*;
+import org.ops4j.pax.exam.options.BootClasspathLibraryOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.BundleStartLevelOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
@@ -40,8 +41,8 @@ import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
 import org.ops4j.pax.exam.options.TestContainerStartTimeoutOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
-import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
 import org.ops4j.pax.exam.options.UrlReference;
+import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
 
 /**
  * Factory methods for core options.
@@ -436,6 +437,62 @@ public class CoreOptions
     public static BootDelegationOption bootDelegationPackage( final String pkg )
     {
         return new BootDelegationOption( pkg );
+    }
+
+    /**
+     * Creates a composite option of {@link org.ops4j.pax.exam.options.BootClasspathLibraryOption}s.
+     *
+     * @param urls boot classpath library urls (cannot be null or containing null entries)
+     *
+     * @return composite option of boot classpath options
+     *
+     * @throws IllegalArgumentException - If urls array is null or contains null entries
+     */
+    public static Option bootClasspathLibraries( final String... urls )
+    {
+        validateNotEmptyContent( urls, true, "Urls" );
+        final List<BootClasspathLibraryOption> options = new ArrayList<BootClasspathLibraryOption>();
+        for( String url : urls )
+        {
+            options.add( bootClasspathLibrary( url ) );
+        }
+        return bootClasspathLibraries( options.toArray( new BootClasspathLibraryOption[options.size()] ) );
+    }
+
+    /**
+     * Creates a composite option of {@link org.ops4j.pax.exam.options.BootClasspathLibraryOption}s.
+     *
+     * @param libraries boot classpath library options
+     *
+     * @return composite option of boot classpath library  options
+     */
+    public static Option bootClasspathLibraries( final BootClasspathLibraryOption... libraries )
+    {
+        return composite( libraries );
+    }
+
+    /**
+     * Creates a {@link org.ops4j.pax.exam.options.BootClasspathLibraryOption}.
+     *
+     * @param libraryUrl boot classpath library url
+     *
+     * @return boot classpath option
+     */
+    public static BootClasspathLibraryOption bootClasspathLibrary( final String libraryUrl )
+    {
+        return new BootClasspathLibraryOption( libraryUrl );
+    }
+
+    /**
+     * Creates a {@link org.ops4j.pax.exam.options.BootClasspathLibraryOption}.
+     *
+     * @param libraryUrl boot classpath library url
+     *
+     * @return boot classpath option
+     */
+    public static BootClasspathLibraryOption bootClasspathLibrary( final UrlReference libraryUrl )
+    {
+        return new BootClasspathLibraryOption( libraryUrl );
     }
 
     /**
