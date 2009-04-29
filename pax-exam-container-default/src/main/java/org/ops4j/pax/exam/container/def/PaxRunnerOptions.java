@@ -82,6 +82,20 @@ public class PaxRunnerOptions
     }
 
     /**
+     * Creates a {@link ProfileOption} by profile name and version.
+     *
+     * @param name    profile name
+     * @param version profile version
+     *
+     * @return profile option
+     */
+    public static ProfileOption profile( final String name,
+                                         final String version )
+    {
+        return new ProfileOption( name, version );
+    }
+
+    /**
      * Creates a Http Service {@link ProfileOption} (--profiles=web).
      *
      * @return web profile option
