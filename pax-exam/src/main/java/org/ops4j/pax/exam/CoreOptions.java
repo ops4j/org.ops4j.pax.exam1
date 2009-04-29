@@ -130,7 +130,6 @@ public class CoreOptions
             felix().version( "1.4.0" ),
             felix().version( "1.4.1" ),
             felix().version( "1.6.0" )
-
         );
     }
 
@@ -191,7 +190,8 @@ public class CoreOptions
             knopflerfish().version( "2.0.5" ),
             knopflerfish().version( "2.1.0" ),
             knopflerfish().version( "2.1.1" ),
-            knopflerfish().version( "2.2.0" )
+            knopflerfish().version( "2.2.0" ),
+            knopflerfish().version( "2.3.0" )
         );
     }
 
