@@ -204,11 +204,13 @@ public class PaxRunnerOptions
     /**
      * Creates a {@link org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption}.
      *
-     * @param Key and value of valid Pax Runner Options
+     * @param key   option name (key)
+     * @param value option value
      *
      * @return a PaxRunner Option instance.
      */
-    public static RawPaxRunnerOptionOption rawPaxRunnerOption( String key, String value )
+    public static RawPaxRunnerOptionOption rawPaxRunnerOption( final String key,
+                                                               final String value )
     {
         return new RawPaxRunnerOptionOption( key, value );
     }
@@ -216,11 +218,11 @@ public class PaxRunnerOptions
     /**
      * Creates a {@link org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption}.
      *
-     * @param full option of paxrunner
+     * @param option full Pax Runner option (including --)
      *
      * @return a PaxRunner Option instance.
      */
-    public static RawPaxRunnerOptionOption rawPaxRunnerOption( String option )
+    public static RawPaxRunnerOptionOption rawPaxRunnerOption( final String option )
     {
         return new RawPaxRunnerOptionOption( option );
     }
@@ -260,7 +262,7 @@ public class PaxRunnerOptions
     /**
      * Creates a {@link LocalRepositoryOption}.
      *
-     * @param localRepository path
+     * @param path localRepository path or url
      *
      * @return localRepository option
      */
