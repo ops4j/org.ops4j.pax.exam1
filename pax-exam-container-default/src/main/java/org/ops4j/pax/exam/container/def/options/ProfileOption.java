@@ -18,6 +18,7 @@
 package org.ops4j.pax.exam.container.def.options;
 
 import static org.ops4j.lang.NullArgumentException.*;
+import org.ops4j.pax.exam.MavenUtils;
 import org.ops4j.pax.exam.Option;
 
 /**
@@ -100,6 +101,18 @@ public class ProfileOption
         }
         m_version = version;
         return this;
+    }
+
+    /**
+     * Discovers the profile version out of the project.
+     * To do so, the maven project should have a dependency on the profile and Pax Exam maven plugin configured to run
+     * the "generate-depends-file" goal.
+     *
+     * @return itself, for fluent api usage
+     */
+    public ProfileOption versionAsInProject()
+    {
+        return version( MavenUtils.asInProject().getVersion( "org.ops4j.pax.runner.profiles", getProfile() ) );
     }
 
     /**
