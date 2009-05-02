@@ -37,6 +37,7 @@ import org.ops4j.pax.exam.container.def.options.RawScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOption;
 import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
 import org.ops4j.pax.exam.container.def.options.VMOption;
+import org.ops4j.pax.exam.container.def.options.CompositeScannerProvisionOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.UrlReference;
 
@@ -389,6 +390,30 @@ public class PaxRunnerOptions
                                                                final String... features )
     {
         return new FeaturesScannerProvisionOption( repositoryUrl, features );
+    }
+
+    /**
+     * Creates a {@link CompositeScannerProvisionOption}.
+     *
+     * @param fileUrl url of the file to be scanned
+     *
+     * @return composite scanner option
+     */
+    public static CompositeScannerProvisionOption scanComposite( final String fileUrl )
+    {
+        return new CompositeScannerProvisionOption( fileUrl );
+    }
+
+    /**
+     * Creates a {@link CompositeScannerProvisionOption}.
+     *
+     * @param fileUrl url of the file to be scanned
+     *
+     * @return composite scanner option
+     */
+    public static CompositeScannerProvisionOption scanComposite( final UrlReference fileUrl )
+    {
+        return new CompositeScannerProvisionOption( fileUrl );
     }
 
     /**
