@@ -69,7 +69,7 @@ public class FileScannerProvisionOptionTest
     public void urlAsReference()
     {
         assertThat(
-            "Scan features url",
+            "Scan file url",
             new FileScannerProvisionOption(
                 url( "file:foo.bundles" )
             ).getURL(),
@@ -99,7 +99,7 @@ public class FileScannerProvisionOptionTest
     public void urlAsMavenUrl()
     {
         assertThat(
-            "Scan features url",
+            "Scan file url",
             new FileScannerProvisionOption(
                 maven().groupId( "bar" ).artifactId( "foo" ).type( "bundles" )
             ).getURL(),
@@ -114,7 +114,7 @@ public class FileScannerProvisionOptionTest
     public void urlAsMavenUrlViaFactoryMethod()
     {
         assertThat(
-            "Scan features url",
+            "Scan file url",
             scanFile(
                 maven().groupId( "bar" ).artifactId( "foo" ).type( "bundles" )
             ).getURL(),
