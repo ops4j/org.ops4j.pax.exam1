@@ -311,7 +311,7 @@ public class GenerateConfigMojo extends AbstractMojo
      */
     private String createPaxRunnerScan( Artifact artifact, String optionTokens )
     {
-        return "scan-bundle:" + artifact.getFile().toURI().normalize().toString() + optionTokens;
+        return "scan-bundle:" + artifact.getFile().toURI().normalize().toString() + "@update" + optionTokens;
     }
 
 }
