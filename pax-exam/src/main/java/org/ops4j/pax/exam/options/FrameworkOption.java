@@ -69,11 +69,11 @@ public class FrameworkOption
     }
 
     /**
-     * Sets the framework version to LATEST.
+     * Sets the framework version to snapshot.
      *
      * @return itself, for fluent api usage
      */
-    public FrameworkOption latestVersion()
+    public FrameworkOption snapshotVersion()
     {
         m_version = "snapshot";
         return this;
