@@ -1134,15 +1134,15 @@
         <root url="jar://$M2_REPO$/org/apache/maven/maven-plugin-api/2.0.10/maven-plugin-api-2.0.10-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.19.0">
+    <library name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.20.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.19.0/pax-runner-no-jcl-0.19.0.jar!/" />
+        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.20.0-SNAPSHOT/pax-runner-no-jcl-0.20.0-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.19.0/pax-runner-no-jcl-0.19.0-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.20.0-SNAPSHOT/pax-runner-no-jcl-0.20.0-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.19.0/pax-runner-no-jcl-0.19.0-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/0.20.0-SNAPSHOT/pax-runner-no-jcl-0.20.0-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
   </component>
