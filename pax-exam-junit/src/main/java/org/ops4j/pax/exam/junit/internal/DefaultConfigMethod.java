@@ -29,7 +29,7 @@ import org.ops4j.pax.exam.junit.JUnit4ConfigMethod;
 import org.ops4j.pax.exam.junit.RequiresConfiguration;
 
 /**
- * Models a configuration method (those marked with {@link Configuration} and {@link org.ops4j.pax.exam.junit.RequiresConfiguration} annotations).
+ * Configuration methodmarked with {@link Configuration} and {@link RequiresConfiguration} annotations.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @author Toni Menzel (toni@okidokiteam.com)
@@ -49,7 +49,7 @@ public class DefaultConfigMethod
     private final Object m_configInstance;
 
     /**
-     * Configuration options. Initialized only when the getter is called.
+     * Configuration options. Lazy initialized only when the getter is called.
      */
     private Option[] m_options;
 

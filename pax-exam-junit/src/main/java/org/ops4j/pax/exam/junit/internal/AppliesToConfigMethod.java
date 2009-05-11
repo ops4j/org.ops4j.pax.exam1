@@ -26,20 +26,21 @@ import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.options.CompositeOption;
 import org.ops4j.pax.exam.junit.AppliesTo;
 import org.ops4j.pax.exam.junit.Configuration;
+import org.ops4j.pax.exam.junit.JUnit4ConfigMethod;
 
 /**
- * Models a configuration method (those marked with {@link Configuration} and {@link AppliesTo} annotations).
+ * Configuration method marked with {@link Configuration} and {@link AppliesTo} annotations.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @author Toni Menzel (toni@okidokiteam.com)
  * @since 0.3.0, December 16, 2008
  */
 public class AppliesToConfigMethod
-    implements org.ops4j.pax.exam.junit.JUnit4ConfigMethod
+    implements JUnit4ConfigMethod
 {
 
     /**
-     * Configuration method. Must be a static, accessible method (cannot be null).
+     * Configuration method. Must be an accessible method (cannot be null).
      */
     private final Method m_method;
     /**
@@ -51,7 +52,7 @@ public class AppliesToConfigMethod
      */
     private final String[] m_patterns;
     /**
-     * Configuration options. Initialized only when the getter is called.
+     * Configuration options. Lazy initialized only when the getter is called.
      */
     private Option[] m_options;
 
