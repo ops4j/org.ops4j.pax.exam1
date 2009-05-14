@@ -599,11 +599,9 @@
       <CLASSES>
         <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15.jar!/" />
       </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15-javadoc.jar!/" />
-      </JAVADOC>
+      <JAVADOC />
       <SOURCES>
-        <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.jmock:jmock:2.5.1">
