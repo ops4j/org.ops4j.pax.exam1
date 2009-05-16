@@ -23,12 +23,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.factory.ArtifactFactory;
 import org.apache.maven.artifact.metadata.ArtifactMetadataSource;
@@ -73,7 +70,7 @@ public class GenerateConfigMojo extends AbstractMojo
      * @parameter default-value="${project.build.directory}/classes/META-INF/maven/paxexam-config.args"
      */
 
-    private File outputFile;
+    private File configOutput;
 
     /**
      * @parameter default-value="provided"
@@ -130,8 +127,8 @@ public class GenerateConfigMojo extends AbstractMojo
         OutputStream out = null;
         try
         {
-            outputFile.getParentFile().mkdirs();
-            out = new FileOutputStream( outputFile );
+            configOutput.getParentFile().mkdirs();
+            out = new FileOutputStream( configOutput );
             PrintStream printer = new PrintStream( out );
 
             List<Dependency> dependencies;
@@ -141,7 +138,7 @@ public class GenerateConfigMojo extends AbstractMojo
             writeProvisioning( printer, dependencies );
             writeSettings( printer );
 
-            getLog().info( "PAX EXAM PLUGIN Created: " + outputFile );
+            getLog().info( "----PAX EXAM PLUGIN Created: " + configOutput );
         }
         catch( Exception e )
         {
@@ -159,7 +156,7 @@ public class GenerateConfigMojo extends AbstractMojo
                 }
                 catch( IOException e )
                 {
-                    getLog().info( "Failed to close: " + outputFile + ". Reason: " + e, e );
+                    getLog().info( "Failed to close: " + configOutput + ". Reason: " + e, e );
                 }
             }
         }
