@@ -67,7 +67,7 @@ public class GenerateConfigMojo extends AbstractMojo
     /**
      * The file to generate
      *
-     * @parameter default-value="${project.build.directory}/classes/META-INF/maven/paxexam-config.args"
+     * @parameter default-value="${project.build.directory}/test-classes/META-INF/maven/paxexam-config.args"
      */
 
     private File configOutput;
