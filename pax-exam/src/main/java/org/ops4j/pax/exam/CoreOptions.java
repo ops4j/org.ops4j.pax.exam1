@@ -18,9 +18,11 @@
 package org.ops4j.pax.exam;
 
 import java.net.URL;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import static org.ops4j.lang.NullArgumentException.*;
+import static org.ops4j.lang.NullArgumentException.validateNotEmptyContent;
 import static org.ops4j.pax.exam.OptionUtils.*;
 import org.ops4j.pax.exam.options.BootClasspathLibraryOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
@@ -576,7 +578,7 @@ public class CoreOptions
         URL url = CoreOptions.class.getClassLoader().getResource( DEFAULT_CONFIGURATION );
         if( url != null )
         {
-            return new MavenPluginGeneratedConfigOption( url );
+            return mavenConfiguration( url );
         }
         else
         {
@@ -585,6 +587,33 @@ public class CoreOptions
                 + "File (usually produced by the plugin upfront) " + DEFAULT_CONFIGURATION + " has not been found."
             );
         }
+    }
+
+    /**
+     * Creates a {@link org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption}.
+     *
+     * @param url of configuration to be used
+     * @return Args option with file written from paxexam plugin
+     */
+    public static MavenPluginGeneratedConfigOption mavenConfiguration( String url ) {
+       validateNotEmpty( url,"specified configuration url must not be empty ");
+       try {
+           return mavenConfiguration( new URL( url ));
+       }catch (MalformedURLException mE) {
+           throw new IllegalArgumentException( "url " + url + " is not a valid url",mE );             
+       }
+    }
+
+    /**
+     * Creates a {@link org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption}.
+     *
+     * @param url of configuration to be used
+     * @return Args option with file written from paxexam plugin
+     */
+    public static MavenPluginGeneratedConfigOption mavenConfiguration( URL url )
+    {
+        validateNotNull( url,"specified configuration url ");
+        return new MavenPluginGeneratedConfigOption( url );
     }
 
     /**
