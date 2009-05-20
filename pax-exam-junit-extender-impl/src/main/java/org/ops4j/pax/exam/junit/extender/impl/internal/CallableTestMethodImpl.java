@@ -25,6 +25,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.osgi.framework.BundleContext;
@@ -42,7 +45,11 @@ import org.ops4j.pax.exam.junit.extender.CallableTestMethod;
 class CallableTestMethodImpl
     implements CallableTestMethod
 {
-
+	/**
+     * Logger.
+     */
+    private static final Log LOG = LogFactory.getLog( CallableTestMethodImpl.class );
+	
     /**
      * Bundle context of the bundle containing the test class (cannot be null).
      */
@@ -111,6 +118,7 @@ class CallableTestMethodImpl
     {
         final Class<?>[] paramTypes = testMethod.getParameterTypes();
         injectFieldInstances( testInstance.getClass(), testInstance );
+        boolean cleanup = false;
         try
         {
             runBefores( testInstance );
@@ -125,10 +133,18 @@ class CallableTestMethodImpl
             {
                 testMethod.invoke( testInstance );
             }
+            cleanup = true;
+            runAfters( testInstance );
         }
         finally
-        {
-            runAfters( testInstance );
+        {	    	
+        	if (!cleanup)
+            try {
+                runAfters( testInstance );
+            } catch (Throwable throwable) 
+            {
+            	LOG.warn( "Got the exception when calling the runAfters. [Exception]: " + throwable );
+            }
         }
     }
 
