@@ -48,6 +48,7 @@
         <module>pax-exam-testng</module>
         <module>maven-paxexam-plugin</module>
         <module>maven-archetype-paxexam-junit</module>
+        <module>pax-exam-dist</module>
       </modules>
     </profile>
 
