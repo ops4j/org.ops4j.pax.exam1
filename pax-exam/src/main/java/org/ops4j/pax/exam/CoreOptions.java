@@ -45,6 +45,7 @@ import org.ops4j.pax.exam.options.TestContainerStartTimeoutOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.UrlReference;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
+import org.ops4j.pax.exam.options.CustomFrameworkOption;
 
 /**
  * Factory methods for core options.
@@ -226,6 +227,11 @@ public class CoreOptions
             allEquinoxVersions(),
             allKnopflerfishVersions()
         );
+    }
+
+    public static CustomFrameworkOption customFramework( String definitionURL )
+    {
+        return new CustomFrameworkOption( definitionURL );
     }
 
     /**

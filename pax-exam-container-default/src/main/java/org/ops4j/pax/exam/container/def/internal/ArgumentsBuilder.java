@@ -41,6 +41,7 @@ import org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
+import org.ops4j.pax.exam.options.CustomFrameworkOption;
 
 /**
  * Utility methods for converting configuration options to Pax Runner arguments.
@@ -173,11 +174,18 @@ class ArgumentsBuilder
         }
         if( frameworks.length > 0 )
         {
-            arguments.add( "--platform=" + frameworks[ 0 ].getName() );
-            final String version = frameworks[ 0 ].getVersion();
-            if( version != null && version.trim().length() > 0 )
+            if (frameworks[ 0 ] instanceof CustomFrameworkOption)
             {
-                arguments.add( "--version=" + version );
+                arguments.add( "--definitionURL=" + ((CustomFrameworkOption) frameworks[ 0]).getDefinitionURL() );
+            }
+            else
+            {
+                arguments.add( "--platform=" + frameworks[ 0 ].getName() );
+                final String version = frameworks[ 0 ].getVersion();
+                if( version != null && version.trim().length() > 0 )
+                {
+                    arguments.add( "--version=" + version );
+                }
             }
         }
         return arguments;
