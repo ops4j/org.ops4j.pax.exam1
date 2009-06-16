@@ -24,7 +24,7 @@
     <namespace>org.ops4j.pax.exam</namespace>
 
     <dependency.runner.version>0.20.0</dependency.runner.version>
-    <dependency.swissbox.version>0.2.0</dependency.swissbox.version>
+    <dependency.swissbox.version>0.3.0-SNAPSHOT</dependency.swissbox.version>
     <dependency.base.version>0.5.3</dependency.base.version>
     <dependency.url.version>0.5.2</dependency.url.version>
   </properties>
@@ -61,6 +61,7 @@
         <module>pax-exam-it-03</module>
         <module>pax-exam-it-04</module>
         <module>pax-exam-it-05</module>
+        <module>pax-exam-it-06</module>
       </modules>
     </profile>
 
@@ -164,6 +165,11 @@
       <dependency>
         <groupId>org.ops4j.pax.swissbox</groupId>
         <artifactId>pax-swissbox-optional-jcl</artifactId>
+        <version>${dependency.swissbox.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.ops4j.pax.swissbox</groupId>
+        <artifactId>pax-swissbox-tinybundles</artifactId>
         <version>${dependency.swissbox.version}</version>
       </dependency>
       <dependency>
