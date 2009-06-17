@@ -23,8 +23,8 @@
     <orderEntry type="module" module-name="pax-exam-container-default" exported="" />
     <orderEntry type="module" module-name="pax-exam-container-rbc-client" exported="" />
     <orderEntry type="module" module-name="pax-exam-container-rbc" exported="" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-net:0.5.3" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-monitors:0.5.3" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-net:1.0.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-monitors:1.0.0" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.20.0" level="project" />
   </component>
 </module>
