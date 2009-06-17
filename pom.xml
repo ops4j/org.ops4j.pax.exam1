@@ -24,7 +24,7 @@
     <namespace>org.ops4j.pax.exam</namespace>
 
     <dependency.runner.version>0.20.0</dependency.runner.version>
-    <dependency.swissbox.version>0.3.0-SNAPSHOT</dependency.swissbox.version>
+    <dependency.swissbox.version>1.0.0</dependency.swissbox.version>
     <dependency.base.version>0.5.3</dependency.base.version>
     <dependency.url.version>0.5.2</dependency.url.version>
   </properties>
