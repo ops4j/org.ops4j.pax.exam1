@@ -10,7 +10,7 @@
 
   <groupId>org.ops4j.pax</groupId>
   <artifactId>exam</artifactId>
-  <version>0.6.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>OPS4J Pax Exam (Build POM)</name>
@@ -23,7 +23,7 @@
   <properties>
     <namespace>org.ops4j.pax.exam</namespace>
 
-    <dependency.runner.version>0.21.0-SNAPSHOT</dependency.runner.version>
+    <dependency.runner.version>1.0.0</dependency.runner.version>
     <dependency.swissbox.version>1.0.0</dependency.swissbox.version>
     <dependency.base.version>1.0.0</dependency.base.version>
     <dependency.url.version>1.0.0</dependency.url.version>
