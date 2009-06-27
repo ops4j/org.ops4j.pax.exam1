@@ -107,15 +107,6 @@
           <option name="LABEL_INDENT_SIZE" value="0" />
           <option name="LABEL_INDENT_ABSOLUTE" value="false" />
         </ADDITIONAL_INDENT_OPTIONS>
-        <ADDITIONAL_INDENT_OPTIONS fileType="jsp">
-          <option name="INDENT_SIZE" value="4" />
-          <option name="CONTINUATION_INDENT_SIZE" value="8" />
-          <option name="TAB_SIZE" value="4" />
-          <option name="USE_TAB_CHARACTER" value="false" />
-          <option name="SMART_TABS" value="false" />
-          <option name="LABEL_INDENT_SIZE" value="0" />
-          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
-        </ADDITIONAL_INDENT_OPTIONS>
         <ADDITIONAL_INDENT_OPTIONS fileType="txt">
           <option name="INDENT_SIZE" value="2" />
           <option name="CONTINUATION_INDENT_SIZE" value="8" />
@@ -535,6 +526,8 @@
         <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15.jar!/" />
         <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15.jar!/" />
         <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15.jar!/" />
+        <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15.jar!/" />
+        <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15.jar!/" />
       </CLASSES>
       <JAVADOC>
         <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15-javadoc.jar!/" />
@@ -561,8 +554,12 @@
         <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15-javadoc.jar!/" />
         <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15-javadoc.jar!/" />
         <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
+        <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15-sources.jar!/" />
         <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15-sources.jar!/" />
         <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15-sources.jar!/" />
         <root url="jar://$M2_REPO$/org/testng/testng/5.8/testng-5.8-jdk15-sources.jar!/" />
@@ -840,17 +837,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-monitors/1.0.0/ops4j-base-monitors-1.0.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:1.0.0">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/1.0.0/pax-runner-no-jcl-1.0.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/1.0.0/pax-runner-no-jcl-1.0.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/1.0.0/pax-runner-no-jcl-1.0.0-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.apache.maven:maven-core:2.0.7">
@@ -1243,6 +1229,8 @@
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
@@ -1259,8 +1247,12 @@
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.compendium/1.1.0-SNAPSHOT/org.osgi.compendium-1.1.0-SNAPSHOT-sources.jar!/" />
@@ -1293,6 +1285,8 @@
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
@@ -1309,8 +1303,12 @@
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$M2_REPO$/org/apache/felix/org.osgi.core/1.1.0-SNAPSHOT/org.osgi.core-1.1.0-SNAPSHOT-sources.jar!/" />
@@ -1360,37 +1358,15 @@
         <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.0.1-SNAPSHOT/pax-swissbox-tinybundles-1.0.1-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.ops4j.base:ops4j-base-io:1.0.0">
+    <library name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:1.1.0">
       <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/1.0.0/ops4j-base-io-1.0.0.jar!/" />
+        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/1.1.0/pax-runner-no-jcl-1.1.0.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/1.0.0/ops4j-base-io-1.0.0-javadoc.jar!/" />
+        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/1.1.0/pax-runner-no-jcl-1.1.0-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/base/ops4j-base-io/1.0.0/ops4j-base-io-1.0.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.ops4j.pax.swissbox:pax-swissbox-bnd:1.0.1-SNAPSHOT">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.0.1-SNAPSHOT/pax-swissbox-bnd-1.0.1-SNAPSHOT.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.0.1-SNAPSHOT/pax-swissbox-bnd-1.0.1-SNAPSHOT-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.0.1-SNAPSHOT/pax-swissbox-bnd-1.0.1-SNAPSHOT-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: biz.aQute:bndlib:0.0.313">
-      <CLASSES>
-        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$M2_REPO$/biz/aQute/bndlib/0.0.313/bndlib-0.0.313-sources.jar!/" />
+        <root url="jar://$M2_REPO$/org/ops4j/pax/runner/pax-runner-no-jcl/1.1.0/pax-runner-no-jcl-1.1.0-sources.jar!/" />
       </SOURCES>
     </library>
   </component>
