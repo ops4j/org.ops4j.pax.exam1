@@ -17,10 +17,8 @@
  */
 package org.ops4j.pax.exam.junit;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Arrays;
 import java.lang.reflect.Method;
+import java.util.Collection;
 import org.junit.internal.runners.InitializationError;
 import org.ops4j.pax.exam.Option;
 
@@ -48,7 +46,8 @@ public abstract class AbstractJUnit4TestRunner extends JUnit4TestRunner
     protected Collection<JUnit4ConfigMethod> getConfigurationMethods()
         throws Exception
     {
-        return (List) Arrays.asList( new JUnit4ConfigMethod()
+        Collection<JUnit4ConfigMethod> configurationMethods = super.getConfigurationMethods();
+        configurationMethods.add( new JUnit4ConfigMethod()
         {
             public boolean matches( Method testMethod )
             {
@@ -62,6 +61,7 @@ public abstract class AbstractJUnit4TestRunner extends JUnit4TestRunner
             }
         }
         );
+        return configurationMethods;
     }
 
     protected abstract Option[] getTestOptions();
