@@ -21,23 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.ops4j.lang.NullArgumentException.*;
 import org.ops4j.pax.exam.Option;
-import org.ops4j.pax.exam.container.def.options.AutoWrapOption;
-import org.ops4j.pax.exam.container.def.options.BundleScannerProvisionOption;
-import org.ops4j.pax.exam.container.def.options.CleanCachesOption;
-import org.ops4j.pax.exam.container.def.options.DirScannerProvisionOption;
-import org.ops4j.pax.exam.container.def.options.ExcludeDefaultRepositoriesOption;
-import org.ops4j.pax.exam.container.def.options.FeaturesScannerProvisionOption;
-import org.ops4j.pax.exam.container.def.options.FileScannerProvisionOption;
-import org.ops4j.pax.exam.container.def.options.LocalRepositoryOption;
-import org.ops4j.pax.exam.container.def.options.PomScannerProvisionOption;
-import org.ops4j.pax.exam.container.def.options.ProfileOption;
-import org.ops4j.pax.exam.container.def.options.RBCLookupTimeoutOption;
-import org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption;
-import org.ops4j.pax.exam.container.def.options.RawScannerProvisionOption;
-import org.ops4j.pax.exam.container.def.options.RepositoryOption;
-import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
-import org.ops4j.pax.exam.container.def.options.VMOption;
-import org.ops4j.pax.exam.container.def.options.CompositeScannerProvisionOption;
+import org.ops4j.pax.exam.container.def.options.*;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.UrlReference;
 
@@ -448,6 +432,18 @@ public class PaxRunnerOptions
     public static BundleScannerProvisionOption scanBundle( final UrlReference bundleUrl )
     {
         return new BundleScannerProvisionOption( bundleUrl );
+    }
+
+    /**
+     * Creates a {@link WorkingDirectoryOption}.
+     *
+     * @param directory url of the bundle to be scanned
+     *
+     * @return working directory option
+     */
+    public static WorkingDirectoryOption workingDirectory( final String directory )
+    {
+        return new WorkingDirectoryOption( directory );
     }
 
 }
