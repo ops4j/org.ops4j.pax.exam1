@@ -19,20 +19,15 @@ package org.ops4j.pax.exam.it;
 
 import java.io.IOException;
 import static org.junit.Assert.*;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
-import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.Option;
-import org.ops4j.pax.exam.it.intern.HelloWorldImpl;
-import org.ops4j.pax.exam.it.intern.MyFirstActivator;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
-import static org.ops4j.pax.swissbox.tinybundles.core.TinyBundles.*;
 
 /**
  * This is example will use TinyBundles in the configuration part only.
@@ -50,7 +45,7 @@ public class BuildAtConfigurationTime
     public static Option[] configure()
     {
         return options(
-
+/**
             // install extra tiny bundles that are created on demand:
 
             provision(
@@ -65,6 +60,7 @@ public class BuildAtConfigurationTime
                     .set( Constants.BUNDLE_ACTIVATOR, MyFirstActivator.class.getName() )
                     .build( asURL() ).toExternalForm()
             )
+            **/
 
         );
     }
@@ -72,7 +68,7 @@ public class BuildAtConfigurationTime
     @Inject
     BundleContext context;
 
-    @Test
+    //@Test
     public void runMyService()
         throws BundleException, IOException
     {
