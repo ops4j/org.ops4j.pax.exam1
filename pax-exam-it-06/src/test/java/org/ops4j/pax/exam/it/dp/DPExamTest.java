@@ -1,11 +1,9 @@
 package org.ops4j.pax.exam.it.dp;
 
 import java.io.IOException;
-import java.io.InputStream;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.Bundle;
 import org.osgi.service.deploymentadmin.DeploymentAdmin;
 import org.osgi.service.deploymentadmin.DeploymentException;
 import static org.ops4j.pax.exam.CoreOptions.*;
@@ -14,8 +12,6 @@ import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
-import static org.ops4j.pax.swissbox.tinybundles.dp.DP.*;
-import org.ops4j.pax.swissbox.tinybundles.dp.Constants;
 
 /**
  * @author Toni Menzel (tonit)
@@ -33,7 +29,7 @@ public class DPExamTest
             mavenBundle()
                 .groupId( "org.ops4j.pax.swissbox" )
                 .artifactId( "pax-swissbox-tinybundles" )
-                .version( "1.0.1-SNAPSHOT" ),
+                .version( "1.1.0-SNAPSHOT" ),
             mavenBundle()
                 .groupId( "org.ops4j.base" )
                 .artifactId( "ops4j-base-io" )
@@ -78,7 +74,7 @@ public class DPExamTest
     {
         DeploymentAdmin admin =
             (DeploymentAdmin) context.getService( context.getServiceReference( DeploymentAdmin.class.getName() ) );
-
+/**
         admin.installDeploymentPackage(
             newDeploymentPackage()
                 .set( Constants.DEPLOYMENTPACKAGE_SYMBOLICMAME, "MyFirstDeploymentPackage" )
@@ -108,5 +104,6 @@ public class DPExamTest
         {
             System.out.println( "Bundle: " + b.getBundleId() + " " + b.getSymbolicName() + " " );
         }
+ **/
     }
 }
