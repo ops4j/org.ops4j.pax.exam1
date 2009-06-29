@@ -28,7 +28,7 @@ import org.ops4j.pax.exam.junit.internal.AppliesToConfigMethod;
 import org.ops4j.pax.exam.junit.internal.DefaultConfigMethod;
 
 /**
- * Configuration sytrategy that will consider as configuration any static/non static methods that are marked with
+ * Configuration strategy that will consider as configuration any static/non static methods that are marked with
  * {@link Configuration} annotation, has no parameters and has an {@link Option} array as return value.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
@@ -53,8 +53,8 @@ public class AnnotatedWithConfiguration
                 && configMethod.getReturnType().isArray()
                 && Option.class.isAssignableFrom( configMethod.getReturnType().getComponentType() ) )
             {
-                final AppliesTo appliesToAnotation = configMethod.getAnnotation( AppliesTo.class );
-                if( appliesToAnotation != null )
+                final AppliesTo appliesToAnnotation = configMethod.getAnnotation( AppliesTo.class );
+                if( appliesToAnnotation != null )
                 {
                     configMethods.add(
                         new AppliesToConfigMethod(
