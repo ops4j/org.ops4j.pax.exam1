@@ -28,7 +28,7 @@
     <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.swissbox:pax-swissbox-lifecycle:1.0.0" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.swissbox:pax-swissbox-extender:1.0.0" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.swissbox:pax-swissbox-optional-jcl:1.0.0" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.exam:pax-exam:1.1.0-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="pax-exam" exported="" />
   </component>
 </module>
 
