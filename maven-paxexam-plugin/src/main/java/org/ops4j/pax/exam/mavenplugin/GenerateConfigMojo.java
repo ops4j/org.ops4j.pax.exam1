@@ -138,7 +138,7 @@ public class GenerateConfigMojo extends AbstractMojo
             writeProvisioning( printer, dependencies );
             writeSettings( printer );
 
-            getLog().info( "----PAX EXAM PLUGIN Created: " + configOutput );
+            getLog().info( "Generated configuration as Pax Runner arguments file " + configOutput );
         }
         catch( Exception e )
         {
