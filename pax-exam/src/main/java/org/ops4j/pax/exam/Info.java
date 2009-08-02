@@ -145,11 +145,13 @@ public class Info
      */
     public static void showLogo()
     {
-        System.out.println( "    ______  ________  __  __" );
-        System.out.println( "   / __  / /  __   / / / / /" );
-        System.out.println( "  /  ___/ /  __   / _\\ \\ _/" );
-        System.out.println( " /  /    /  / /  / / _\\ \\" );
-        System.out.println( "/__/    /__/ /__/ /_/ /_/" );
+        System.out.println( "__________                 ___________" );
+        System.out.println( "\\______   \\_____  ___  ___ \\_   _____/__  ________    _____" );
+        System.out.println( " |     ___/\\__  \\ \\  \\/  /  |    __)_\\  \\/  /\\__  \\  /     \\" );
+        System.out.println( " |    |     / __ \\_>    <   |        \\>    <  / __ \\|  Y Y  \\" );
+        System.out.println( " |____|    (____  /__/\\_ \\ /_______  /__/\\_ \\(____  /__|_|  /" );
+        System.out.println( "                \\/      \\/         \\/      \\/     \\/      \\/" );
+
         System.out.println();
         final String logo = "Pax Exam " + Info.getPaxExamVersion() + " from OPS4J - http://www.ops4j.org";
         System.out.println( logo );
