@@ -34,7 +34,7 @@ import org.ops4j.pax.exam.junit.JUnit4TestRunner;
  * @since Mar 3, 2009
  */
 @RunWith( JUnit4TestRunner.class )
-public class T1S1_HelloWorld
+public class T1S1_HelloWorldTest
 {
 
     /**

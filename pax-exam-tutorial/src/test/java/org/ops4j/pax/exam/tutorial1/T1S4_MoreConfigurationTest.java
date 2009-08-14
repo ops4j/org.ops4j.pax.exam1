@@ -35,14 +35,14 @@ import org.ops4j.pax.exam.junit.JUnit4TestRunner;
  * @since Mar 3, 2009
  */
 @RunWith( JUnit4TestRunner.class )
-public class T1S4_MoreConfiguration
+public class T1S4_MoreConfigurationTest
 {
 
     @Inject
     BundleContext bundleContext = null;
 
     // you get that because you "installed" a log profile in configuration.
-    public Log logger = LogFactory.getLog( T1S4_MoreConfiguration.class );
+    public Log logger = LogFactory.getLog( T1S4_MoreConfigurationTest.class );
 
     /*
      * You can configure all kinds of stuff.

@@ -13,7 +13,7 @@ import org.ops4j.pax.exam.junit.MavenConfiguredJUnit4TestRunner;
  * @since Mar 30, 2009
  */
 @RunWith( MavenConfiguredJUnit4TestRunner.class )
-public class T1S6_MavenConfigured
+public class T1S6_MavenConfiguredTest
 {
 
     @Inject

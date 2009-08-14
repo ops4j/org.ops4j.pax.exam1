@@ -21,7 +21,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Inject;
+import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
 /**
@@ -29,18 +32,33 @@ import org.ops4j.pax.exam.junit.JUnit4TestRunner;
  * @since Mar 3, 2009
  */
 @RunWith( JUnit4TestRunner.class )
-public class T1S2_HowToUseBundleContext
+public class T1S3_HelloFromEquinoxTest
 {
 
     @Inject
     BundleContext bundleContext = null;
+
+    /*
+     * Here you can configure most of exam.
+     * Annotate any method with @Configuration and be sure to set return type to Option[]
+     *
+     * Thats all. In this case, we just "tell" via fluent api, to use equinox.
+     * 
+     */
+    @Configuration
+    public static Option[] configure()
+    {
+        return options(
+            equinox()
+        );
+    }
 
     /**
      * You will get a list of bundles installed by default
      * plus your testcase, wrapped into a bundle called pax-exam-probe
      */
     @Test
-    public void listBundles()
+    public void helloFromEquinox()
     {
         for( Bundle b : bundleContext.getBundles() )
         {
