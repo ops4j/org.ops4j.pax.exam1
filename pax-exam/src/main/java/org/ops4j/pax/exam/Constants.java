@@ -44,4 +44,8 @@ public interface Constants
      * Timeout specifing that it should wait forever.
      */
     long WAIT_FOREVER = Long.MAX_VALUE;
+    /**
+     * Timeout specifing that it should wait .
+     */
+    long WAIT_5_MINUTES = 5 * 60 * 1000;
 }

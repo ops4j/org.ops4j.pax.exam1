@@ -701,7 +701,7 @@ public class CoreOptions
      */
     public static TestContainerStartTimeoutOption waitForFrameworkStartup()
     {
-        return waitForFrameworkStartupFor( Constants.WAIT_FOREVER );
+        return waitForFrameworkStartupFor( Constants.WAIT_5_MINUTES );
     }
 
 }
