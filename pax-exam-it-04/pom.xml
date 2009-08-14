@@ -49,7 +49,6 @@
     <dependency>
       <groupId>org.ops4j.base</groupId>
       <artifactId>ops4j-base-lang</artifactId>
-      <version>0.5.3</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
