@@ -163,9 +163,9 @@ public class JUnit4TestMethod
         }
         finally
         {
-            if( container != null && executionState > CONTAINER_STARTED )
+            if( container != null )
             {
-                // Do not stop the container if not succesful started
+                // Leave handling of proper stop to container implementation
                 try
                 {
                     container.stop();
@@ -174,7 +174,7 @@ public class JUnit4TestMethod
                 {
                     if( executionState >= SUCCESFUL )
                     {
-                        //throw catched exception if the test already was succesfull
+                        //throw catched exception if the test already was successful
                         //noinspection ThrowFromFinallyBlock
                         throw ignore;
                     }
