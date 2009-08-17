@@ -95,6 +95,7 @@ class PaxRunnerTestContainer
      *
      */
     private TestContainerSemaphore m_semaphore;
+    private boolean m_started = false;
 
     /**
      * Constructor.
@@ -222,6 +223,7 @@ class PaxRunnerTestContainer
                 "Test container did not initialize in the expected time of " + m_startTimeout + " millis"
             );
         }
+        m_started = true;
     }
 
     /**
@@ -230,9 +232,24 @@ class PaxRunnerTestContainer
     public void stop()
     {
         LOG.info( "Shutting down the test container (Pax Runner)" );
-        m_remoteBundleContextClient.stop();
-        m_javaRunner.waitForExit();
-        m_semaphore.release();
+        try
+        {
+            if( m_started )
+            {
+                if( m_remoteBundleContextClient != null )
+                {
+                    m_remoteBundleContextClient.stop();
+                }
+                if( m_javaRunner != null )
+                {
+                    m_javaRunner.waitForExit();
+                }
+            }
+        } finally
+        {
+            m_semaphore.release();
+            m_started = false;
+        }
     }
 
     /**
