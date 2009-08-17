@@ -1,5 +1,6 @@
 /*
  * Copyright 2008 Alin Dreghiciu.
+ * Copyright 2009 Toni Menzel.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +32,6 @@ import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.OptionUtils.*;
 import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
-import static org.ops4j.pax.exam.container.def.internal.ArgumentsBuilder.*;
 import org.ops4j.pax.exam.container.def.options.BundleScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.RBCLookupTimeoutOption;
 import org.ops4j.pax.exam.container.def.options.Scanner;
@@ -85,11 +85,16 @@ class PaxRunnerTestContainer
     /**
      * Pax Runner arguments, out of options.
      */
-    private final String[] m_arguments;
+    private final ArgumentsBuilder m_arguments;
     /**
      * test container start timeout.
      */
     private final long m_startTimeout;
+
+    /**
+     *
+     */
+    private TestContainerSemaphore m_semaphore;
 
     /**
      * Constructor.
@@ -105,7 +110,7 @@ class PaxRunnerTestContainer
         m_remoteBundleContextClient = new RemoteBundleContextClient(
             findFreeCommunicationPort(), getRMITimeout( options )
         );
-        m_arguments = buildArguments( wrap( expand( combine( options, localOptions() ) ) ) );
+        m_arguments = new ArgumentsBuilder( wrap( expand( combine( options, localOptions() ) ) ) );
     }
 
     /**
@@ -183,9 +188,22 @@ class PaxRunnerTestContainer
     public void start()
     {
         LOG.info( "Starting up the test container (Pax Runner " + Info.getPaxRunnerVersion() + " )" );
+        /**
+         */
+        m_semaphore = new TestContainerSemaphore( m_arguments.getWorkingFolder() );
+        // this makes sure the system is ready to launch a new instance.
+        // this could fail, based on what acquire actually checks.
+        // this also creates some persistent mark that will be removed by m_semaphore.release()
+        if( !m_semaphore.acquire() )
+        {
+            // here we can react.
+            // Prompt user with the fact that there might be another instance running.
+            throw new RuntimeException( "There might be another instance of Pax Exam running. Have a look at " + m_semaphore.getLockFile().getAbsolutePath() );
+        }
+
         long startedAt = System.currentTimeMillis();
         URLUtils.resetURLStreamHandlerFactory();
-        Run.start( m_javaRunner, m_arguments );
+        Run.start( m_javaRunner, m_arguments.getArguments() );
         LOG.info(
             "Test container (Pax Runner " + Info.getPaxRunnerVersion() + ") started in "
             + ( System.currentTimeMillis() - startedAt ) + " millis"
@@ -214,6 +232,7 @@ class PaxRunnerTestContainer
         LOG.info( "Shutting down the test container (Pax Runner)" );
         m_remoteBundleContextClient.stop();
         m_javaRunner.waitForExit();
+        m_semaphore.release();
     }
 
     /**

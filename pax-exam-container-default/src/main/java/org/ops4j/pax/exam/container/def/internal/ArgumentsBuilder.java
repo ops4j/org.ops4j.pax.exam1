@@ -44,24 +44,28 @@ class ArgumentsBuilder
      * Otherwise, defaultArguments will include a --noArgs flag to prevent
      * unintentional runner.args files being picked up by paxrunner.
      */
-    private static boolean argsSetManually = false;
+    private boolean argsSetManually = false;
 
     /**
-     * Utility class. Ment to be used via the static methods.
+     * Pax Runner compatible arguments parsed from input.
      */
-    private ArgumentsBuilder()
-    {
-        // utility class
-    }
+    private final String[] m_parsedArgs;
+
+    /**
+     * There's a default location (users home) as well as an option for this.
+     * Effective working folder is of great importance not only to the pax runner instance.
+     *
+     * To make things simple, we store this property redundantly here.
+     * It is readable by a getter.
+     */
+    private File m_workingFolder;
 
     /**
      * Converts configuration options to Pax Runner arguments.
      *
      * @param options array of configuration options
-     *
-     * @return Pax Runner arguments
      */
-    static String[] buildArguments( final Option... options )
+    ArgumentsBuilder( final Option... options )
     {
         final List<String> arguments = new ArrayList<String>();
 
@@ -94,7 +98,15 @@ class ArgumentsBuilder
         add( arguments, extractArguments( filter( BootClasspathLibraryOption.class, options ) ) );
         add( arguments, defaultArguments() );
 
-        return arguments.toArray( new String[arguments.size()] );
+        m_parsedArgs = arguments.toArray( new String[arguments.size()] );
+    }
+
+    /**
+     * @return Pax Runner arguments
+     */
+    public String[] getArguments()
+    {
+        return m_parsedArgs;
     }
 
     /**
@@ -103,8 +115,8 @@ class ArgumentsBuilder
      * @param arguments      list to which the arguments should be added
      * @param argumentsToAdd arguments to be added (can be null or empty)
      */
-    private static void add( final List<String> arguments,
-                             final Collection<String> argumentsToAdd )
+    private void add( final List<String> arguments,
+                      final Collection<String> argumentsToAdd )
     {
         if( argumentsToAdd != null && argumentsToAdd.size() > 0 )
         {
@@ -118,8 +130,8 @@ class ArgumentsBuilder
      * @param arguments list to which the arguments should be added
      * @param argument  argument to be added (can be null or empty)
      */
-    private static void add( final List<String> arguments,
-                             final String argument )
+    private void add( final List<String> arguments,
+                      final String argument )
     {
         if( argument != null && argument.trim().length() > 0 )
         {
@@ -132,7 +144,7 @@ class ArgumentsBuilder
      *
      * @return collection of default arguments
      */
-    private static Collection<String> defaultArguments()
+    private Collection<String> defaultArguments()
     {
         final List<String> arguments = new ArrayList<String>();
         arguments.add( "--noConsole" );
@@ -158,7 +170,7 @@ class ArgumentsBuilder
      *
      * @throws IllegalArgumentException - If there are more then one framework options
      */
-    private static Collection<String> extractArguments( final FrameworkOption[] frameworks )
+    private Collection<String> extractArguments( final FrameworkOption[] frameworks )
     {
         final List<String> arguments = new ArrayList<String>();
         if( frameworks.length > 1 )
@@ -187,7 +199,7 @@ class ArgumentsBuilder
     /**
      * @return all arguments that have been recognized by OptionResolvers as PaxRunner arguments
      */
-    private static Collection<String> extractArguments(
+    private Collection<String> extractArguments(
         MavenPluginGeneratedConfigOption[] mavenPluginGeneratedConfigOption )
     {
         final List<String> arguments = new ArrayList<String>();
@@ -207,7 +219,7 @@ class ArgumentsBuilder
      *
      * @return converted Pax Runner collection of arguments
      */
-    private static Collection<String> extractArguments( final ProvisionOption[] bundles )
+    private Collection<String> extractArguments( final ProvisionOption[] bundles )
     {
         final List<String> arguments = new ArrayList<String>();
         for( ProvisionOption bundle : bundles )
@@ -286,7 +298,7 @@ class ArgumentsBuilder
      *
      * @return converted Pax Runner collection of arguments
      */
-    private static String extractArguments( final SystemPackageOption[] packages )
+    private String extractArguments( final SystemPackageOption[] packages )
     {
         final StringBuilder argument = new StringBuilder();
         if( packages != null && packages.length > 0 )
@@ -318,8 +330,8 @@ class ArgumentsBuilder
      *
      * @return converted Pax Runner argument
      */
-    private static String extractArguments( final SystemPropertyOption[] systemProperties,
-                                            final VMOption[] vmOptions )
+    private String extractArguments( final SystemPropertyOption[] systemProperties,
+                                     final VMOption[] vmOptions )
     {
         final StringBuilder argument = new StringBuilder();
         if( systemProperties != null && systemProperties.length > 0 )
@@ -366,8 +378,8 @@ class ArgumentsBuilder
      *
      * @return converted Pax Runner argument
      */
-    private static String extractArguments( RepositoryOptionImpl[] repositoriesOptions,
-                                            ExcludeDefaultRepositoriesOption[] excludeDefaultRepositoriesOptions )
+    private String extractArguments( RepositoryOptionImpl[] repositoriesOptions,
+                                     ExcludeDefaultRepositoriesOption[] excludeDefaultRepositoriesOptions )
     {
         final StringBuilder argument = new StringBuilder();
         final boolean excludeDefaultRepositories = excludeDefaultRepositoriesOptions.length > 0;
@@ -391,7 +403,7 @@ class ArgumentsBuilder
         return argument.toString();
     }
 
-    private static String extractArguments( AutoWrapOption[] autoWrapOptions )
+    private String extractArguments( AutoWrapOption[] autoWrapOptions )
     {
         if( autoWrapOptions.length > 0 )
         {
@@ -403,7 +415,7 @@ class ArgumentsBuilder
         }
     }
 
-    private static String extractArguments( CleanCachesOption[] cleanCachesOption )
+    private String extractArguments( CleanCachesOption[] cleanCachesOption )
     {
         if( cleanCachesOption.length > 0 )
         {
@@ -415,7 +427,7 @@ class ArgumentsBuilder
         }
     }
 
-    private static String extractArguments( LocalRepositoryOption[] localRepositoryOptions )
+    private String extractArguments( LocalRepositoryOption[] localRepositoryOptions )
     {
         if( localRepositoryOptions != null && localRepositoryOptions.length > 0 )
         {
@@ -426,7 +438,7 @@ class ArgumentsBuilder
         return null;
     }
 
-    private static List<String> extractArguments( RawPaxRunnerOptionOption[] paxrunnerOptions )
+    private List<String> extractArguments( RawPaxRunnerOptionOption[] paxrunnerOptions )
     {
         List<String> args = new ArrayList<String>();
         final boolean excludeDefaultRepositories = paxrunnerOptions.length > 0;
@@ -442,12 +454,11 @@ class ArgumentsBuilder
         return args;
     }
 
-    private static String extractArguments( WorkingDirectoryOption[] workingDirectoryOptions )
+    private String extractArguments( WorkingDirectoryOption[] workingDirectoryOptions )
     {
         if( workingDirectoryOptions.length > 0 )
         {
-            return "--workingDirectory=" + createWorkingDirectory( workingDirectoryOptions[ 0 ].getWorkingDirectory()
-            ).getAbsolutePath();
+            return "--workingDirectory=" + createWorkingDirectory( workingDirectoryOptions[ 0 ].getWorkingDirectory() ).getAbsolutePath();
         }
         return null;
     }
@@ -461,7 +472,7 @@ class ArgumentsBuilder
      *
      * @throws IllegalArgumentException - If there is more then one framework start level option
      */
-    private static Collection<String> extractArguments( final FrameworkStartLevelOption[] startLevels )
+    private Collection<String> extractArguments( final FrameworkStartLevelOption[] startLevels )
     {
         final List<String> arguments = new ArrayList<String>();
         if( startLevels.length > 1 )
@@ -484,7 +495,7 @@ class ArgumentsBuilder
      *
      * @throws IllegalArgumentException - If there is more then one initial bundle start level option
      */
-    private static Collection<String> extractArguments( final BundleStartLevelOption[] startLevels )
+    private Collection<String> extractArguments( final BundleStartLevelOption[] startLevels )
     {
         final List<String> arguments = new ArrayList<String>();
         if( startLevels.length > 1 )
@@ -505,7 +516,7 @@ class ArgumentsBuilder
      *
      * @return converted Pax Runner collection of arguments
      */
-    private static Collection<String> extractArguments( final BootClasspathLibraryOption[] libraries )
+    private Collection<String> extractArguments( final BootClasspathLibraryOption[] libraries )
     {
         final List<String> arguments = new ArrayList<String>();
         for( BootClasspathLibraryOption library : libraries )
@@ -530,7 +541,7 @@ class ArgumentsBuilder
      *
      * @return created working directory
      */
-    private static File createWorkingDirectory( String workingDirectoryOption )
+    private File createWorkingDirectory( String workingDirectoryOption )
     {
         final File workDir = new File( workingDirectoryOption );
         // create if not existent:
@@ -538,6 +549,14 @@ class ArgumentsBuilder
         {
             workDir.mkdirs();
         }
+        if (m_workingFolder == null) {
+            m_workingFolder = workDir;
+        }
         return workDir;
+    }
+
+    public File getWorkingFolder()
+    {
+        return m_workingFolder;
     }
 }
