@@ -23,7 +23,7 @@
   <properties>
     <namespace>org.ops4j.pax.exam</namespace>
 
-    <dependency.runner.version>1.2.0-SNAPSHOT</dependency.runner.version>
+    <dependency.runner.version>1.1.1</dependency.runner.version>
     <dependency.swissbox.version>1.0.0</dependency.swissbox.version>
     <dependency.base.version>1.0.0</dependency.base.version>
     <dependency.url.version>1.0.0</dependency.url.version>
