@@ -59,6 +59,7 @@ class ArgumentsBuilder
      * It is readable by a getter.
      */
     private File m_workingFolder;
+    private ExecutionCustomizer[] m_customizers;
 
     /**
      * Converts configuration options to Pax Runner arguments.
@@ -68,6 +69,7 @@ class ArgumentsBuilder
     ArgumentsBuilder( final Option... options )
     {
         final List<String> arguments = new ArrayList<String>();
+        m_customizers = filter( ExecutionCustomizer.class, options );
 
         add( arguments, extractArguments( filter( MavenPluginGeneratedConfigOption.class, options ) ) );
         add( arguments, extractArguments( filter( FrameworkOption.class, options ) ) );
@@ -549,7 +551,8 @@ class ArgumentsBuilder
         {
             workDir.mkdirs();
         }
-        if (m_workingFolder == null) {
+        if( m_workingFolder == null )
+        {
             m_workingFolder = workDir;
         }
         return workDir;
@@ -558,5 +561,10 @@ class ArgumentsBuilder
     public File getWorkingFolder()
     {
         return m_workingFolder;
+    }
+
+    public ExecutionCustomizer[] getCustomizers()
+    {
+        return m_customizers;
     }
 }

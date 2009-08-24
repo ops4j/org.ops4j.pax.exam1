@@ -17,16 +17,16 @@
  */
 package org.ops4j.pax.exam;
 
-import java.net.URL;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import static org.ops4j.lang.NullArgumentException.*;
-import static org.ops4j.lang.NullArgumentException.validateNotEmptyContent;
 import static org.ops4j.pax.exam.OptionUtils.*;
 import org.ops4j.pax.exam.options.BootClasspathLibraryOption;
 import org.ops4j.pax.exam.options.BootDelegationOption;
 import org.ops4j.pax.exam.options.BundleStartLevelOption;
+import org.ops4j.pax.exam.options.CustomFrameworkOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.ops4j.pax.exam.options.EquinoxFrameworkOption;
 import org.ops4j.pax.exam.options.FelixFrameworkOption;
@@ -39,13 +39,13 @@ import org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption;
 import org.ops4j.pax.exam.options.OptionalCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.RawUrlReference;
+import org.ops4j.pax.exam.options.ExecutionCustomizer;
 import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
 import org.ops4j.pax.exam.options.TestContainerStartTimeoutOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.UrlReference;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
-import org.ops4j.pax.exam.options.CustomFrameworkOption;
 
 /**
  * Factory methods for core options.
@@ -74,7 +74,7 @@ public class CoreOptions
      *
      * @return provided options, expanded
      *
-     * @see OptionUtils#expand(Option[])
+     * @see OptionUtils#expand(Option...)
      */
     public static Option[] options( final Option... options )
     {
@@ -602,26 +602,31 @@ public class CoreOptions
      * Creates a {@link org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption}.
      *
      * @param url of configuration to be used
+     *
      * @return Args option with file written from paxexam plugin
      */
-    public static MavenPluginGeneratedConfigOption mavenConfiguration( String url ) {
-       validateNotEmpty( url,"specified configuration url must not be empty ");
-       try {
-           return mavenConfiguration( new URL( url ));
-       }catch (MalformedURLException mE) {
-           throw new IllegalArgumentException( "url " + url + " is not a valid url",mE );             
-       }
+    public static MavenPluginGeneratedConfigOption mavenConfiguration( String url )
+    {
+        validateNotEmpty( url, "specified configuration url must not be empty " );
+        try
+        {
+            return mavenConfiguration( new URL( url ) );
+        } catch( MalformedURLException mE )
+        {
+            throw new IllegalArgumentException( "url " + url + " is not a valid url", mE );
+        }
     }
 
     /**
      * Creates a {@link org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption}.
      *
      * @param url of configuration to be used
+     *
      * @return Args option with file written from paxexam plugin
      */
     public static MavenPluginGeneratedConfigOption mavenConfiguration( URL url )
     {
-        validateNotNull( url,"specified configuration url ");
+        validateNotNull( url, "specified configuration url " );
         return new MavenPluginGeneratedConfigOption( url );
     }
 

@@ -37,6 +37,7 @@ import org.ops4j.pax.exam.container.def.options.RBCLookupTimeoutOption;
 import org.ops4j.pax.exam.container.def.options.Scanner;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.TestContainerStartTimeoutOption;
+import org.ops4j.pax.exam.options.ExecutionCustomizer;
 import org.ops4j.pax.exam.rbc.Constants;
 import org.ops4j.pax.exam.rbc.client.RemoteBundleContextClient;
 import org.ops4j.pax.exam.spi.container.TestContainer;
@@ -209,6 +210,17 @@ class PaxRunnerTestContainer
             "Test container (Pax Runner " + Info.getPaxRunnerVersion() + ") started in "
             + ( System.currentTimeMillis() - startedAt ) + " millis"
         );
+
+        if( m_arguments.getCustomizers().length > 0 )
+        {
+            LOG.info(
+                "Found customizer options. (" + m_arguments.getCustomizers().length + " in total.)"
+            );
+            for( ExecutionCustomizer customizer : m_arguments.getCustomizers() )
+            {
+                customizer.customizeEnvironment( m_arguments.getWorkingFolder() );
+            }
+        }
         LOG.info(
             "Wait for test container to finish its initialization "
             + ( m_startTimeout == WAIT_FOREVER ? "without timing out" : "for " + m_startTimeout + " millis" )
