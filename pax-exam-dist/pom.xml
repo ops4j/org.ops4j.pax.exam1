@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.ops4j.pax</groupId>
         <artifactId>exam</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.1-SNAPSHOT</version>
     </parent>
 
     <groupId>org.ops4j.pax.exam</groupId>
     <artifactId>pax-exam-dist</artifactId>
     <description>Pax Exam Distribution Assembly</description>
-    <version>1.1.0</version>
+    <version>1.1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>OPS4J Pax Exam - Distribution</name>
