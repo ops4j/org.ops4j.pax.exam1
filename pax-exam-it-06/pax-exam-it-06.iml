@@ -13,7 +13,9 @@
     <orderEntry type="library" name="Maven: junit:junit:4.4" level="project" />
     <orderEntry type="library" name="Maven: org.easymock:easymock:2.4" level="project" />
     <orderEntry type="module" module-name="pax-exam" exported="" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-lang:1.0.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-lang:1.1.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-store:1.1.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-io:1.0.0" level="project" />
     <orderEntry type="module" module-name="pax-exam-junit" exported="" />
     <orderEntry type="module" module-name="pax-exam-runtime" exported="" />
     <orderEntry type="module" module-name="pax-exam-spi" exported="" />
@@ -24,12 +26,16 @@
     <orderEntry type="module" module-name="pax-exam-container-default" exported="" />
     <orderEntry type="module" module-name="pax-exam-container-rbc-client" exported="" />
     <orderEntry type="module" module-name="pax-exam-container-rbc" exported="" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-net:1.0.0" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-monitors:1.0.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-net:1.1.1-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:1.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.osgi:org.osgi.core:4.0.1" level="project" />
     <orderEntry type="library" exported="" name="Maven: org.apache.felix:org.apache.felix.deploymentadmin:0.9.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.swissbox:pax-swissbox-tinybundles:1.1.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.swissbox:pax-swissbox-tinybundles:1.0.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-monitors:1.0.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.swissbox:pax-swissbox-bnd:1.0.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: biz.aQute:bndlib:0.0.313" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.google.inject:guice:2.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: aopalliance:aopalliance:1.0" level="project" />
   </component>
 </module>
 

@@ -4,8 +4,8 @@ import java.io.IOException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.osgi.framework.BundleContext;
-import org.osgi.service.deploymentadmin.DeploymentAdmin;
-import org.osgi.service.deploymentadmin.DeploymentException;
+//import org.osgi.service.deploymentadmin.DeploymentAdmin;
+//import org.osgi.service.deploymentadmin.DeploymentException;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.Option;
@@ -70,10 +70,10 @@ public class DPExamTest
 
     @Test
     public void test1()
-        throws IOException, DeploymentException
+        throws IOException//, DeploymentException
     {
-        DeploymentAdmin admin =
-            (DeploymentAdmin) context.getService( context.getServiceReference( DeploymentAdmin.class.getName() ) );
+      //  DeploymentAdmin admin =
+      //      (DeploymentAdmin) context.getService( context.getServiceReference( DeploymentAdmin.class.getName() ) );
 /**
         admin.installDeploymentPackage(
             newDeploymentPackage()

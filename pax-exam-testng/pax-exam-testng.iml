@@ -13,7 +13,9 @@
     <orderEntry type="library" name="Maven: org.easymock:easymock:2.4" level="project" />
     <orderEntry type="module" module-name="pax-exam-runtime" exported="" />
     <orderEntry type="module" module-name="pax-exam" exported="" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-lang:1.0.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-lang:1.1.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-store:1.1.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-io:1.1.1-SNAPSHOT" level="project" />
     <orderEntry type="module" module-name="pax-exam-spi" exported="" />
     <orderEntry type="library" exported="" name="Maven: commons-discovery:commons-discovery:0.4" level="project" />
     <orderEntry type="library" exported="" name="Maven: commons-logging:commons-logging:1.1" level="project" />

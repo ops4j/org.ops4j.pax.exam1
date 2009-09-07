@@ -24,8 +24,8 @@
     <namespace>org.ops4j.pax.exam</namespace>
 
     <dependency.runner.version>1.1.1</dependency.runner.version>
-    <dependency.swissbox.version>1.0.0</dependency.swissbox.version>
-    <dependency.base.version>1.0.0</dependency.base.version>
+    <dependency.swissbox.version>1.1.1-SNAPSHOT</dependency.swissbox.version>
+    <dependency.base.version>1.1.1-SNAPSHOT</dependency.base.version>
     <dependency.url.version>1.0.0</dependency.url.version>
   </properties>
 
@@ -66,14 +66,14 @@
     </profile>
 
   </profiles>
-<reporting>
-   <plugins>
-     <plugin>
-       <artifactId>maven-javadoc-plugin</artifactId>
-       <version>2.2</version>
-     </plugin>
-   </plugins>
- </reporting>
+  <reporting>
+    <plugins>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.2</version>
+      </plugin>
+    </plugins>
+  </reporting>
 
   <build>
     <plugins>
@@ -142,6 +142,11 @@
       <dependency>
         <groupId>org.ops4j.base</groupId>
         <artifactId>ops4j-base-lang</artifactId>
+        <version>${dependency.base.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.ops4j.base</groupId>
+        <artifactId>ops4j-base-store</artifactId>
         <version>${dependency.base.version}</version>
       </dependency>
       <dependency>
