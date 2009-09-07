@@ -4,7 +4,8 @@ Bundle-Version>:\
 Bundle-SymbolicName:\
   ${bundle.symbolicName}
 
-Import-Package:
+Import-Package:\
+  org.apache.commons.logging;resolution:=optional
   
 Export-Package:\
   ${bundle.namespace}; version="${pom.version}",\
