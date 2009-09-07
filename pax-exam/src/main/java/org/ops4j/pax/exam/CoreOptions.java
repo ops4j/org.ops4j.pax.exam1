@@ -17,6 +17,8 @@
  */
 package org.ops4j.pax.exam;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -39,18 +41,20 @@ import org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption;
 import org.ops4j.pax.exam.options.OptionalCompositeOption;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.RawUrlReference;
-import org.ops4j.pax.exam.options.ExecutionCustomizer;
 import org.ops4j.pax.exam.options.SystemPackageOption;
 import org.ops4j.pax.exam.options.SystemPropertyOption;
 import org.ops4j.pax.exam.options.TestContainerStartTimeoutOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.UrlReference;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
+import org.ops4j.store.Store;
+import org.ops4j.store.StoreFactory;
 
 /**
  * Factory methods for core options.
  *
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
+ * @author Toni Menzel (toni@okidokiteam.com
  * @since 0.3.0, December 08, 2008
  */
 public class CoreOptions
@@ -253,6 +257,37 @@ public class CoreOptions
         for( String url : urls )
         {
             options.add( new UrlProvisionOption( url ) );
+        }
+        return provision( options.toArray( new ProvisionOption[options.size()] ) );
+    }
+
+    /**
+     * Creates a composite option of {@link ProvisionOption}s.
+     * This is handy when bundles are built on the fly via TinyBundles.
+     *
+     * @param streams provision sources
+     *
+     * @return composite option of provision options
+     *
+     * @throws IllegalArgumentException - If a problem occured while flushing streams
+     */
+    public static Option provision( final InputStream... streams )
+    {
+        validateNotNull( streams, "streams" );
+        //TODO make the store more global to the exam session to control caching load + shutdown.
+        // For now we do it fully3 locally:
+        Store<InputStream> store = StoreFactory.defaultStore();
+
+        final List<ProvisionOption> options = new ArrayList<ProvisionOption>();
+        for( InputStream stream : streams )
+        {
+            try
+            {
+                options.add( new UrlProvisionOption( store.getLocation( store.store( stream ) ).toURL().toExternalForm() ) );
+            } catch( IOException e )
+            {
+                throw new IllegalArgumentException( "A supplied stream blew up..", e );
+            }
         }
         return provision( options.toArray( new ProvisionOption[options.size()] ) );
     }
