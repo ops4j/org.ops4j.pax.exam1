@@ -3,8 +3,8 @@ package org.ops4j.pax.exam.twitterexample;
 import org.junit.Test;
 import com.google.inject.Injector;
 import com.google.inject.Guice;
-import org.ops4j.pax.exam.twitterexample.api.TwitterService;
-import org.ops4j.pax.exam.twitterexample.application.TwitterTestingModule;
+import org.examples.twitterclient.api.TwitterService;
+import org.examples.twitterclient.application.TwitterTestingModule;
 
 /**
  * Created by IntelliJ IDEA.

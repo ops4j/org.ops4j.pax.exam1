@@ -7,15 +7,14 @@ import org.junit.Test;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.ServiceReference;
-import org.osgi.framework.Constants;
 import org.osgi.framework.Bundle;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.Inject;
-import org.ops4j.pax.exam.twitterexample.api.TwitterService;
-import org.ops4j.pax.exam.twitterexample.api.TwitterBackend;
-import org.ops4j.pax.exam.twitterexample.service.MockTwitterImpl;
+import org.examples.twitterclient.api.TwitterService;
+import org.examples.twitterclient.api.TwitterBackend;
+import org.examples.twitterclient.service.MockTwitterImpl;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import static org.ops4j.pax.swissbox.tinybundles.core.TinyBundles.*;
 
