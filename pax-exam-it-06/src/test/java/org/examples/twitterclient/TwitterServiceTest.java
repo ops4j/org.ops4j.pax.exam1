@@ -1,4 +1,4 @@
-package org.ops4j.pax.exam.twitterexample;
+package org.examples.twitterclient;
 
 import java.io.IOException;
 import org.junit.runner.RunWith;

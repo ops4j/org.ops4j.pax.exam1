@@ -1,4 +1,4 @@
-package org.ops4j.pax.exam.twitterexample;
+package org.examples.twitterclient;
 
 import org.junit.Test;
 import com.google.inject.Injector;
