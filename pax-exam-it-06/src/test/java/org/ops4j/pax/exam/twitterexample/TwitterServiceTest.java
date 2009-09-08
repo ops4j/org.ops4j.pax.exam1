@@ -8,6 +8,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.Constants;
+import org.osgi.framework.Bundle;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.Option;
@@ -15,7 +16,6 @@ import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.twitterexample.api.TwitterService;
 import org.ops4j.pax.exam.twitterexample.api.TwitterBackend;
 import org.ops4j.pax.exam.twitterexample.service.MockTwitterImpl;
-import org.ops4j.pax.exam.it.HelloWorld;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import static org.ops4j.pax.swissbox.tinybundles.core.TinyBundles.*;
 
@@ -28,7 +28,7 @@ public class TwitterServiceTest
     {
         return options(
             // add Guice
-            
+            provision( mavenBundle( "com.google.inject", "guice", "2.0" ) ),
             // the API Bundle
             provision(
                 newBundle()
@@ -40,6 +40,7 @@ public class TwitterServiceTest
             provision(
                 newBundle()
                     .add( MockTwitterImpl.class )
+                     .add( MockTwitterImpl.Foo.class )
                     .prepare( withBnd() ).build()
             )
 
@@ -53,6 +54,17 @@ public class TwitterServiceTest
     public void runMyService()
         throws BundleException, IOException
     {
+        for( Bundle b : context.getBundles() )
+        {
+            System.out.println( "b: " + b.getSymbolicName() + " is " + b.getState() );
+        }
+        // check classloader refs:
+        assertNotNull( MockTwitterImpl.class );
+        assertNotNull( MockTwitterImpl.Foo.class );
+
+        new MockTwitterImpl.Foo();
+
+        System.out.println(  );
         // check and call service
         ServiceReference ref = context.getServiceReference( TwitterService.class.getName() );
         assertNotNull( ref );

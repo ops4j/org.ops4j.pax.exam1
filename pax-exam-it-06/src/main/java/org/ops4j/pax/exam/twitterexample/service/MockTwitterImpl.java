@@ -26,4 +26,13 @@ public class MockTwitterImpl implements TwitterService
     {
         System.out.println( "Sending " + s + " with engine: " + m_backend );
     }
+
+    public static class Foo
+    {
+
+        public Foo()
+        {
+            System.out.println( "Hello Magic" );
+        }
+    }
 }
