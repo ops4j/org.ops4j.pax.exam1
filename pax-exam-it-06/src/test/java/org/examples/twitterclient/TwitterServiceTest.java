@@ -12,6 +12,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.Constants;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.Option;
@@ -39,14 +40,14 @@ public class TwitterServiceTest
                 newBundle()
                     .add( TwitterService.class )
                     .add( TwitterBackend.class )
-                    .prepare( withBnd() ).build()
+                    .build( withBnd() )
             ),
             // the service bundle
             provision(
                 newBundle()
                     .add( MockTwitterImpl.class )
                     .add( MockTwitterImpl.Foo.class )
-                    .prepare( withBnd() ).build()
+                    .build( withBnd() )
             ),
             new Customizer()
             {
@@ -54,9 +55,14 @@ public class TwitterServiceTest
                 public InputStream customizeTestProbe( InputStream testProbe )
                     throws IOException
                 {
-                    File f = new File( "probe.jar" );
-                    StreamUtils.copyStream( testProbe, new FileOutputStream( f), true );
-                    return new FileInputStream( f );
+                    // change test probe on the fly.
+                    // you can do everything:
+                    // - remove classes
+                    // - add stuff
+                    // - change manifest
+                    return modifyBundle( testProbe )
+                        .set( Constants.BUNDLE_SYMBOLICNAME, "My-very-own-probe" )
+                        .build();
                 }
             }
 
@@ -66,7 +72,7 @@ public class TwitterServiceTest
     @Inject
     BundleContext context;
 
-    @Test
+    //@Test
     public void runMyService()
         throws BundleException, IOException
     {
@@ -90,7 +96,7 @@ public class TwitterServiceTest
         context.ungetService( ref );
     }
 
-    @Test
+    //@Test
     public void p1()
 
     {
@@ -102,6 +108,7 @@ public class TwitterServiceTest
 
     {
         System.out.println( "Hello!" );
+        assertEquals("My-very-own-probe",context.getBundle().getHeaders(  ).get( Constants.BUNDLE_SYMBOLICNAME ));
     }
 }
 
