@@ -1,6 +1,10 @@
 package org.examples.twitterclient;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -12,11 +16,13 @@ import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.Inject;
+import org.ops4j.pax.exam.Customizer;
 import org.examples.twitterclient.api.TwitterService;
 import org.examples.twitterclient.api.TwitterBackend;
 import org.examples.twitterclient.service.MockTwitterImpl;
 import static org.ops4j.pax.exam.CoreOptions.*;
 import static org.ops4j.pax.swissbox.tinybundles.core.TinyBundles.*;
+import org.ops4j.io.StreamUtils;
 
 @RunWith( JUnit4TestRunner.class )
 public class TwitterServiceTest
@@ -39,9 +45,20 @@ public class TwitterServiceTest
             provision(
                 newBundle()
                     .add( MockTwitterImpl.class )
-                     .add( MockTwitterImpl.Foo.class )
+                    .add( MockTwitterImpl.Foo.class )
                     .prepare( withBnd() ).build()
-            )
+            ),
+            new Customizer()
+            {
+                @Override
+                public InputStream customizeTestProbe( InputStream testProbe )
+                    throws IOException
+                {
+                    File f = new File( "probe.jar" );
+                    StreamUtils.copyStream( testProbe, new FileOutputStream( f), true );
+                    return new FileInputStream( f );
+                }
+            }
 
         );
     }
@@ -63,7 +80,7 @@ public class TwitterServiceTest
 
         new MockTwitterImpl.Foo();
 
-        System.out.println(  );
+        System.out.println();
         // check and call service
         ServiceReference ref = context.getServiceReference( TwitterService.class.getName() );
         assertNotNull( ref );
@@ -71,6 +88,20 @@ public class TwitterServiceTest
         assertNotNull( service );
         service.send( "Toni" );
         context.ungetService( ref );
+    }
+
+    @Test
+    public void p1()
+
+    {
+        System.out.println( "Hello!" );
+    }
+
+    @Test
+    public void p2()
+
+    {
+        System.out.println( "Hello!" );
     }
 }
 

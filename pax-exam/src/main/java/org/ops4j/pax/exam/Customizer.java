@@ -15,16 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ops4j.pax.exam.options;
+package org.ops4j.pax.exam;
 
 import java.io.File;
-import org.ops4j.pax.exam.Option;
+import java.io.InputStream;
+import java.io.IOException;
 
 /**
  * Hooks to inject certain activities into pax exam execution phases.
  * All phases can contain code to customize things at different phases.
  */
-public abstract class ExecutionCustomizer implements Option
+public abstract class Customizer implements Option
 {
 
     /**
@@ -35,7 +36,31 @@ public abstract class ExecutionCustomizer implements Option
      * @param workingFolder final workingfolder (new File(".")) of your osgi setup. Be careful there,
      *                      the platform may not start if you (for example) delete things in there.
      */
-    public abstract void customizeEnvironment( File workingFolder );
+    public void customizeEnvironment( File workingFolder )
+    {
+        return;
+    }
+
+    /**
+     * Callback that allow to customize the ready built test probe.
+     * Examples are:
+     * - need to obfuscate bytecode
+     * - need to add checksums
+     * - want to share/copy the probe somewhere
+     *
+     * You can use the Tinybundles library to easily change bits of your bundle on the fly.
+     *
+     * @param testProbe stream of the probe
+     *
+     * @return probe to be installed instead of probe.
+     *
+     * @throws Exception delegate exception handling to container as it would just clutter implementations.
+     */
+    public InputStream customizeTestProbe( InputStream testProbe )
+        throws Exception
+    {
+        return testProbe;
+    }
 
 
 }

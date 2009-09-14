@@ -19,6 +19,7 @@
 package org.ops4j.pax.exam.container.def.internal;
 
 import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.Customizer;
 import static org.ops4j.pax.exam.OptionUtils.filter;
 import org.ops4j.pax.exam.container.def.options.*;
 import org.ops4j.pax.exam.options.*;
@@ -59,7 +60,7 @@ class ArgumentsBuilder
      * It is readable by a getter.
      */
     private File m_workingFolder;
-    private ExecutionCustomizer[] m_customizers;
+    private Customizer[] m_customizers;
 
     /**
      * Converts configuration options to Pax Runner arguments.
@@ -69,7 +70,7 @@ class ArgumentsBuilder
     ArgumentsBuilder( final Option... options )
     {
         final List<String> arguments = new ArrayList<String>();
-        m_customizers = filter( ExecutionCustomizer.class, options );
+        m_customizers = filter( Customizer.class, options );
 
         add( arguments, extractArguments( filter( MavenPluginGeneratedConfigOption.class, options ) ) );
         add( arguments, extractArguments( filter( FrameworkOption.class, options ) ) );
@@ -563,7 +564,7 @@ class ArgumentsBuilder
         return m_workingFolder;
     }
 
-    public ExecutionCustomizer[] getCustomizers()
+    public Customizer[] getCustomizers()
     {
         return m_customizers;
     }

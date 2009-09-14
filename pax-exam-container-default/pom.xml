@@ -48,6 +48,11 @@
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.url</groupId>
+      <artifactId>pax-url-dir</artifactId>
+      <version>${dependency.url.version}</version>
+    </dependency>
 
   </dependencies>
 

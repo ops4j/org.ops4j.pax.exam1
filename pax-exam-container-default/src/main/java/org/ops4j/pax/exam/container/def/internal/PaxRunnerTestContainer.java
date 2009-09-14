@@ -18,9 +18,15 @@
  */
 package org.ops4j.pax.exam.container.def.internal;
 
+import java.io.InputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.net.URL;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.osgi.framework.Bundle;
@@ -28,6 +34,7 @@ import org.ops4j.net.FreePort;
 import static org.ops4j.pax.exam.Constants.*;
 import org.ops4j.pax.exam.CoreOptions;
 import static org.ops4j.pax.exam.CoreOptions.*;
+import org.ops4j.pax.exam.Customizer;
 import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.OptionUtils.*;
@@ -37,7 +44,6 @@ import org.ops4j.pax.exam.container.def.options.RBCLookupTimeoutOption;
 import org.ops4j.pax.exam.container.def.options.Scanner;
 import org.ops4j.pax.exam.options.ProvisionOption;
 import org.ops4j.pax.exam.options.TestContainerStartTimeoutOption;
-import org.ops4j.pax.exam.options.ExecutionCustomizer;
 import org.ops4j.pax.exam.rbc.Constants;
 import org.ops4j.pax.exam.rbc.client.RemoteBundleContextClient;
 import org.ops4j.pax.exam.spi.container.TestContainer;
@@ -46,6 +52,9 @@ import org.ops4j.pax.exam.spi.container.TimeoutException;
 import org.ops4j.pax.runner.Run;
 import org.ops4j.pax.runner.handler.internal.URLUtils;
 import org.ops4j.pax.runner.platform.DefaultJavaRunner;
+import org.ops4j.store.Handle;
+import org.ops4j.store.Store;
+import org.ops4j.store.StoreFactory;
 
 /**
  * {@link TestContainer} implementation using Pax Runner.
@@ -98,6 +107,9 @@ class PaxRunnerTestContainer
     private TestContainerSemaphore m_semaphore;
     private boolean m_started = false;
 
+    private Store<InputStream> m_store;
+    private Map<String, Handle> m_cache;
+
     /**
      * Constructor.
      *
@@ -113,6 +125,10 @@ class PaxRunnerTestContainer
             findFreeCommunicationPort(), getRMITimeout( options )
         );
         m_arguments = new ArgumentsBuilder( wrap( expand( combine( options, localOptions() ) ) ) );
+        m_store = StoreFactory.sharedLocalStore();
+        m_cache = new HashMap<String, Handle>();
+        // hack
+        System.setProperty( "java.protocol.handler.pkgs", "org.ops4j.pax.url" );
     }
 
     /**
@@ -142,10 +158,52 @@ class PaxRunnerTestContainer
      */
     public long installBundle( final String bundleUrl )
     {
-        LOG.debug( "Installing bundle [" + bundleUrl + "] .." );
-        long id = m_remoteBundleContextClient.installBundle( bundleUrl );
+        LOG.debug( "Preparing and Installing bundle [" + bundleUrl + "] .." );
+        long id = 0;
+        try
+        {
+            id = m_remoteBundleContextClient.installBundle( m_store.getLocation( storeAndGetData( bundleUrl ) ).toASCIIString() );
+        } catch( IOException e )
+        {
+            throw new RuntimeException( e );
+        }
         LOG.debug( "Installed bundle " + bundleUrl + " as ID: " + id );
         return id;
+    }
+
+    private Handle storeAndGetData( String bundleUrl )
+    {
+        try
+        {
+            Handle handle = m_cache.get( bundleUrl );
+            if( handle == null )
+            {
+                // new, so build, customize and store
+                URL url = new URL( bundleUrl );
+                InputStream in = url.openStream();
+                // new !
+                if( m_arguments.getCustomizers().length > 0 )
+                {
+                    LOG.info(
+                        "Found customizer options. (" + m_arguments.getCustomizers().length + " in total.)"
+                    );
+                    for( Customizer customizer : m_arguments.getCustomizers() )
+                    {
+                        in = customizer.customizeTestProbe( in );
+                    }
+                }
+                // store in and overwrite handle
+                handle = m_store.store( in );
+                m_cache.put( bundleUrl, handle );
+
+            }
+            return handle;
+
+        } catch( Exception e )
+        {
+            LOG.error( "problem in preparing probe. ", e );
+        }
+        return null;
     }
 
     /**
@@ -211,16 +269,6 @@ class PaxRunnerTestContainer
             + ( System.currentTimeMillis() - startedAt ) + " millis"
         );
 
-        if( m_arguments.getCustomizers().length > 0 )
-        {
-            LOG.info(
-                "Found customizer options. (" + m_arguments.getCustomizers().length + " in total.)"
-            );
-            for( ExecutionCustomizer customizer : m_arguments.getCustomizers() )
-            {
-                customizer.customizeEnvironment( m_arguments.getWorkingFolder() );
-            }
-        }
         LOG.info(
             "Wait for test container to finish its initialization "
             + ( m_startTimeout == WAIT_FOREVER ? "without timing out" : "for " + m_startTimeout + " millis" )
@@ -234,6 +282,16 @@ class PaxRunnerTestContainer
             throw new TimeoutException(
                 "Test container did not initialize in the expected time of " + m_startTimeout + " millis"
             );
+        }
+        if( m_arguments.getCustomizers().length > 0 )
+        {
+            LOG.info(
+                "Found customizer options. (" + m_arguments.getCustomizers().length + " in total.)"
+            );
+            for( Customizer customizer : m_arguments.getCustomizers() )
+            {
+                customizer.customizeEnvironment( m_arguments.getWorkingFolder() );
+            }
         }
         m_started = true;
     }
