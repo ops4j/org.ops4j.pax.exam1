@@ -18,7 +18,7 @@
 package org.ops4j.pax.exam.container.def.options;
 
 import org.ops4j.pax.exam.options.ProvisionOption;
-import static org.ops4j.pax.runner.provision.ServiceConstants.*;
+import static org.ops4j.pax.scanner.ServiceConstants.*;
 
 /**
  * Utility methods related to scanner options.

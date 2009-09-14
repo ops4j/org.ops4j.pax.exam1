@@ -20,8 +20,8 @@ package org.ops4j.pax.exam.container.def.options;
 import static org.ops4j.pax.exam.container.def.options.ScannerUtils.*;
 import org.ops4j.pax.exam.options.AbstractUrlProvisionOption;
 import org.ops4j.pax.exam.options.UrlReference;
-import static org.ops4j.pax.runner.provision.ServiceConstants.*;
-import static org.ops4j.pax.runner.scanner.features.ServiceConstants.*;
+import static org.ops4j.pax.scanner.ServiceConstants.*;
+import static org.ops4j.pax.scanner.features.ServiceConstants.*;
 
 /**
  * Option specifying provision from an Pax Runner Features scanner.

@@ -21,8 +21,8 @@ package org.ops4j.pax.exam.container.def.options;
 import static org.ops4j.lang.NullArgumentException.*;
 import static org.ops4j.pax.exam.container.def.options.ScannerUtils.*;
 import org.ops4j.pax.exam.options.AbstractProvisionOption;
-import static org.ops4j.pax.runner.provision.ServiceConstants.*;
-import static org.ops4j.pax.runner.scanner.pom.ServiceConstants.*;
+import static org.ops4j.pax.scanner.ServiceConstants.*;
+import static org.ops4j.pax.scanner.pom.ServiceConstants.*;
 
 /**
  * @author Toni Menzel (tonit)

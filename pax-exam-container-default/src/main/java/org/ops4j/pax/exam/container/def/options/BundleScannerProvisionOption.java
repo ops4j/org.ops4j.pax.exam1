@@ -21,8 +21,8 @@ import static org.ops4j.pax.exam.container.def.options.ScannerUtils.*;
 import org.ops4j.pax.exam.options.AbstractUrlProvisionOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.UrlReference;
-import static org.ops4j.pax.runner.provision.ServiceConstants.*;
-import static org.ops4j.pax.runner.scanner.bundle.ServiceConstants.*;
+import static org.ops4j.pax.scanner.ServiceConstants.*;
+import static org.ops4j.pax.scanner.bundle.ServiceConstants.*;
 
 /**
  * Option specifying provision form an Pax Runner Bundle scanner (scan-bundle).
