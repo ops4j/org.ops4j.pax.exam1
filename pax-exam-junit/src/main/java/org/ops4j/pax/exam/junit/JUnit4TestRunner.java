@@ -337,12 +337,6 @@ public class JUnit4TestRunner
                 .artifactId( "pax-exam-junit-extender-impl" )
                 .version( Info.getPaxExamVersion() )
                 .update( Info.isPaxExamSnapshotVersion() )
-                .startLevel( START_LEVEL_SYSTEM_BUNDLES ),
-            mavenBundle()
-                .groupId( "org.ops4j.pax.url" )
-                .artifactId( "pax-url-dir" )
-                .version( Info.getPaxUrlVersion() )
-                .update( Info.isPaxUrlSnapshotVersion() )
                 .startLevel( START_LEVEL_SYSTEM_BUNDLES )
         );
         // add options based on available configuration options from the test itself
