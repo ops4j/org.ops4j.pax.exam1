@@ -121,6 +121,16 @@ public class PaxRunnerOptions
     }
 
     /**
+     * Creates a Log Service {@link ProfileOption} (--profiles=compendium).
+     *
+     * @return log profile option
+     */
+    public static ProfileOption compendiumProfile()
+    {
+        return new ProfileOption( "compendium" );
+    }
+    
+    /**
      * Creates a {@link CleanCachesOption}.
      *
      * @return clean caches option
