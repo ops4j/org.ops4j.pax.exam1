@@ -43,7 +43,11 @@ public class WrappedUrlProvisionOption
      * Wrapped jar exports.
      */
     private String[] m_exports;
+    /**
+     * Wrapped jar raw instructions.
+     */
     private String[] m_instructions;
+    private WrappedUrlProvisionOption.OverwriteMode m_overwriteMode;
 
     /**
      * Constructor.
@@ -75,8 +79,20 @@ public class WrappedUrlProvisionOption
     public String getURL()
     {
         final StringBuilder options = new StringBuilder();
+        if( m_overwriteMode != null )
+        {
+            if( options.length() > 0 )
+            {
+                options.append( "&" );
+            }
+            options.append( "overwrite=" ).append( m_overwriteMode );
+        }
         if( m_bundleSymbolicName != null )
         {
+            if( options.length() > 0 )
+            {
+                options.append( "&" );
+            }
             options.append( "Bundle-SymboliName=" ).append( m_bundleSymbolicName );
         }
         if( m_bundleVersion != null )
@@ -98,7 +114,7 @@ public class WrappedUrlProvisionOption
             {
                 options.append( entry ).append( "," );
             }
-            options.delete( options.length(), options.length() + 1 );
+            options.delete( options.length() - 1, options.length() );
         }
         if( m_exports != null && m_exports.length > 0 )
         {
@@ -111,7 +127,7 @@ public class WrappedUrlProvisionOption
             {
                 options.append( entry ).append( "," );
             }
-            options.delete( options.length(), options.length() + 1 );
+            options.delete( options.length() - 1, options.length() );
         }
         if( m_instructions != null && m_instructions.length > 0 )
         {
@@ -188,6 +204,20 @@ public class WrappedUrlProvisionOption
     }
 
     /**
+     * Sets wrapped jar manifest overwrite mode.
+     *
+     * @param mode overwrite mode
+     *
+     * @return itself
+     */
+    public WrappedUrlProvisionOption overwriteManifest( final OverwriteMode mode )
+    {
+        m_overwriteMode = mode;
+
+        return this;
+    }
+
+    /**
      * Sets wrapped jar raw BND instructions.
      *
      * @param instructions BND instructions
@@ -207,6 +237,29 @@ public class WrappedUrlProvisionOption
     protected WrappedUrlProvisionOption itself()
     {
         return this;
+    }
+
+    /**
+     * Strategy to use regarding manifest rewrite, for a jar that is already a bundle (has osgi manifest attributes).
+     */
+    public static enum OverwriteMode
+    {
+
+        /**
+         * Keep existing manifest.
+         */
+        KEEP,
+
+        /**
+         * Merge instructions with current manifest entries.
+         */
+        MERGE,
+
+        /**
+         * Full rewrite.
+         */
+        FULL
+
     }
 
 }
