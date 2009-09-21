@@ -47,6 +47,7 @@ import org.ops4j.pax.exam.options.TestContainerStartTimeoutOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.UrlReference;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
+import org.ops4j.pax.exam.options.DebugClassLoadingOption;
 import org.ops4j.store.Store;
 import org.ops4j.store.StoreFactory;
 
@@ -612,6 +613,16 @@ public class CoreOptions
     public static SystemPropertyOption systemProperty( final String key )
     {
         return new SystemPropertyOption( key );
+    }
+
+    /**
+     * Creates a {@link DebugClassLoadingOption}.
+     *
+     * @return system property option
+     */
+    public static DebugClassLoadingOption debugClassLoading( )
+    {
+        return new DebugClassLoadingOption();
     }
 
     /**

@@ -18,17 +18,34 @@
  */
 package org.ops4j.pax.exam.container.def.internal;
 
-import org.ops4j.pax.exam.Option;
-import org.ops4j.pax.exam.Customizer;
-import static org.ops4j.pax.exam.OptionUtils.filter;
-import org.ops4j.pax.exam.container.def.options.*;
-import org.ops4j.pax.exam.options.*;
-
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import org.ops4j.pax.exam.Customizer;
+import org.ops4j.pax.exam.Option;
+import static org.ops4j.pax.exam.OptionUtils.*;
+import org.ops4j.pax.exam.container.def.options.AutoWrapOption;
+import org.ops4j.pax.exam.container.def.options.CleanCachesOption;
+import org.ops4j.pax.exam.container.def.options.ExcludeDefaultRepositoriesOption;
+import org.ops4j.pax.exam.container.def.options.LocalRepositoryOption;
+import org.ops4j.pax.exam.container.def.options.ProfileOption;
+import org.ops4j.pax.exam.container.def.options.RawPaxRunnerOptionOption;
+import org.ops4j.pax.exam.container.def.options.RepositoryOptionImpl;
+import org.ops4j.pax.exam.container.def.options.VMOption;
+import org.ops4j.pax.exam.container.def.options.WorkingDirectoryOption;
+import org.ops4j.pax.exam.options.BootClasspathLibraryOption;
+import org.ops4j.pax.exam.options.BootDelegationOption;
+import org.ops4j.pax.exam.options.BundleStartLevelOption;
+import org.ops4j.pax.exam.options.CustomFrameworkOption;
+import org.ops4j.pax.exam.options.DebugClassLoadingOption;
+import org.ops4j.pax.exam.options.FrameworkOption;
+import org.ops4j.pax.exam.options.FrameworkStartLevelOption;
+import org.ops4j.pax.exam.options.MavenPluginGeneratedConfigOption;
+import org.ops4j.pax.exam.options.ProvisionOption;
+import org.ops4j.pax.exam.options.SystemPackageOption;
+import org.ops4j.pax.exam.options.SystemPropertyOption;
 
 /**
  * Utility methods for converting configuration options to Pax Runner arguments.
@@ -99,6 +116,7 @@ class ArgumentsBuilder
              )
         );
         add( arguments, extractArguments( filter( BootClasspathLibraryOption.class, options ) ) );
+        add( arguments, extractArguments( filter( DebugClassLoadingOption.class, options ) ) );
         add( arguments, defaultArguments() );
 
         m_parsedArgs = arguments.toArray( new String[arguments.size()] );
@@ -461,7 +479,8 @@ class ArgumentsBuilder
     {
         if( workingDirectoryOptions.length > 0 )
         {
-            return "--workingDirectory=" + createWorkingDirectory( workingDirectoryOptions[ 0 ].getWorkingDirectory() ).getAbsolutePath();
+            return "--workingDirectory=" + createWorkingDirectory( workingDirectoryOptions[ 0 ].getWorkingDirectory()
+            ).getAbsolutePath();
         }
         return null;
     }
@@ -534,6 +553,25 @@ class ArgumentsBuilder
             }
         }
         return arguments;
+    }
+
+    /**
+     * Converts debug class loading option into corresponding argument (--debugClassLoading).
+     *
+     * @param debugClassLoadingOptions debug class loading options
+     *
+     * @return converted Pax Runner argument
+     */
+    private String extractArguments( final DebugClassLoadingOption[] debugClassLoadingOptions )
+    {
+        if( debugClassLoadingOptions.length > 0 )
+        {
+            return "--debugClassLoading";
+        }
+        else
+        {
+            return null;
+        }
     }
 
     /**
