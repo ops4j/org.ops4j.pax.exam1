@@ -18,9 +18,8 @@
  */
 package org.ops4j.pax.exam.container.def.internal;
 
-import java.io.InputStream;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
@@ -31,10 +30,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.osgi.framework.Bundle;
 import org.ops4j.net.FreePort;
+import org.ops4j.pax.exam.CompositeCustomizer;
 import static org.ops4j.pax.exam.Constants.*;
 import org.ops4j.pax.exam.CoreOptions;
 import static org.ops4j.pax.exam.CoreOptions.*;
-import org.ops4j.pax.exam.Customizer;
 import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Option;
 import static org.ops4j.pax.exam.OptionUtils.*;
@@ -69,16 +68,17 @@ class PaxRunnerTestContainer
     /**
      * JCL logger.
      */
+    //private static final Log LOG = GrowlFactory.getLogger( LogFactory.getLog( PaxRunnerTestContainer.class ),
+    //                                                       "Pax Exam",
+    //                                                       GrowlLogger.GROWL_INFO | GrowlLogger.GROWL_ERROR
+    //);
+
     private static final Log LOG = LogFactory.getLog( PaxRunnerTestContainer.class );
 
     /**
      * Number of ports to check for a free rmi communication port.
      */
     private static final int AMOUNT_OF_PORTS_TO_CHECK = 100;
-    /**
-     * Default timeout in millis that will be taken while searching for remote bundle context via RMI.
-     */
-    private static final Integer DEFAULT_TIMEOUT = 5000;
     /**
      * System bundle id.
      */
@@ -101,14 +101,15 @@ class PaxRunnerTestContainer
      */
     private final long m_startTimeout;
 
+    private final Store<InputStream> m_store;
+    private final Map<String, Handle> m_cache;
+    private final CompositeCustomizer m_customizers;
     /**
      *
      */
     private TestContainerSemaphore m_semaphore;
-    private boolean m_started = false;
 
-    private Store<InputStream> m_store;
-    private Map<String, Handle> m_cache;
+    private boolean m_started = false;
 
     /**
      * Constructor.
@@ -125,10 +126,10 @@ class PaxRunnerTestContainer
             findFreeCommunicationPort(), getRMITimeout( options )
         );
         m_arguments = new ArgumentsBuilder( wrap( expand( combine( options, localOptions() ) ) ) );
+
+        m_customizers = new CompositeCustomizer( m_arguments.getCustomizers() );
         m_store = StoreFactory.sharedLocalStore();
         m_cache = new HashMap<String, Handle>();
-        // hack
-        System.setProperty( "java.protocol.handler.pkgs", "org.ops4j.pax.url" );
     }
 
     /**
@@ -181,17 +182,9 @@ class PaxRunnerTestContainer
                 // new, so build, customize and store
                 URL url = new URL( bundleUrl );
                 InputStream in = url.openStream();
-                // new !
-                if( m_arguments.getCustomizers().length > 0 )
-                {
-                    LOG.info(
-                        "Found customizer options. (" + m_arguments.getCustomizers().length + " in total.)"
-                    );
-                    for( Customizer customizer : m_arguments.getCustomizers() )
-                    {
-                        in = customizer.customizeTestProbe( in );
-                    }
-                }
+
+                in = m_customizers.customizeTestProbe( in );
+
                 // store in and overwrite handle
                 handle = m_store.store( in );
                 m_cache.put( bundleUrl, handle );
@@ -283,16 +276,8 @@ class PaxRunnerTestContainer
                 "Test container did not initialize in the expected time of " + m_startTimeout + " millis"
             );
         }
-        if( m_arguments.getCustomizers().length > 0 )
-        {
-            LOG.info(
-                "Found customizer options. (" + m_arguments.getCustomizers().length + " in total.)"
-            );
-            for( Customizer customizer : m_arguments.getCustomizers() )
-            {
-                customizer.customizeEnvironment( m_arguments.getWorkingFolder() );
-            }
-        }
+        m_customizers.customizeEnvironment( m_arguments.getWorkingFolder() );
+
         m_started = true;
     }
 
@@ -404,7 +389,7 @@ class PaxRunnerTestContainer
     /**
      * Determine the rmi lookup timeout.<br/>
      * Timeout is dermined by first looking for a {@link RBCLookupTimeoutOption} in the user options. If not specified
-     * a default {@link #DEFAULT_TIMEOUT} is used.
+     * a default is used.
      *
      * @param options user options
      *
@@ -423,7 +408,7 @@ class PaxRunnerTestContainer
     /**
      * Determine the timeout while starting the osgi framework.<br/>
      * Timeout is dermined by first looking for a {@link TestContainerStartTimeoutOption} in the user options. If not specified a default
-     * {@link #DEFAULT_TIMEOUT} is used.
+     * is used.
      *
      * @param options user options
      *
