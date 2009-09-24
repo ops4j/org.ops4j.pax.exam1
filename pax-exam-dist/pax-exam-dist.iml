@@ -11,9 +11,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:0.21.0-SNAPSHOT" level="project" />
     <orderEntry type="module" module-name="pax-exam" exported="" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-lang:1.2.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-store:1.2.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-io:1.2.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-lang:1.2.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-store:1.2.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-io:1.2.0" level="project" />
     <orderEntry type="module" module-name="pax-exam-junit-extender" exported="" />
     <orderEntry type="module" module-name="pax-exam-container-default" exported="" />
     <orderEntry type="module" module-name="pax-exam-spi" exported="" />
@@ -21,9 +21,10 @@
     <orderEntry type="module" module-name="pax-exam-container-rbc" exported="" />
     <orderEntry type="library" exported="" name="Maven: commons-logging:commons-logging:1.1" level="project" />
     <orderEntry type="library" exported="" name="Maven: log4j:log4j:1.2.12" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-net:1.2.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:1.2.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.url:pax-url-dir:1.0.0" level="project" />
+    <orderEntry type="module" module-name="pax-exam-growl" exported="" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.base:ops4j-base-net:1.2.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:1.2.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.ops4j.pax.url:pax-url-dir:1.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.easymock:easymock:2.4" level="project" />
   </component>
