@@ -38,7 +38,7 @@ import org.ops4j.pax.exam.spi.container.TestContainerFactory;
 
 /**
  * A {@link TestMethod} that upon invokation starts a {@link TestContainer} and executes the test in the test container.
- *
+ * 
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.0 December 16, 2008
  */
@@ -50,18 +50,22 @@ public class JUnit4TestMethod
      * Test flow not yet started.
      */
     private static final int NOT_STARTED = 0;
+
     /**
      * Test container started.
      */
     private static final int CONTAINER_STARTED = 1;
+
     /**
      * Test bundle installed.
      */
     private static final int PROBE_INSTALLED = 2;
+
     /**
      * Test bundle started.
      */
     private static final int PROBE_STARTED = 3;
+
     /**
      * Test flow ended
      */
@@ -76,14 +80,17 @@ public class JUnit4TestMethod
      * Test method. Cannot reuse the one from super class as it is not public.
      */
     private final Method m_testMethod;
+
     /**
      * Configuration options.
      */
     private final Option[] m_options;
+
     /**
      * Configuration method name (test method name and eventual the framework and framework version)
      */
     private final String m_name;
+
     /**
      * Test bundle URL.
      */
@@ -91,12 +98,12 @@ public class JUnit4TestMethod
 
     /**
      * Constructor.
-     *
-     * @param testMethod      test method (cannot be null)
-     * @param testClass       test class (cannot be null)
+     * 
+     * @param testMethod test method (cannot be null)
+     * @param testClass test class (cannot be null)
      * @param frameworkOption framework option (on which framework the test method should be run) (can be null = default
-     *                        framework)
-     * @param userOptions     user options (can be null)
+     *            framework)
+     * @param userOptions user options (can be null)
      */
     public JUnit4TestMethod( final Method testMethod,
                              final TestClass testClass,
@@ -114,8 +121,7 @@ public class JUnit4TestMethod
     }
 
     /**
-     * {@inheritDoc}
-     * Starts the test container, installs the test bundle and executes the test within the container.
+     * {@inheritDoc} Starts the test container, installs the test bundle and executes the test within the container.
      */
     @Override
     public void invoke( Object test )
@@ -152,30 +158,30 @@ public class JUnit4TestMethod
                 LOG.info( "Test " + fullTestName + " ended succesfully" );
                 executionState = SUCCESFUL;
             }
-            catch( InstantiationException e )
+            catch ( InstantiationException e )
             {
                 throw new InvocationTargetException( e );
             }
-            catch( ClassNotFoundException e )
+            catch ( ClassNotFoundException e )
             {
                 throw new InvocationTargetException( e );
             }
         }
         finally
         {
-            if( container != null )
+            if ( container != null )
             {
                 // Leave handling of proper stop to container implementation
                 try
                 {
                     container.stop();
                 }
-                catch( RuntimeException ignore )
+                catch ( RuntimeException ignore )
                 {
-                    if( executionState >= SUCCESFUL )
+                    if ( executionState >= SUCCESFUL )
                     {
-                        //throw catched exception if the test already was successful
-                        //noinspection ThrowFromFinallyBlock
+                        // throw catched exception if the test already was successful
+                        // noinspection ThrowFromFinallyBlock
                         throw ignore;
                     }
                     else
@@ -191,7 +197,7 @@ public class JUnit4TestMethod
 
     /**
      * Getter.
-     *
+     * 
      * @return test method
      */
     public Method getTestMethod()
@@ -201,7 +207,7 @@ public class JUnit4TestMethod
 
     /**
      * Getter.
-     *
+     * 
      * @return test method name
      */
     public String getName()
@@ -211,10 +217,9 @@ public class JUnit4TestMethod
 
     /**
      * Computes the test method name out of test method name, framework and framework version.
-     *
-     * @param testMethodName  test method name
+     * 
+     * @param testMethodName test method name
      * @param frameworkOption framework option
-     *
      * @return test method name
      */
     private static String calculateName( final String testMethodName,
@@ -222,11 +227,11 @@ public class JUnit4TestMethod
     {
         final StringBuilder name = new StringBuilder();
         name.append( testMethodName );
-        if( frameworkOption != null )
+        if ( frameworkOption != null )
         {
             name.append( " [" ).append( frameworkOption.getName() );
             final String version = frameworkOption.getVersion();
-            if( version != null )
+            if ( version != null )
             {
                 name.append( "/" ).append( version );
             }
@@ -237,10 +242,9 @@ public class JUnit4TestMethod
 
     /**
      * Returns the test bundle url using an Pax URL Dir url.
-     *
-     * @param testClassName  test class name
+     * 
+     * @param testClassName test class name
      * @param testMethodName test method name
-     *
      * @return test bundle url
      */
     private static String getTestBundleUrl( final String testClassName,
@@ -248,20 +252,23 @@ public class JUnit4TestMethod
     {
         final StringBuilder url = new StringBuilder();
         url.append( "dir:" )
-            .append( new File( "." ).getAbsolutePath() )
-            .append( "$" )
-            .append( "tail=" ).append( testClassName.replace( ".", "/" ) ).append( ".class" )
-            .append( "&" )
-            .append( Constants.PROBE_TEST_CLASS ).append( "=" ).append( testClassName )
-            .append( "&" )
-            .append( Constants.PROBE_TEST_METHOD ).append( "=" ).append( testMethodName )
-            .append( "&" )
-            .append( org.osgi.framework.Constants.BUNDLE_SYMBOLICNAME )
-            .append( "=" )
-            .append( Constants.PROBE_SYMBOLICNAME )
-            .append( "&" )
-            .append( org.osgi.framework.Constants.DYNAMICIMPORT_PACKAGE )
-            .append( "=*" );
+           .append( new File( "." ).getAbsolutePath() )
+           .append( "$" )
+           .append( "tail=" ).append( testClassName.replace( ".", "/" ) ).append( ".class" )
+           .append( "&" )
+           .append( Constants.PROBE_TEST_CLASS ).append( "=" ).append( testClassName )
+           .append( "&" )
+           .append( Constants.PROBE_TEST_METHOD ).append( "=" ).append( testMethodName )
+           .append( "&" )
+           .append( org.osgi.framework.Constants.BUNDLE_SYMBOLICNAME )
+           .append( "=" )
+           .append( Constants.PROBE_SYMBOLICNAME )
+           .append( "&" )
+           .append( org.osgi.framework.Constants.DYNAMICIMPORT_PACKAGE )
+           .append( "=*" )
+           .append( "&" )
+           .append( org.osgi.framework.Constants.EXPORT_PACKAGE )
+           .append( "=!*" );
         return url.toString();
     }
 
