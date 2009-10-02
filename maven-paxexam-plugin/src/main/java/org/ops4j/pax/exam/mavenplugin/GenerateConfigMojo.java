@@ -24,6 +24,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.maven.artifact.Artifact;
@@ -79,16 +80,16 @@ public class GenerateConfigMojo extends AbstractMojo
     /**
      * pax runner arguments defined in <options> tag in configuration of plugin.
      *
-     * @parameter default-value="{}"
+     * @parameter
      */
-    private Map<String, String> options;
+    private Map<String, String> options = new HashMap<String,String>();
 
     /**
      * settings for this plugin in <settings> tag.
      *
-     * @parameter default-value="{}"
+     * @parameter
      */
-    private Map<String, String> settings;
+    private Map<String, String> settings = new HashMap<String,String>();
 
     /**
      * @component
