@@ -173,6 +173,15 @@ public class RemoteBundleContextImpl
         long startedTrying = System.currentTimeMillis();
         do
         {
+           try
+           {
+              Thread.sleep(50);
+           }
+           catch (InterruptedException e)
+           {
+              Thread.currentThread().interrupt();
+              break;
+           }
         }
         while( bundle.getState() < state
                && ( timeoutInMillis == WAIT_FOREVER
