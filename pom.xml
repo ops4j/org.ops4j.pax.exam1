@@ -23,10 +23,9 @@
   <properties>
     <namespace>org.ops4j.pax.exam</namespace>
 
-    <dependency.runner.version>1.2.1-SNAPSHOT</dependency.runner.version>
+    <dependency.runner.version>1.3.0</dependency.runner.version>
     <dependency.swissbox.version>1.2.0</dependency.swissbox.version>
     <dependency.base.version>1.2.1</dependency.base.version>
-    <dependency.url.version>1.1.0</dependency.url.version>
   </properties>
 
   <profiles>
@@ -48,11 +47,11 @@
         <module>pax-exam-testng</module>
         <module>maven-paxexam-plugin</module>
         <module>maven-archetype-paxexam-junit</module>
+        <!--
         <module>pax-exam-growl</module>
         <module>ops4j-quickbuild-core</module>
-<!--
-        <module>quickbuild-maven-plugin</module>
-    -->            
+       <module>quickbuild-maven-plugin</module>
+    -->
         <module>pax-exam-dist</module>
       </modules>
     </profile>
