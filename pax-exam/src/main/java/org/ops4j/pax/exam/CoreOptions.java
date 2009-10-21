@@ -141,7 +141,9 @@ public class CoreOptions
             felix().version( "1.6.1" ),
             felix().version( "1.8.0" ),
             felix().version( "1.8.1" ),
-            felix().version( "2.0.0" )
+            felix().version( "2.0.0" ),
+            felix().version( "2.0.1" )
+
         );
     }
 
@@ -170,7 +172,8 @@ public class CoreOptions
             equinox().version( "3.4.0" ),
             equinox().version( "3.4.1" ),
             equinox().version( "3.4.2" ),
-            equinox().version( "3.5.0" )
+            equinox().version( "3.5.0" ),
+            equinox().version( "3.5.1" )
         );
     }
 
