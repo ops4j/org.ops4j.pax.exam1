@@ -7957,17 +7957,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/base/ops4j-base-monitors/1.2.1-SNAPSHOT/ops4j-base-monitors-1.2.1-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.ops4j.pax.url:pax-url-dir:1.1.0">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-dir/1.1.0/pax-url-dir-1.1.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-dir/1.1.0/pax-url-dir-1.1.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/url/pax-url-dir/1.1.0/pax-url-dir-1.1.0-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: org.ops4j.pax.runner:pax-runner-no-jcl:1.2.1-SNAPSHOT">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/runner/pax-runner-no-jcl/1.2.1-SNAPSHOT/pax-runner-no-jcl-1.2.1-SNAPSHOT.jar!/" />
@@ -8702,6 +8691,10 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT-javadoc.jar!/" />
@@ -8723,8 +8716,16 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT-sources.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT-sources.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT-sources.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-tinybundles/1.2.1-SNAPSHOT/pax-swissbox-tinybundles-1.2.1-SNAPSHOT-sources.jar!/" />
@@ -8767,6 +8768,10 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT-javadoc.jar!/" />
@@ -8788,8 +8793,16 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT-sources.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT-sources.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT-sources.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/pax/swissbox/pax-swissbox-bnd/1.2.1-SNAPSHOT/pax-swissbox-bnd-1.2.1-SNAPSHOT-sources.jar!/" />
@@ -9033,6 +9046,8 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT-javadoc.jar!/" />
@@ -9044,8 +9059,12 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/aopalliance/1.0-SNAPSHOT/aopalliance-1.0-SNAPSHOT-sources.jar!/" />
@@ -9068,6 +9087,8 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT-javadoc.jar!/" />
@@ -9079,8 +9100,12 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT-javadoc.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/ops4j/peaberry/dependencies/guice/2.0-SNAPSHOT/guice-2.0-SNAPSHOT-sources.jar!/" />
