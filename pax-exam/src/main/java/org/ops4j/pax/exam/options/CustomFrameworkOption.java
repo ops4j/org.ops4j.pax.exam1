@@ -23,19 +23,38 @@ package org.ops4j.pax.exam.options;
  * @author Guillaume Nodet (gnodet@gmail.com)
  * @since 0.7.0
  */
-public class CustomFrameworkOption extends FrameworkOption {
+public class CustomFrameworkOption extends FrameworkOption
+{
 
     private String definitionURL;
 
-    public CustomFrameworkOption( String definitionURL )
+    private String basePlatform;
+
+    /**
+     * Set a custom framework with a definition url, a baseplatform and an identifier to
+     * for your testresults.
+     *
+     * @param definitionURL
+     * @param basePlatform  This can be felix, equinox, knopflerfish etc. These are the platforms
+     *                      defined as PlatformBuilder for Pax Runner. This property is needed if the platform in
+     *                      the definition file isn't based on default.platfom in Pax Runners runner properties.
+     * @param name
+     */
+    public CustomFrameworkOption( String definitionURL, String basePlatform, String name )
     {
-        super( "Custom[" + definitionURL + "]" );
+        super( basePlatform + "/" + name + "[" + definitionURL + "]" );
         this.definitionURL = definitionURL;
+        this.basePlatform = basePlatform;
     }
 
     public String getDefinitionURL()
     {
         return definitionURL;
+    }
+
+    public String getBasePlatform()
+    {
+        return basePlatform;
     }
 
 }

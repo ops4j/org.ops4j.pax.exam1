@@ -242,9 +242,16 @@ public class CoreOptions
         );
     }
 
-    public static CustomFrameworkOption customFramework( String definitionURL )
+    /**
+     *
+     * @param baseFrameworkName one of the frameworks supported by pax runner. Must match the framework you link to via #definitionURL
+     * @param definitionURL url to a custom pax runner platform xml descriptor
+     * @param name a custom name you give this combo (will show up in pax runner startup and error msg)
+     * @return instance of CustomFrameworkOption
+     */
+    public static CustomFrameworkOption customFramework( String baseFrameworkName, String definitionURL, String name )
     {
-        return new CustomFrameworkOption( definitionURL );
+        return new CustomFrameworkOption( definitionURL, baseFrameworkName,name );
     }
 
     /**

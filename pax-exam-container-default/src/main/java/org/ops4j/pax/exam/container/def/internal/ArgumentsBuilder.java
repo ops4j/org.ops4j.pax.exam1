@@ -202,6 +202,11 @@ class ArgumentsBuilder
         {
             if( frameworks[ 0 ] instanceof CustomFrameworkOption )
             {
+                String basePlatform = ( (CustomFrameworkOption) frameworks[ 0 ] ).getBasePlatform();
+                if( basePlatform != null && basePlatform.trim().length() > 0 )
+                {
+                    arguments.add( "--platform=" + basePlatform );
+                }
                 arguments.add( "--definitionURL=" + ( (CustomFrameworkOption) frameworks[ 0 ] ).getDefinitionURL() );
             }
             else
