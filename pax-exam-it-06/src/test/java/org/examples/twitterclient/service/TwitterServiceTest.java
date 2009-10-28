@@ -1,4 +1,4 @@
-package org.examples.twitterclient;
+package org.examples.twitterclient.service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,11 +13,13 @@ import org.osgi.framework.BundleException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
+import org.osgi.service.packageadmin.PackageAdmin;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.Customizer;
+import org.ops4j.pax.swissbox.tinybundles.core.TinyBundles;
 import org.examples.twitterclient.api.TwitterService;
 import org.examples.twitterclient.api.TwitterBackend;
 import org.examples.twitterclient.service.MockTwitterImpl;
@@ -34,7 +36,10 @@ public class TwitterServiceTest
     {
         return options(
             // add Guice
-            provision( mavenBundle( "com.google.inject", "guice", "2.0" ) ),
+            provision( mavenBundle( "com.google.inject", "guice", "2.0" ) 
+                      // mavenBundle( "org.ops4j.pax.exam","pax-exam-growl","1.2.0-SNAPSHOT" )
+                       ),
+
             // the API Bundle
             provision(
                 newBundle()
@@ -42,6 +47,7 @@ public class TwitterServiceTest
                     .add( TwitterBackend.class )
                     .build( withBnd() )
             ),
+           
             // the service bundle
             provision(
                 newBundle()
@@ -55,16 +61,10 @@ public class TwitterServiceTest
                 public InputStream customizeTestProbe( InputStream testProbe )
                     throws IOException
                 {
-                    // change test probe on the fly.
-                    // you can do everything:
-                    // - remove classes
-                    // - add stuff
-                    // - change manifest
-                    return modifyBundle( testProbe )
-                        .set( Constants.BUNDLE_SYMBOLICNAME, "My-very-own-probe" )
-                        .build();
+                    return TinyBundles.modifyBundle( testProbe ).removeHeader( Constants.EXPORT_PACKAGE).build();
                 }
-            }
+            },
+            felix().snapshotVersion()
 
         );
     }
@@ -107,8 +107,11 @@ public class TwitterServiceTest
     public void p2()
 
     {
+        PackageAdmin admin = (PackageAdmin) context.getService( context.getServiceReference( PackageAdmin.class.getName() ) );
+        System.out.println( "Exporting: " + admin.getExportedPackage( "org.osgi.framework" ).getVersion() );
+        System.out.println( "Export: " + context.getBundle(  ).getHeaders().get( Constants.EXPORT_PACKAGE ) );
         System.out.println( "Hello!" );
-        assertEquals("My-very-own-probe",context.getBundle().getHeaders(  ).get( Constants.BUNDLE_SYMBOLICNAME ));
+        //assertEquals( "My-very-own-probe", context.getBundle().getHeaders().get( Constants.BUNDLE_SYMBOLICNAME ) );
     }
 }
 
