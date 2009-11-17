@@ -25,9 +25,10 @@ import org.junit.runner.RunWith;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import static org.ops4j.pax.exam.CoreOptions.*;
+
+import org.ops4j.pax.exam.Customizer;
 import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.Option;
-import org.ops4j.pax.exam.options.ExecutionCustomizer;
 import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
@@ -71,7 +72,7 @@ public class T1S4_MoreConfigurationTest
                 mavenBundle().groupId( "org.ops4j.base" ).artifactId( "ops4j-base-util" ).version( "0.5.3" )
             ),
 
-            new ExecutionCustomizer()
+            new Customizer()
             {
                 @Override
                 public void customizeEnvironment( File workingFolder )
