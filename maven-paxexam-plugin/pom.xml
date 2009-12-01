@@ -94,11 +94,5 @@
       <artifactId>maven-plugin-api</artifactId>
       <version>2.0.7</version>
     </dependency>
-    <dependency>
-      <groupId>org.apache.servicemix.tooling</groupId>
-      <artifactId>depends-maven-plugin</artifactId>
-      <type>maven-plugin</type> <!--maven-plugin-->
-      <version>1.2-SNAPSHOT</version>
-    </dependency>
   </dependencies>
 </project>
