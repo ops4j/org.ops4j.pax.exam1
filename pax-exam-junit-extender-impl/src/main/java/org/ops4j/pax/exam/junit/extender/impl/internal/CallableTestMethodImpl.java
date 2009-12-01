@@ -94,7 +94,7 @@ class CallableTestMethodImpl
         throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException
     {
         final Class testClass = m_bundleContext.getBundle().loadClass( m_testClassName );
-        for( final Method testMethod : testClass.getDeclaredMethods() )
+        for( final Method testMethod : testClass.getMethods() )
         {
             if( testMethod.getName().equals( m_testMethodName ) )
             {
@@ -203,7 +203,8 @@ class CallableTestMethodImpl
     /**
      * Injects instances into fields found in testInstance and its superclases.
      *
-     * @param testInstance
+     * @param clazz
+     * @param inst
      */
     private void injectFieldInstances( Class clazz, Object inst )
         throws IllegalAccessException
