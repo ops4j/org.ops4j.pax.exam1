@@ -97,8 +97,8 @@
     <dependency>
       <groupId>org.apache.servicemix.tooling</groupId>
       <artifactId>depends-maven-plugin</artifactId>
-      <type>maven-plugin</type>
-      <version>1.1</version>
+      <type>maven-plugin</type> <!--maven-plugin-->
+      <version>1.2-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>
