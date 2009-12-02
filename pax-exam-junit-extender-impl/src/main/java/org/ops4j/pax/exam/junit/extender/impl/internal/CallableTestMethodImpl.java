@@ -31,7 +31,9 @@ import org.apache.commons.logging.LogFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.osgi.framework.BundleContext;
+
 import static org.ops4j.lang.NullArgumentException.*;
+
 import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.junit.extender.CallableTestMethod;
 
@@ -45,11 +47,12 @@ import org.ops4j.pax.exam.junit.extender.CallableTestMethod;
 class CallableTestMethodImpl
     implements CallableTestMethod
 {
-	/**
+
+    /**
      * Logger.
      */
     private static final Log LOG = LogFactory.getLog( CallableTestMethodImpl.class );
-	
+
     /**
      * Bundle context of the bundle containing the test class (cannot be null).
      */
@@ -94,12 +97,18 @@ class CallableTestMethodImpl
         throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException
     {
         final Class testClass = m_bundleContext.getBundle().loadClass( m_testClassName );
+        int encountered = 0;
         for( final Method testMethod : testClass.getMethods() )
         {
             if( testMethod.getName().equals( m_testMethodName ) )
             {
                 injectContextAndInvoke( testClass.newInstance(), testMethod );
+                encountered++;
             }
+        }
+        if( encountered == 0 )
+        {
+            throw new RuntimeException( " test " + m_testMethodName + " not found in test class " + testClass.getName() );
         }
     }
 
@@ -137,13 +146,16 @@ class CallableTestMethodImpl
             runAfters( testInstance );
         }
         finally
-        {	    	
-        	if (!cleanup)
-            try {
-                runAfters( testInstance );
-            } catch (Throwable throwable) 
+        {
+            if( !cleanup )
             {
-            	LOG.warn( "Got the exception when calling the runAfters. [Exception]: " + throwable );
+                try
+                {
+                    runAfters( testInstance );
+                } catch( Throwable throwable )
+                {
+                    LOG.warn( "Got the exception when calling the runAfters. [Exception]: " + throwable );
+                }
             }
         }
     }
