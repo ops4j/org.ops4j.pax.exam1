@@ -254,7 +254,9 @@ class CallableTestMethodImpl
      */
     private boolean isMatchingType( Field field, Class clazz )
     {
-        return field.getType().isAssignableFrom( clazz );
+        boolean result =  field.getType().isAssignableFrom( clazz );
+        LOG.debug( "Trying to match " + field.getType() + " with injection " + clazz.getName()  + ": " + result);
+        return result;
     }
 
     /**
