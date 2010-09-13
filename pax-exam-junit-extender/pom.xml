@@ -5,12 +5,12 @@
   <parent>
     <groupId>org.ops4j.pax</groupId>
     <artifactId>exam</artifactId>
-    <version>1.2.2</version>
+    <version>1.2.3-SNAPSHOT</version>
   </parent>
 
   <groupId>org.ops4j.pax.exam</groupId>
   <artifactId>pax-exam-junit-extender</artifactId>
-  <version>1.2.2</version>
+  <version>1.2.3-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>OPS4J Pax Exam - JUnit Extender API</name>

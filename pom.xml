@@ -10,7 +10,7 @@
 
   <groupId>org.ops4j.pax</groupId>
   <artifactId>exam</artifactId>
-  <version>1.2.2</version>
+  <version>1.2.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>OPS4J Pax Exam (Build POM)</name>
@@ -253,9 +253,9 @@
   </issueManagement>
 
   <scm>
-    <connection>scm:svn:https://scm.ops4j.org/repos/ops4j/qa/pax/exam-1.2.2</connection>
-    <developerConnection>scm:svn:https://scm.ops4j.org/repos/ops4j/qa/pax/exam-1.2.2</developerConnection>
-    <url>scm:svn:https://scm.ops4j.org/repos/ops4j/qa/pax/exam-1.2.2</url>
+    <connection>scm:svn:https://scm.ops4j.org/repos/ops4j/projects/pax/exam</connection>
+    <developerConnection>scm:svn:https://scm.ops4j.org/repos/ops4j/projects/pax/exam</developerConnection>
+    <url>scm:svn:https://scm.ops4j.org/repos/ops4j/qa/pax/master-3.1.2/exam</url>
   </scm>
 
   <developers>
