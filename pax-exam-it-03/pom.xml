@@ -27,17 +27,17 @@
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-junit</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-container-default</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
 
     <dependency>

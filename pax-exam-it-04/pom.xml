@@ -32,17 +32,17 @@
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-junit</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-container-default</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
 
     <!-- Here's the stuff we want to provision our osgi runtime with -->
@@ -59,7 +59,7 @@
       <plugin>
         <groupId>org.ops4j.pax.exam</groupId>
         <artifactId>maven-paxexam-plugin</artifactId>
-        <version>${pom.version}</version>
+        <version>${project.version}</version>
         <executions>
           <execution>
             <id>generate</id>
