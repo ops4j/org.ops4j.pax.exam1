@@ -18,28 +18,36 @@
  */
 package org.ops4j.pax.exam.container.def.internal;
 
-import java.io.File;
+import static org.ops4j.pax.exam.Constants.START_LEVEL_SYSTEM_BUNDLES;
+import static org.ops4j.pax.exam.Constants.WAIT_FOREVER;
+import static org.ops4j.pax.exam.CoreOptions.bootDelegationPackage;
+import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
+import static org.ops4j.pax.exam.CoreOptions.systemProperty;
+import static org.ops4j.pax.exam.OptionUtils.combine;
+import static org.ops4j.pax.exam.OptionUtils.expand;
+import static org.ops4j.pax.exam.OptionUtils.filter;
+import static org.ops4j.pax.exam.OptionUtils.remove;
+import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.scanBundle;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.rmi.NoSuchObjectException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.osgi.framework.Bundle;
 import org.ops4j.io.FileUtils;
-import org.ops4j.net.FreePort;
 import org.ops4j.pax.exam.CompositeCustomizer;
-import static org.ops4j.pax.exam.Constants.*;
 import org.ops4j.pax.exam.CoreOptions;
-import static org.ops4j.pax.exam.CoreOptions.*;
 import org.ops4j.pax.exam.Info;
 import org.ops4j.pax.exam.Option;
-import static org.ops4j.pax.exam.OptionUtils.*;
-import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.*;
 import org.ops4j.pax.exam.container.def.options.BundleScannerProvisionOption;
 import org.ops4j.pax.exam.container.def.options.RBCLookupTimeoutOption;
 import org.ops4j.pax.exam.container.def.options.Scanner;
@@ -56,6 +64,7 @@ import org.ops4j.pax.runner.platform.DefaultJavaRunner;
 import org.ops4j.store.Handle;
 import org.ops4j.store.Store;
 import org.ops4j.store.StoreFactory;
+import org.osgi.framework.Bundle;
 
 /**
  * {@link TestContainer} implementation using Pax Runner.
@@ -121,6 +130,11 @@ class PaxRunnerTestContainer
     private boolean m_started = false;
 
     /**
+     * RMI registry.
+     */
+    private Registry m_registry;
+
+    /**
      * Constructor.
      * 
      * @param javaRunner java runner to be used to start up Pax Runner
@@ -130,8 +144,9 @@ class PaxRunnerTestContainer
     {
         m_javaRunner = javaRunner;
         m_startTimeout = getTestContainerStartTimeout( options );
+        int registryPort = createRegistry();
         m_remoteBundleContextClient =
-            new RemoteBundleContextClient( findFreeCommunicationPort(), getRMITimeout( options ) );
+            new RemoteBundleContextClient( registryPort, getRMITimeout( options ) );
         m_arguments = new ArgumentsBuilder( wrap( expand( combine( options, localOptions() ) ) ) );
 
         m_customizers = new CompositeCustomizer( m_arguments.getCustomizers() );
@@ -299,6 +314,19 @@ class PaxRunnerTestContainer
                 {
                     m_javaRunner.waitForExit();
                 }
+
+                if ( m_registry != null )
+                {
+                    try {
+                        UnicastRemoteObject.unexportObject( m_registry, true );
+                    } catch (NoSuchObjectException e) {
+                        LOG.error( "Problem in shutting down RMI registry. ", e );
+                    }
+                    // this is necessary, unfortunately.. RMI wouldn' stop otherwise
+                    System.gc();
+                    LOG.info( "RMI registry stopped" );
+                    m_registry = null;
+                }
             }
         }
         finally
@@ -412,20 +440,31 @@ class PaxRunnerTestContainer
         return CoreOptions.waitForFrameworkStartup().getTimeout();
     }
 
-    /**
-     * Scanns ports for a free port to be used for RMI communication.
-     * 
-     * @return found free port
-     */
-    public static Integer findFreeCommunicationPort()
-    {
-        return new FreePort( Registry.REGISTRY_PORT, Registry.REGISTRY_PORT + AMOUNT_OF_PORTS_TO_CHECK ).getPort();
-    }
-
     @Override
     public String toString()
     {
         return "PaxRunnerTestContainer{}";
+    }
+
+    /**
+     * Creates an RMI registry on the first free port found.
+     *
+     * @return RMI registry
+     */
+    protected int createRegistry()
+    {
+        for( int port = Registry.REGISTRY_PORT; port <= Registry.REGISTRY_PORT + AMOUNT_OF_PORTS_TO_CHECK; port++ )
+        {
+            try {
+                m_registry = LocateRegistry.createRegistry( port );
+                LOG.info( "RMI registry started on port [" + port + "]" );
+                return port;
+            } catch (Exception e) {
+                // ignore and try next port number
+            }
+        }
+
+        throw new RuntimeException( "No free port in range " + Registry.REGISTRY_PORT + ":" + Registry.REGISTRY_PORT + AMOUNT_OF_PORTS_TO_CHECK );
     }
 
 }

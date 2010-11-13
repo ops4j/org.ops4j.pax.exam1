@@ -75,21 +75,20 @@ public class Activator
                     {
                         // try to find port from property
                         int port = getPort();
-                        LOG.debug( "Starting up RMI registry on port [" + port + "]" );
-                        m_registry = LocateRegistry.createRegistry( port );
+                        m_registry = LocateRegistry.getRegistry( port );
                         LOG.debug( "Binding " + RemoteBundleContext.class.getSimpleName() + " to RMI registry" );
                         m_registry.bind(
                             RemoteBundleContext.class.getName(),
                             UnicastRemoteObject.exportObject(
                                 m_remoteBundleContext = new RemoteBundleContextImpl( bundleContext ),
-                                port
+                                0
                             )
                         );
-                        LOG.info( "RMI registry started on port [" + port + "]" );
+                        LOG.info( "Remote Bundle Context started" );
                     }
                     catch( Exception e )
                     {
-                        throw new BundleException( "Cannot setup RMI registry", e );
+                        throw new BundleException( "Cannot bind RBC to RMI registry", e );
                     }
                     return null;
                 }
@@ -106,12 +105,9 @@ public class Activator
         LOG.debug( "Unbinding " + RemoteBundleContext.class.getSimpleName() );
         m_registry.unbind( RemoteBundleContext.class.getName() );
         UnicastRemoteObject.unexportObject( m_remoteBundleContext, true );
-        UnicastRemoteObject.unexportObject( m_registry, true );
         m_registry = null;
         m_remoteBundleContext = null;
-        // this is necessary, unfortunately.. RMI wouldn' stop otherwise
-        System.gc();
-        LOG.info( "RMI registry stopped" );
+        LOG.info( "Remote Bundle Context stopped" );
     }
 
     /**
