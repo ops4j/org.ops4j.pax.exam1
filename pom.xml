@@ -88,7 +88,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>     
+      </plugin>
     </plugins>
     <pluginManagement>
       <plugins>
@@ -199,7 +199,7 @@
           </exclusion>
         </exclusions>
       </dependency>
-    
+
     </dependencies>
   </dependencyManagement>
 
@@ -234,11 +234,11 @@
     <url>http://issues.ops4j.org/jira/browse/PAXEXAM</url>
   </issueManagement>
 
-  <scm>
-    <connection>scm:svn:https://scm.ops4j.org/repos/ops4j/projects/pax/exam</connection>
-    <developerConnection>scm:svn:https://scm.ops4j.org/repos/ops4j/projects/pax/exam</developerConnection>
-    <url>scm:svn:https://scm.ops4j.org/repos/ops4j/qa/pax/master-3.1.2/exam</url>
-  </scm>
+   <scm>
+        <connection>scm:git:git@github.com:ops4j/org.ops4j.pax.exam1.git</connection>
+        <developerConnection>scm:git:git@github.com:ops4j/org.ops4j.pax.exam1.git</developerConnection>
+        <url>git@github.com:ops4j/org.ops4j.pax.exam1.git</url>
+    </scm>
 
   <developers>
     <developer>
