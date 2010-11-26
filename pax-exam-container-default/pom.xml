@@ -5,12 +5,12 @@
   <parent>
     <groupId>org.ops4j.pax</groupId>
     <artifactId>exam</artifactId>
-    <version>1.2.3-SNAPSHOT</version>
+    <version>1.2.3</version>
   </parent>
 
   <groupId>org.ops4j.pax.exam</groupId>
   <artifactId>pax-exam-container-default</artifactId>
-  <version>1.2.3-SNAPSHOT</version>
+  <version>1.2.3</version>
   <packaging>jar</packaging>
 
   <name>OPS4J Pax Exam - Default Container (Pax Runner)</name>
