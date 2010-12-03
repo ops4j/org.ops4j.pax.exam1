@@ -178,7 +178,7 @@ class PaxRunnerTestContainer
     public long installBundle( final String bundleUrl )
     {
         LOG.debug( "Preparing and Installing bundle [" + bundleUrl + "] .." );
-        long id = 0;
+        long id;
         try
         {
             id =
@@ -274,6 +274,9 @@ class PaxRunnerTestContainer
             }
         }
 
+        // customize environment
+        m_customizers.customizeEnvironment( m_arguments.getWorkingFolder() );
+
         long startedAt = System.currentTimeMillis();
         URLUtils.resetURLStreamHandlerFactory();
         Run.start( m_javaRunner, m_arguments.getArguments() );
@@ -291,8 +294,6 @@ class PaxRunnerTestContainer
             throw new TimeoutException( "Test container did not initialize in the expected time of " + m_startTimeout
                 + " millis" );
         }
-        m_customizers.customizeEnvironment( m_arguments.getWorkingFolder() );
-
         m_started = true;
     }
 
