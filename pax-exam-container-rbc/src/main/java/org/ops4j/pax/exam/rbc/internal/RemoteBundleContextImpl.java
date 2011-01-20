@@ -162,8 +162,8 @@ public class RemoteBundleContextImpl
                               final long timeoutInMillis )
         throws TimeoutException
     {
-        final Bundle bundle = m_bundleContext.getBundle( bundleId );
-        if( timeoutInMillis == NO_WAIT && bundle.getState() < state )
+        Bundle bundle = m_bundleContext.getBundle( bundleId );
+        if( timeoutInMillis == NO_WAIT && (bundle == null || bundle.getState() < state ))
         {
             throw new TimeoutException(
                 "There is no waiting timeout set and bundle has state '" + bundleStateToString( bundle.getState() )
@@ -173,6 +173,7 @@ public class RemoteBundleContextImpl
         long startedTrying = System.currentTimeMillis();
         do
         {
+           bundle = m_bundleContext.getBundle( bundleId );
            try
            {
               Thread.sleep(50);
@@ -183,7 +184,7 @@ public class RemoteBundleContextImpl
               break;
            }
         }
-        while( bundle.getState() < state
+        while( (bundle == null || bundle.getState() < state)
                && ( timeoutInMillis == WAIT_FOREVER
                     || System.currentTimeMillis() < startedTrying + timeoutInMillis ) );
         if( bundle.getState() < state )
