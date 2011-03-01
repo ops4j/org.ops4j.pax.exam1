@@ -21,11 +21,19 @@
     </description>
 
     <properties>
+        <release-paxexam1-altGitURL>scm:git:ssh://git@github.com/ops4j/org.ops4j.pax.url.exam1</release-paxexam1-altGitURL>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <namespace>org.ops4j.pax.exam</namespace>
         <dependency.runner.version>1.6.0</dependency.runner.version>
         <dependency.swissbox.version>1.3.1</dependency.swissbox.version>
         <dependency.base.version>1.2.2</dependency.base.version>
     </properties>
+
+    <scm>
+        <connection>scm:git:git://github.com/ops4j/org.ops4j.pax.exam1.git</connection>
+        <developerConnection>${release-paxexam1-altGitURL}</developerConnection>
+        <url>http://github.com/ops4j/org.ops4j.pax.exam1/tree/master</url>
+    </scm>
 
     <profiles>
         <profile>
@@ -244,12 +252,6 @@
         <system>jira</system>
         <url>http://issues.ops4j.org/jira/browse/PAXEXAM</url>
     </issueManagement>
-
-    <scm>
-        <connection>scm:git:git@github.com:ops4j/org.ops4j.pax.exam1.git</connection>
-        <developerConnection>scm:git:git@github.com:ops4j/org.ops4j.pax.exam1.git</developerConnection>
-        <url>git@github.com:ops4j/org.ops4j.pax.exam1.git</url>
-    </scm>
 
     <developers>
         <developer>
