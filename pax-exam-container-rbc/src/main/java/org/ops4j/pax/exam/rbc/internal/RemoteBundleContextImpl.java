@@ -187,7 +187,10 @@ public class RemoteBundleContextImpl
         while( (bundle == null || bundle.getState() < state)
                && ( timeoutInMillis == WAIT_FOREVER
                     || System.currentTimeMillis() < startedTrying + timeoutInMillis ) );
-        if( bundle.getState() < state )
+        // bundle != null && bundle.getState() >= state
+        // or
+        // timeoutInMillis != WAIT_FOREVER && System.currentTimeMillis() >= startedTrying + timeoutInMillis
+        if( bundle == null || bundle.getState() < state )
         {
             throw new TimeoutException(
                 "Timeout passed and bundle has state '" + bundleStateToString( bundle.getState() )
