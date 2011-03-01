@@ -117,9 +117,6 @@
                     <version>2.1</version>
                     <configuration>
                         <pushChanges>false</pushChanges>
-                        <preparationGoals>clean install</preparationGoals>
-                        <goals>deploy</goals>
-                        <autoVersionSubmodules>true</autoVersionSubmodules>
                     </configuration>
                 </plugin>
             </plugins>
